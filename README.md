@@ -4,7 +4,7 @@
 ```
 erDiagram
           Kurikulum ||--|{ MataKuliah : has
-          MataKuliah |o--|{ RPS : has
+          MataKuliah ||--|{ RPS : has
           RPS ||--|{ CPL : has
           RPS ||--|{ CPMK : has
           RPS ||--|{ Soal : has
@@ -57,4 +57,4 @@ erDiagram
             string jawaban
           }
 ```
-[![](https://mermaid.ink/img/pako:eNqVVMtugzAQ_BXL5-QHuLY90UhRo96Qom3sgoNf8kNRBPn3LiSpoJiEwgXtDN6ZWdsNPRjGaUa5exVQOlCFJr9PHp2oo4yKtO163TZkAwHyKAVUJCMV-CF5gLWmZ39sd1NaV7yt9rJ9f4Jv8oeEnQE5JfTV8RJCWckV14GzIfPTc3dnXsUKbWMghZ6wmmGFIC8QwcY1H5zQJeEKhEwiFrw_GZf-zQTjRABPhuglPY0FYrpagCrq2eUG82qSiqb-uqoGBUm6i8qO211VeAzeB-7SkTjwZ3AQUo729d3xrIluastHc4wsyhmv-02eRALosgQ5PzMPXszq67b4wmmhBHST7APe8jqJ1ByTRYWgH0jAI7Bcgzd_zT4RJzQTNWAS_47Pci0kCNBJVAFam0-2P-XLR2-5QylnmGl2hBN8TUIcU-mKKu7wdDO8L_vOBQ0V7u6CZviJr74gJ1qGyt-YwEho9g3S8xWFGMzurA80Cy7yO-l25d5Ylx98AX4Z)](https://mermaid-js.github.io/mermaid-live-editor/edit#pako:eNqVVMtugzAQ_BXL5-QHuLY90UhRo96Qom3sgoNf8kNRBPn3LiSpoJiEwgXtDN6ZWdsNPRjGaUa5exVQOlCFJr9PHp2oo4yKtO163TZkAwHyKAVUJCMV-CF5gLWmZ39sd1NaV7yt9rJ9f4Jv8oeEnQE5JfTV8RJCWckV14GzIfPTc3dnXsUKbWMghZ6wmmGFIC8QwcY1H5zQJeEKhEwiFrw_GZf-zQTjRABPhuglPY0FYrpagCrq2eUG82qSiqb-uqoGBUm6i8qO211VeAzeB-7SkTjwZ3AQUo729d3xrIluastHc4wsyhmv-02eRALosgQ5PzMPXszq67b4wmmhBHST7APe8jqJ1ByTRYWgH0jAI7Bcgzd_zT4RJzQTNWAS_47Pci0kCNBJVAFam0-2P-XLR2-5QylnmGl2hBN8TUIcU-mKKu7wdDO8L_vOBQ0V7u6CZviJr74gJ1qGyt-YwEho9g3S8xWFGMzurA80Cy7yO-l25d5Ylx98AX4Z)
+[![](https://mermaid.ink/img/pako:eNqVVMtugzAQ_BXL5-YHuLY90UhRo96Qom28BQfbWH4oikj-vUtKKigmoXBBO4N3ZtZ2y_eNQJ5xdC8SSge6MOz3yaOTdVRRs_N5tTq3bA0B8qgkVCxjFfgheYD17PfNdkrrij3-vHl7gK_zu4RtA2pKuFbHS0htFWo0AcWQ-eHRjcVKY2NghZmw2mGFES8wKcY1H5w0JUMNUiURC94fG5f-rQmNkwE8G6KX9DQWiOlqAapoZpcbzKtNKpr666oGNCTpLmo7bvejwlPwPqBLR-LAn8BBSDna1TfHsya6qS0fzSGKqGa87tZ5EglgyhLU_Mw8eDmrr9viC6dFEshNsg94i3USqZGSJYVg7kigI7Bcg2_-mn0gThoha6Ak_h2fRSMVSDBJVANZm0_2esqXj96iIyknmGl2gCN8TkIcU_kT1-jodAu6L6-dCx4q2t0Fz-iTXnMhTrSClL8KSZHw7AuUxycOMTTbk9nzLLiIN1J_5fasyze_v34m)](https://mermaid-js.github.io/mermaid-live-editor/edit#pako:eNqVVMtugzAQ_BXL5-YHuLY90UhRo96Qom28BQfbWH4oikj-vUtKKigmoXBBO4N3ZtZ2y_eNQJ5xdC8SSge6MOz3yaOTdVRRs_N5tTq3bA0B8qgkVCxjFfgheYD17PfNdkrrij3-vHl7gK_zu4RtA2pKuFbHS0htFWo0AcWQ-eHRjcVKY2NghZmw2mGFES8wKcY1H5w0JUMNUiURC94fG5f-rQmNkwE8G6KX9DQWiOlqAapoZpcbzKtNKpr666oGNCTpLmo7bvejwlPwPqBLR-LAn8BBSDna1TfHsya6qS0fzSGKqGa87tZ5EglgyhLU_Mw8eDmrr9viC6dFEshNsg94i3USqZGSJYVg7kigI7Bcg2_-mn0gThoha6Ak_h2fRSMVSDBJVANZm0_2esqXj96iIyknmGl2gCN8TkIcU_kT1-jodAu6L6-dCx4q2t0Fz-iTXnMhTrSClL8KSZHw7AuUxycOMTTbk9nzLLiIN1J_5fasyze_v34m)
