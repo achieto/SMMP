@@ -1,7 +1,7 @@
 ## SMMP
 
 #ERD
-```
+```mermaid
 erDiagram
           Kurikulum ||--|{ MataKuliah : has
           MataKuliah ||--|{ RPS : has
