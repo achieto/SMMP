@@ -22,21 +22,30 @@ erDiagram
           MataKuliah {
             string id
             sting nama
+            string deskripsi
             string rumpun
             int semester
             string prasyarat
             int id_kurikulum
+            int bobot_teori
+            int bobot_praktikum
+            string dosen
+            string materi
+            string pustaka
           }
           RPS {
             int id
             string judul
             string id_MK
             string tanggal
-            string otorisasi
+            string pengembang
+            string koordinator
+            string kaprodi
           }
           CPL {
             int id
             int id_RPS
+            string jenis
             string aspek
             string keterangan
           }
@@ -44,9 +53,13 @@ erDiagram
             int id
             int id_soal
             int id_RPS
+            string sub_cpmk
+            string metode_luring
+            string metode_daring
             string indikator
+            string kriteria
             string tanggal
-            string penilaian
+            string bobot
             string materi
           }
           Soal {
