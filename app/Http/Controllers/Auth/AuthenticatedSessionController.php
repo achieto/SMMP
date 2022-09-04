@@ -30,14 +30,12 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request)
     {
         $request->authenticate();
-
         $request->session()->regenerate();
 
-        $user = User::where('id', '=', Auth::user()->id)->first();
-        $otoritas = $user->otoritas;
-
-        if($otoritas === 'Dosen') {
-            return view('dosen.CPL.add');
+        if (auth()->user()->otoritas == 'Dosen') {
+            return redirect()->route('dashboard');
+        } else {
+            return redirect()->route('admin');
         }
     }
 
@@ -49,8 +47,12 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request)
     {
-        Auth::guard('web')->logout();
-
+        if (auth()->user()->otoritas == 'Dosen') {
+            Auth::guard('web')->logout();
+        } else {
+            Auth::guard('web')->logout();
+        }
+        
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();

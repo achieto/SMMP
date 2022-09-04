@@ -55,16 +55,17 @@
                         <p class="fw-light text-muted mb-0">{{$email}}</p>
                     </div>
                     <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
-                    <div class="dropdown-item">
-                        <i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <dropdown-link :href="route('logout')" onclick="event.preventDefault();
-                                                this.closest('form').submit();" style="color:black">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <dropdown-link :href="route('logout')" onclick="event.preventDefault();
+                            this.closest('form').submit();" style="color:black">
+                            <div class=" dropdown-item">
+                                <i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>
                                 {{ __('Log Out') }}
-                            </dropdown-link>
-                        </form>
-                    </div>
+                            </div>
+                        </dropdown-link>
+
+                    </form>
                 </div>
             </li>
         </ul>

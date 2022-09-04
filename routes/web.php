@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', function () {
     return view('dosen.CPL.add');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth'])->middleware(['dosen'])->name('dashboard');
+
+Route::get('/admin', function () {
+    return view('dashboard');
+})->middleware(['auth'])->middleware(['admin'])->name('admin');
 
 require __DIR__.'/auth.php';
