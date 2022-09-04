@@ -23,9 +23,9 @@ class RedirectIfAuthenticated
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
                 if (auth()->user()->otoritas == 'Dosen') {
-                    return redirect('/dashboard');
+                    return redirect()->route('dashboard');
                 } else {
-                    return redirect('/admin');
+                    return redirect()->route('admin');
                 }
             }
         }

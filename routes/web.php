@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\RegisteredUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +16,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', function () {
     return view('dosen.CPL.add');
-})->middleware(['auth'])->middleware(['dosen'])->name('dashboard');
+})->name('dashboard')->middleware(['auth'])->middleware(['dosen']);
 
-Route::get('/admin', function () {
-    return view('dashboard');
-})->middleware(['auth'])->middleware(['admin'])->name('admin');
+Route::middleware('admin')->group(
+    function () {
+        Route::get('/admin', function () {
+            return view('admin.user.list');
+        })->name('admin')->middleware(['auth']);
+        Route::get('/add-dosen', [RegisteredUserController::class, 'create'])
+            ->name('add-dosen');
+        Route::post('add-dosen', [RegisteredUserController::class, 'store']);
+    }
+);
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

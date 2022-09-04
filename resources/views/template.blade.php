@@ -3,10 +3,10 @@
 
 <!-- navbar -->
 @include('dosen.layout.navbar')
-    <!-- partial -->
-    <div class="container-fluid page-body-wrapper">
-        <!-- partial:partials/_settings-panel.html -->
-        <!-- <div class="theme-setting-wrapper">
+<!-- partial -->
+<div class="container-fluid page-body-wrapper">
+    <!-- partial:partials/_settings-panel.html -->
+    <!-- <div class="theme-setting-wrapper">
             <div id="settings-trigger"><i class="ti-settings"></i></div>
             <div id="theme-settings" class="settings-panel">
                 <i class="settings-close ti-close"></i>
@@ -28,7 +28,7 @@
                 </div>
             </div>
         </div> -->
-        <!-- <div id="right-sidebar" class="settings-panel">
+    <!-- <div id="right-sidebar" class="settings-panel">
             <i class="settings-close ti-close"></i>
             <ul class="nav nav-tabs border-top" id="setting-panel" role="tablist">
                 <li class="nav-item">
@@ -176,13 +176,13 @@
                 </div>
             </div>
         </div> -->
-        <!-- partial -->
-        <!-- partial:partials/_sidebar.html -->
-        @include('dosen.layout.sidebar')
-        <!-- partial -->
-        <div class="main-panel">
-            <div class="content-wrapper">
-                <div class="row">
-                    @yield('content')
-                    <!-- partial:partials/_footer.html -->
-                    @include('dosen.layout.footer')
+    <!-- partial -->
+    <!-- partial:partials/_sidebar.html -->
+    @include('dosen.layout.sidebar')
+    <!-- partial -->
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="row">
+                @yield('content')
+                <!-- partial:partials/_footer.html -->
+                @include('dosen.layout.footer')
