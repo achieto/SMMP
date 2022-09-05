@@ -11,7 +11,7 @@
                 @csrf
                 <div class="form-group">
                     <label>Name <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="name" placeholder="Name" :value="old('name')" required autofocus>
+                    <input type="text" class="form-control" name="name" placeholder="Name" :value="old('name')" required autofocus autocomplete="off">
                     @error('name')
                     <div class="alert alert-danger">
                         {{ $message }}
@@ -20,7 +20,7 @@
                 </div>
                 <div class="form-group">
                     <label>Email address <span class="text-danger">*</span></label>
-                    <input type="email" class="form-control" name="email" placeholder="Email" :value="old('email')" required>
+                    <input type="email" class="form-control" name="email" placeholder="Email" :value="old('email')" required autocomplete="off">
                     @error('email')
                     <div class="alert alert-danger">
                         {{ $message }}
@@ -28,19 +28,9 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label>Password <span class="text-danger">*</span></label>
+                    <label>Password</label>
                     <input type="password" class="form-control" name="password" placeholder="Password" required autocomplete="new-password">
                     @error('password')
-                    <div class="alert alert-danger">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
-
-                <div class="form-group">
-                    <label>Confirm Password <span class="text-danger">*</span></label>
-                    <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password">
-                    @error('password_confirmation')
                     <div class="alert alert-danger">
                         {{ $message }}
                     </div>
