@@ -24,6 +24,7 @@
                         ->first();
                         $nama = $user->name;
                         $email = $user->email;
+                        $img = $user->img;
                         @endphp
                         {{$nama}}
                     </span></h1>
@@ -47,10 +48,10 @@
             </li>
             <li class="nav-item dropdown d-none d-lg-block user-dropdown">
                 <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img class="img-xs rounded-circle" src="{{ asset('/assets/template/images/faces/face8.jpg')}}" alt="Profile image"> </a>
+                    <img class="img-xs rounded-circle" src="{{ asset('/assets/img/pp/' . $img)}}" alt="Profile image" alt="Profile image"> </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                     <div class="dropdown-header text-center">
-                        <img class="img-md rounded-circle" src="{{ asset('/assets/template/images/faces/face8.jpg')}}" alt="Profile image">
+                        <img class="img-md rounded-circle" src="{{ asset('/assets/img/pp/' . $img)}}" alt="Profile image" style="width:41px; height:40px" alt="Profile image">
                         <p class="mb-1 mt-3 font-weight-semibold">{{$nama}}</p>
                         <p class="fw-light text-muted mb-0">{{$email}}</p>
                     </div>

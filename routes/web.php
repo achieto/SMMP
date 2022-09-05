@@ -16,7 +16,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 
 Route::get('/dashboard', function () {
     return view('dosen.CPL.add');
-})->name('dosen')->middleware(['auth'])->middleware(['dosen']);
+})->name('dashboard')->middleware(['auth'])->middleware(['dosen']);
 
 Route::middleware('admin')->group(
     function () {

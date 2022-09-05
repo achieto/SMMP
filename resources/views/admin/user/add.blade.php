@@ -1,4 +1,4 @@
-@extends('template')
+@extends('admin.template')
 @section('content')
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
@@ -7,7 +7,7 @@
             <p class="card-description">
                 (Dosen)
             </p>
-            <form method="POST" action="{{ route('add-dosen') }}">
+            <form method="POST" action="{{ route('add-dosen') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label>Name <span class="text-danger">*</span></label>

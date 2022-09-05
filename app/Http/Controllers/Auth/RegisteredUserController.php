@@ -37,15 +37,31 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z., ]+$/'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'img' => ['nullable'],
             'otoritas' => ['required', 'string', 'max:255'],
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'otoritas' => $request->otoritas
-        ]);
+        $img = $request->file('img');
+        if($img != null) {
+            $imagePath = round(microtime(true) * 1000) . '-' . str_replace(' ', '-', $img->getClientOriginalName());
+            $img->move(public_path('../public/assets/img/pp'), $imagePath);
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'img' => $imagePath,
+                'otoritas' => $request->otoritas
+            ]);
+        } else {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'img' => 'User-Profile.png',
+                'otoritas' => $request->otoritas
+            ]);
+        }
+        
 
         event(new Registered($user));
 
