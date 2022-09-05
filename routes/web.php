@@ -16,12 +16,12 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 
 Route::get('/dashboard', function () {
     return view('dosen.CPL.add');
-})->name('dashboard')->middleware(['auth'])->middleware(['dosen']);
+})->name('dosen')->middleware(['auth'])->middleware(['dosen']);
 
 Route::middleware('admin')->group(
     function () {
-        Route::get('/admin', function () {
-            return view('admin.user.list');
+        Route::get('/', function () {
+            return view('admin.user.add');
         })->name('admin')->middleware(['auth']);
         Route::get('/add-dosen', [RegisteredUserController::class, 'create'])
             ->name('add-dosen');
