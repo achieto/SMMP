@@ -45,22 +45,22 @@ class UserController extends Controller
         if ($img != null) {
             $imagePath = round(microtime(true) * 1000) . '-' . str_replace(' ', '-', $img->getClientOriginalName());
             $img->move(public_path('../public/assets/img/pp'), $imagePath);
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'img' => $imagePath,
-                'otoritas' => $request->otoritas
-            ]);
         } else {
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'img' => 'User-Profile.png',
-                'otoritas' => $request->otoritas
-            ]);
+            $imagePath = 'User-Profile.png';
         }
+
+        $password = $request->password;
+        if($password == null) {
+            $password = 'unilajaya';
+        }
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($password),
+            'img' => $imagePath,
+            'otoritas' => $request->otoritas
+        ]);
 
 
         event(new Registered($user));

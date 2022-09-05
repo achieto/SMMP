@@ -29,7 +29,7 @@
                 </div>
                 <div class="form-group">
                     <label>Password</label>
-                    <input type="password" class="form-control" name="password" placeholder="Password" required autocomplete="new-password">
+                    <input type="password" class="form-control" name="password" placeholder="Password" autocomplete="new-password">
                     @error('password')
                     <div class="alert alert-danger">
                         {{ $message }}
