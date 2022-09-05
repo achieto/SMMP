@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 
-class RegisteredUserController extends Controller
+class UserController extends Controller
 {
     /**
      * Display the registration view.
@@ -33,7 +33,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([ 
+        $request->validate([
             'name' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z., ]+$/'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
@@ -42,7 +42,7 @@ class RegisteredUserController extends Controller
         ]);
 
         $img = $request->file('img');
-        if($img != null) {
+        if ($img != null) {
             $imagePath = round(microtime(true) * 1000) . '-' . str_replace(' ', '-', $img->getClientOriginalName());
             $img->move(public_path('../public/assets/img/pp'), $imagePath);
             $user = User::create([
@@ -61,7 +61,7 @@ class RegisteredUserController extends Controller
                 'otoritas' => $request->otoritas
             ]);
         }
-        
+
 
         event(new Registered($user));
 

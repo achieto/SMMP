@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,19 +14,33 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 |
 */
 
-Route::get('/dashboard', function () {
-    return view('dosen.CPL.add');
-})->name('dashboard')->middleware(['auth'])->middleware(['dosen']);
-
-Route::middleware('admin')->group(
+Route::middleware(['auth'])->group(
     function () {
-        Route::get('/', function () {
-            return view('admin.user.add');
-        })->name('admin')->middleware(['auth']);
-        Route::get('/add-dosen', [RegisteredUserController::class, 'create'])
-            ->name('add-dosen');
-        Route::post('add-dosen', [RegisteredUserController::class, 'store']);
+        Route::middleware('dosen')->group(
+            function () {
+                Route::get('/dashboard', function () {
+                    return view('dosen.CPL.add');
+                })->name('dashboard');
+            }
+        );
+        Route::middleware('admin')->group(
+            function () {
+                Route::get('/', function () {
+                    return view('admin.dashboard');
+                })->name('admin');
+                Route::get('/admin', function () {
+                    return view('admin.dashboard');
+                })->name('admin')->middleware(['auth']);
+                Route::get('/add-dosen', [UserController::class, 'create'])
+                    ->name('add-dosen');
+                Route::post('add-dosen', [UserController::class, 'store']);
+                Route::get('/list-dosen', function () {
+                    return view('admin.user.list');
+                });
+            }
+        );
     }
 );
+
 
 require __DIR__ . '/auth.php';
