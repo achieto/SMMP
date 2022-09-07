@@ -183,6 +183,9 @@
     <div class="main-panel">
         <div class="content-wrapper">
             <div class="row">
+                <div class="px-3">
+                    @include('admin.layout.success')
+                </div>
                 @yield('content')
                 <!-- partial:partials/_footer.html -->
                 @include('admin.layout.footer')
