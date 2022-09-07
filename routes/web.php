@@ -19,7 +19,7 @@ Route::middleware(['auth'])->group(
         Route::middleware('dosen')->group(
             function () {
                 Route::get('/dashboard', function () {
-                    return view('dosen.CPL.add');
+                    return view('dosen.dashboard');
                 })->name('dashboard');
             }
         );
@@ -34,9 +34,7 @@ Route::middleware(['auth'])->group(
                 Route::get('/add-dosen', [UserController::class, 'create'])
                     ->name('add-dosen');
                 Route::post('add-dosen', [UserController::class, 'store']);
-                Route::get('/list-dosen', function () {
-                    return view('admin.user.list');
-                });
+                Route::get('/list-dosen', [UserController::class, 'list']);
             }
         );
     }

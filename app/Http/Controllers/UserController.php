@@ -69,4 +69,9 @@ class UserController extends Controller
 
         return view('admin.user.add');
     }
+
+    public function list() {
+        $dosens = User::where('otoritas', 'Dosen')->get();
+        return view('admin.user.list', compact('dosens'));
+    }
 }
