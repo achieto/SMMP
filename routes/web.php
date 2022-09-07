@@ -36,6 +36,7 @@ Route::middleware(['auth'])->group(
                 Route::post('add-dosen', [UserController::class, 'store']);
                 Route::get('/list-dosen', [UserController::class, 'list']);
                 Route::put('/reset-dosen/{id}', [UserController::class, 'reset']);
+                Route::delete('/delete-dosen/{id}', [UserController::class, 'delete']);
             }
         );
     }

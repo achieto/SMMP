@@ -18,7 +18,7 @@
                     <tbody>
                         @foreach($dosens as $no=>$dosen)
                         <tr>
-                            <td class="p-4">{{$no+1}}</td>
+                            <td class="py-4">{{$no+1}}</td>
                             <td>{{$dosen->name}}</td>
                             <td>{{$dosen->email}}</td>
                             <td>
@@ -31,15 +31,19 @@
                                     </button>
                                 </form>
                             </td>
-                            <td>
+                            <td class="d-flex py-4">
                                 <button type="button" class="btn btn-inverse-dark btn-icon-text p-2" style="margin-right:7px">
                                     Edit
                                     <i class="ti-file btn-icon-append"></i>
                                 </button>
-                                <button type="button" class="btn btn-danger btn-icon-text p-2" onclick="return confirm('Are you sure to delete {{$dosen->name}}?')">
-                                    <i class=" mdi mdi-delete btn-icon-prepend"></i>
-                                    Delete
-                                </button>
+                                <form action="/delete-dosen/{{$dosen->id}}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-danger btn-icon-text p-2" onclick="return confirm('Are you sure to delete {{$dosen->name}}?')">
+                                        <i class=" mdi mdi-delete btn-icon-prepend"></i>
+                                        Delete
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach

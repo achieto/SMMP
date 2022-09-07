@@ -83,4 +83,9 @@ class UserController extends Controller
         $reset->update(['password' => Hash::make($password)]);
         return redirect('/list-dosen');
     }
+
+    public function delete($id) {
+        User::where('id', $id)->delete();
+        return redirect('/list-dosen');
+    }
 }
