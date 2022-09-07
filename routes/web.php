@@ -35,6 +35,7 @@ Route::middleware(['auth'])->group(
                     ->name('add-dosen');
                 Route::post('add-dosen', [UserController::class, 'store']);
                 Route::get('/list-dosen', [UserController::class, 'list']);
+                Route::put('/reset-dosen/{id}', [UserController::class, 'reset']);
             }
         );
     }

@@ -50,7 +50,7 @@ class UserController extends Controller
         }
 
         $password = $request->password;
-        if($password == null) {
+        if ($password == null) {
             $password = 'unilajaya';
         }
 
@@ -67,11 +67,20 @@ class UserController extends Controller
 
         // Auth::login($user);
 
-        return view('admin.user.add');
+        return redirect('/add-dosen')->with('success', 'User successfully added!');;
     }
 
-    public function list() {
+    public function list()
+    {
         $dosens = User::where('otoritas', 'Dosen')->get();
         return view('admin.user.list', compact('dosens'));
+    }
+
+    public function reset($id)
+    {
+        $reset = User::findorfail($id);
+        $password = 'unilajaya';
+        $reset->update(['password' => Hash::make($password)]);
+        return redirect('/list-dosen');
     }
 }

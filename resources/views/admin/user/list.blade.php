@@ -22,14 +22,14 @@
                             <td>{{$dosen->name}}</td>
                             <td>{{$dosen->email}}</td>
                             <td>
-                                @csrf
-                                @method('put')
-                                <form action="/reset-dosen/{{$dosen->id}}" method="post">                                
-                                <button type="submit" class="btn btn-warning btn-icon-text p-2" onclick="return confirm('Are you sure to reset password {{$dosen->name}}?')">
-                                    <i class="ti-reload btn-icon-prepend"></i>
-                                    Reset Password
-                                </button>
-                            </form>
+                                <form action="/reset-dosen/{{$dosen->id}}" method="post">
+                                    @csrf
+                                    @method('put')
+                                    <button type="submit" class="btn btn-warning btn-icon-text p-2" onclick="return confirm('Are you sure to reset password {{$dosen->name}}?')">
+                                        <i class="ti-reload btn-icon-prepend"></i>
+                                        Reset Password
+                                    </button>
+                                </form>
                             </td>
                             <td>
                                 <button type="button" class="btn btn-inverse-dark btn-icon-text p-2" style="margin-right:7px">
