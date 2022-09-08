@@ -8,6 +8,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 
@@ -84,8 +85,46 @@ class UserController extends Controller
         return redirect('/list-dosen');
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         User::where('id', $id)->delete();
         return redirect('/list-dosen');
+    }
+
+    public function edit($id)
+    {
+        $dosen = User::findorfail($id);
+        return view('admin.user.edit', compact('dosen'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z., ]+$/'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'img' => ['nullable'],
+        ]);
+
+        $dosen = User::findorfail($id);
+        $img = $request->file('img');
+        if ($img != null) {
+            if ($dosen->img != 'User-Profile.png') {
+                File::delete(public_path('../public/assets/img/pp' . $dosen->img));
+            }
+            $imagePath = round(microtime(true) * 1000) . '-' . str_replace(' ', '-', $img->getClientOriginalName());
+            $img->move(public_path('../public/assets/img/pp'), $imagePath);
+            $dosen->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'img' => $imagePath
+            ]);
+        } else {
+            $dosen->update([
+                'name' => $request->name,
+                'email' => $request->email,
+            ]);
+        }
+
+        return redirect('/list-dosen')->with('success', 'User successfully edited!');;
     }
 }

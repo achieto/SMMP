@@ -32,10 +32,10 @@
                                 </form>
                             </td>
                             <td class="d-flex py-4">
-                                <button type="button" class="btn btn-inverse-dark btn-icon-text p-2" style="margin-right:7px">
+                                <a type="button" href="/edit-dosen/{{$dosen->id}}" class="btn btn-inverse-dark btn-icon-text p-2" style="margin-right:7px">
                                     Edit
                                     <i class="ti-file btn-icon-append"></i>
-                                </button>
+                                </a>
                                 <form action="/delete-dosen/{{$dosen->id}}" method="post">
                                     @csrf
                                     @method('delete')
