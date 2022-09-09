@@ -72,7 +72,7 @@
                             <td>Name</td>
                             <td>:</td>
                             <td id="input-name" hidden="hidden">
-                                <form action="/edit-name/{{$profile->id}}" method="post">
+                                <form id="form-name" action="/edit-name/{{$profile->id}}" method="post">
                                     @csrf
                                     @method('put')
                                     <input id="name" type="text" class="form-control" name="name" value="{{$profile->name}}" autofocus autocomplete="off">
@@ -150,6 +150,7 @@
     }
 
     document.getElementById("name").onchange = function() {
+        document.getElementById("form-name").submit();
         document.getElementById("profile-name").removeAttribute('hidden', 'hidden');
         document.getElementById("input-name").setAttribute('hidden', 'hidden');
         document.getElementById("submit-name").setAttribute('hidden', 'hidden');
