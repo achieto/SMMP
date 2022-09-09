@@ -55,7 +55,7 @@
                         <p class="mb-1 mt-3 font-weight-semibold">{{$nama}}</p>
                         <p class="fw-light text-muted mb-0">{{$email}}</p>
                     </div>
-                    <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile</a>
+                    <a href="/profile" class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile</a>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <dropdown-link :href="route('logout')" onclick="event.preventDefault();

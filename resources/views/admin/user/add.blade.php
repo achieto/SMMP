@@ -48,7 +48,6 @@
                 </div>
                 <input type="text" hidden class="form-control" name="otoritas" value="Dosen">
                 <button class="btn btn-primary me-2">{{ __('Register') }}</button>
-                <a href="{{ URL::previous() }}" class="btn btn-light">Back</button>
             </form>
         </div>
     </div>

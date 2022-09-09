@@ -31,6 +31,10 @@ Route::middleware(['auth'])->group(
                 Route::get('/admin', function () {
                     return view('admin.dashboard');
                 })->name('admin')->middleware(['auth']);
+                Route::get('/profile', [UserController::class, 'profile']);
+                Route::put('/edit-password/{id}', [UserController::class, 'password']);
+                Route::put('/edit-pp/{id}', [UserController::class, 'pp']);
+                Route::put('/edit-name/{id}', [UserController::class, 'name']);
                 Route::get('/add-dosen', [UserController::class, 'create'])
                     ->name('add-dosen');
                 Route::post('add-dosen', [UserController::class, 'store']);
