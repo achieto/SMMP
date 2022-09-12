@@ -22,6 +22,8 @@
 <script src="{{ asset('/assets/template/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js')}}"></script>
 <script src="{{ asset('/assets/template/vendors/progressbar.js/progressbar.min.js')}}"></script>
 
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
 <!-- End plugin js for this page -->
 <!-- inject:js -->
 <script src="{{ asset('/assets/template/js/off-canvas.js')}}"></script>
@@ -31,10 +33,14 @@
 <script src="{{ asset('/assets/template/js/todolist.js')}}"></script>
 <!-- endinject -->
 <!-- Custom js for this page-->
-
 <script src="{{ asset('/assets/template/js/jquery.cookie.js')}}" type="text/javascript"></script>
 <script src="{{ asset('/assets/template/js/dashboard.js')}}"></script>
 <script src="{{ asset('/assets/template/js/Chart.roundedBarCharts.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable();
+    });
+</script>
 <!-- End custom js for this page-->
 </body>
 

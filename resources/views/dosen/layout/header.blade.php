@@ -13,15 +13,14 @@
     <link rel="stylesheet" href="{{ asset('/assets/template/vendors/typicons/typicons.css')}}">
     <link rel="stylesheet" href="{{ asset('/assets/template/vendors/simple-line-icons/css/simple-line-icons.css')}}">
     <link rel="stylesheet" href="{{ asset('/assets/template/vendors/css/vendor.bundle.base.css')}}">
+    
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="{{ asset('/assets/template/vendors/datatables.net-bs4/dataTables.bootstrap4.css')}}">
-    <link rel="stylesheet" href="{{ asset('/assets/template/js/select.dataTables.min.css')}}">
-    <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ asset('/assets/template/css/vertical-layout-light/style.css')}}">
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ asset('/assets/img/logo_unila.png')}}" />
+
 </head>
 
 <body>

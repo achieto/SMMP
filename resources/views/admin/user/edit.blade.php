@@ -3,15 +3,16 @@
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Add User</h4>
+            <h4 class="card-title">Edit User</h4>
             <p class="card-description">
-                (Dosen)
+                ({{$dosen->name}})
             </p>
-            <form method="POST" action="{{ route('add-dosen') }}" enctype="multipart/form-data">
+            <form method="POST" action="/edit-dosen/{{$dosen->id}}" enctype="multipart/form-data">
                 @csrf
+                @method('put')
                 <div class="form-group">
                     <label>Name <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="name" placeholder="Name" :value="old('name')" required autofocus autocomplete="off">
+                    <input type="text" class="form-control" name="name" placeholder="Name" value="{{$dosen->name}}" autofocus autocomplete="off">
                     @error('name')
                     <div class="alert alert-danger">
                         {{ $message }}
@@ -20,7 +21,7 @@
                 </div>
                 <div class="form-group">
                     <label>Email address <span class="text-danger">*</span></label>
-                    <input type="email" class="form-control" name="email" placeholder="Email" :value="old('email')" required autocomplete="off">
+                    <input type="email" class="form-control" name="email" placeholder="Email" value="{{$dosen->email}}" required autocomplete="off">
                     @error('email')
                     <div class="alert alert-danger">
                         {{ $message }}
@@ -28,17 +29,8 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" class="form-control" name="password" placeholder="Password" autocomplete="new-password">
-                    @error('password')
-                    <div class="alert alert-danger">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
-
-                <div class="form-group">
                     <label>Profile Picture</label>
+                    <p>{{$dosen->img}}</p>
                     <input type="file" name="img" class="form-control" style="padding-bottom: +27px">
                     @error('img')
                     <div class="alert alert-danger">
@@ -46,8 +38,8 @@
                     </div>
                     @enderror
                 </div>
-                <input type="text" hidden class="form-control" name="otoritas" value="Dosen">
-                <button class="btn btn-primary me-2">{{ __('Register') }}</button>
+                <button type="submit" class="btn btn-primary me-2">Edit</button>
+                <a href="/list-dosen" class="btn btn-light">Cancel</button>
             </form>
         </div>
     </div>
