@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,11 @@ use App\Http\Controllers\UserController;
 
 Route::middleware(['auth'])->group(
     function () {
+        Route::get('/profile', [ProfileController::class, 'profile']);
+        Route::put('/edit-password/{id}', [ProfileController::class, 'password']);
+        Route::put('/edit-pp/{id}', [ProfileController::class, 'pp']);
+        Route::put('/edit-name/{id}', [ProfileController::class, 'name']);
+
         Route::middleware('dosen')->group(
             function () {
                 Route::get('/dashboard', function () {
@@ -31,10 +37,6 @@ Route::middleware(['auth'])->group(
                 Route::get('/admin', function () {
                     return view('admin.dashboard');
                 })->name('admin')->middleware(['auth']);
-                Route::get('/profile', [UserController::class, 'profile']);
-                Route::put('/edit-password/{id}', [UserController::class, 'password']);
-                Route::put('/edit-pp/{id}', [UserController::class, 'pp']);
-                Route::put('/edit-name/{id}', [UserController::class, 'name']);
                 Route::get('/add-dosen', [UserController::class, 'create'])
                     ->name('add-dosen');
                 Route::post('add-dosen', [UserController::class, 'store']);
