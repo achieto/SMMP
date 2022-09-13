@@ -3,7 +3,7 @@
 
 <div>
     <div>
-        <h3>Hallo gais ini Halaman tambah CPL</h3>
+        <h3>Hallo gais ini Halaman lihat daftar CPMK</h3>
     </div>
 </div>
 

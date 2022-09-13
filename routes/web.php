@@ -22,11 +22,29 @@ Route::middleware(['auth'])->group(
         Route::put('/edit-pp/{id}', [ProfileController::class, 'pp']);
         Route::put('/edit-name/{id}', [ProfileController::class, 'name']);
 
-        Route::middleware('dosen')->group(
+        Route::middleware('dosen')->prefix('dosen')->group(
             function () {
-                Route::get('/dashboard', function () {
+                Route::get('dashboard', function () {
                     return view('dosen.dashboard');
                 })->name('dashboard');
+                Route::get('cpl/add-cpl', function () {
+                    return view('dosen.cpl.add');
+                })->name('cpl-add');
+                Route::get('rps/add-rps', function () {
+                    return view('dosen.rps.add');
+                })->name('rps-add');
+                Route::get('cpmk/add-cpmk', function () {
+                    return view('dosen.cpmk.add');
+                })->name('cpmk-add');
+                Route::get('cpmk/list-cpmk', function () {
+                    return view('dosen.cpmk.list');
+                })->name('cpmk-list');
+                Route::get('rps/list-rps', function () {
+                    return view('dosen.rps.list');
+                })->name('rps-list');
+                Route::get('cpl/list-cpl', function () {
+                    return view('dosen.cpl.list');
+                })->name('cpl-list');
             }
         );
         Route::middleware('admin')->group(
