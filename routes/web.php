@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RpsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +64,10 @@ Route::middleware(['auth'])->group(
                 Route::delete('/delete-dosen/{id}', [UserController::class, 'delete']);
                 Route::get('/edit-dosen/{id}', [UserController::class, 'edit']);
                 Route::put('/edit-dosen/{id}', [UserController::class, 'update']);
+                Route::get('/list-rps', [RpsController::class, 'list']);
+                Route::get('/print-rps', function () {
+                    return view('admin.rps.print');
+                });
             }
         );
     }

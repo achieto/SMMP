@@ -22,5 +22,18 @@
                 </ul>
             </div>
         </li>
+        <li class="nav-item nav-category">RPS</li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#rps" aria-expanded="false" aria-controls="rps">
+                <i class="menu-icon mdi mdi-account-circle-outline"></i>
+                <span class="menu-title">RPS Pages</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="rps">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="/list-rps"> List RPS </a></li>
+                </ul>
+            </div>
+        </li>
     </ul>
 </nav>
