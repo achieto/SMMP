@@ -6,7 +6,7 @@ erDiagram
           RPS ||--|{ CPL : has
           RPS ||--|{ CPMK : has
           RPS ||--|{ Soal : has
-          Soal ||--|{ CPMK : implemented
+          Soal ||--|| CPMK : implemented
           User ||--|{ RPS : input 
 
           User {
@@ -20,7 +20,8 @@ erDiagram
             int tahun
           }
           MataKuliah {
-            string id
+            int id
+            string kode
             sting nama
             string deskripsi
             string rumpun
