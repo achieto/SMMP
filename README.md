@@ -6,7 +6,7 @@ erDiagram
           RPS ||--|{ CPL : has
           RPS ||--|{ CPMK : has
           RPS ||--|{ Soal : has
-          Soal ||--|| CPMK : implemented
+          Soal }|--|{ CPMK : implemented
           User ||--|{ RPS : input 
 
           User {
