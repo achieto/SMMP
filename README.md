@@ -27,7 +27,7 @@ erDiagram
             string rumpun
             int semester
             string prasyarat
-            int id_kurikulum
+            int kurikulum
             int bobot_teori
             int bobot_praktikum
             string dosen
