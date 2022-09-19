@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RpsController;
+use App\Http\Controllers\MkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,9 @@ Route::middleware(['auth'])->group(
         Route::put('/edit-password/{id}', [ProfileController::class, 'password']);
         Route::put('/edit-pp/{id}', [ProfileController::class, 'pp']);
         Route::put('/edit-name/{id}', [ProfileController::class, 'name']);
+        Route::get('/', function () {
+            return view('admin.dashboard');
+        })->name('admin')->middleware(['admin']);
 
         Route::middleware('dosen')->prefix('dosen')->group(
             function () {
@@ -48,17 +52,15 @@ Route::middleware(['auth'])->group(
                 })->name('cpl-list');
             }
         );
-        Route::middleware('admin')->group(
+        Route::middleware('admin')->prefix('admin')->group(
             function () {
-                Route::get('/', function () {
+                Route::get('/dashboard', function () {
                     return view('admin.dashboard');
                 })->name('admin');
-                Route::get('/admin', function () {
-                    return view('admin.dashboard');
-                })->name('admin')->middleware(['auth']);
+                
                 Route::get('/add-dosen', [UserController::class, 'create'])
                     ->name('add-dosen');
-                Route::post('add-dosen', [UserController::class, 'store']);
+                Route::post('/add-dosen', [UserController::class, 'store']);
                 Route::get('/list-dosen', [UserController::class, 'list']);
                 Route::put('/reset-dosen/{id}', [UserController::class, 'reset']);
                 Route::delete('/delete-dosen/{id}', [UserController::class, 'delete']);
@@ -68,6 +70,12 @@ Route::middleware(['auth'])->group(
                 Route::get('/print-rps', function () {
                     return view('admin.rps.print');
                 });
+                Route::get('/add-mk', [MkController::class, 'create']);
+                Route::post('/add-mk', [MkController::class, 'store']);
+                Route::get('/list-mk', [MkController::class, 'list']);
+                Route::get('/edit-mk/{id}', [MKController::class, 'edit']);
+                Route::put('/edit-mk/{id}', [MKController::class, 'update']);
+                Route::delete('/delete-mk/{id}', [MKController::class, 'delete']);
             }
         );
     }

@@ -7,7 +7,7 @@
             <p class="card-description">
                 ({{$dosen->name}})
             </p>
-            <form method="POST" action="/edit-dosen/{{$dosen->id}}" enctype="multipart/form-data">
+            <form method="POST" action="/admin/edit-dosen/{{$dosen->id}}" enctype="multipart/form-data">
                 @csrf
                 @method('put')
                 <div class="form-group">

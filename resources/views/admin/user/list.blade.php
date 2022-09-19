@@ -22,7 +22,7 @@
                             <td>{{$dosen->name}}</td>
                             <td>{{$dosen->email}}</td>
                             <td>
-                                <form action="/reset-dosen/{{$dosen->id}}" method="post">
+                                <form action="/admin/reset-dosen/{{$dosen->id}}" method="post">
                                     @csrf
                                     @method('put')
                                     <button type="submit" class="btn btn-warning btn-icon-text p-2" onclick="return confirm('Are you sure to reset password {{$dosen->name}}?')">
@@ -32,11 +32,11 @@
                                 </form>
                             </td>
                             <td class="d-flex py-4">
-                                <a type="button" href="/edit-dosen/{{$dosen->id}}" class="btn btn-inverse-dark btn-icon-text p-2" style="margin-right:7px">
+                                <a type="button" href="/admin/edit-dosen/{{$dosen->id}}" class="btn btn-inverse-dark btn-icon-text p-2" style="margin-right:7px">
                                     Edit
                                     <i class="ti-file btn-icon-append"></i>
                                 </a>
-                                <form action="/delete-dosen/{{$dosen->id}}" method="post">
+                                <form action="/admin/delete-dosen/{{$dosen->id}}" method="post">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger btn-icon-text p-2" onclick="return confirm('Are you sure to delete {{$dosen->name}}?')">

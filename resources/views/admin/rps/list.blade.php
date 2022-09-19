@@ -28,7 +28,7 @@
                             <td></td>
                             <td></td>
                             <td class="py-4 d-flex">
-                                <a href="/print-rps" type="button" class="btn btn-info btn-icon-text p-2">
+                                <a href="/admin/print-rps" type="button" class="btn btn-info btn-icon-text p-2">
                                     Print
                                     <i class="ti-printer btn-icon-append"></i>
                                 </a>
