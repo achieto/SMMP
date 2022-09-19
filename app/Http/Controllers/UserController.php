@@ -69,7 +69,7 @@ class UserController extends Controller
 
         // Auth::login($user);
 
-        return redirect('/add-dosen')->with('success', 'User successfully added!');;
+        return redirect('/admin/add-dosen')->with('success', 'User successfully added!');
     }
 
     public function list()
@@ -83,13 +83,13 @@ class UserController extends Controller
         $reset = User::findorfail($id);
         $password = 'unilajaya';
         $reset->update(['password' => Hash::make($password)]);
-        return redirect('/list-dosen');
+        return redirect('/admin/list-dosen');
     }
 
     public function delete($id)
     {
         User::where('id', $id)->delete();
-        return redirect('/list-dosen');
+        return redirect('/admin/list-dosen');
     }
 
     public function edit($id)
@@ -126,6 +126,6 @@ class UserController extends Controller
             ]);
         }
 
-        return redirect('/list-dosen')->with('success', 'User successfully edited!');;
+        return redirect('/admin/list-dosen')->with('success', 'User successfully edited!');;
     }
 }

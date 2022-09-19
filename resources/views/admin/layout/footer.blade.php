@@ -21,6 +21,8 @@
 <script src="{{ asset('/assets/template/vendors/chart.js/Chart.min.js')}}"></script>
 <script src="{{ asset('/assets/template/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js')}}"></script>
 <script src="{{ asset('/assets/template/vendors/progressbar.js/progressbar.min.js')}}"></script>
+<script src="{{ asset('/assets/template/vendors/select2/select2.min.js')}}"></script>
+<script src="{{ asset('/assets/template/js/select2.js')}}"></script>
 
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
@@ -39,6 +41,20 @@
 <script>
     $(document).ready(function() {
         $('#dataTable').DataTable();
+    });
+</script>
+<!-- tinymce -->
+<script src="https://cdn.tiny.cloud/1/5h0affhvvi6gh349o8nfwzsjq67tjij9h4fb61meqczi1xq9/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: 'textarea#editor',
+        plugins: [
+            'autolink', 'lists', 'link', 'image', 'preview',
+            'searchreplace', 'code', 'fullscreen',
+            'insertdatetime', 'media', 'editimage', 'wordcount'
+        ],
+        toolbar: 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+        toolbar_mode: 'floating',
     });
 </script>
 <!-- End custom js for this page-->
