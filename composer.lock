@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3f11c927232fd96f7ae1e55d5bd7841f",
+    "content-hash": "6873169f8ca39f4c9459d04a1be481d4",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -349,6 +349,46 @@
                 }
             ],
             "time": "2022-01-18T15:43:28+00:00"
+        },
+        {
+            "name": "ecrmnn/lorem",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ecrmnn/lorem.git",
+                "reference": "b6e0112f204784253871615a342bdc382828e840"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ecrmnn/lorem/zipball/b6e0112f204784253871615a342bdc382828e840",
+                "reference": "b6e0112f204784253871615a342bdc382828e840",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8"
+            },
+            "type": "helper",
+            "autoload": {
+                "psr-4": {
+                    "Ecrmnn\\Lorem\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Eckermann",
+                    "email": "danieleckermann@gmail.com"
+                }
+            ],
+            "description": "Dummy text and images for Laravel",
+            "support": {
+                "issues": "https://github.com/ecrmnn/lorem/issues",
+                "source": "https://github.com/ecrmnn/lorem/tree/1.0.3"
+            },
+            "time": "2016-03-03T20:45:55+00:00"
         },
         {
             "name": "egulias/email-validator",
