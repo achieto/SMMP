@@ -28,7 +28,7 @@
                         @foreach($mks as $no=>$mk)
                         <tr>
                             <td class="py-4">{{$no+1}}</td>
-                            <td>{{$mk->kode}}</td>
+                            <td><?= strtoupper($mk->kode)?></td>
                             <td>{{$mk->nama}}</td>
                             <td><?= substr($mk->deskripsi, 0, 65) ?></td>
                             <td>Mata Kuliah {{$mk->rumpun}}</td>
