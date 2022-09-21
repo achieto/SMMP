@@ -58,24 +58,25 @@ Route::middleware(['auth'])->group(
                     return view('admin.dashboard');
                 })->name('admin');
                 
-                Route::get('/add-dosen', [UserController::class, 'create'])
+                Route::get('add-dosen', [UserController::class, 'create'])
                     ->name('add-dosen');
-                Route::post('/add-dosen', [UserController::class, 'store']);
-                Route::get('/list-dosen', [UserController::class, 'list']);
-                Route::put('/reset-dosen/{id}', [UserController::class, 'reset']);
-                Route::delete('/delete-dosen/{id}', [UserController::class, 'delete']);
-                Route::get('/edit-dosen/{id}', [UserController::class, 'edit']);
-                Route::put('/edit-dosen/{id}', [UserController::class, 'update']);
-                Route::get('/list-rps', [RpsController::class, 'list']);
-                Route::get('/print-rps', function () {
+                Route::post('add-dosen', [UserController::class, 'store']);
+                Route::get('list-dosen', [UserController::class, 'list']);
+                Route::put('reset-dosen/{id}', [UserController::class, 'reset']);
+                Route::delete('delete-dosen/{id}', [UserController::class, 'delete']);
+                Route::get('edit-dosen/{id}', [UserController::class, 'edit']);
+                Route::put('edit-dosen/{id}', [UserController::class, 'update']);
+                Route::get('list-rps', [RpsController::class, 'list']);
+                Route::post('add-dosen-wfile', [UserController::class, 'create_wfile']);
+                Route::get('print-rps', function () {
                     return view('admin.rps.print');
                 });
-                Route::get('/add-mk', [MkController::class, 'create']);
-                Route::post('/add-mk', [MkController::class, 'store']);
-                Route::get('/list-mk', [MkController::class, 'list']);
-                Route::get('/edit-mk/{id}', [MKController::class, 'edit']);
-                Route::put('/edit-mk/{id}', [MKController::class, 'update']);
-                Route::delete('/delete-mk/{id}', [MKController::class, 'delete']);
+                Route::get('add-mk', [MkController::class, 'create']);
+                Route::post('add-mk', [MkController::class, 'store']);
+                Route::get('list-mk', [MkController::class, 'list']);
+                Route::get('edit-mk/{id}', [MKController::class, 'edit']);
+                Route::put('edit-mk/{id}', [MKController::class, 'update']);
+                Route::delete('delete-mk/{id}', [MKController::class, 'delete']);
             }
         );
     }
