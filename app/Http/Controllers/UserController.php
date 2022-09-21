@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\UsersImport;
 
 class UserController extends Controller
 {
@@ -69,7 +70,7 @@ class UserController extends Controller
 
         // Auth::login($user);
 
-        return redirect('/admin/add-dosen')->with('success', 'User successfully added!');
+        return redirect('/admin/list-dosen')->with('success', 'User successfully added!');
     }
 
     public function list()
@@ -83,13 +84,13 @@ class UserController extends Controller
         $reset = User::findorfail($id);
         $password = 'unilajaya';
         $reset->update(['password' => Hash::make($password)]);
-        return redirect('/admin/list-dosen');
+        return redirect('/admin/list-dosen')->with('success', 'Password successfully added!');    
     }
 
     public function delete($id)
     {
         User::where('id', $id)->delete();
-        return redirect('/admin/list-dosen');
+        return redirect('/admin/list-dosen')->with('success', 'User successfully deleted!');    
     }
 
     public function edit($id)
@@ -127,5 +128,13 @@ class UserController extends Controller
         }
 
         return redirect('/admin/list-dosen')->with('success', 'User successfully edited!');;
+    }
+
+    public function create_wfile(Request $request) {
+        $excel = $request->file('excel');
+        $excelPath = round(microtime(true) * 1000) . '-' . str_replace(' ', '-', $excel->getClientOriginalName());
+        $excel->move(public_path('../public/assets/excel/'), $excelPath);
+        Excel::import(new UsersImport, public_path('../public/assets/excel/'.$excelPath));
+        return redirect('/admin/list-dosen')->with('success', 'User successfully added!');    
     }
 }

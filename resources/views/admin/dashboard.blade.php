@@ -8,7 +8,7 @@
     }
 </style>
 <div class="container d-flex justify-content-between w-100">
-    <a class="card mx-1 w-100 bg-primary text-white text-decoration-none" href="rps/list-rps">
+    <a class="card mx-1 w-100 bg-primary text-white text-decoration-none" href="/admin/list-dosen">
         <div class="card-title m-0">
             <p class="p-4 pb-1 h3 m-0 text-white">JUMLAH DOSEN</p>
         </div>
@@ -25,7 +25,7 @@
             <p class="h1 text-end pe-3 jumlah">{{$sum}}</p>
         </div>
     </a>
-    <a class="card mx-1 w-100 bg-primary text-white text-decoration-none" href="cpl/list-cpl">
+    <a class="card mx-1 w-100 bg-primary text-white text-decoration-none" href="/admin/list-mk">
         <div class=" card-title m-0">
             <p class="p-4 pb-1 h3 m-0 text-white">JUMLAH MATA KULIAH</p>
         </div>
