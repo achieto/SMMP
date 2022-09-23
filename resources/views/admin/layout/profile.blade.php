@@ -59,7 +59,7 @@
                     <form id="form" action="/edit-pp/{{$profile->id}}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('put')
-                        <input style="display:none" type="file" name="img" id="img">
+                        <input style="display:none" accept="image/png, image/jpeg" type="file" name="img" id="img">
                     </form>
                     <div class="profile-pic" onclick="document.getElementById('img').click()">
                         <img class="image p-3 mt-3" style="width:200px; height:200px; object-fit:cover; border-radius:50%; border: 1px solid grey" src="{{asset('/assets/img/pp/'.$profile->img)}}" alt="">

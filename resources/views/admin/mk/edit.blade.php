@@ -3,8 +3,8 @@
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Add Mata Kuliah</h4>
-            <form method="POST" action="/admin/edit-mk/{{$mk->id}}" enctype="multipart/form-data">
+            <h4 class="card-title">Edit Mata Kuliah</h4>
+            <form method="POST" action="{{$mk->id}}" enctype="multipart/form-data">
                 @csrf
                 @method('put')
                 <div class="form-group">

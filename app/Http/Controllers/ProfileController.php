@@ -8,6 +8,7 @@ use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
 {
@@ -54,7 +55,8 @@ class ProfileController extends Controller
             File::delete(public_path('../public/assets/img/pp/' . $user->img));
         }
         $imagePath = round(microtime(true) * 1000) . '-' . str_replace(' ', '-', $img->getClientOriginalName());
-        $img->move(public_path('../public/assets/img/pp/'), $imagePath);
+        $image = Image::make($img)->fit(200);
+        $image->save(public_path('../public/assets/img/pp/') . $imagePath, 100);
         $user->fill([
             'img' => $imagePath
         ])->save();

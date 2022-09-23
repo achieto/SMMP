@@ -42,11 +42,11 @@
                             <td>{{$mk->pustaka_pendukung}}</td>
                             <td class="py-4">
                                 <div class="d-flex">
-                                    <a type="button" href="/admin/edit-mk/{{$mk->id}}" class="btn btn-inverse-dark btn-icon-text p-2" style="margin-right:7px">
+                                    <a type="button" href="edit-mk/{{$mk->id}}" class="btn btn-inverse-dark btn-icon-text p-2" style="margin-right:7px">
                                         Edit
                                         <i class="ti-file btn-icon-append"></i>
                                     </a>
-                                    <form action="/admin/delete-mk/{{$mk->id}}" method="post">
+                                    <form action="delete-mk/{{$mk->id}}" method="post">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger btn-icon-text p-2" onclick="return confirm('Are you sure to delete {{$mk->nama}}?')">

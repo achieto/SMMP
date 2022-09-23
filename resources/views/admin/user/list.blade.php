@@ -22,7 +22,7 @@
                             <td>{{$dosen->name}}</td>
                             <td>{{$dosen->email}}</td>
                             <td>
-                                <form action="/admin/reset-dosen/{{$dosen->id}}" method="post">
+                                <form action="reset-dosen/{{$dosen->id}}" method="post">
                                     @csrf
                                     @method('put')
                                     <button type="submit" class="btn btn-warning btn-icon-text p-2" onclick="return confirm('Are you sure to reset password {{$dosen->name}}?')">
@@ -37,7 +37,7 @@
                                     <i class="ti-file btn-icon-append"></i>
                                 </a>
                                 <form action="delete-dosen/{{$dosen->id}}" method="post">
-                                    @csrf
+                                    @csrf 
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger btn-icon-text p-2" onclick="return confirm('Are you sure to delete {{$dosen->name}}?')">
                                         <i class=" mdi mdi-delete btn-icon-prepend"></i>

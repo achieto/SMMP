@@ -11,7 +11,7 @@
                     <button class="btn btn-primary text-white" onclick="document.getElementById('excel').click()">Import</i></button>
                     <form id="form-import" method="post" enctype="multipart/form-data" action="add-dosen-wfile">
                         @csrf
-                        <input style="display:none" type="file" name="excel" id="excel">
+                        <input accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"" style="display:none" type="file" name="excel" id="excel">
                     </form>
                 </div>
             </div>
@@ -50,7 +50,7 @@
 
                 <div class="form-group">
                     <label>Profile Picture</label>
-                    <input type="file" name="img" class="form-control" style="padding-bottom: +27px">
+                    <input type="file" accept="image/png, image/jpeg" name="img" class="form-control" style="padding-bottom: +27px">
                     @error('img')
                     <div class="alert alert-danger">
                         {{ $message }}
