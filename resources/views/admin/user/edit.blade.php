@@ -7,7 +7,7 @@
             <p class="card-description">
                 ({{$dosen->name}})
             </p>
-            <form method="POST" action="edit-dosen/{{$dosen->id}}" enctype="multipart/form-data">
+            <form method="POST" action="{{$dosen->id}}" enctype="multipart/form-data">
                 @csrf
                 @method('put')
                 <div class="form-group">
@@ -31,7 +31,7 @@
                 <div class="form-group">
                     <label>Profile Picture</label>
                     <p>{{$dosen->img}}</p>
-                    <input type="file" name="img" class="form-control" style="padding-bottom: +27px">
+                    <input type="file" accept="image/png, image/jpeg"name="img" class="form-control" style="padding-bottom: +27px">
                     @error('img')
                     <div class="alert alert-danger">
                         {{ $message }}

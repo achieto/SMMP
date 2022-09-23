@@ -79,7 +79,7 @@ class MkController extends Controller
 
     public function update(Request $request, $id) {
         $request->validate([
-            'kode' => ['required', 'unique', 'alpha_num', 'min:9'],
+            'kode' => ['required', 'alpha_num', 'min:9'],
             'nama' => ['required', 'string', 'regex:/^[a-zA-Z ]+$/', 'max:255'],
             'deskripsi' => 'required',
             'rumpun' => 'required',
