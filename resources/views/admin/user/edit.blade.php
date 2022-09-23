@@ -39,7 +39,6 @@
                     @enderror
                 </div>
                 <button type="submit" class="btn btn-primary me-2">Edit</button>
-                <a href="list-dosen" class="btn btn-light">Cancel</button>
             </form>
         </div>
     </div>
