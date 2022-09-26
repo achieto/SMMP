@@ -9,7 +9,6 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Judul</th>
                             <th>Kode MK</th>
                             <th>Tanggal Penyusunan</th>
                             <th>Pengembang RPS</th>
@@ -21,7 +20,6 @@
                     <tbody>
                         <tr>
                             <td class="py-4"></td>
-                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
