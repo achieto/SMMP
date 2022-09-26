@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RpsController;
 use App\Http\Controllers\MkController;
+use App\Http\Controllers\CplController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,7 +58,7 @@ Route::middleware(['auth'])->group(
                 Route::get('/dashboard', function () {
                     return view('admin.dashboard');
                 })->name('admin');
-                
+
                 Route::get('add-dosen', [UserController::class, 'create'])
                     ->name('add-dosen');
                 Route::post('add-dosen', [UserController::class, 'store']);
@@ -74,9 +75,15 @@ Route::middleware(['auth'])->group(
                 Route::get('add-mk', [MkController::class, 'create']);
                 Route::post('add-mk', [MkController::class, 'store']);
                 Route::get('list-mk', [MkController::class, 'list']);
-                Route::get('edit-mk/{id}', [MKController::class, 'edit']);
-                Route::put('edit-mk/{id}', [MKController::class, 'update']);
-                Route::delete('delete-mk/{id}', [MKController::class, 'delete']);
+                Route::get('edit-mk/{id}', [MkController::class, 'edit']);
+                Route::put('edit-mk/{id}', [MkController::class, 'update']);
+                Route::delete('delete-mk/{id}', [MkController::class, 'delete']);
+                Route::get('add-cpl', [CplController::class, 'create']);
+                Route::post('add-cpl', [CplController::class, 'store']);
+                Route::get('list-cpl', [CplController::class, 'list']);
+                Route::get('edit-cpl/{id}', [CplController::class, 'edit']);
+                Route::put('edit-cpl/{id}', [CplController::class, 'update']);
+                Route::delete('delete-cpl/{id}', [CplController::class, 'delete']);
             }
         );
     }
