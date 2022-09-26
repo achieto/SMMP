@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 26 Sep 2022 pada 05.46
+-- Waktu pembuatan: 26 Sep 2022 pada 08.30
 -- Versi server: 10.4.18-MariaDB
 -- Versi PHP: 7.3.27
 
@@ -20,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `smmp`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `activities`
+--
+
+CREATE TABLE `activities` (
+  `id` int(11) NOT NULL,
+  `minggu` varchar(255) NOT NULL,
+  `sub_cpmk` mediumtext NOT NULL,
+  `indikator` text NOT NULL,
+  `kriteria` text NOT NULL,
+  `metode_luring` text NOT NULL,
+  `metode_daring` text NOT NULL,
+  `materi` text NOT NULL,
+  `bobot` int(11) NOT NULL,
+  `id_rps` int(11) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -44,8 +65,8 @@ CREATE TABLE `cplmks` (
 CREATE TABLE `cpls` (
   `id` int(11) NOT NULL,
   `aspek` enum('sikap','pengetahuan','umum','keterampilan') NOT NULL,
-  `judul` varchar(255) NOT NULL,
-  `keterangan` text NOT NULL,
+  `nomor` int(11) NOT NULL,
+  `judul` text NOT NULL,
   `kurikulum` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
@@ -84,6 +105,7 @@ CREATE TABLE `mks` (
   `deskripsi` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `rumpun` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `prasyarat` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kurikulum` int(11) NOT NULL,
   `bobot_teori` int(11) NOT NULL,
   `bobot_praktikum` int(11) NOT NULL,
   `dosen` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -98,9 +120,9 @@ CREATE TABLE `mks` (
 -- Dumping data untuk tabel `mks`
 --
 
-INSERT INTO `mks` (`id`, `kode`, `nama`, `deskripsi`, `rumpun`, `prasyarat`, `bobot_teori`, `bobot_praktikum`, `dosen`, `materi`, `pustaka_utama`, `pustaka_pendukung`, `created_at`, `updated_at`) VALUES
-(1, 'COM010101', 'tesu', '<p>tes</p>\r\n<ul>\r\n<li>tes</li>\r\n<li>tes</li>\r\n</ul>', 'Wajib', 'Tidak ada', 2, 1, 'Anggie Tamara', '<p>tes</p>\r\n<ol>\r\n<li>tes</li>\r\n<li>tes</li>\r\n</ol>', 'tes', '-', '2022-09-18 20:44:43', '2022-09-23 02:55:23'),
-(4, 'COMtBGejy', '8uFR EKfQj', 'JHOOXKQdzU8Nad6jU40N3aglZ7ijFPZe6kCtd9ahqV0Bcl0r4zQTPGWI0gLTrTcwaDyQzLSM8Ir877qxi7qjnKuSKWyfGbHWI9cFaXnPwjFSs4N6MFC89Oua59hHx4Pt3HCZgpN8vTAZk9tkyWQprDST4td8EUdSSEEVEKa7HLCdrF94cKgi1pbwq8UsnXaxvvZvVRkDXSLHqd1K3pK1YPADVRWX2K6xsn1Te9TvjgI1MM7JziWgDa1NgO410wF', 'Wajib', '0Yq2 KsNaQ', 2, 1, 'Romdoni', '1N6RHi4onESbtW4zlMOWDXYpyymdSyELKZ2L3tJsEx3OkUXrORjfswnzYZ93ki0T4qHQcZGIYQQtzKYiYLNj5HZ9aE1N5FUobDJI6ELgiKsNLW4YOLhBHPhpwZy15za9fZ2ViRvUsWjz7cc8UWbzJBTTH482UfJt7eTuWaq6cCa19XRGlB5q4U0FVmfxctyvUdFcnA48s42ss6CknxcsAcMwJkayEGII2mb9AFnVS1GIjJtciZbHH2UQO0E4Sky', '9KP78qAZY xE41Ws5E0hLn', 's3QqiEECK SFvZvebWQfO7', '2022-09-19 00:20:12', '2022-09-19 00:20:12');
+INSERT INTO `mks` (`id`, `kode`, `nama`, `deskripsi`, `rumpun`, `prasyarat`, `kurikulum`, `bobot_teori`, `bobot_praktikum`, `dosen`, `materi`, `pustaka_utama`, `pustaka_pendukung`, `created_at`, `updated_at`) VALUES
+(1, 'COM010101', 'tesu', '<p>tes</p>\r\n<ul>\r\n<li>tes</li>\r\n<li>tes</li>\r\n</ul>', 'Wajib', 'Tidak ada', 0, 2, 1, 'Anggie Tamara', '<p>tes</p>\r\n<ol>\r\n<li>tes</li>\r\n<li>tes</li>\r\n</ol>', 'tes', '-', '2022-09-18 20:44:43', '2022-09-23 02:55:23'),
+(4, 'COMtBGejy', '8uFR EKfQj', 'JHOOXKQdzU8Nad6jU40N3aglZ7ijFPZe6kCtd9ahqV0Bcl0r4zQTPGWI0gLTrTcwaDyQzLSM8Ir877qxi7qjnKuSKWyfGbHWI9cFaXnPwjFSs4N6MFC89Oua59hHx4Pt3HCZgpN8vTAZk9tkyWQprDST4td8EUdSSEEVEKa7HLCdrF94cKgi1pbwq8UsnXaxvvZvVRkDXSLHqd1K3pK1YPADVRWX2K6xsn1Te9TvjgI1MM7JziWgDa1NgO410wF', 'Wajib', '0Yq2 KsNaQ', 0, 2, 1, 'Romdoni', '1N6RHi4onESbtW4zlMOWDXYpyymdSyELKZ2L3tJsEx3OkUXrORjfswnzYZ93ki0T4qHQcZGIYQQtzKYiYLNj5HZ9aE1N5FUobDJI6ELgiKsNLW4YOLhBHPhpwZy15za9fZ2ViRvUsWjz7cc8UWbzJBTTH482UfJt7eTuWaq6cCa19XRGlB5q4U0FVmfxctyvUdFcnA48s42ss6CknxcsAcMwJkayEGII2mb9AFnVS1GIjJtciZbHH2UQO0E4Sky', '9KP78qAZY xE41Ws5E0hLn', 's3QqiEECK SFvZvebWQfO7', '2022-09-19 00:20:12', '2022-09-19 00:20:12');
 
 -- --------------------------------------------------------
 
@@ -116,12 +138,7 @@ CREATE TABLE `rpss` (
   `koordinator` varchar(255) NOT NULL,
   `kaprodi` varchar(255) NOT NULL,
   `id_cplmk` int(11) NOT NULL,
-  `sub_cpmk` text NOT NULL,
-  `metode` text NOT NULL,
-  `indikator` text NOT NULL,
-  `kriteria` text NOT NULL,
-  `bobot` int(11) NOT NULL,
-  `materi` mediumtext NOT NULL,
+  `id_cpmk` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -176,6 +193,13 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 --
 
 --
+-- Indeks untuk tabel `activities`
+--
+ALTER TABLE `activities`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_rps` (`id_rps`);
+
+--
 -- Indeks untuk tabel `cplmks`
 --
 ALTER TABLE `cplmks`
@@ -222,6 +246,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT untuk tabel `activities`
+--
+ALTER TABLE `activities`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT untuk tabel `cplmks`
 --
 ALTER TABLE `cplmks`
@@ -260,6 +290,12 @@ ALTER TABLE `users`
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
+
+--
+-- Ketidakleluasaan untuk tabel `activities`
+--
+ALTER TABLE `activities`
+  ADD CONSTRAINT `activities_ibfk_1` FOREIGN KEY (`id_rps`) REFERENCES `rpss` (`id`);
 
 --
 -- Ketidakleluasaan untuk tabel `cplmks`
