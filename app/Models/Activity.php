@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CPL extends Model
+class Activity extends Model
 {
     use HasFactory;
-    protected $table = 'cpls';
+    protected $table = 'activities';
 
     protected $fillable = [
-        'aspek', 'kode', 'nomor', 'judul', 'kurikulum'
+        'minggu', 'sub_cpmk', 'indikator', 'kriteria', 'metode_luring', 'metode_daring', 'materi', 'bobot', 'id_rps'
     ];
 }

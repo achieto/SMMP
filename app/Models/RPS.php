@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CPL extends Model
+class RPS extends Model
 {
     use HasFactory;
-    protected $table = 'cpls';
+    protected $table = 'rpss';
 
     protected $fillable = [
-        'aspek', 'kode', 'nomor', 'judul', 'kurikulum'
+        'id_mk','pengembang', 'koordinator', 'id_cpmk', 
     ];
 }

@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Add Mata Kuliah</h4>
-            <form method="POST" action="/admin/add-mk" enctype="multipart/form-data">
+            <form method="POST" action="add-mk" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group row">
                     <div class="col">
@@ -95,7 +95,7 @@
                         <select class="js-example-basic-single w-100" name="dosen" id="dosen">
                             <option selected="true" value="" disabled selected>Select...</option>
                             @foreach($users as $user)
-                            <option value="$user->name" {{ old('dosen') == $user->name ? 'selected' : '' }}>{{$user->name}}</option>
+                            <option value="{{$user->name}}" {{ old('dosen') == $user->name ? 'selected' : '' }}>{{$user->name}}</option>
                             @endforeach
                         </select>
                         @error('dosen')

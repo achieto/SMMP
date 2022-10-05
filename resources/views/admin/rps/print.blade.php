@@ -110,14 +110,26 @@
             <th colspan="1" rowspan="1" class="sub-contain subtitle" style="width:10%">SEMESTER</th>
             <th colspan="1" rowspan="1" class="sub-contain subtitle" style="width:10%">Tgl Penyusunan</th>
         </tr>
+        @php
+        $kode_mk = 0;
+        foreach($mks as $mk):
+        if($rps->id_mk == $mk->id) {
+        $kode_mk = $mk->kode;
+        $rumpun_mk = $mk->rumpun;
+        $bobot_t = $mk->bobot_teori;
+        $bobot_p = $mk->bobot_praktikum;
+        $tanggal = $mk->created_at;
+        }
+        endforeach
+        @endphp
         <tr class="contain">
             <th colspan="4" rowspan="1" class="sub-contain" style="width: 30%">Nama Mata Kuliah</th>
-            <td colspan="1" rowspan="1" class="sub-contain" style="width:20%">COM010101</td>
-            <td colspan="1" rowspan="1" class="sub-contain" style="width:17%">Mata Kuliah Wajib</td>
-            <th colspan="1" rowspan="1" style="width:6.5%; text-align:center">T=2</th>
-            <th colspan="1" rowspan="1" style="width:6.5%; text-align:center">P=1</th>
+            <td colspan="1" rowspan="1" class="sub-contain" style="width:20%">{{$kode_mk}}</td>
+            <td colspan="1" rowspan="1" class="sub-contain" style="width:17%">Mata Kuliah {{$rumpun_mk}}</td>
+            <th colspan="1" rowspan="1" style="width:6.5%; text-align:center">T={{$bobot_t}}</th>
+            <th colspan="1" rowspan="1" style="width:6.5%; text-align:center">P={{$bobot_p}}</th>
             <td colspan="1" rowspan="1" style="width:10%; text-align:center"">7</td>
-        <td colspan=" 1" rowspan="1" class="sub-contain" style="width:10%">01/01/22</td>
+        <td colspan=" 1" rowspan="1" class="sub-contain" style="width:10%">{{date("d-m-Y",strtotime($tanggal))}}</td>
         </tr>
         <tr class="contain">
             <th colspan="4" rowspan="2" class="sub-contain" style="vertical-align:top">OTORISASI</th>
@@ -126,8 +138,8 @@
             <th colspan="2" class="subtitle" style="text-align:center">Ketua PRODI</th>
         </tr>
         <tr class="contain">
-            <th colspan="1" style="height: 60px;text-align:center;vertical-align:bottom;">Nama Dosen</th>
-            <th colspan="3" style="height: 60px;text-align:center;vertical-align:bottom;">Nama Dosen</th>
+            <th colspan="1" style="height: 60px;text-align:center;vertical-align:bottom;">{{$rps->pengembang}}</th>
+            <th colspan="3" style="height: 60px;text-align:center;vertical-align:bottom;">{{$rps->}}</th>
             <th colspan="2" style="height: 60px;text-align:center;vertical-align:bottom;">Nama Dosen</th>
         </tr>
         <tr class="contain">
@@ -734,9 +746,6 @@
         </ol>
     </div>
 
-    <script>
-        window.print();
-    </script>
 </body>
 
 </html>
