@@ -15,10 +15,10 @@
             </a>
             <div class="collapse" id="user">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="add-dosen"> Add Dosen </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/admin/add-dosen"> Add Dosen </a></li>
                 </ul>
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="list-dosen"> List Dosen </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/admin/list-dosen"> List Dosen </a></li>
                 </ul>
             </div>
         </li>
@@ -31,10 +31,10 @@
             </a>
             <div class="collapse" id="cpl">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="add-cpl"> Add CPL </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/admin/add-cpl"> Add CPL </a></li>
                 </ul>
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="list-cpl"> List CPL </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/admin/list-cpl"> List CPL </a></li>
                 </ul>
             </div>
         </li>
@@ -47,10 +47,10 @@
             </a>
             <div class="collapse" id="mk">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="add-mk"> Add MK </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/admin/add-mk"> Add MK </a></li>
                 </ul>
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="list-mk"> List MK </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/admin/list-mk"> List MK </a></li>
                 </ul>
             </div>
         </li>
@@ -63,7 +63,7 @@
             </a>
             <div class="collapse" id="rps">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="list-rps"> List RPS </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/admin/list-rps"> List RPS </a></li>
                 </ul>
             </div>
         </li>

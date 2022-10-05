@@ -58,7 +58,6 @@ Route::middleware(['auth'])->group(
                 Route::get('/dashboard', function () {
                     return view('admin.dashboard');
                 })->name('admin');
-
                 Route::get('add-dosen', [UserController::class, 'create'])
                     ->name('add-dosen');
                 Route::post('add-dosen', [UserController::class, 'store']);
@@ -69,9 +68,7 @@ Route::middleware(['auth'])->group(
                 Route::put('edit-dosen/{id}', [UserController::class, 'update']);
                 Route::get('list-rps', [RpsController::class, 'list']);
                 Route::post('add-dosen-wfile', [UserController::class, 'create_wfile']);
-                Route::get('print-rps', function () {
-                    return view('admin.rps.print');
-                });
+                Route::get('print-rps/{id}', [RpsController::class, 'print']);
                 Route::get('add-mk', [MkController::class, 'create']);
                 Route::post('add-mk', [MkController::class, 'store']);
                 Route::get('list-mk', [MkController::class, 'list']);

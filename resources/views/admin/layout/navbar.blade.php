@@ -6,7 +6,7 @@
             </button>
         </div>
         <div>
-            <a class="navbar-brand brand-logo" href="/dashboard">
+            <a class="navbar-brand brand-logo" href="/admin/dashboard">
                 <img src="{{ asset('/assets/img/logo_unila.png')}}" alt="logo" /> SMMP
             </a>
             <a class="navbar-brand brand-logo-mini" href="/dashboard">
