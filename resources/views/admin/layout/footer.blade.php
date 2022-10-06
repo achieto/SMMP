@@ -40,19 +40,21 @@
 <script src="{{ asset('/assets/template/js/Chart.roundedBarCharts.js')}}"></script>
 
 <!-- tinymce -->
-<script src="https://cdn.tiny.cloud/1/5h0affhvvi6gh349o8nfwzsjq67tjij9h4fb61meqczi1xq9/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/35.2.0/classic/ckeditor.js"></script>
 <script>
-    tinymce.init({
-        selector: 'textarea',
-        plugins: [
-            'autolink', 'lists', 'link', 'image', 'preview',
-            'searchreplace', 'code', 'fullscreen',
-            'insertdatetime', 'media', 'wordcount'
-        ],
-        toolbar: 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-        toolbar_mode: 'floating',
+    window.editors = {};
+
+    document.querySelectorAll('.editor').forEach((node, index) => {
+        ClassicEditor
+            .create(node, {
+                toolbar: ['bold', 'italic', 'link', 'bulletedList', 'numberedList'],
+            })
+            .then(newEditor => {
+                window.editors[index] = newEditor
+            });
     });
 </script>
+
 <script>
     $(document).ready(function() {
         $('.dataTable').DataTable();

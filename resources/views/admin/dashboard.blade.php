@@ -40,12 +40,19 @@
             <p class="h1 text-end pe-3 jumlah">{{$sum}}</p>
         </div>
     </a>
-    <a class="card mx-1 w-100 bg-primary text-white text-decoration-none" href="cpmk/list-cpmk">
+    <a class="card mx-1 w-100 bg-primary text-white text-decoration-none" href="/admin/list-cpl">
         <div class="card-title m-0">
-            <p class="p-4 pb-1 h3 m-0 text-white"></p>
+            <p class="p-4 pb-1 h3 m-0 text-white">JUMLAH CPL PRODI</p>
         </div>
         <div class="card-body w-100">
-            <p class="h1 text-end pe-3 jumlah"></p>
+            @php
+            $cpls = DB::table('cpls')->get();
+            $sum = 0;
+            foreach($cpls as $cpl) :
+            $sum+=1;
+            endforeach
+            @endphp
+            <p class="h1 text-end pe-3 jumlah">{{$sum}}</p>
         </div>
     </a>
 </div>

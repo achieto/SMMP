@@ -27,7 +27,7 @@
                 </div>
                 <div class="form-group">
                     <label>Deskripsi singkat MK <span class="text-danger">*</span></label>
-                    <textarea class="form-control" name="deskripsi" id="editor" placeholder="Deskripsi singkat MK">{{$mk->deskripsi}}</textarea>
+                    <textarea class="form-control" name="deskripsi" id="editor1" placeholder="Deskripsi singkat MK">{{$mk->deskripsi}}</textarea>
                     @error('deskripsi')
                     <div class="alert alert-danger">
                         {{ $message }}
@@ -106,7 +106,7 @@
                 </div>
                 <div class="form-group">
                     <label>Bahan kajian/materi pembelajaran <span class="text-danger">*</span></label>
-                    <textarea class="form-control" id="editor" name="materi" placeholder="Bahan kajian/materi pembelajaran">{{$mk->materi}}</textarea>
+                    <textarea class="form-control" id="editor2" name="materi" placeholder="Bahan kajian/materi pembelajaran">{{$mk->materi}}</textarea>
                     @error('materi')
                     <div class="alert alert-danger">
                         {{ $message }}
