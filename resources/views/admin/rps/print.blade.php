@@ -128,7 +128,7 @@
         <td colspan="1" rowspan="1" class="sub-contain" style="width:17%">Mata Kuliah {{$rumpun_mk}}</td>
         <th colspan="1" rowspan="1" style="width:6.5%; text-align:center">T={{$bobot_t}}</th>
         <th colspan="1" rowspan="1" style="width:6.5%; text-align:center">P={{$bobot_p}}</th>
-        <td colspan="1" rowspan="1" style="width:10%; text-align:center"">7</td>
+        <td colspan="1" rowspan="1" style="width:10%; text-align:center"">{{$rps->semester}}</td>
         <td colspan=" 1" rowspan="1" class="sub-contain" style="width:10%">{{date("d-m-Y",strtotime($tanggal))}}</td>
     </tr>
     <tr class="contain">
@@ -148,7 +148,12 @@
     if($kode_mk == $cplmk->kode_mk) {
     $no++;
     }
-    endforeach
+    endforeach;
+    foreach($cpmks as $cpmk):
+    if($cpmk->id_mk == $rps->id_mk) {
+    $no++;
+    }
+    endforeach;
     @endphp
     <tr class="contain">
         <th class="sub-contain" colspan="2" rowspan="{{$no+4}}" style="vertical-align:top">
@@ -180,13 +185,17 @@
         <td class="sub-contain" colspan="7">CPMK merupakan turunan/uraian spesifik dari CPL-PRODI yg berkaiatan dengan mata kuliah ini</td>
     </tr>
     <tr class="contain">
-        <td class="sub-contain subtitle grey" colspan="3">CPL => Sub-CPMK Sesuai SKKNI</td>
+        <td class="sub-contain subtitle grey" colspan="3">CPL => Sub-CPMK</td>
         <td class="sub-contain" colspan="5"></td>
     </tr>
-    <!-- <tr class="contain">
-            <td class="sub-contain" colspan="1">CPL-1</td>
-            <td class="sub-contain" colspan="7">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos quisquam voluptatibus minus nam debitis expedita itaque distinctio eius, ipsum esse?</td>
-        </tr> -->
+    @foreach($cpmks as $cpmk)
+    @if($cpmk->id_mk == $rps->id_mk)
+    <tr class="contain">
+        <!-- <td class="sub-contain" colspan="0">CPL-1</td> -->
+        <td class="sub-contain" colspan="8">{{$cpmk->judul}}</td>
+    </tr>
+    @endif
+    @endforeach
     <tr class="contain">
         <th class="sub-contain" colspan="2" rowspan="1" style="vertical-align:top">
             <div class="row">
@@ -308,14 +317,14 @@
             <td class="cpmk-contain" colspan="2"><?= $activity->metode_daring ?></td>
             <td class="cpmk-contain sub-contain" colspan="1"><?= $activity->materi ?></td>
             <td class="cpmk-contain sub-contain" colspan="1">{{$activity->bobot}}</td>
-            </tr>
-            @endif
-            @endif
-            @endforeach
-            <tr class="contain">
-                <td class="title-cpmk cpmk-contain" colspan="1">16</td>
-                <th class="title-cpmk cpmk-contain" colspan="9">Ujian Akhir Semester</th>
-            </tr>
+        </tr>
+        @endif
+        @endif
+        @endforeach
+        <tr class="contain">
+            <td class="title-cpmk cpmk-contain" colspan="1">16</td>
+            <th class="title-cpmk cpmk-contain" colspan="9">Ujian Akhir Semester</th>
+        </tr>
 </table>
 <div class="note">
     <div style="font-weight:700; text-decoration:underline">Catatan :</div>

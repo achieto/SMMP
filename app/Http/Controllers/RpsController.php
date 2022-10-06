@@ -8,6 +8,7 @@ use App\Models\MK;
 use App\Models\Activity;
 use App\Models\CPLMK;
 use App\Models\CPL;
+use App\Models\CPMK;
 
 class RpsController extends Controller
 {
@@ -25,6 +26,7 @@ class RpsController extends Controller
         $activities = Activity::all();
         $cplmks = CPLMK::all();
         $cpls = CPL::all();
-        return view('admin.rps.print', compact('rps', 'activities', 'mks', 'cplmks', 'cpls'));
+        $cpmks = CPMK::all();
+        return view('admin.rps.print', compact('rps', 'activities', 'mks', 'cplmks', 'cpls', 'cpmks'));
     }
 }
