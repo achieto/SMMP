@@ -280,353 +280,42 @@
     </tr>
     @foreach($activities as $activity)
     @if($activity->id_rps == $rps->id)
-    @if((int)$activity->minggu < 8)
-    <tr class="contain">
+    @if((int)$activity->minggu < 8) <tr class="contain">
         <td class="title-cpmk cpmk-contain" colspan="1">{{$activity->minggu}}</td>
         <td class="cpmk-contain sub-contain" colspan="2">{{$activity->sub_cpmk}}</td>
-        <td class="cpmk-contain" colspan="1"><?=$activity->indikator?></td>
+        <td class="cpmk-contain" colspan="1"><?= $activity->indikator ?></td>
         <td class="cpmk-contain sub-contain" colspan="1">{{$activity->kriteria}}</td>
-        <td class="cpmk-contain" colspan="1">{{$activity->metode_luring}}</td>
-        <td class="cpmk-contain" colspan="2">{{$activity->metode_daring}}</td>
-        <td class="cpmk-contain sub-contain" colspan="1">{{$activity->materi}}</td>
+        <td class="cpmk-contain" colspan="1"><?= $activity->metode_luring ?></td>
+        <td class="cpmk-contain" colspan="2"><?= $activity->metode_daring ?></td>
+        <td class="cpmk-contain sub-contain" colspan="1"><?= $activity->materi ?></td>
         <td class="cpmk-contain sub-contain" colspan="1">{{$activity->bobot}}</td>
-    </tr>
-    @endif
-    @endif
-    @endforeach
-    <!-- <tr class="contain">
-            <td class="title-cpmk cpmk-contain" colspan="1">2</td>
-            <td class="cpmk-contain sub-contain" colspan="2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, labore eos aliquid necessitatibus laborum odit!</td>
-            <td class="cpmk-contain" colspan="1">
-                <ul>
-                    <li>Lorem, ipsum dolor.</li>
-                    <li>Lorem ipsum dolor sit amet.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain sub-contain" colspan="1">Lorem, ipsum dolor.</td>
-            <td class="cpmk-contain" colspan="1">
-                <ul>
-                    <li>Lorem.</li>
-                    <li>Lorem, ipsum.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain" colspan="2">
-                <ul>
-                    <li>Lorem.</li>
-                    <li>Lorem, ipsum.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain sub-contain" colspan="1">Lorem ipsum dolor sit.</td>
-            <td class="cpmk-contain sub-contain" colspan="1"></td>
         </tr>
+        @endif
+        @endif
+        @endforeach
         <tr class="contain">
-            <td class="title-cpmk cpmk-contain" colspan="1">3</td>
-            <td class="cpmk-contain sub-contain" colspan="2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, labore eos aliquid necessitatibus laborum odit!</td>
-            <td class="cpmk-contain" colspan="1">
-                <ul>
-                    <li>Lorem, ipsum dolor.</li>
-                    <li>Lorem ipsum dolor sit amet.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain sub-contain" colspan="1">Lorem, ipsum dolor.</td>
-            <td class="cpmk-contain" colspan="1">
-                <ul>
-                    <li>Lorem.</li>
-                    <li>Lorem, ipsum.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain" colspan="2">
-                <ul>
-                    <li>Lorem.</li>
-                    <li>Lorem, ipsum.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain sub-contain" colspan="1">Lorem ipsum dolor sit.</td>
-            <td class="cpmk-contain sub-contain" colspan="1"></td>
+            <td class="title-cpmk cpmk-contain" colspan="1">8</td>
+            <th class="title-cpmk cpmk-contain" colspan="9">Ujian Tengah Semester</th>
         </tr>
-        <tr class="contain">
-            <td class="title-cpmk cpmk-contain" colspan="1">4</td>
-            <td class="cpmk-contain sub-contain" colspan="2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, labore eos aliquid necessitatibus laborum odit!</td>
-            <td class="cpmk-contain" colspan="1">
-                <ul>
-                    <li>Lorem, ipsum dolor.</li>
-                    <li>Lorem ipsum dolor sit amet.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain sub-contain" colspan="1">Lorem, ipsum dolor.</td>
-            <td class="cpmk-contain" colspan="1">
-                <ul>
-                    <li>Lorem.</li>
-                    <li>Lorem, ipsum.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain" colspan="2">
-                <ul>
-                    <li>Lorem.</li>
-                    <li>Lorem, ipsum.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain sub-contain" colspan="1">Lorem ipsum dolor sit.</td>
-            <td class="cpmk-contain sub-contain" colspan="1"></td>
-        </tr>
-        <tr class="contain">
-            <td class="title-cpmk cpmk-contain" colspan="1">5</td>
-            <td class="cpmk-contain sub-contain" colspan="2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, labore eos aliquid necessitatibus laborum odit!</td>
-            <td class="cpmk-contain" colspan="1">
-                <ul>
-                    <li>Lorem, ipsum dolor.</li>
-                    <li>Lorem ipsum dolor sit amet.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain sub-contain" colspan="1">Lorem, ipsum dolor.</td>
-            <td class="cpmk-contain" colspan="1">
-                <ul>
-                    <li>Lorem.</li>
-                    <li>Lorem, ipsum.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain" colspan="2">
-                <ul>
-                    <li>Lorem.</li>
-                    <li>Lorem, ipsum.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain sub-contain" colspan="1">Lorem ipsum dolor sit.</td>
-            <td class="cpmk-contain sub-contain" colspan="1"></td>
-        </tr>
-        <tr class="contain">
-            <td class="title-cpmk cpmk-contain" colspan="1">6</td>
-            <td class="cpmk-contain sub-contain" colspan="2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, labore eos aliquid necessitatibus laborum odit!</td>
-            <td class="cpmk-contain" colspan="1">
-                <ul>
-                    <li>Lorem, ipsum dolor.</li>
-                    <li>Lorem ipsum dolor sit amet.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain sub-contain" colspan="1">Lorem, ipsum dolor.</td>
-            <td class="cpmk-contain" colspan="1">
-                <ul>
-                    <li>Lorem.</li>
-                    <li>Lorem, ipsum.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain" colspan="2">
-                <ul>
-                    <li>Lorem.</li>
-                    <li>Lorem, ipsum.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain sub-contain" colspan="1">Lorem ipsum dolor sit.</td>
-            <td class="cpmk-contain sub-contain" colspan="1"></td>
-        </tr>
-        <tr class="contain">
-            <td class="title-cpmk cpmk-contain" colspan="1">7</td>
-            <td class="cpmk-contain sub-contain" colspan="2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, labore eos aliquid necessitatibus laborum odit!</td>
-            <td class="cpmk-contain" colspan="1">
-                <ul>
-                    <li>Lorem, ipsum dolor.</li>
-                    <li>Lorem ipsum dolor sit amet.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain sub-contain" colspan="1">Lorem, ipsum dolor.</td>
-            <td class="cpmk-contain" colspan="1">
-                <ul>
-                    <li>Lorem.</li>
-                    <li>Lorem, ipsum.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain" colspan="2">
-                <ul>
-                    <li>Lorem.</li>
-                    <li>Lorem, ipsum.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain sub-contain" colspan="1">Lorem ipsum dolor sit.</td>
-            <td class="cpmk-contain sub-contain" colspan="1"></td>
-        </tr> -->
-    <tr class="contain">
-        <td class="title-cpmk cpmk-contain" colspan="1">8</td>
-        <th class="title-cpmk cpmk-contain" colspan="9">Ujian Tengah Semester</th>
-    </tr>
-    <!-- <tr class="contain">
-            <td class="title-cpmk cpmk-contain" colspan="1">9</td>
-            <td class="cpmk-contain sub-contain" colspan="2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, labore eos aliquid necessitatibus laborum odit!</td>
-            <td class="cpmk-contain" colspan="1">
-                <ul>
-                    <li>Lorem, ipsum dolor.</li>
-                    <li>Lorem ipsum dolor sit amet.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain sub-contain" colspan="1">Lorem, ipsum dolor.</td>
-            <td class="cpmk-contain" colspan="1">
-                <ul>
-                    <li>Lorem.</li>
-                    <li>Lorem, ipsum.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain" colspan="2">
-                <ul>
-                    <li>Lorem.</li>
-                    <li>Lorem, ipsum.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain sub-contain" colspan="1">Lorem ipsum dolor sit.</td>
-            <td class="cpmk-contain sub-contain" colspan="1"></td>
-        </tr>
-        <tr class="contain">
-            <td class="title-cpmk cpmk-contain" colspan="1">10</td>
-            <td class="cpmk-contain sub-contain" colspan="2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, labore eos aliquid necessitatibus laborum odit!</td>
-            <td class="cpmk-contain" colspan="1">
-                <ul>
-                    <li>Lorem, ipsum dolor.</li>
-                    <li>Lorem ipsum dolor sit amet.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain sub-contain" colspan="1">Lorem, ipsum dolor.</td>
-            <td class="cpmk-contain" colspan="1">
-                <ul>
-                    <li>Lorem.</li>
-                    <li>Lorem, ipsum.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain" colspan="2">
-                <ul>
-                    <li>Lorem.</li>
-                    <li>Lorem, ipsum.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain sub-contain" colspan="1">Lorem ipsum dolor sit.</td>
-            <td class="cpmk-contain sub-contain" colspan="1"></td>
-        </tr>
-        <tr class="contain">
-            <td class="title-cpmk cpmk-contain" colspan="1">11</td>
-            <td class="cpmk-contain sub-contain" colspan="2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, labore eos aliquid necessitatibus laborum odit!</td>
-            <td class="cpmk-contain" colspan="1">
-                <ul>
-                    <li>Lorem, ipsum dolor.</li>
-                    <li>Lorem ipsum dolor sit amet.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain sub-contain" colspan="1">Lorem, ipsum dolor.</td>
-            <td class="cpmk-contain" colspan="1">
-                <ul>
-                    <li>Lorem.</li>
-                    <li>Lorem, ipsum.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain" colspan="2">
-                <ul>
-                    <li>Lorem.</li>
-                    <li>Lorem, ipsum.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain sub-contain" colspan="1">Lorem ipsum dolor sit.</td>
-            <td class="cpmk-contain sub-contain" colspan="1"></td>
-        </tr>
-        <tr class="contain">
-            <td class="title-cpmk cpmk-contain" colspan="1">12</td>
-            <td class="cpmk-contain sub-contain" colspan="2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, labore eos aliquid necessitatibus laborum odit!</td>
-            <td class="cpmk-contain" colspan="1">
-                <ul>
-                    <li>Lorem, ipsum dolor.</li>
-                    <li>Lorem ipsum dolor sit amet.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain sub-contain" colspan="1">Lorem, ipsum dolor.</td>
-            <td class="cpmk-contain" colspan="1">
-                <ul>
-                    <li>Lorem.</li>
-                    <li>Lorem, ipsum.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain" colspan="2">
-                <ul>
-                    <li>Lorem.</li>
-                    <li>Lorem, ipsum.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain sub-contain" colspan="1">Lorem ipsum dolor sit.</td>
-            <td class="cpmk-contain sub-contain" colspan="1"></td>
-        </tr>
-        <tr class="contain">
-            <td class="title-cpmk cpmk-contain" colspan="1">13</td>
-            <td class="cpmk-contain sub-contain" colspan="2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, labore eos aliquid necessitatibus laborum odit!</td>
-            <td class="cpmk-contain" colspan="1">
-                <ul>
-                    <li>Lorem, ipsum dolor.</li>
-                    <li>Lorem ipsum dolor sit amet.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain sub-contain" colspan="1">Lorem, ipsum dolor.</td>
-            <td class="cpmk-contain" colspan="1">
-                <ul>
-                    <li>Lorem.</li>
-                    <li>Lorem, ipsum.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain" colspan="2">
-                <ul>
-                    <li>Lorem.</li>
-                    <li>Lorem, ipsum.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain sub-contain" colspan="1">Lorem ipsum dolor sit.</td>
-            <td class="cpmk-contain sub-contain" colspan="1"></td>
-        </tr>
-        <tr class="contain">
-            <td class="title-cpmk cpmk-contain" colspan="1">14</td>
-            <td class="cpmk-contain sub-contain" colspan="2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, labore eos aliquid necessitatibus laborum odit!</td>
-            <td class="cpmk-contain" colspan="1">
-                <ul>
-                    <li>Lorem, ipsum dolor.</li>
-                    <li>Lorem ipsum dolor sit amet.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain sub-contain" colspan="1">Lorem, ipsum dolor.</td>
-            <td class="cpmk-contain" colspan="1">
-                <ul>
-                    <li>Lorem.</li>
-                    <li>Lorem, ipsum.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain" colspan="2">
-                <ul>
-                    <li>Lorem.</li>
-                    <li>Lorem, ipsum.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain sub-contain" colspan="1">Lorem ipsum dolor sit.</td>
-            <td class="cpmk-contain sub-contain" colspan="1"></td>
-        </tr>
-        <tr class="contain">
-            <td class="title-cpmk cpmk-contain" colspan="1">15</td>
-            <td class="cpmk-contain sub-contain" colspan="2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, labore eos aliquid necessitatibus laborum odit!</td>
-            <td class="cpmk-contain" colspan="1">
-                <ul>
-                    <li>Lorem, ipsum dolor.</li>
-                    <li>Lorem ipsum dolor sit amet.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain sub-contain" colspan="1">Lorem, ipsum dolor.</td>
-            <td class="cpmk-contain" colspan="1">
-                <ul>
-                    <li>Lorem.</li>
-                    <li>Lorem, ipsum.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain" colspan="2">
-                <ul>
-                    <li>Lorem.</li>
-                    <li>Lorem, ipsum.</li>
-                </ul>
-            </td>
-            <td class="cpmk-contain sub-contain" colspan="1">Lorem ipsum dolor sit.</td>
-            <td class="cpmk-contain sub-contain" colspan="1"></td>
-        </tr>
-        <tr class="contain"> -->
-    <td class="title-cpmk cpmk-contain" colspan="1">16</td>
-    <th class="title-cpmk cpmk-contain" colspan="9">Ujian Akhir Semester</th>
-    </tr>
+        @foreach($activities as $activity)
+        @if($activity->id_rps == $rps->id)
+        @if((int)$activity->minggu > 8) <tr class="contain">
+            <td class="title-cpmk cpmk-contain" colspan="1">{{$activity->minggu}}</td>
+            <td class="cpmk-contain sub-contain" colspan="2">{{$activity->sub_cpmk}}</td>
+            <td class="cpmk-contain" colspan="1"><?= $activity->indikator ?></td>
+            <td class="cpmk-contain sub-contain" colspan="1">{{$activity->kriteria}}</td>
+            <td class="cpmk-contain" colspan="1"><?= $activity->metode_luring ?></td>
+            <td class="cpmk-contain" colspan="2"><?= $activity->metode_daring ?></td>
+            <td class="cpmk-contain sub-contain" colspan="1"><?= $activity->materi ?></td>
+            <td class="cpmk-contain sub-contain" colspan="1">{{$activity->bobot}}</td>
+            </tr>
+            @endif
+            @endif
+            @endforeach
+            <tr class="contain">
+                <td class="title-cpmk cpmk-contain" colspan="1">16</td>
+                <th class="title-cpmk cpmk-contain" colspan="9">Ujian Akhir Semester</th>
+            </tr>
 </table>
 <div class="note">
     <div style="font-weight:700; text-decoration:underline">Catatan :</div>
