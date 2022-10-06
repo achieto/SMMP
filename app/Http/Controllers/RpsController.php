@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\RPS;
 use App\Models\MK;
 use App\Models\Activity;
+use App\Models\CPLMK;
+use App\Models\CPL;
 
 class RpsController extends Controller
 {
@@ -21,6 +23,8 @@ class RpsController extends Controller
         $rps = RPS::findOrFail($id);
         $mks = MK::all();
         $activities = Activity::all();
-        return view('admin.rps.print', compact('rps', 'activities', 'mks'));
+        $cplmks = CPLMK::all();
+        $cpls = CPL::all();
+        return view('admin.rps.print', compact('rps', 'activities', 'mks', 'cplmks', 'cpls'));
     }
 }
