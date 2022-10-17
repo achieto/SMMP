@@ -7,7 +7,7 @@
             <form method="POST" action="add-mk" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group row">
-                    <div class="col">
+                    <div class="col-2">
                         <label>Kode MK <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" name="kode" placeholder="Kode MK" value="{{old('kode')}}" autocomplete="off">
                         @error('kode')
@@ -16,10 +16,19 @@
                         </div>
                         @enderror
                     </div>
-                    <div class="col">
+                    <div class="col-5">
                         <label>Nama MK <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" name="nama" placeholder="Nama MK" value="{{old('nama')}}" autocomplete="off">
                         @error('nama')
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="col-5">
+                        <label>MK prasyarat</label>
+                        <input type="text" class="form-control" name="prasyarat" placeholder="MK prasyarat" value="{{old('prasyarat')}}" autocomplete="off">
+                        @error('prasyarat')
                         <div class="alert alert-danger">
                             {{ $message }}
                         </div>
@@ -58,15 +67,13 @@
                         @enderror
                     </div>
                     <div class="col">
-                        <div class="col">
-                            <label>Kurikulum <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="kurikulum" placeholder="Kurikulum" value="{{old('kurikulum')}}" autocomplete="off">
-                            @error('kurikulum')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
-                            @enderror
+                        <label>Tahun kurikulum <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="kurikulum" placeholder="Kurikulum" value="{{old('kurikulum')}}" autocomplete="off">
+                        @error('kurikulum')
+                        <div class="alert alert-danger">
+                            {{ $message }}
                         </div>
+                        @enderror
                     </div>
                 </div>
                 <div class="form-group row">
@@ -83,31 +90,6 @@
                         <label>Bobot praktikum (sks)</label>
                         <input type="text" class="form-control" name="bobot_praktikum" placeholder="Bobot praktikum" value="{{old('bobot_praktikum')}}" autocomplete="off">
                         @error('bobot_praktikum')
-                        <div class="alert alert-danger">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col">
-                        <label>Dosen pengampu <span class="text-danger">*</span></label>
-                        <select class="js-example-basic-single w-100" name="dosen" id="dosen">
-                            <option selected="true" value="" disabled selected>Select...</option>
-                            @foreach($users as $user)
-                            <option value="{{$user->name}}" {{ old('dosen') == $user->name ? 'selected' : '' }}>{{$user->name}}</option>
-                            @endforeach
-                        </select>
-                        @error('dosen')
-                        <div class="alert alert-danger">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
-                    <div class="col">
-                        <label>MK prasyarat</label>
-                        <input type="text" class="form-control" name="prasyarat" placeholder="MK prasyarat" value="{{old('prasyarat')}}" autocomplete="off">
-                        @error('prasyarat')
                         <div class="alert alert-danger">
                             {{ $message }}
                         </div>

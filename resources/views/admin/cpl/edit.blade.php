@@ -42,7 +42,7 @@
                     </div>
                     <div class="col">
                         <div class="form-group">
-                            <label>Kurikulum <span class="text-danger">*</span></label>
+                            <label>Tahun kurikulum <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="kurikulum" placeholder="Kurikulum" value="{{$cpl->kurikulum}}" autocomplete="off">
                             @error('kurikulum')
                             <div class="alert alert-danger">

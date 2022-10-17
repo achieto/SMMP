@@ -12,10 +12,9 @@
                             <th>Kode MK</th>
                             <th>Nama MK</th>
                             <th>Rumpun</th>
-                            <th>MK Prasyarat</th>
-                            <th>Kurikulum</th>
+                            <th>MK prasyarat</th>
+                            <th>Tahun kurikulum</th>
                             <th>Bobot</th>
-                            <th>Dosen pengampu</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -29,7 +28,6 @@
                             <td>{{$mk->prasyarat}}</td>
                             <td>{{$mk->kurikulum}}</td>
                             <td><?= (int)$mk->bobot_teori + $mk->bobot_praktikum ?> SKS</td>
-                            <td>{{$mk->dosen}}</td>
                             <td class="py-4">
                                 <div class="d-flex">
                                     <a type="button" href="edit-mk/{{$mk->id}}" class="btn btn-inverse-dark btn-icon-text p-2" style="margin-right:7px">

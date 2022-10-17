@@ -31,7 +31,6 @@ class MkController extends Controller
             'kurikulum' => ['required', 'integer', 'digits:4'],
             'bobot_teori' => ['required', 'integer', 'digits:1'],
             'bobot_praktikum' => ['nullable', 'integer', 'digits:1'],
-            'dosen' => 'required',
             'materi' => 'required',
             'pustaka_utama' => ['required', 'string', 'max:255'],
             'pustaka_pendukung' => ['nullable', 'string', 'max:255'],
@@ -60,7 +59,6 @@ class MkController extends Controller
             'kurikulum' => $request->kurikulum,
             'bobot_teori' => $request->bobot_teori,
             'bobot_praktikum' => $bp,
-            'dosen' => $request->dosen,
             'materi' => $request->materi,
             'pustaka_utama' => $request->pustaka_utama,
             'pustaka_pendukung' => $pp
@@ -85,7 +83,6 @@ class MkController extends Controller
             'kurikulum' => ['required', 'integer', 'digits:4'],
             'bobot_teori' => ['required', 'integer', 'digits:1'],
             'bobot_praktikum' => ['nullable', 'integer', 'digits:1'],
-            'dosen' => 'required',
             'materi' => 'required',
             'pustaka_utama' => ['required', 'string', 'max:255'],
             'pustaka_pendukung' => ['nullable', 'string', 'max:255'],
@@ -115,7 +112,6 @@ class MkController extends Controller
             'kurikulum' => $request->kurikulum,
             'bobot_teori' => $request->bobot_teori,
             'bobot_praktikum' => $bp,
-            'dosen' => $request->dosen,
             'materi' => $request->materi,
             'pustaka_utama' => $request->pustaka_utama,
             'pustaka_pendukung' => $pp
