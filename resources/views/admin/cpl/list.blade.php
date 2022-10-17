@@ -10,7 +10,7 @@
                     <table class="table table-hover dataTable">
                         <thead>
                             <tr>
-                                <th>Kurikulum</th>
+                                <th>Tahun kurikulum</th>
                                 <th>Kode</th>
                                 <th>Judul</th>
                                 <th>Action</th>
@@ -54,7 +54,7 @@
                     <table class="table table-hover dataTable">
                         <thead>
                             <tr>
-                                <th>Kurikulum</th>
+                                <th>Tahun kurikulum</th>
                                 <th>Kode</th>
                                 <th>Judul</th>
                                 <th>Action</th>
@@ -100,7 +100,7 @@
                     <table class="table table-hover dataTable">
                         <thead>
                             <tr>
-                                <th>Kurikulum</th>
+                                <th>Tahun kurikulum</th>
                                 <th>Kode</th>
                                 <th>Judul</th>
                                 <th>Action</th>
@@ -144,7 +144,7 @@
                     <table class="table table-hover dataTable">
                         <thead>
                             <tr>
-                                <th>Kurikulum</th>
+                                <th>Tahun kurikulum</th>
                                 <th>Kode</th>
                                 <th>Judul</th>
                                 <th>Action</th>
