@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RpsController;
 use App\Http\Controllers\MkController;
 use App\Http\Controllers\CplController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,9 +56,8 @@ Route::middleware(['auth'])->group(
         );
         Route::middleware('admin')->prefix('admin')->group(
             function () {
-                Route::get('/dashboard', function () {
-                    return view('admin.dashboard');
-                })->name('admin');
+                Route::get('dashboard', [DashboardController::class, 'index'])->name('admin');
+                Route::get('dashboard-chart', [DashboardController::class, 'chart'])->name('chart');
                 Route::get('add-dosen', [UserController::class, 'create'])
                     ->name('add-dosen');
                 Route::post('add-dosen', [UserController::class, 'store']);

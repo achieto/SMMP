@@ -17,17 +17,12 @@ class CreateMksTable extends Migration
             $table->increments('id');
             $table->string('kode')->unique();
             $table->string('nama');
-            $table->text('deskripsi');
             $table->string('rumpun');
             $table->integer('semester');
             $table->string('prasyarat');
             $table->integer('kurikulum');
             $table->integer('bobot_teori');
             $table->integer('bobot_praktikum');
-            $table->string('dosen');
-            $table->text('materi');
-            $table->string('pustaka_utama');
-            $table->string('pustaka_pendukung');
             $table->timestamps();
         });
     }

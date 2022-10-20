@@ -20,7 +20,6 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ asset('/assets/template/css/vertical-layout-light/style.css')}}">
     <!-- endinject -->
-   
 
     <link rel="shortcut icon" href="{{ asset('/assets/img/logo_unila.png')}}" />
 </head>

@@ -11,6 +11,6 @@ class RPS extends Model
     protected $table = 'rpss';
 
     protected $fillable = [
-        'id_mk','pengembang', 'koordinator', 'kaprodi', 'semester', 
+        'id_mk','pengembang', 'koordinator', 'kaprodi', 'semester', 'deskripsi_mk'. 'materi_mk', 'pustaka_utama', 'pustaka_pendukung'
     ];
 }
