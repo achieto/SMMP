@@ -133,11 +133,7 @@
     $bobot_t = $mk->bobot_teori;
     $bobot_p = $mk->bobot_praktikum;
     $tanggal = $mk->created_at;
-    $deskripsi = $mk->deskripsi;
     $prasyarat = $mk->prasyarat;
-    $materi = $mk->materi;
-    $pustaka_utama = $mk->pustaka_utama;
-    $pustaka_pendukung = $mk->pustaka_pendukung;
     }
     endforeach
     @endphp
@@ -414,7 +410,7 @@
                         <div class="col">MK</div>
                     </div>
                 </th>
-                <td class="sub-contain" colspan="8" style="vertical-align:top"><?= $deskripsi ?></td>
+                <td class="sub-contain" colspan="8" style="vertical-align:top"><?= $rps->deskripsi_mk ?></td>
             </tr>
             <tr class="contain">
                 <th class="sub-contain" colspan="2" rowspan="1" style="vertical-align:top">
@@ -424,7 +420,7 @@
                         <div class="col">Pembelajaran</div>
                     </div>
                 </th>
-                <td class="sub-contain" colspan="8" style="vertical-align:top"><?= $materi ?></td>
+                <td class="sub-contain" colspan="8" style="vertical-align:top"><?= $rps->materi_mk ?></td>
             </tr>
             <tr class="contain">
                 <th class="sub-contain" colspan="2" rowspan="4" style="vertical-align:top;">Pustaka</th>
@@ -432,14 +428,14 @@
                 <td class="sub-contain" colspan="6" style="vertical-align:top"></td>
             </tr>
             <tr class="contain">
-                <td class="sub-contain" colspan="8">{{$pustaka_utama}}</td>
+                <td class="sub-contain" colspan="8"><?=$rps->pustaka_utama?></td>
             </tr>
             <tr class="contain">
                 <th class="sub-contain subtitle grey" colspan="2">Pendukung :</th>
                 <td class="sub-contain" colspan="6" style="vertical-align:top;"></td>
             </tr>
             <tr class="contain">
-                <td class="sub-contain" colspan="8">{{$pustaka_pendukung}}</td>
+                <td class="sub-contain" colspan="8"><?=$rps->pustaka_pendukung?></td>
             </tr>
             <tr class="contain">
                 <th class="sub-contain" colspan="2" style="vertical-align:top;">Dosen Pengampu</th>
@@ -509,16 +505,16 @@
                 <td class="cpmk-contain" colspan="2"><?= $activity->metode_daring ?></td>
                 <td class="cpmk-contain sub-contain" colspan="1"><?= $activity->materi ?></td>
                 <td class="cpmk-contain sub-contain" colspan="1">{{$activity->bobot}}</td>
-            </tr>
-            @endif
-            @endif
-            @endforeach
-            <tr class="contain">
-                <td class="title-cpmk cpmk-contain" colspan="1">8</td>
-                <th class="title-cpmk cpmk-contain" colspan="8">Ujian Tengah Semester</th>
-                <td class="cpmk-contain sub-contain" colspan="1"></td>
-            </tr>
-            @foreach($activities as $activity)
+                </tr>
+                @endif
+                @endif
+                @endforeach
+                <tr class="contain">
+                    <td class="title-cpmk cpmk-contain" colspan="1">8</td>
+                    <th class="title-cpmk cpmk-contain" colspan="8">Ujian Tengah Semester</th>
+                    <td class="cpmk-contain sub-contain" colspan="1"></td>
+                </tr>
+                @foreach($activities as $activity)
                 @if($activity->id_rps == $rps->id)
                 @if((int)$activity->minggu > 8) <tr class="contain">
                     <td class="title-cpmk cpmk-contain" colspan="1">{{$activity->minggu}}</td>
@@ -538,7 +534,7 @@
                     <th class="title-cpmk cpmk-contain" colspan="8">Ujian Akhir Semester</th>
                     <td class="cpmk-contain sub-contain" colspan="1"></td>
                 </tr>
-            </table>
+</table>
 <div class="note">
     <div style="font-weight:700; text-decoration:underline">Catatan :</div>
     <ol>
