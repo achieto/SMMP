@@ -33,6 +33,20 @@
 <script src="{{ asset('/assets/template/js/jquery.cookie.js')}}" type="text/javascript"></script>
 <script src="{{ asset('/assets/template/js/dashboard.js')}}"></script>
 <script src="{{ asset('/assets/template/js/Chart.roundedBarCharts.js')}}"></script>
+<!-- tinymce -->
+<script src="https://cdn.tiny.cloud/1/5h0affhvvi6gh349o8nfwzsjq67tjij9h4fb61meqczi1xq9/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: 'textarea',
+        plugins: [
+            'autolink', 'lists', 'link', 'image', 'preview',
+            'searchreplace', 'code', 'fullscreen',
+            'insertdatetime', 'media', 'wordcount'
+        ],
+        toolbar: 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+        toolbar_mode: 'floating',
+    });
+</script>
 <!-- End custom js for this page-->
 </body>
 

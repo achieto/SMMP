@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RpsController;
 use App\Http\Controllers\MkController;
 use App\Http\Controllers\CplController;
+use App\Http\Controllers\DosenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,12 +34,8 @@ Route::middleware(['auth'])->group(
                 Route::get('dashboard', function () {
                     return view('dosen.dashboard');
                 })->name('dashboard');
-                Route::get('cpl/add-cpl', function () {
-                    return view('dosen.cpl.add');
-                })->name('cpl-add');
-                Route::get('rps/add-rps', function () {
-                    return view('dosen.rps.add');
-                })->name('rps-add');
+                Route::get('cpl/add-cpl', [DosenController::class, 'cplAdd'])->name('cpl-add');
+                Route::get('rps/add-rps', [DosenController::class, 'rpsAdd'])->name('rps-add');
                 Route::get('cpmk/add-cpmk', function () {
                     return view('dosen.cpmk.add');
                 })->name('cpmk-add');

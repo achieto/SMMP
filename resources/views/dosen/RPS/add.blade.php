@@ -11,20 +11,15 @@
         <div class="card-body">
             <form action="" method="post">
                 <div class="form-floating mb-3">
-                  <input type="text" name="fakultas" class="form-control" id="floatingInput" placeholder="Fakultas" aria-describedby="fakultasHelp">
-                  <label for="floatingInput" class="form-label">Fakultas</label>
-                  <div id="fakultasHelp" class="form-text">Silahkan masukkan nama fakultas anda dengan lengkap. ex: Fakultas Matematika dan Ilmu Pengetahuan Alam</div>
-                </div>
-                <div class="form-floating mb-3">
-                  <input type="text" name="jurusan" class="form-control" id="floatingInputJurusan" placeholder="Jurusan" aria-describedby="jurusanHelp">
-                  <label for="floatingInputJurusan" class="form-label">Jurusan</label>
-                  <div id="jurusanHelp" class="form-text">Silahkan masukkan nama jurusan anda dengan lengkap. ex: Jurusan Ilmu Komputer</div>
+                    <input type="number" name="semester" class="form-control" max="8" min="1" id="semester" placeholder="semester" aria-describedby="semesterHelp">
+                    <label for="semester" class="form-label">Semester</label>
+                    <div id="semesterHelp" class="form-text">Silahkan masukkan Semester (1-8).</div>
                 </div>
                 <select id="mataKuliah" name="mataKuliah" class="form-select form-control-lg" aria-label="select Mata Kuliah">
-                    <option selected>Pilih Mata Kuliah</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option selected disabled>Pilih Mata Kuliah</option>
+                    @foreach ($mks as $mk)
+                        <option value="{{$mk->id}}">{{$mk->nama}}</option>
+                    @endforeach
                 </select>
                 <div id="MKHelp" class="form-text mb-3">Silahkan pilih mata kuliah RPS.</div>
                 <div class="form-floating mb-3">
@@ -32,11 +27,14 @@
                     <label for="pengembang" class="form-label">Pengembang</label>
                     <div id="pengembangHelp" class="form-text">Silahkan masukkan nama lengkap Dosen Pengembang RPS.</div>
                 </div>
-                <div class="form-floating mb-3">
-                    <input type="text" name="koordinator" class="form-control" id="koordinator" placeholder="koordinator" aria-describedby="koordinatorHelp">
-                    <label for="koordinator" class="form-label">Koordinator</label>
-                    <div id="koordinatorHelp" class="form-text">Silahkan masukkan nama lengkap Dosen Koordinator Mata Kuliah.</div>
-                </div>
+                
+                <select id="koordinator" name="koordinator" class="form-select form-control-lg" aria-label="select Koordinator">
+                    <option selected disabled>Pilih Koordinator Mata Kuliah</option>
+                    @foreach ($users as $user)
+                        <option value="{{$user->id}}">{{$user->name}}</option>
+                    @endforeach
+                </select>
+                    <div id="koordinatorHelp" class="form-text mb-3">Silahkan masukkan nama lengkap Dosen Koordinator Mata Kuliah.</div>
                 <div class="form-floating mb-3">
                     <input type="text" name="kaprodi" class="form-control" id="kaprodi" placeholder="kaprodi" aria-describedby="kaprodiHelp">
                     <label for="kaprodi" class="form-label">Kepala Program Studi</label>
