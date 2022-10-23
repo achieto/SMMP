@@ -27,6 +27,21 @@ class RpsController extends Controller
         $cplmks = CPLMK::all();
         $cpls = CPL::all();
         $cpmks = CPMK::all();
-        return view('admin.rps.print', compact('rps', 'activities', 'mks', 'cplmks', 'cpls', 'cpmks'));
+        $sikaps = CPL::where('aspek', 'Sikap')->get();
+        $umums = CPL::where('aspek', 'Umum')->get();
+        $pengetahuans = CPL::where('aspek', 'Pengetahuan')->get();
+        $keterampilans = CPL::where('aspek', 'Keterampilan')->get();
+        return view('admin.rps.print', compact(
+            'rps',
+            'activities',
+            'mks',
+            'cplmks',
+            'cpls',
+            'cpmks',
+            'sikaps',
+            'umums',
+            'pengetahuans',
+            'keterampilans'
+        ));
     }
 }

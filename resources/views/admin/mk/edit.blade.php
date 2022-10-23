@@ -26,9 +26,9 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label>Deskripsi singkat MK <span class="text-danger">*</span></label>
-                    <textarea class="form-control editor" name="deskripsi" placeholder="Deskripsi singkat MK">{{$mk->deskripsi}}</textarea>
-                    @error('deskripsi')
+                    <label>MK prasyarat</label>
+                    <input type="text" class="form-control" name="prasyarat" placeholder="MK prasyarat" value="{{$mk->prasyarat}}" autocomplete="off">
+                    @error('prasyarat')
                     <div class="alert alert-danger">
                         {{ $message }}
                     </div>
@@ -48,23 +48,14 @@
                             Peminatan
                         </label>
                     </div>
-                </div>
-                @error('rumpun')
-                <div class="alert alert-danger">
-                    {{ $message }}
-                </div>
-                @enderror
-                <div class="form-group">
-                    <label>MK prasyarat</label>
-                    <input type="text" class="form-control" name="prasyarat" placeholder="MK prasyarat" value="{{$mk->prasyarat}}" autocomplete="off">
-                    @error('prasyarat')
+                    @error('rumpun')
                     <div class="alert alert-danger">
                         {{ $message }}
                     </div>
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label>Kurikulum <span class="text-danger">*</span></label>
+                    <label>Tahun kurikulum <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" name="kurikulum" placeholder="Kurikulum" value="{{$mk->kurikulum}}" autocomplete="off">
                     @error('kurikulum')
                     <div class="alert alert-danger">
@@ -85,47 +76,6 @@
                     <label>Bobot praktikum (sks)</label>
                     <input type="text" class="form-control" name="bobot_praktikum" placeholder="Bobot praktikum" value="{{$mk->bobot_praktikum}}" autocomplete="off">
                     @error('bobot_praktikum')
-                    <div class="alert alert-danger">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label>Dosen pengampu <span class="text-danger">*</span></label>
-                    <select class="js-example-basic-single w-100" name="dosen" id="dosen">
-                        <option selected="true" value="" disabled selected>Select...</option>
-                        @foreach($users as $user)
-                        <option value="{{$user->name}}" {{ $mk->dosen == $user->name ? 'selected' : '' }}>{{$user->name}}</option>
-                        @endforeach
-                    </select>
-                    @error('dosen')
-                    <div class="alert alert-danger">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label>Bahan kajian/materi pembelajaran <span class="text-danger">*</span></label>
-                    <textarea class="form-control editor" name="materi" placeholder="Bahan kajian/materi pembelajaran">{{$mk->materi}}</textarea>
-                    @error('materi')
-                    <div class="alert alert-danger">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label>Pustaka utama <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="pustaka_utama" placeholder="Pustaka utama" value="{{$mk->pustaka_utama}}" autocomplete="off">
-                    @error('pustaka_utama')
-                    <div class="alert alert-danger">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label>Pustaka pendukung</label>
-                    <input type="text" class="form-control" name="pustaka_pendukung" placeholder="Pustaka pendukung" value="{{$mk->pustaka_pendukung}}" autocomplete="off">
-                    @error('pustaka_pendukung')
                     <div class="alert alert-danger">
                         {{ $message }}
                     </div>

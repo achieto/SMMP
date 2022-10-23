@@ -11,9 +11,10 @@
                             <th>#</th>
                             <th>Kode MK</th>
                             <th>Tanggal Penyusunan</th>
+                            <th>Nomor</th>
+                            <th>Semester</th>
                             <th>Pengembang RPS</th>
                             <th>Koordinator RMK</th>
-                            <th>Ketua Prodi</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -30,9 +31,10 @@
                             <td class="py-4">{{$no+1}}</td>
                             <td>{{$kode_mk}}</td>
                             <td>{{date("d-m-Y",strtotime($rps->created_at))}}</td>
+                            <td>{{$rps->nomor}}</td>
+                            <td>{{$rps->semester}}</td>
                             <td>{{$rps->pengembang}}</td>
                             <td>{{$rps->koordinator}}</td>
-                            <td>{{$rps->kaprodi}}</td>
                             <td class="py-4 d-flex">
                                 <a href="/admin/print-rps/{{$rps->id}}" type="button" class="btn btn-info btn-icon-text p-2">
                                     Print

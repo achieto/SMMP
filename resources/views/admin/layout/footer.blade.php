@@ -38,6 +38,7 @@
 <script src="{{ asset('/assets/template/js/jquery.cookie.js')}}" type="text/javascript"></script>
 <script src="{{ asset('/assets/template/js/dashboard.js')}}"></script>
 <script src="{{ asset('/assets/template/js/Chart.roundedBarCharts.js')}}"></script>
+<script src="{{ asset('/assets/template/js/chart.js')}}"></script>
 
 <!-- tinymce -->
 <script src="https://cdn.ckeditor.com/ckeditor5/35.2.0/classic/ckeditor.js"></script>

@@ -11,7 +11,7 @@
                     <div class="form-group row">
                         <div class="col-2">
                             <div class="form-group">
-                                <label>Kurikulum <span class="text-danger">*</span></label>
+                                <label>Tahun kurikulum <span class="text-danger">*</span></label>
                                 <input required type="text" class="form-control" name="kurikulum[0]" placeholder="Kurikulum" autocomplete="off">
                             </div>
                         </div>
@@ -67,7 +67,7 @@
                     <div class="form-group row">
                         <div class="col-2">
                             <div class="form-group">
-                                <label>Kurikulum <span class="text-danger">*</span></label>
+                                <label>Tahun kurikulum <span class="text-danger">*</span></label>
                                 <input required type="text" class="form-control" name="kurikulum[0]" placeholder="Kurikulum" autocomplete="off">
                             </div>
                         </div>
@@ -123,7 +123,7 @@
                     <div class="form-group row">
                         <div class="col-2">
                             <div class="form-group">
-                                <label>Kurikulum <span class="text-danger">*</span></label>
+                                <label>Tahun kurikulum <span class="text-danger">*</span></label>
                                 <input required type="text" class="form-control" name="kurikulum[0]" placeholder="Kurikulum" autocomplete="off">
                             </div>
                         </div>
@@ -179,7 +179,7 @@
                     <div class="form-group row">
                         <div class="col-2">
                             <div class="form-group">
-                                <label>Kurikulum <span class="text-danger">*</span></label>
+                                <label>Tahun kurikulum <span class="text-danger">*</span></label>
                                 <input required type="text" class="form-control" name="kurikulum[0]" placeholder="Kurikulum" autocomplete="off">
                             </div>
                         </div>
