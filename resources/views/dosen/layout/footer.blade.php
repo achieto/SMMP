@@ -37,7 +37,7 @@
 <script src="https://cdn.tiny.cloud/1/5h0affhvvi6gh349o8nfwzsjq67tjij9h4fb61meqczi1xq9/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
     tinymce.init({
-        selector: 'textarea',
+        selector: 'textarea.tiny',
         plugins: [
             'autolink', 'lists', 'link', 'image', 'preview',
             'searchreplace', 'code', 'fullscreen',

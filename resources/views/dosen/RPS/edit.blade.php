@@ -9,10 +9,11 @@
             </div>
         </div>
         <div class="card-body">
-            <form action="add-rps" method="post">
+            <form action="{{$rps->id}}" method="POST">
                 @csrf
+                @method('put')
                 <div class="form-floating mb-3">
-                    <input type="text" name="nomor" class="form-control" id="nomor" placeholder="nomor" aria-describedby="nomorHelp">
+                    <input type="text" name="nomor" class="form-control" id="nomor" placeholder="nomor" value="{{$rps->nomor}}" aria-describedby="nomorHelp">
                     <label for="nomor" class="form-label">nomor <span class="text-danger">*</span></label>
                     @error('nomor')
                     <div class="alert alert-danger">
@@ -35,9 +36,9 @@
                 </div> -->
                 <div class="form-floating">
                     <select id="prodi" name="prodi" class="form-select form-control-lg" aria-label="select Prodi">
-                        <option selected disabled>Pilih Program Studi </option>
-                        <option value="S1 - Ilmu Komputer">S1 - Ilmu Komputer</option>
-                        <option value="D3 - Manajemen Informatika">D3 - Manajemen Informatika</option>
+                        <option disabled>Pilih Program Studi </option>
+                        <option value="S1 - Ilmu Komputer" {{$rps->prodi == 'S1 - Ilmu Komputer'?'selected':''}}>S1 - Ilmu Komputer</option>
+                        <option value="D3 - Manajemen Informatika" {{$rps->prodi == 'D3 - Manajemen Informatika'?'selected':''}}>D3 - Manajemen Informatika</option>
                     </select>
                     <label for="prodi">Program Studi <span style="color:red">*</span></label>
                     @error('prodi')
@@ -49,7 +50,7 @@
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="number" name="kurikulum" class="form-control" min="1" id="kurikulum" placeholder="kurikulum" aria-describedby="kurikulumHelp">
+                    <input type="number" name="kurikulum" class="form-control" min="1" id="kurikulum" placeholder="kurikulum" value="{{$rps->kurikulum}}" aria-describedby="kurikulumHelp">
                     <label for="kurikulum" class="form-label">Tahun Kurikulum <span class="text-danger">*</span></label>
                     @error('kurikulum')
                     <div class="alert alert-danger">
@@ -60,7 +61,7 @@
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="number" name="semester" class="form-control" max="8" min="1" id="semester" placeholder="semester" aria-describedby="semesterHelp">
+                    <input type="number" name="semester" class="form-control" max="8" min="1" id="semester" placeholder="semester" value="{{$rps->semester}}" aria-describedby="semesterHelp">
                     <label for="semester" class="form-label">Semester <span class="text-danger">*</span></label>
                     @error('semester')
                     <div class="alert alert-danger">
@@ -74,7 +75,7 @@
                     <select id="mataKuliah" name="mataKuliah" class="form-select form-control-lg" aria-label="select Mata Kuliah">
                         <option selected disabled>Pilih Mata Kuliah </option>
                         @foreach ($mks as $mk)
-                        <option value="{{$mk->id}}">{{$mk->nama}}</option>
+                        <option value="{{$mk->id}}" {{$rps->id_mk == $mk->id?'selected':''}}>{{$mk->nama}}</option>
                         @endforeach
                     </select>
                     <label for="mataKuliah">Mata Kuliah <span style="color:red">*</span></label>
@@ -90,7 +91,7 @@
                     <select id="pengembang" name="pengembang" class="form-select form-control-lg" aria-label="select pengembang">
                         <option selected disabled>Pilih Pengembang RPS </option>
                         @foreach ($users as $user)
-                        <option value="{{$user->name}}">{{$user->name}}</option>
+                        <option value="{{$user->name}}" {{$rps->pengembang == $user->name?'selected':''}}>{{$user->name}}</option>
                         @endforeach
                     </select>
                     <label for="pengembang">Pengembang RPS <span style="color:red">*</span></label>
@@ -106,7 +107,7 @@
                     <select id="koordinator" name="koordinator" class="form-select form-control-lg" aria-label="select Koordinator">
                         <option selected disabled>Pilih Koordinator Mata Kuliah </option>
                         @foreach ($users as $user)
-                        <option value="{{$user->name}}">{{$user->name}}</option>
+                        <option value="{{$user->name}}" {{$rps->koordinator == $user->name?'selected':''}}>{{$user->name}}</option>
                         @endforeach
                     </select>
                     <label for="koordinator">Koordinator Mata Kuliah <span style="color:red">*</span></label>
@@ -122,7 +123,7 @@
                     <select id="dosen" name="dosen" class="form-select form-control-lg" aria-label="select dosen">
                         <option selected disabled>Pilih Dosen Pengampu 2 Mata Kuliah</option>
                         @foreach ($users as $user)
-                        <option value="{{$user->name}}">{{$user->name}}</option>
+                        <option value="{{$user->name}}" {{$rps->dosen == $user->name?'selected':''}}>{{$user->name}}</option>
                         @endforeach
                     </select>
                     <label for="dosen">Dosen Pengampu 2 </label>
@@ -135,7 +136,7 @@
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="text" name="kaprodi" class="form-control" id="kaprodi" placeholder="kaprodi" aria-describedby="kaprodiHelp">
+                    <input type="text" name="kaprodi" class="form-control" id="kaprodi" placeholder="kaprodi" value="{{$rps->kaprodi}}" aria-describedby="kaprodiHelp">
                     <label for="kaprodi" class="form-label">Kepala Program Studi <span style="color:red">*</span></label>
                     @error('kaprodi')
                     <div class="alert alert-danger">
@@ -146,7 +147,7 @@
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="text" name="pustaka_utama" class="form-control" id="pustaka_utama" placeholder="pustaka utama" aria-describedby="pustaka_utamaHelp">
+                    <input type="text" name="pustaka_utama" class="form-control" id="pustaka_utama" placeholder="pustaka utama" value="{{$rps->pustaka_utama}}" aria-describedby="pustaka_utamaHelp">
                     <label for="pustaka_utama" class="form-label">Pustaka Utama <span class="text-danger">*</span></label>
                     @error('pustaka_utama')
                     <div class="alert alert-danger">
@@ -157,7 +158,7 @@
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="text" name="pustaka_pendukung" class="form-control" id="pustaka_pendukung" placeholder="pustaka pendukung" aria-describedby="pustaka_pendukungHelp">
+                    <input type="text" name="pustaka_pendukung" class="form-control" id="pustaka_pendukung" placeholder="pustaka pendukung" value="{{$rps->pustaka_pendukung}}" aria-describedby="pustaka_pendukungHelp">
                     <label for="pustaka_pendukung" class="form-label">Pustaka Pendukung</label>
                     @error('pustaka_pendukung')
                     <div class="alert alert-danger">
@@ -167,7 +168,7 @@
                     <div id="pendukungHelp" class="form-text">Silahkan masukkan Pustaka Referensi Bahan Ajar Pendukung.</div>
                 </div>
                 <div class="form-floating mb-3">
-                    <textarea name="materi_mk" id="materi_mk" class="form-control" placeholder="insert materi_mk" style="height: 100px"></textarea>
+                    <textarea name="materi_mk" id="materi_mk" class="form-control" placeholder="insert materi_mk" style="height: 100px"> {{$rps->materi_mk}} </textarea>
                     <label for="materi_mk" class="form-label">Materi Mata Kuliah <span class="text-danger">*</span></label>
                     @error('materi_mk')
                     <div class="alert alert-danger">

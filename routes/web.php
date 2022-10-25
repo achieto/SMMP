@@ -37,18 +37,21 @@ Route::middleware(['auth'])->group(
                 })->name('dashboard');
                 Route::get('cpl/add-cpl', [DosenController::class, 'cplAdd'])->name('cpl-add');
                 Route::get('rps/add-rps', [DosenController::class, 'rpsAdd'])->name('rps-add');
+                Route::post('rps/add-rps', [DosenController::class, 'rpsStore']);
                 Route::get('cpmk/add-cpmk', function () {
                     return view('dosen.cpmk.add');
                 })->name('cpmk-add');
                 Route::get('cpmk/list-cpmk', function () {
                     return view('dosen.cpmk.list');
                 })->name('cpmk-list');
-                Route::get('rps/list-rps', function () {
-                    return view('dosen.rps.list');
-                })->name('rps-list');
+                Route::get('rps/list-rps', [DosenController::class, 'rpsList'])->name('rps-list');
                 Route::get('cpl/list-cpl', function () {
                     return view('dosen.cpl.list');
                 })->name('cpl-list');
+                Route::get('rps/print-rps/{id}', [DosenController::class, 'printRPS']);
+                Route::get('rps/edit-rps/{id}', [DosenController::class, 'rpsEdit']);
+                Route::put('rps/edit-rps/{id}', [DosenController::class, 'rpsUpdate']);
+                Route::delete('rps/delete-rps/{id}', [DosenController::class, 'rpsDelete']);
             }
         );
         Route::middleware('admin')->prefix('admin')->group(
