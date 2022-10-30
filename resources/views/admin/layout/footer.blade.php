@@ -24,7 +24,7 @@
 <script src="{{ asset('/assets/template/vendors/select2/select2.min.js')}}"></script>
 <script src="{{ asset('/assets/template/js/select2.js')}}"></script>
 
-<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="{{asset('/node_modules/datatables/media/js/jquery.dataTables.min.js')}}"></script>
 
 <!-- End plugin js for this page -->
 <!-- inject:js -->
