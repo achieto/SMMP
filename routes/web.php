@@ -81,6 +81,9 @@ Route::middleware(['auth'])->group(
                 Route::get('edit-cpl/{id}', [CplController::class, 'edit']);
                 Route::put('edit-cpl/{id}', [CplController::class, 'update']);
                 Route::delete('delete-cpl/{id}', [CplController::class, 'delete']);
+                Route::get('print-soal', function () {
+                    return view('admin.soal.print');
+                });
             }
         );
     }
