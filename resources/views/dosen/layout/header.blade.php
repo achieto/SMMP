@@ -13,7 +13,9 @@
     <link rel="stylesheet" href="{{ asset('/assets/template/vendors/typicons/typicons.css')}}">
     <link rel="stylesheet" href="{{ asset('/assets/template/vendors/simple-line-icons/css/simple-line-icons.css')}}">
     <link rel="stylesheet" href="{{ asset('/assets/template/vendors/css/vendor.bundle.base.css')}}">
-    
+    <link rel="stylesheet" href="{{ asset('/assets/template/vendors/select2/select2.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('/assets/template/vendors/select2-bootstrap-theme/select2-bootstrap.min.css')}}">
+
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <!-- endinject -->
     <!-- inject:css -->

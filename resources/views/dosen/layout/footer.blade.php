@@ -21,6 +21,7 @@
 <script src="{{ asset('/assets/template/vendors/chart.js/Chart.min.js')}}"></script>
 <script src="{{ asset('/assets/template/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js')}}"></script>
 <script src="{{ asset('/assets/template/vendors/progressbar.js/progressbar.min.js')}}"></script>
+
 <!-- End plugin js for this page -->
 <!-- inject:js -->
 <script src="{{ asset('/assets/template/js/off-canvas.js')}}"></script>
