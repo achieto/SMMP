@@ -1,6 +1,11 @@
 <head>
     <meta charset="UTF-8">
     <title>RPS Print</title>
+    <style type="text/css" media="print">
+        @page {
+            size: landscape;
+        }
+    </style>
     <style>
         @media print {
             .blue {
@@ -428,14 +433,14 @@
                 <td class="sub-contain" colspan="6" style="vertical-align:top"></td>
             </tr>
             <tr class="contain">
-                <td class="sub-contain" colspan="8"><?=$rps->pustaka_utama?></td>
+                <td class="sub-contain" colspan="8"><?= $rps->pustaka_utama ?></td>
             </tr>
             <tr class="contain">
                 <th class="sub-contain subtitle grey" colspan="2">Pendukung :</th>
                 <td class="sub-contain" colspan="6" style="vertical-align:top;"></td>
             </tr>
             <tr class="contain">
-                <td class="sub-contain" colspan="8"><?=$rps->pustaka_pendukung?></td>
+                <td class="sub-contain" colspan="8"><?= $rps->pustaka_pendukung ?></td>
             </tr>
             <tr class="contain">
                 <th class="sub-contain" colspan="2" style="vertical-align:top;">Dosen Pengampu</th>
