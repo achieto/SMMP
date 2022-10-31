@@ -20,11 +20,6 @@ class DosenController extends Controller
         $users = User::where('otoritas', 'Dosen')->get();
         return view('dosen.rps.add', compact('mks','users'));
     }
-    public function cplAdd(){
-        $mks = MK::all();
-        $cpls = CPL::all();
-        return view('dosen.cpl.add', compact('mks','cpls'));
-    }
     
     public function rpsList()
     {
@@ -32,12 +27,7 @@ class DosenController extends Controller
         $mks = MK::all();
         return view('dosen.rps.list', compact('rpss', 'mks'));
     }
-    public function cplList()
-    {
-        $cpls = CPL::all();
-        return view('dosen.cpl.list', compact('cpls'));
-    
-    }
+
     public function dashboard(){
         return view('dosen.dashboard');
     }
@@ -173,5 +163,57 @@ class DosenController extends Controller
     {
         RPS::where('id', $id)->delete();
         return redirect('/dosen/rps/list-rps')->with('success', 'RPS successfully deleted!');
+    }
+
+    //CPLMK
+    public function cplmkAdd()
+    {
+        $rpss = RPS::where('pengembang', auth()->user()->name)->get();
+        $mks = collect();
+        foreach ($rpss as $rps) {
+            $id_mk = $rps->id_mk;
+            $mk = MK::find($id_mk);
+            $mks->push($mk);
+        }
+        $cpls = CPL::orderBy('aspek', 'desc')->get();
+        return view('dosen.cplmk.add', compact('mks', 'cpls'));
+    }
+
+    public function cplmkList()
+    {
+        $rpss = RPS::where('pengembang', auth()->user()->name)->get();
+        $mks = collect();
+        foreach ($rpss as $rps) {
+            $id_mk = $rps->id_mk;
+            $mk = MK::find($id_mk);
+            $mks->push($mk);
+        }
+        $cplmks = collect();
+        foreach ($mks as $mk) {
+            $kode_mk = $mk->kode;
+            $temp = CPLMK::where('kode_mk',$kode_mk)->get();
+            foreach($temp as $cplmk){
+                $cplmks->push($cplmk);
+            }
+        }
+        $cpls = CPL::all();
+        return view('dosen.cplmk.list', compact('cplmks','mks','cpls'));
+    }
+
+    public function cplmkStore(Request $request){
+        // var_dump();exit();
+        for ($i = 0; $i < count($request->input('id_cpl')); $i++) {
+            CPLMK::create([
+                'kode_mk' => $request->kode_mk,
+                'id_cpl' => $request->input('id_cpl')[$i],
+            ]);
+        }
+        return redirect(route('cplmk-list'))->with('success', 'CPL successfully added!');
+    }
+
+    public function cplmkDelete($id)
+    {
+        CPLMK::where('id', $id)->delete();
+        return redirect(route('cplmk-list'))->with('success', 'Kode CPL successfully removed!');
     }
 }

@@ -22,13 +22,13 @@
         <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#cpl" aria-expanded="false" aria-controls="cpl">
                 <i class="menu-icon mdi mdi-card-text-outline"></i>
-                <span class="menu-title">CPL</span>
+                <span class="menu-title">CPLMK</span>
                 <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="cpl">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"><a class="nav-link" href="/dosen/cpl/add-cpl">Tambah CPL Baru</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/dosen/cpl/list-cpl">Lihat Daftar CPL</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('cplmk-add')}}">Tambah CPLMK Baru</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('cplmk-list')}}">Lihat Daftar CPLMK</a></li>
                 </ul>
             </div>
         </li>
