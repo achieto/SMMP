@@ -18,8 +18,11 @@ class Admin
     {
         if (auth()->user()->otoritas == 'Admin') {
             return $next($request);
+        } elseif (auth()->user()->otoritas == 'Dosen') {
+            return redirect('/dosen/dashboard');
+        } elseif (auth()->user()->otoritas == 'Penjamin Mutu') {
+            return redirect('/penjamin-mutu/dashboard');
         }
-
-        return redirect('/')->with('error', "You don't have otority access.");
+        return redirect('/');
     }
 }

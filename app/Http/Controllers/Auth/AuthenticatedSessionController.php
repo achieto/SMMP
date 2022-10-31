@@ -34,8 +34,10 @@ class AuthenticatedSessionController extends Controller
 
         if (auth()->user()->otoritas == 'Dosen') {
             return redirect()->route('dashboard');
-        } else {
+        } elseif (auth()->user()->otoritas == 'Admin') {
             return redirect()->route('admin');
+        } else {
+            return redirect()->route('home');
         }
     }
 
