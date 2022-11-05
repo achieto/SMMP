@@ -63,24 +63,6 @@
         <div class="col-lg-6 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">CPL Sikap</h4>
-                    <canvas id="barChartS"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">CPL Umum</h4>
-                    <canvas id="barChartU"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
                     <h4 class="card-title">CPL Pengetahuan</h4>
                     <canvas id="barChartP"></canvas>
                 </div>
