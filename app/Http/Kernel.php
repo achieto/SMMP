@@ -64,5 +64,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'dosen' => \App\Http\Middleware\Dosen::class,
         'admin' => \App\Http\Middleware\Admin::class,
+        'penjamin-mutu' => \App\Http\Middleware\PenjaminMutu::class,
+        'other' => \App\Http\Middleware\Other::class,
     ];
 }

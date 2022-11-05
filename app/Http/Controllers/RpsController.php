@@ -24,13 +24,25 @@ class RpsController extends Controller
         $rps = RPS::findOrFail($id);
         $mks = MK::all();
         $activities = Activity::all();
-        $cplmks = CPLMK::all();
+        $cplmks = collect();
+        $pengetahuans = collect();
+        $keterampilans = collect();
+        foreach ($mks as $mk) {
+            if ($rps->id_mk == $mk->id) {
+                $cplmkss = CPLMK::where('kode_mk', $mk->kode)->get();
+            }
+        }
+        foreach ($cplmkss as $c) $cplmks->push($c);
+        foreach ($cplmks as $cplmk) {
+            $pengetahuan = CPL::where('aspek', 'Pengetahuan')->where('id', $cplmk->id_cpl)->get();
+            $keterampilan = CPL::where('aspek', 'Keterampilan')->where('id', $cplmk->id_cpl)->get();
+            foreach ($keterampilan as $k) $keterampilans->push($k);
+            foreach ($pengetahuan as $p) $pengetahuans->push($p);
+        }
         $cpls = CPL::all();
         $cpmks = CPMK::all();
-        $sikaps = CPL::where('aspek', 'Sikap')->get();
-        $umums = CPL::where('aspek', 'Umum')->get();
-        $pengetahuans = CPL::where('aspek', 'Pengetahuan')->get();
-        $keterampilans = CPL::where('aspek', 'Keterampilan')->get();
+        $sikaps = CPL::where('aspek', 'Sikap')->where('kurikulum', $rps->kurikulum)->get();
+        $umums = CPL::where('aspek', 'Umum')->where('kurikulum', $rps->kurikulum)->get();
         return view('admin.rps.print', compact(
             'rps',
             'activities',

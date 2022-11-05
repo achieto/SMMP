@@ -17,8 +17,10 @@ class ProfileController extends Controller
         $profile = User::where('id', '=', Auth::user()->id)->first();
         if (auth()->user()->otoritas == 'Admin') {
             return view('admin.layout.profile', compact('profile'));
+        } elseif(auth()->user()->otoritas == 'Dosen') {
+            return view('dosen.layout.profile', compact('profile'));
         }
-        return view('dosen.layout.profile', compact('profile'));
+        return view('penjamin-mutu.layout.profile', compact('profile'));
     }
 
     public function password(Request $request, $id)

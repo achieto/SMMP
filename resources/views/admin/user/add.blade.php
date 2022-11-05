@@ -11,7 +11,7 @@
                     <button class="btn btn-primary text-white" onclick="document.getElementById('excel').click()">Import</i></button>
                     <form id="form-import" method="post" enctype="multipart/form-data" action="add-dosen-wfile">
                         @csrf
-                        <input accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"" style="display:none" type="file" name="excel" id="excel">
+                        <input accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"" style=" display:none" type="file" name="excel" id="excel">
                     </form>
                 </div>
             </div>
@@ -47,7 +47,19 @@
                     </div>
                     @enderror
                 </div>
-
+                <div class="form-group">
+                    <label>Otoritas <span class="text-danger">*</span></label>
+                    <select class="js-example-basic-single w-100" name="otoritas" id="otoritas">
+                        <option selected="true" value="" disabled selected>Select...</option>
+                        <option value="Dosen" {{ old('otoritas') == 'Dosen' ? 'selected' : '' }}>Dosen</option>
+                        <option value="Penjamin Mutu" {{ old('otoritas') == 'Penjamin Mutu' ? 'selected' : '' }}>Penjamin Mutu</option>
+                    </select>
+                    @error('otoritas')
+                    <div class="alert alert-danger">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
                 <div class="form-group">
                     <label>Profile Picture</label>
                     <input type="file" accept="image/png, image/jpeg" name="img" class="form-control" style="padding-bottom: +27px">
@@ -57,7 +69,6 @@
                     </div>
                     @enderror
                 </div>
-                <input type="text" hidden class="form-control" name="otoritas" value="Dosen">
                 <button class="btn btn-primary me-2">{{ __('Register') }}</button>
             </form>
         </div>
