@@ -24,9 +24,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @php
-                        foreach($cpls as $no=>$cpl):
-                        @endphp
+                        @foreach($cpls as $no=>$cpl)
+                        @if($cpl->aspek == "Pengetahuan" || $cpl->aspek == "Keterampilan")
                         <tr>
                             <td class="py-4">{{$no+1}}</td>
                             <td>{{$cpl->aspek}}</td>
@@ -35,6 +34,7 @@
                             <td>{{$cpl->kode}}</td>
                             <td>{{$cpl->judul}}</td>
                         </tr>
+                        @endif
                         @endforeach
                     </tbody>
                 </table>
@@ -52,18 +52,21 @@
         <div class="card-body">
             <form action="" method="post">
                 @csrf
+                <label for="mataKuliah"> Pilih Mata Kuliah <span class="text-danger"> *</span></label>
                 <select id="mataKuliah" name="kode_mk" class="form-select form-control-lg" aria-label="select Mata Kuliah" required>
-                    <option selected disabled>Pilih Mata Kuliah</option>
+                    <option selected disabled> - </option>
                     @foreach ($mks as $mk)
                     <option value="{{$mk->kode}}">{{$mk->nama}}</option>
                     @endforeach
                 </select>
                 <div id="MKHelp" class="form-text mb-3">Silahkan pilih mata kuliah RPS.</div>
                 <div class="form-group">
-                    <label for="id_cpl"> Pilih CPL Prodi</label>
+                    <label for="id_cpl"> Pilih CPL Prodi <span class="text-danger"> *</span></label>
                     <select name="id_cpl[]" class="js-example-basic-multiple form-select form-control-lg" multiple="multiple">
                         @foreach ($cpls as $cpl)
+                        @if($cpl->aspek == "Pengetahuan" || $cpl->aspek == "Keterampilan")
                         <option value="{{$cpl->id}}">{{$cpl->kurikulum}} - {{$cpl->kode}}</option>
+                        @endif
                         @endforeach
                     </select>
                 </div>
