@@ -29,9 +29,8 @@ Route::middleware(['auth'])->group(
         Route::put('/edit-pp/{id}', [ProfileController::class, 'pp']);
         Route::put('/edit-name/{id}', [ProfileController::class, 'name']);
         Route::get('/', function () {
-            return view('admin.dashboard');
-        })->name('admin')->middleware(['admin']);
-
+            return view('dashboard');
+        })->middleware(['other']);
         Route::middleware('dosen')->prefix('dosen')->group(
             function () {
                 Route::get('dashboard', function () {
@@ -86,6 +85,13 @@ Route::middleware(['auth'])->group(
                 Route::get('print-soal', function () {
                     return view('admin.soal.print');
                 });
+            }
+        );
+        Route::middleware('penjamin-mutu')->prefix('penjamin-mutu')->group(
+            function () {
+                Route::get('dashboard', function () {
+                    return view('penjamin-mutu.dashboard');
+                })->name('home');
             }
         );
     }

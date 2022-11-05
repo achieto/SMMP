@@ -10,6 +10,6 @@ class MK extends Model
     use HasFactory;
     protected $table = 'mks';
     protected $fillable = [
-        'kode', 'nama', 'rumpun', 'semester', 'prasyarat', 'kurikulum', 'bobot_teori', 'bobot_praktikum', 'dosen'
+        'kode', 'nama', 'rumpun', 'semester', 'prasyarat', 'kurikulum', 'deskripsi', 'bobot_teori', 'bobot_praktikum', 'dosen'
     ];
 }

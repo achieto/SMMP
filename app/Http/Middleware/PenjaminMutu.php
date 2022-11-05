@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class Dosen
+class PenjaminMutu
 {
     /**
      * Handle an incoming request.
@@ -16,12 +16,12 @@ class Dosen
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->otoritas == 'Dosen') {
+        if (auth()->user()->otoritas == 'Penjamin Mutu') {
             return $next($request);
         } elseif (auth()->user()->otoritas == 'Admin') {
             return redirect('/admin/dashboard');
-        } elseif(auth()->user()->otoritas == 'Penjamin Mutu') {
-            return redirect('/penjamin-mutu/dashboard');
+        } elseif (auth()->user()->otoritas == 'Dosen') {
+            return redirect('/dosen/dashboard');
         }
         return redirect('/');
     }
