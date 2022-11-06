@@ -53,7 +53,7 @@
             <form action="" method="post">
                 @csrf
                 <label for="mataKuliah"> Pilih Mata Kuliah <span class="text-danger"> *</span></label>
-                <select id="mataKuliah" name="kode_mk" class="form-select form-control-lg" aria-label="select Mata Kuliah" required>
+                <select id="mataKuliah" name="kode_mk"  class="form-select form-control-lg" aria-label="select Mata Kuliah" required>
                     <option selected disabled> - </option>
                     @foreach ($mks as $mk)
                     <option value="{{$mk->kode}}">{{$mk->nama}}</option>

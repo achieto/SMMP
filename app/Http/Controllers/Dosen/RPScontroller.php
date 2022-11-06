@@ -58,22 +58,17 @@ class RPScontroller extends Controller
     {
         $request->validate([
             'nomor' => ['required', 'unique:rpss', 'regex:/^[0-9\/]+$/'],
-            'prodi' => ['required', 'string', 'max:255'],
+            'prodi' => 'required',
             'mataKuliah' => 'required',
             'semester' => ['required', 'integer', 'digits:1'],
-            'dosen' =>
-            ['nullable', 'string', 'regex:/^[a-zA-Z., ]+$/', 'max:255'],
-            'kaprodi' =>
-            ['required', 'string', 'regex:/^[a-zA-Z., ]+$/', 'max:255'],
+            'dosen' => 'nullable',
+            'kaprodi' => ['required', 'string', 'regex:/^[a-zA-Z., ]+$/', 'max:255'],
             'kurikulum' => ['required', 'integer', 'digits:4'],
-            'pengembang' =>
-            ['required', 'string', 'regex:/^[a-zA-Z., ]+$/', 'max:255'],
-            'koordinator' =>
-            ['required', 'string', 'regex:/^[a-zA-Z ]+$/', 'max:255'],
+            'pengembang' => 'required',
+            'koordinator' => 'required',
             'pustaka_pendukung' => ['nullable', 'string', 'max:255'],
             'materi_mk' => ['required', 'string', 'max:255'],
-            'pustaka_utama' =>
-            ['required', 'string', 'regex:/^[a-zA-Z0-9., ()+]+$/', 'max:255'],
+            'pustaka_utama' => ['required', 'string', 'regex:/^[a-zA-Z0-9., ()+]+$/', 'max:255'],
         ]);
         if ($request->pustaka_pendukung == null) {
             $p = 'Tidak ada';
