@@ -27,8 +27,26 @@
                 </div>
                 <div class="form-group">
                     <label>MK prasyarat</label>
-                    <input type="text" class="form-control" name="prasyarat" placeholder="MK prasyarat" value="{{$mk->prasyarat}}" autocomplete="off">
-                    @error('prasyarat')
+                    <select class="js-example-basic-single w-100" name="prasyarat">
+                        <option selected="true" value="" disabled selected>Select...</option>
+                        @foreach($mks as $mat)
+                        <option value="{{$mat->nama}}" {{ $mk->prasyarat == $mat->nama ? 'selected' : '' }}>{{$mat->nama}}</option>
+                        @endforeach
+                    </select> @error('prasyarat')
+                    <div class="alert alert-danger">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label>Tahun kurikulum <span class="text-danger">*</span></label>
+                    <select class="js-example-basic-single w-100" name="kurikulum">
+                        <option selected="true" value="" disabled selected>Select...</option>
+                        @foreach($kurikulums as $kurikulum)
+                        <option value="{{$kurikulum->tahun}}" {{ $mk->kurikulum == $kurikulum->tahun ? 'selected' : '' }}>{{$kurikulum->tahun}}</option>
+                        @endforeach
+                    </select> 
+                    @error('kurikulum')
                     <div class="alert alert-danger">
                         {{ $message }}
                     </div>
@@ -55,9 +73,9 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label>Tahun kurikulum <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="kurikulum" placeholder="Kurikulum" value="{{$mk->kurikulum}}" autocomplete="off">
-                    @error('kurikulum')
+                    <label>Deskripsi <span class="text-danger">*</span></label>
+                    <textarea class="form-control" name="deskripsi" placeholder="Deskripsi" style="height: 100px" autocomplete="off">{{$mk->deskripsi}}</textarea>
+                    @error('deskripsi')
                     <div class="alert alert-danger">
                         {{ $message }}
                     </div>

@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CPL;
+use App\Models\Kurikulum;
 use \stdClass;
 
 class CplController extends Controller
@@ -14,7 +16,8 @@ class CplController extends Controller
         $umums = CPL::where('aspek', 'Umum')->get();
         $pengetahuans = CPL::where('aspek', 'Pengetahuan')->get();
         $keterampilans = CPL::where('aspek', 'Keterampilan')->orderBy('kurikulum', 'asc')->get();
-        return view('admin.cpl.add', compact('sikaps', 'umums', 'pengetahuans', 'keterampilans'));
+        $kurikulums = Kurikulum::all();
+        return view('admin.cpl.add', compact('sikaps', 'umums', 'pengetahuans', 'keterampilans', 'kurikulums'));
     }
 
     public function list()

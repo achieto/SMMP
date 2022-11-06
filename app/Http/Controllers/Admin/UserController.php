@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -70,13 +70,13 @@ class UserController extends Controller
 
         // Auth::login($user);
 
-        return redirect('/admin/list-dosen')->with('success', 'User successfully added!');
+        return redirect('/admin/list-user')->with('success', 'User successfully added!');
     }
 
     public function list()
     {
-        $dosens = User::where('otoritas', 'Dosen')->get();
-        return view('admin.user.list', compact('dosens'));
+        $users = User::where('otoritas', '!=', 'Admin')->get();
+        return view('admin.user.list', compact('users'));
     }
 
     public function reset($id)
@@ -84,19 +84,19 @@ class UserController extends Controller
         $reset = User::findorfail($id);
         $password = 'unilajaya';
         $reset->update(['password' => Hash::make($password)]);
-        return redirect('/admin/list-dosen')->with('success', 'Password successfully added!');    
+        return redirect('/admin/list-user')->with('success', 'Password successfully reset!');    
     }
 
     public function delete($id)
     {
         User::where('id', $id)->delete();
-        return redirect('/admin/list-dosen')->with('success', 'User successfully deleted!');    
+        return redirect('/admin/list-user')->with('success', 'User successfully deleted!');    
     }
 
     public function edit($id)
     {
-        $dosen = User::findorfail($id);
-        return view('admin.user.edit', compact('dosen'));
+        $user = User::findorfail($id);
+        return view('admin.user.edit', compact('user'));
     }
 
     public function update(Request $request, $id)
@@ -105,29 +105,33 @@ class UserController extends Controller
             'name' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z., ]+$/'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'img' => ['nullable'],
+            'otoritas' => ['required', 'string', 'max:255'],
         ]);
 
-        $dosen = User::findorfail($id);
+        $user = User::findorfail($id);
         $img = $request->file('img');
         if ($img != null) {
-            if ($dosen->img != 'User-Profile.png') {
-                File::delete(public_path('../public/assets/img/pp' . $dosen->img));
+            if ($user->img != 'User-Profile.png') {
+                File::delete(public_path('../public/assets/img/pp' . $user->img));
             }
             $imagePath = round(microtime(true) * 1000) . '-' . str_replace(' ', '-', $img->getClientOriginalName());
             $img->move(public_path('../public/assets/img/pp'), $imagePath);
-            $dosen->update([
+            $user->update([
                 'name' => $request->name,
                 'email' => $request->email,
-                'img' => $imagePath
+                'img' => $imagePath,
+                'otoritas' => $request->otoritas
+
             ]);
         } else {
-            $dosen->update([
+            $user->update([
                 'name' => $request->name,
                 'email' => $request->email,
+                'otoritas' => $request->otoritas
             ]);
         }
 
-        return redirect('/admin/list-dosen')->with('success', 'User successfully edited!');;
+        return redirect('/admin/list-user')->with('success', 'User successfully edited!');;
     }
 
     public function create_wfile(Request $request) {
@@ -135,6 +139,6 @@ class UserController extends Controller
         $excelPath = round(microtime(true) * 1000) . '-' . str_replace(' ', '-', $excel->getClientOriginalName());
         $excel->move(public_path('../public/assets/excel/'), $excelPath);
         Excel::import(new UsersImport, public_path('../public/assets/excel/'.$excelPath));
-        return redirect('/admin/list-dosen')->with('success', 'User successfully added!');    
+        return redirect('/admin/list-user')->with('success', 'User successfully added!');    
     }
 }
