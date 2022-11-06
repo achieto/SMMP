@@ -35,7 +35,7 @@
                 </div> -->
                 <div class="form-floating">
                     <select id="prodi" name="prodi" class="form-select form-control-lg" aria-label="select Prodi">
-                        <option selected disabled>Pilih Program Studi </option>
+                        <option selected disabled> </option>
                         <option value="S1 - Ilmu Komputer">S1 - Ilmu Komputer</option>
                         <option value="D3 - Manajemen Informatika">D3 - Manajemen Informatika</option>
                     </select>
@@ -72,7 +72,7 @@
 
                 <div class="form-floating">
                     <select id="mataKuliah" name="mataKuliah" class="form-select form-control-lg" aria-label="select Mata Kuliah">
-                        <option selected disabled>Pilih Mata Kuliah </option>
+                        <option selected disabled>  </option>
                         @foreach ($mks as $mk)
                         <option value="{{$mk->id}}">{{$mk->nama}}</option>
                         @endforeach
@@ -88,7 +88,7 @@
 
                 <div class="form-floating">
                     <select id="pengembang" name="pengembang" class="form-select form-control-lg" aria-label="select pengembang">
-                        <option selected disabled>Pilih Pengembang RPS </option>
+                        <option selected disabled>  </option>
                         @foreach ($users as $user)
                         <option value="{{$user->name}}">{{$user->name}}</option>
                         @endforeach
@@ -104,7 +104,7 @@
 
                 <div class="form-floating">
                     <select id="koordinator" name="koordinator" class="form-select form-control-lg" aria-label="select Koordinator">
-                        <option selected disabled>Pilih Koordinator Mata Kuliah </option>
+                        <option selected disabled>  </option>
                         @foreach ($users as $user)
                         <option value="{{$user->name}}">{{$user->name}}</option>
                         @endforeach
@@ -120,7 +120,7 @@
 
                 <div class="form-floating">
                     <select id="dosen" name="dosen" class="form-select form-control-lg" aria-label="select dosen">
-                        <option selected disabled>Pilih Dosen Pengampu 2 Mata Kuliah</option>
+                        <option value="null"> - </option>
                         @foreach ($users as $user)
                         <option value="{{$user->name}}">{{$user->name}}</option>
                         @endforeach
