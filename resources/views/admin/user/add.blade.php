@@ -9,16 +9,16 @@
                 <div class="btn-wrapper">
                     <a download class="btn btn-inverse-primary" href="{{asset('assets/excel/template.xlsx')}}">Template</a>
                     <button class="btn btn-primary text-white" onclick="document.getElementById('excel').click()">Import</i></button>
-                    <form id="form-import" method="post" enctype="multipart/form-data" action="add-dosen-wfile">
+                    <form id="form-import" method="post" enctype="multipart/form-data" action="add-user-wfile">
                         @csrf
                         <input accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"" style=" display:none" type="file" name="excel" id="excel">
                     </form>
                 </div>
             </div>
             <p class="card-description">
-                (Dosen)
+                (Dosen & Penjamin Mutu)
             </p>
-            <form method="POST" action="{{ route('add-dosen') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('add-user') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label>Name <span class="text-danger">*</span></label>

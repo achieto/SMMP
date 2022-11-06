@@ -26,7 +26,12 @@
                 </div>
                 <div class="form-group">
                     <label>MK prasyarat</label>
-                    <input type="text" class="form-control" name="prasyarat" placeholder="MK prasyarat" value="{{old('prasyarat')}}" autocomplete="off">
+                    <select class="js-example-basic-single w-100" name="prasyarat">
+                        <option selected="true" value="" disabled selected>Select...</option>
+                        @foreach($mks as $mk)
+                        <option value="{{$mk->nama}}" {{ old('prasyarat') == '$mk->nama' ? 'selected' : '' }}>{{$mk->nama}}</option>
+                        @endforeach
+                    </select>
                     @error('prasyarat')
                     <div class="alert alert-danger">
                         {{ $message }}
@@ -35,8 +40,12 @@
                 </div>
                 <div class="form-group">
                     <label>Tahun kurikulum <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="kurikulum" placeholder="Kurikulum" value="{{old('kurikulum')}}" autocomplete="off">
-                    @error('kurikulum')
+                    <select class="js-example-basic-single w-100" name="kurikulum">
+                        <option selected="true" value="" disabled selected>Select...</option>
+                        @foreach($kurikulums as $kurikulum)
+                        <option value="{{$kurikulum->tahun}}" {{ old('kurikulum') == $kurikulum->tahun ? 'selected' : '' }}>{{$kurikulum->tahun}}</option>
+                        @endforeach
+                    </select> @error('kurikulum')
                     <div class="alert alert-danger">
                         {{ $message }}
                     </div>
@@ -57,6 +66,15 @@
                         </label>
                     </div>
                     @error('rumpun')
+                    <div class="alert alert-danger">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label>Deskripsi <span class="text-danger">*</span></label>
+                    <textarea class="form-control" name="deskripsi" placeholder="Deskripsi" style="height: 100px" autocomplete="off">{{old('deskripsi')}}</textarea>
+                    @error('deskripsi')
                     <div class="alert alert-danger">
                         {{ $message }}
                     </div>

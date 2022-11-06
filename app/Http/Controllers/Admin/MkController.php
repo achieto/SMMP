@@ -1,17 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User;
 use App\Models\MK;
+use App\Models\Kurikulum;
 
 class MkController extends Controller
 {
     public function create()
     {
-        $users = User::where('otoritas', 'Dosen')->get();
-        return view('admin.mk.add', compact('users'));
+        $mks = MK::all();
+        $kurikulums = Kurikulum::all();
+        return view('admin.mk.add', compact('mks', 'kurikulums'));
     }
 
     public function list()
@@ -28,6 +30,7 @@ class MkController extends Controller
             'rumpun' => 'required',
             'prasyarat' => ['nullable', 'string','regex:/^[a-zA-Z ]+$/', 'max:255'],
             'kurikulum' => ['required', 'integer', 'digits:4'],
+            'deskripsi' => 'required',
             'bobot_teori' => ['required', 'integer', 'digits:1'],
             'bobot_praktikum' => ['nullable', 'integer', 'digits:1'],
         ]);
@@ -47,6 +50,7 @@ class MkController extends Controller
             'rumpun' => $request->rumpun,
             'prasyarat' => $p,
             'kurikulum' => $request->kurikulum,
+            'deskripsi' => $request->deskripsi,
             'bobot_teori' => $request->bobot_teori,
             'bobot_praktikum' => $bp,
         ]);
@@ -56,8 +60,9 @@ class MkController extends Controller
 
     public function edit($id) {
         $mk = MK::findOrFail($id);
-        $users = User::where('otoritas', 'Dosen')->get();
-        return view('admin.mk.edit', compact('mk', 'users'));
+        $mks = MK::all();
+        $kurikulums = Kurikulum::all();
+        return view('admin.mk.edit', compact('mk', 'mks', 'kurikulums'));
     }
 
     public function update(Request $request, $id) {
@@ -67,6 +72,7 @@ class MkController extends Controller
             'rumpun' => 'required',
             'prasyarat' => ['nullable', 'string','regex:/^[a-zA-Z ]+$/', 'max:255'],
             'kurikulum' => ['required', 'integer', 'digits:4'],
+            'deskripsi' => 'required',
             'bobot_teori' => ['required', 'integer', 'digits:1'],
             'bobot_praktikum' => ['nullable', 'integer', 'digits:1'],
         ]);
@@ -87,6 +93,7 @@ class MkController extends Controller
             'rumpun' => $request->rumpun,
             'prasyarat' => $p,
             'kurikulum' => $request->kurikulum,
+            'deskripsi' => $request->deskripsi,
             'bobot_teori' => $request->bobot_teori,
             'bobot_praktikum' => $bp
         ]);

@@ -12,7 +12,6 @@
                             <th>Kode MK</th>
                             <th>Nama MK</th>
                             <th>Rumpun</th>
-                            <th>MK prasyarat</th>
                             <th>Tahun kurikulum</th>
                             <th>Bobot</th>
                             <th>Action</th>
@@ -24,22 +23,21 @@
                             <td class="py-4">{{$no+1}}</td>
                             <td>{{$mk->kode}}</td>
                             <td>{{$mk->nama}}</td>
-                            <td>Mata Kuliah {{$mk->rumpun}}</td>
-                            <td>{{$mk->prasyarat}}</td>
+                            <td>MK {{$mk->rumpun}}</td>
                             <td>{{$mk->kurikulum}}</td>
                             <td><?= (int)$mk->bobot_teori + $mk->bobot_praktikum ?> SKS</td>
                             <td class="py-4">
                                 <div class="d-flex">
-                                    <a type="button" href="edit-mk/{{$mk->id}}" class="btn btn-inverse-dark btn-icon-text p-2" style="margin-right:7px">
+                                    <a type="button" href="edit-mk/{{$mk->id}}" class="btn btn-warning btn-icon-text p-2" style="margin-right:7px">
                                         Edit
-                                        <i class="ti-file btn-icon-append"></i>
+                                        <i class="ti-pencil btn-icon-append"></i>
                                     </a>
                                     <form action="delete-mk/{{$mk->id}}" method="post">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger btn-icon-text p-2" onclick="return confirm('Are you sure to delete {{$mk->nama}}?')">
-                                            <i class=" mdi mdi-delete btn-icon-prepend"></i>
                                             Delete
+                                            <i class="ti-trash btn-icon-append"></i>
                                         </button>
                                     </form>
                                 </div>
