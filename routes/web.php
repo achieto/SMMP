@@ -6,7 +6,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RpsController;
 use App\Http\Controllers\MkController;
 use App\Http\Controllers\CplController;
-use App\Http\Controllers\DosenController;
+use App\Http\Controllers\Dosen\RPScontroller as RPSdosen;
+use App\Http\Controllers\Dosen\CPMKcontroller as CPMKdosen;
+use App\Http\Controllers\Dosen\CPLMKcontroller as CPLMKdosen;
 use App\Http\Controllers\DashboardController;
 
 /*
@@ -34,23 +36,23 @@ Route::middleware(['auth'])->group(
                 Route::get('dashboard', function () {
                     return view('dosen.dashboard');
                 })->name('dashboard');
-                Route::get('cplmk/add-cplmk', [DosenController::class, 'cplmkAdd'])->name('cplmk-add');
-                Route::post('cplmk/add-cplmk', [DosenController::class, 'cplmkStore'])->name('cplmk-store');
-                Route::get('cplmk/list-cplmk', [DosenController::class, 'cplmkList'])->name('cplmk-list');
-                Route::delete('cplmk/delete-cplmk/{id}', [DosenController::class, 'cplmkDelete'])->name('cplmk-delete');;
-                Route::get('rps/add-rps', [DosenController::class, 'rpsAdd'])->name('rps-add');
-                Route::post('rps/add-rps', [DosenController::class, 'rpsStore']);
-                Route::get('rps/list-rps', [DosenController::class, 'rpsList'])->name('rps-list');
-                Route::get('rps/print-rps/{id}', [DosenController::class, 'printRPS']);
-                Route::get('rps/edit-rps/{id}', [DosenController::class, 'rpsEdit']);
-                Route::put('rps/edit-rps/{id}', [DosenController::class, 'rpsUpdate']);
-                Route::delete('rps/delete-rps/{id}', [DosenController::class, 'rpsDelete']);
-                Route::get('cpmk/add-cpmk', function () {
-                    return view('dosen.cpmk.add');
-                })->name('cpmk-add');
-                Route::get('cpmk/list-cpmk', function () {
-                    return view('dosen.cpmk.list');
-                })->name('cpmk-list');
+                Route::get('cplmk/add-cplmk', [CPLMKdosen::class, 'Add'])->name('cplmk-add');
+                Route::post('cplmk/add-cplmk', [CPLMKdosen::class, 'Store'])->name('cplmk-store');
+                Route::get('cplmk/list-cplmk', [CPLMKdosen::class, 'List'])->name('cplmk-list');
+                Route::delete('cplmk/delete-cplmk/{id}', [CPLMKdosen::class, 'Delete'])->name('cplmk-delete');
+                Route::get('rps/add-rps', [RPSdosen::class, 'Add'])->name('rps-add');
+                Route::post('rps/add-rps', [RPSdosen::class, 'Store']);
+                Route::get('rps/list-rps', [RPSdosen::class, 'List'])->name('rps-list');
+                Route::get('rps/print-rps/{id}', [RPSdosen::class, 'Print']);
+                Route::get('rps/edit-rps/{id}', [RPSdosen::class, 'Edit']);
+                Route::put('rps/edit-rps/{id}', [RPSdosen::class, 'Update']);
+                Route::delete('rps/delete-rps/{id}', [RPSdosen::class, 'Delete']);
+                Route::get('cpmk/add-cpmk', [CPMKdosen::class, 'Add'])->name('cpmk-add');
+                Route::post('cpmk/add-cpmk', [CPMKdosen::class, 'Store'])->name('cpmk-store');
+                Route::get('cpmk/edit-cpmk/{id}', [CPMKdosen::class, 'Edit'])->name('cpmk-edit');
+                Route::put('cpmk/edit-cpmk/{id}', [CPMKdosen::class, 'Update']);
+                Route::get('cpmk/list-cpmk', [CPMKdosen::class, 'List'])->name('cpmk-list');
+                Route::delete('cpmk/delete-cpmk/{id}', [CPMKdosen::class, 'Delete'])->name('cpmk-delete');
             }
         );
         Route::middleware('admin')->prefix('admin')->group(

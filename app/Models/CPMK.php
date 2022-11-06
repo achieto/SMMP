@@ -9,7 +9,8 @@ class CPMK extends Model
 {
     use HasFactory;
     protected $table = 'cpmks';
-
+    public $timestamps = false;
+    
     protected $fillable = [
         'id_mk', 'judul'
     ];

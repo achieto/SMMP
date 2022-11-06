@@ -40,7 +40,7 @@
             </a>
             <div class="collapse" id="cpmk">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"><a class="nav-link" href="/dosen/cpmk/add-cpmk">Tambah CPMK Baru</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('cpmk-add')}}">Tambah CPMK Baru</a></li>
                     <li class="nav-item"><a class="nav-link" href="/dosen/cpmk/list-cpmk">Lihat Daftar CPMK</a></li>
                 </ul>
             </div>

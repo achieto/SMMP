@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-header">
             <div class="fw-bold">
-                <h3>Tambah RPS Baru</h3>
+                <h3>Edit RPS</h3>
             </div>
         </div>
         <div class="card-body">
