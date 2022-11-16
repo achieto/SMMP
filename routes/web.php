@@ -9,7 +9,9 @@ use App\Http\Controllers\CplController;
 use App\Http\Controllers\Dosen\RPScontroller as RPSdosen;
 use App\Http\Controllers\Dosen\CPMKcontroller as CPMKdosen;
 use App\Http\Controllers\Dosen\CPLMKcontroller as CPLMKdosen;
+use App\Http\Controllers\Dosen\DashboardController as DashboardDosen;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Dosen\ActivitiesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,9 +35,9 @@ Route::middleware(['auth'])->group(
         })->middleware(['other']);
         Route::middleware('dosen')->prefix('dosen')->group(
             function () {
-                Route::get('dashboard', function () {
-                    return view('dosen.dashboard');
-                })->name('dashboard');
+                Route::get('dashboard', [DashboardDosen::class, 'list'] )->name('dashboard');
+                Route::get('dashboard-chart', [DashboardDosen::class, 'chart'])->name('dosen-chart');
+                Route::get('activities/add-activity', [ActivitiesController::class, 'Add'])->name('activities-add');
                 Route::get('cplmk/add-cplmk', [CPLMKdosen::class, 'Add'])->name('cplmk-add');
                 Route::post('cplmk/add-cplmk', [CPLMKdosen::class, 'Store'])->name('cplmk-store');
                 Route::get('cplmk/list-cplmk', [CPLMKdosen::class, 'List'])->name('cplmk-list');

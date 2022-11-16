@@ -19,7 +19,7 @@
                         @endforeach
                     </select>
                     <label for="mataKuliah">Mata Kuliah <span style="color:red">*</span></label>
-                    @error('mataKuliah')
+                    @error('id_mk')
                     <div class="alert alert-danger">
                         {{ $message }}
                     </div>
@@ -28,7 +28,7 @@
                 </div>
                 <div class="form-floating mb-3">
                     <input type="text" name="judul" class="form-control" id="judul" placeholder="judul" aria-describedby="judulHelp">
-                    <label for="judul" class="form-label">Rincian CPMK <span style="color:red">*</span></label>
+                    <label for="judul" class="form-label">Judul Rincian CPMK <span style="color:red">*</span></label>
                     @error('judul')
                     <div class="alert alert-danger">
                         {{ $message }}
