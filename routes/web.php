@@ -1,18 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RpsController;
-use App\Http\Controllers\MkController;
-use App\Http\Controllers\CplController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\RpsController;
+use App\Http\Controllers\Admin\MkController;
+use App\Http\Controllers\Admin\CplController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Dosen\RPScontroller as RPSdosen;
 use App\Http\Controllers\Dosen\CPMKcontroller as CPMKdosen;
 use App\Http\Controllers\Dosen\CPLMKcontroller as CPLMKdosen;
 use App\Http\Controllers\Dosen\DashboardController as DashboardDosen;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Dosen\ActivitiesController;
-
+use App\Http\Controllers\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -61,16 +60,16 @@ Route::middleware(['auth'])->group(
             function () {
                 Route::get('dashboard', [DashboardController::class, 'index'])->name('admin');
                 Route::get('dashboard-chart', [DashboardController::class, 'chart'])->name('chart');
-                Route::get('add-dosen', [UserController::class, 'create'])
-                    ->name('add-dosen');
-                Route::post('add-dosen', [UserController::class, 'store']);
-                Route::get('list-dosen', [UserController::class, 'list']);
-                Route::put('reset-dosen/{id}', [UserController::class, 'reset']);
-                Route::delete('delete-dosen/{id}', [UserController::class, 'delete']);
-                Route::get('edit-dosen/{id}', [UserController::class, 'edit']);
-                Route::put('edit-dosen/{id}', [UserController::class, 'update']);
+                Route::get('add-user', [UserController::class, 'create'])
+                    ->name('add-user');
+                Route::post('add-user', [UserController::class, 'store']);
+                Route::get('list-user', [UserController::class, 'list']);
+                Route::put('reset-user/{id}', [UserController::class, 'reset']);
+                Route::delete('delete-user/{id}', [UserController::class, 'delete']);
+                Route::get('edit-user/{id}', [UserController::class, 'edit']);
+                Route::put('edit-user/{id}', [UserController::class, 'update']);
+                Route::post('add-user-wfile', [UserController::class, 'create_wfile']);
                 Route::get('list-rps', [RpsController::class, 'list']);
-                Route::post('add-dosen-wfile', [UserController::class, 'create_wfile']);
                 Route::get('print-rps/{id}', [RpsController::class, 'print']);
                 Route::get('add-mk', [MkController::class, 'create']);
                 Route::post('add-mk', [MkController::class, 'store']);

@@ -251,7 +251,7 @@
     <table style="border:none; width:100%">
         @foreach($umums as $umum)
         <tr style="border: none;">
-            <td class="cpl-contain" style="padding: 0; border-left:none">
+            <td class="cpl-contain" style="padding: 0; border-right:none;border-left:none">
                 <div class="d-flex"">
                             <div style=" width:10%; height:50px;border-right:1px black solid">
                     <div class="sub-contain" style="padding-right:8px;">{{$umum->kode}}</div>
@@ -263,7 +263,7 @@
         </tr>
         @endforeach
         @if($noU < $noS) <?php for ($i = 0; $i < $noS - $noU; $i++) { ?> <tr style="border: none;">
-            <td class="cpl-contain" style="padding: 0; border-left:none">
+            <td class="cpl-contain" style="padding: 0; border-right:none; border-left:none">
                 <div class="d-flex"">
                             <div style=" width:10%; height:50px;border-right:1px black solid">
                     <div class="sub-contain" style="padding-right:8px;"></div>
@@ -308,9 +308,9 @@
                 <td class="cpl-contain" style="padding: 0; border-right:none;border-left:none;">
                     <div class="d-flex"">
                             <div style=" width:10%; height:50px;border-right:1px black solid">
-                        <div class="sub-contain dummy" style="padding-right:8px;"></div>
+                        <div class="sub-contain " style="padding-right:8px;"></div>
                     </div>
-                    <div class="sub-contain dummy" style="width:90%;height:50px;">
+                    <div class="sub-contain " style="width:90%;height:50px;">
                 </td>
 </tr>
 <?php } ?>
@@ -321,7 +321,7 @@
     <table style="border:none; width:100%">
         @foreach($keterampilans as $keterampilan)
         <tr style="border: none;">
-            <td class="cpl-contain" style="padding: 0; border-left:none">
+            <td class="cpl-contain" style="padding: 0; border-right: none;border-left:none">
                 <div class="d-flex"">
                             <div style=" width:10%; height:50px;border-right:1px black solid">
                     <div class="sub-contain" style="padding-right:8px;">{{$keterampilan->kode}}</div>
@@ -333,12 +333,12 @@
         </tr>
         @endforeach
         @if($noK < $noP) <?php for ($i = 0; $i < $noP - $noK; $i++) { ?> <tr style="border: none;">
-            <td class="cpl-contain" style="padding: 0; border-left:none">
+            <td class="cpl-contain" style="padding: 0; border-right:none;border-left:none">
                 <div class="d-flex"">
                             <div style=" width:10%; height:50px;border-right:1px black solid">
-                    <div class="sub-contain dummy" style="padding-right:8px;"></div>
+                    <div class="sub-contain " style="padding-right:8px;"></div>
                 </div>
-                <div class="sub-contain dummy" style="width:90%;height:50px;">
+                <div class="sub-contain " style="width:90%;height:50px;">
             </td>
             </tr>
         <?php } ?>

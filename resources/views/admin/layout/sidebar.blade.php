@@ -15,10 +15,10 @@
             </a>
             <div class="collapse" id="user">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="/admin/add-dosen"> Add Dosen </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/admin/add-user"> Add User </a></li>
                 </ul>
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="/admin/list-dosen"> List Dosen </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/admin/list-user"> List User </a></li>
                 </ul>
             </div>
         </li>
