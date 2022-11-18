@@ -1,8 +1,5 @@
 @extends('admin.template')
 @section('content')
-<?php
-error_reporting(0);
-?>
 <h3 class="px-4 pb-4 fw-bold text-center">Add CPL Prodi</h3>
 <div class="form-group stretch-card">
     <div class="card">
@@ -251,11 +248,10 @@ error_reporting(0);
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
     var i = 0;
-
     $("#dynamic-ar-sik").click(function() {
         ++i;
         $("#dynamicAddRemoveSik").append('<div class="form-group row clone"><div class="col-2"><div class="form-group"><label>Kurikulum <span class="text-danger">*</span></label><select class="form-control" name="kurikulum[' + i +
-            ']"><option selected = "true" value = "" disabled selected> Select... </option> @foreach($kurikulums as $kurikulum) <option value="{{$kurikulum->tahun}}" {{ old("kurikulum." + i) == $kurikulum->tahun ? "selected " : "" }}>{{$kurikulum->tahun}}</option>@endforeach</select></div></div><div class="col-3"><div class="form-group"><label>Kode <span class="text-danger">*</span></label><div class="input-group mb-2"><div class="input-group-prepend"><span class="input-group-text">S</span></div><input type="text" class="form-control" name="kode[' + i +
+            ']"><option selected = "true" value = "" disabled selected> Select... </option> @foreach($kurikulums as $kurikulum) <option value="{{$kurikulum->tahun}}">{{$kurikulum->tahun}}</option>@endforeach</select></div></div><div class="col-3"><div class="form-group"><label>Kode <span class="text-danger">*</span></label><div class="input-group mb-2"><div class="input-group-prepend"><span class="input-group-text">S</span></div><input type="text" class="form-control" name="kode[' + i +
             ']" placeholder="Nomor" autocomplete="off"></div></div></div><div class="col-5"><div class="form-group"><label>Judul <span class="text-danger">*</span></label><input type="text" class="form-control"name="judul[' + i +
             ']" placeholder="Judul" autocomplete="off"></div></div><input hidden type="text" name="aspek" value="Sikap">'
         );

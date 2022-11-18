@@ -1,75 +1,10 @@
-$(function (url) {
+$(function () {
   /* ChartJS
    * -------
    * Data and config for chartjs
    */
   'use strict';
-  $.ajax({
-    url: `/admin/dashboard-chart/${url}`,
-    type: "GET",
-    dataType: "json",
-    success: function (dt) {
-      var dataP = {  
-        labels: dt.pengetahuan,
-        datasets: [{
-          label: 'Jumlah MK',
-          data: dt.jumlahp,
-          backgroundColor: dt.warnap,
-          borderColor: dt.borderp,
-          borderWidth: 1,
-          fill: false
-        }]
-      };
-      var dataK = {  
-        labels: dt.keterampilan,
-        datasets: [{
-          label: 'Jumlah MK',
-          data: dt.jumlahk,
-          backgroundColor: dt.warnak,
-          borderColor: dt.borderk,
-          borderWidth: 1,
-          fill: false
-        }]
-      };
-      var options = {
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        },
-        legend: {
-          display: false
-        },
-        elements: {
-          point: {
-            radius: 0
-          }
-        }
-
-      };
-      if ($("#barChartP").length) {
-        var barChartCanvas = $("#barChartP").get(0).getContext("2d");
-        // This will get the first returned node in the jQuery collection.
-        var barChart = new Chart(barChartCanvas, {
-          type: 'bar',
-          data: dataP,
-          options: options
-        });
-      }
-      if ($("#barChartK").length) {
-        var barChartCanvas = $("#barChartK").get(0).getContext("2d");
-        // This will get the first returned node in the jQuery collection.
-        var barChart = new Chart(barChartCanvas, {
-          type: 'bar',
-          data: dataK,
-          options: options
-        });
-      }
-    }
-  });
-
+  
   var multiLineData = {
     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
     datasets: [{
