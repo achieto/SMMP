@@ -7,36 +7,64 @@ use Illuminate\Http\Request;
 use App\Models\CPLMK;
 use App\Models\CPL;
 use App\Models\Kurikulum;
+use App\Models\MK;
 
 class DashboardController extends Controller
 {
     public function index()
     {
         $kurikulums = Kurikulum::all();
-        return view('admin.dashboard',compact('kurikulums'));
+        return view('admin.dashboard', compact('kurikulums'));
+    }
+
+    public function card($filter)
+    {
+        if ($filter === 'all') {
+            $cpls = CPL::all();
+            $mks = MK::all();
+        } else {
+            $cpls = CPL::where('kurikulum', $filter)->get();
+            $mks = MK::where('kurikulum', $filter)->get();
+        }
+
+        $sum_mk = 0;
+        $sum_cpl = 0;
+        foreach ($mks as $mk) {
+            ++$sum_mk;
+        }
+        foreach ($cpls as $cpl) {
+            ++$sum_cpl;
+        }
+
+        $data = ([
+            'sum_mk' => $sum_mk,
+            'sum_cpl' => $sum_cpl
+        ]);
+
+        return response()->json($data);
     }
 
     public function chart($filter)
     {
         $cplmks = CPLMK::all();
 
-        if($filter === 'all'){
+        if ($filter === 'all') {
             $cpls = CPL::all();
-        }else{
+        } else {
             $cpls = CPL::where('kurikulum', $filter)->get();
         }
 
         $i = -1;
         foreach ($cpls as $cpl) {
             if ($cpl->aspek == 'Pengetahuan') {
-                $kode = $cpl->kurikulum . " - " . $cpl->kode;
+                $kode = $cpl->kode;
                 $pengetahuan[++$i] = $kode;
             }
         }
         $i = -1;
         foreach ($cpls as $cpl) {
             if ($cpl->aspek == 'Keterampilan') {
-                $kode = $cpl->kurikulum . " - " . $cpl->kode;
+                $kode = $cpl->kode;
                 $keterampilan[++$i] = $kode;
             }
         }
@@ -52,14 +80,14 @@ class DashboardController extends Controller
                 $cpl_keterampilan[++$i] = $cpl->id;
             }
         }
-        
+
         $sump = 0;
-        foreach ($cpl_pengetahuan as $no=>$cpls) {
+        foreach ($cpl_pengetahuan as $no => $cpls) {
             $cpp[$no] = 0;
             $sump += 1;
         }
         $sumk = 0;
-        foreach ($cpl_keterampilan as $no=>$cpls) {
+        foreach ($cpl_keterampilan as $no => $cpls) {
             $cpk[$no] = 0;
             $sumk += 1;
         }
@@ -86,7 +114,7 @@ class DashboardController extends Controller
             'rgba(153, 102, 255, 0.2)',
             'rgba(255, 159, 64, 0.2)',
         ];
-        
+
         $tmp = -1;
         for ($i = 0; $i < $sump; $i++) {
             $warnap[$i] = $list_warna[++$tmp];
@@ -109,7 +137,7 @@ class DashboardController extends Controller
             'rgba(153, 102, 255, 1)',
             'rgba(255, 159, 64, 1)',
         ];
-        
+
         $tmp = -1;
         for ($i = 0; $i < $sump; $i++) {
             $borderp[$i] = $list_border[++$tmp];

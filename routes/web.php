@@ -61,6 +61,7 @@ Route::middleware(['auth'])->group(
             function () {
                 Route::get('dashboard', [DashboardController::class, 'index'])->name('admin');
                 Route::get('dashboard-chart/{id}', [DashboardController::class, 'chart'])->name('chart');
+                Route::get('dashboard-card/{id}', [DashboardController::class, 'card'])->name('card');
                 Route::get('add-user', [UserController::class, 'create'])
                     ->name('add-user');
                 Route::post('add-user', [UserController::class, 'store']);

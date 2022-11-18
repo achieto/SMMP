@@ -7,68 +7,70 @@
         transform: scale(.95);
     }
 </style>
-<div class="form-group">
-    <div class="d-flex justify-content-between w-100">
-        <a class="card card-sum mx-1 w-100 bg-primary text-white text-decoration-none" href="/admin/list-user">
-            <div class="card-title m-0">
-                <p class="p-4 pb-1 h3 m-0 text-white">JUMLAH USER</p>
-            </div>
-            <div class="card-body w-100">
-                @php
-                $users = DB::table('users')
-                ->where('otoritas', '!=', 'Admin')
-                ->get();
-                $sum = 0;
-                foreach($users as $user) :
-                $sum+=1;
-                endforeach
-                @endphp
-                <p class="h1 text-end pe-3 jumlah">{{$sum}}</p>
-            </div>
-        </a>
-        <a class="card card-sum mx-1 w-100 bg-primary text-white text-decoration-none" href="/admin/list-mk">
-            <div class=" card-title m-0">
-                <p class="p-4 pb-1 h3 m-0 text-white">JUMLAH MATA KULIAH</p>
-            </div>
-            <div class="card-body w-100">
-                @php
-                $mks = DB::table('mks')->get();
-                $sum = 0;
-                foreach($mks as $mk) :
-                $sum+=1;
-                endforeach
-                @endphp
-                <p class="h1 text-end pe-3 jumlah">{{$sum}}</p>
-            </div>
-        </a>
-        <a class="card card-sum mx-1 w-100 bg-primary text-white text-decoration-none" href="/admin/list-cpl">
-            <div class="card-title m-0">
-                <p class="p-4 pb-1 h3 m-0 text-white">JUMLAH CPL PRODI</p>
-            </div>
-            <div class="card-body w-100">
-                @php
-                $cpls = DB::table('cpls')->get();
-                $sum = 0;
-                foreach($cpls as $cpl) :
-                $sum+=1;
-                endforeach
-                @endphp
-                <p class="h1 text-end pe-3 jumlah">{{$sum}}</p>
-            </div>
-        </a>
-    </div>
-</div>
 <div class="container-fluid">
-    <div class="row justify-content-end">
+    <div class="row justify-content-start">
         <div class="form-group col-3">
             <label for="filter" class="form-label">FILTER KURIKULUM</label>
             <select name="kurikulum" id="filter" class="form-select text-center">
-                <option value="all"> - </option>
+                <option value="all"> All </option>
                 @foreach($kurikulums as $kur)
                 <option value="{{$kur->tahun}}">{{$kur->tahun}}</option>
                 @endforeach
             </select>
         </div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="d-flex justify-content-between w-100">
+        <a class="card card-sum mx-1 w-100 bg-primary text-white text-decoration-none" href="/admin/list-user">
+            <div class="card-body pb-0">
+                <h4 class="card-title card-title-dash text-white mb-4">Jumlah User</h4>
+                <div class="row">
+                    <div class="col">
+                        <p class="status-summary-ight-white mb-1">Dosen, Penjamin Mutu</p>
+                        @php
+                        $users = DB::table('users')->get();
+                        $sum = 0;
+                        foreach($users as $user) :
+                        $sum+=1;
+                        endforeach
+                        @endphp
+                        <h2 class="text-info">{{$sum}}</h2>
+                    </div>
+                    <div class="col text-end p-4">
+                        <i class="h1 mdi mdi-account-multiple"></i>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a class="card card-sum mx-1 w-100 bg-primary text-white text-decoration-none" href="/admin/list-mk">
+            <div class="card-body pb-0">
+                <h4 class="card-title card-title-dash text-white mb-4">Jumlah Mata Kuliah</h4>
+                <div class="row">
+                    <div class="col">
+                        <p id="kur-mk" class="status-summary-ight-white mb-1">All Kurikulum</p>
+                        <h2 class="text-info" id="jumlah-mk"></h2>
+                    </div>
+                    <div class="col text-end p-4">
+                        <i class="h1 mdi mdi-book-open"></i>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a class="card card-sum mx-1 w-100 bg-primary text-white text-decoration-none" href="/admin/list-cpl">
+            <div class="card-body pb-0">
+                <h4 class="card-title card-title-dash text-white mb-4">Jumlah CPL</h4>
+                <div class="row">
+                    <div class="col">
+                        <p id="kur-cpl" class="status-summary-ight-white mb-1">All Kurikulum</p>
+                        <h2 class="text-info" id="jumlah-cpl"></h2>
+                    </div>
+                    <div class="col text-end p-4">
+                        <i class="h1 mdi mdi-view-list"></i>
+                    </div>
+                </div>
+            </div>
+        </a>
     </div>
 </div>
 <div class="form-group">
@@ -97,10 +99,37 @@
         showChart('all')
     })
 
+    $(document).ready(function() {
+        showCard('all')
+    })
+
     $('#filter').change(function() {
         // console.log($('#filter option:selected').val())
-        showChart($('#filter option:selected').val())
+        if ($('#filter option:selected').val() != 'all') {
+            document.getElementById('kur-mk').innerText = 'Kurikulum ' + $('#filter option:selected').val();
+            document.getElementById('kur-cpl').innerText = 'Kurikulum ' + $('#filter option:selected').val();
+        } else {
+            document.getElementById('kur-mk').innerText = 'All Kurikulum';
+            document.getElementById('kur-cpl').innerText = 'All Kurikulum';
+        }
+
+        showChart($('#filter option:selected').val());
+        showCard($('#filter option:selected').val());
     })
+
+    function showCard(url) {
+        $.ajax({
+            url: `/admin/dashboard-card/${url}`,
+            type: "GET",
+            dataType: "json",
+            success: function(data) {
+                $("#jumlah-mk").empty();
+                $("#jumlah-mk").append(data.sum_mk);
+                $("#jumlah-cpl").empty();
+                $("#jumlah-cpl").append(data.sum_cpl);
+            }
+        });
+    }
 
     function showChart(url) {
         $.ajax({
@@ -111,7 +140,6 @@
                 var dataP = {
                     labels: dt.pengetahuan,
                     datasets: [{
-                        label: 'Jumlah MK',
                         data: dt.jumlahp,
                         backgroundColor: dt.warnap,
                         borderColor: dt.borderp,
@@ -122,7 +150,6 @@
                 var dataK = {
                     labels: dt.keterampilan,
                     datasets: [{
-                        label: 'Jumlah MK',
                         data: dt.jumlahk,
                         backgroundColor: dt.warnak,
                         borderColor: dt.borderk,
@@ -145,8 +172,8 @@
                         point: {
                             radius: 0
                         }
-                    }
-
+                    },
+                    events: []
                 };
                 if ($("#barChartP").length) {
                     var barChartCanvas = $("#barChartP").get(0).getContext("2d");
@@ -168,7 +195,6 @@
                 }
             }
         });
-
     }
 </script>
 @endsection
