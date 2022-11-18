@@ -45,22 +45,28 @@ class CplController extends Controller
                 $data[$key] = 'KK' . $value;
             }
         }
-        for ($i = 0; $i < count($request->input('kurikulum')); $i++) {
-            CPL::create([
-                'aspek' => $request->aspek,
-                'kurikulum' => $request->input('kurikulum')[$i],
-                'kode' => $data[$i],
-                'nomor' => $request->input('kode')[$i],
-                'judul' => $request->input('judul')[$i]
-            ]);
+
+        try {
+            for ($i = 0; $i < count($request->input('kurikulum')); $i++) {
+                CPL::create([
+                    'aspek' => $request->aspek,
+                    'kurikulum' => $request->input('kurikulum')[$i],
+                    'kode' => $data[$i],
+                    'nomor' => $request->input('kode')[$i],
+                    'judul' => $request->input('judul')[$i]
+                ]);
+            }
+            return redirect('/admin/list-cpl')->with('success', 'CPL successfully added!');
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput($request->all)->with('error', "Terjadi kesalahan, silahkan periksa kembali data yang diinputkan!");
         }
-        return redirect('/admin/list-cpl')->with('success', 'CPL successfully added!');
     }
 
     public function edit($id)
     {
         $cpl = CPL::findOrFail($id);
-        return view('admin.cpl.edit', compact('cpl'));
+        $kurikulums = Kurikulum::all();
+        return view('admin.cpl.edit', compact('cpl', 'kurikulums'));
     }
 
     public function update(Request $request, $id)
@@ -68,7 +74,7 @@ class CplController extends Controller
         $request->validate([
             'aspek' => 'required',
             'kurikulum' => ['required', 'integer', 'digits:4'],
-            'kode' => ['required', 'integer'],
+            'kode' => ['required'],
             'judul' => 'required',
         ]);
 

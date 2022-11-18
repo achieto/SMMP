@@ -1,37 +1,14 @@
-$(function () {
+$(function (url) {
   /* ChartJS
    * -------
    * Data and config for chartjs
    */
   'use strict';
   $.ajax({
-    url: '/admin/dashboard-chart',
+    url: `/admin/dashboard-chart/${url}`,
     type: "GET",
     dataType: "json",
     success: function (dt) {
-      console.log(dt.jumlahs);
-      var dataS = {  
-        labels: dt.sikap,
-        datasets: [{
-          label: 'Jumlah MK',
-          data: dt.jumlahs,
-          backgroundColor: dt.warnas,
-          borderColor: dt.borders,
-          borderWidth: 1,
-          fill: false
-        }]
-      };
-      var dataU = {  
-        labels: dt.umum,
-        datasets: [{
-          label: 'Jumlah MK',
-          data: dt.jumlahu,
-          backgroundColor: dt.warnau,
-          borderColor: dt.borderu,
-          borderWidth: 1,
-          fill: false
-        }]
-      };
       var dataP = {  
         labels: dt.pengetahuan,
         datasets: [{
@@ -72,24 +49,6 @@ $(function () {
         }
 
       };
-      if ($("#barChartS").length) {
-        var barChartCanvas = $("#barChartS").get(0).getContext("2d");
-        // This will get the first returned node in the jQuery collection.
-        var barChart = new Chart(barChartCanvas, {
-          type: 'bar',
-          data: dataS,
-          options: options
-        });
-      }
-      if ($("#barChartU").length) {
-        var barChartCanvas = $("#barChartU").get(0).getContext("2d");
-        // This will get the first returned node in the jQuery collection.
-        var barChart = new Chart(barChartCanvas, {
-          type: 'bar',
-          data: dataU,
-          options: options
-        });
-      }
       if ($("#barChartP").length) {
         var barChartCanvas = $("#barChartP").get(0).getContext("2d");
         // This will get the first returned node in the jQuery collection.

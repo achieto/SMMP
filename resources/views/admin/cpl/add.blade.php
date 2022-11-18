@@ -1,5 +1,8 @@
 @extends('admin.template')
 @section('content')
+<?php
+error_reporting(0);
+?>
 <h3 class="px-4 pb-4 fw-bold text-center">Add CPL Prodi</h3>
 <div class="form-group stretch-card">
     <div class="card">
@@ -12,10 +15,10 @@
                         <div class="col-2">
                             <div class="form-group">
                                 <label>Tahun kurikulum <span class="text-danger">*</span></label>
-                                <select class="form-control" required name="kurikulum[0]">
+                                <select class="form-control" name="kurikulum[0]">
                                     <option selected="true" value="" disabled selected>Select...</option>
                                     @foreach($kurikulums as $kurikulum)
-                                    <option value="{{$kurikulum->tahun}}">{{$kurikulum->tahun}}</option>
+                                    <option value="{{$kurikulum->tahun}}" {{ old('kurikulum.0') == $kurikulum->tahun ? 'selected' : '' }}>{{$kurikulum->tahun}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -27,7 +30,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">S</span>
                                     </div>
-                                    <input required type="text" class="form-control" name="kode[0]" placeholder="Nomor" autocomplete="off">
+                                    <input type="text" class="form-control" name="kode[0]" value="{{old('kode.0')}}" placeholder="Nomor" autocomplete="off">
                                 </div>
                                 <div style="font-size: x-small">
                                     <div class="row">
@@ -45,7 +48,7 @@
                         <div class="col-5">
                             <div class="form-group">
                                 <label>Judul <span class="text-danger">*</span></label>
-                                <input required type="text" class="form-control" name="judul[0]" placeholder="Judul" autocomplete="off">
+                                <input type="text" class="form-control" name="judul[0]" placeholder="Judul" autocomplete="off">
                             </div>
                         </div>
                         <div class="col-2">
@@ -73,7 +76,7 @@
                         <div class="col-2">
                             <div class="form-group">
                                 <label>Tahun kurikulum <span class="text-danger">*</span></label>
-                                <select class="form-control" required name="kurikulum[0]">
+                                <select class="form-control" name="kurikulum[0]">
                                     <option selected="true" value="" disabled selected>Select...</option>
                                     @foreach($kurikulums as $kurikulum)
                                     <option value="{{$kurikulum->tahun}}">{{$kurikulum->tahun}}</option>
@@ -88,7 +91,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">KU</span>
                                     </div>
-                                    <input required type="text" class="form-control" name="kode[0]" placeholder="Nomor" autocomplete="off">
+                                    <input type="text" class="form-control" name="kode[0]" placeholder="Nomor" autocomplete="off">
                                 </div>
                                 <div style="font-size: x-small">
                                     <div class="row">
@@ -106,7 +109,7 @@
                         <div class="col-5">
                             <div class="form-group">
                                 <label>Judul <span class="text-danger">*</span></label>
-                                <input required type="text" class="form-control" name="judul[0]" placeholder="Judul" autocomplete="off">
+                                <input type="text" class="form-control" name="judul[0]" placeholder="Judul" autocomplete="off">
                             </div>
                         </div>
                         <div class="col-2">
@@ -134,7 +137,7 @@
                         <div class="col-2">
                             <div class="form-group">
                                 <label>Tahun kurikulum <span class="text-danger">*</span></label>
-                                <select class="form-control" required name="kurikulum[0]">
+                                <select class="form-control" name="kurikulum[0]">
                                     <option selected="true" value="" disabled selected>Select...</option>
                                     @foreach($kurikulums as $kurikulum)
                                     <option value="{{$kurikulum->tahun}}">{{$kurikulum->tahun}}</option>
@@ -149,7 +152,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">P</span>
                                     </div>
-                                    <input required type="text" class="form-control" name="kode[0]" placeholder="Nomor" autocomplete="off">
+                                    <input type="text" class="form-control" name="kode[0]" placeholder="Nomor" autocomplete="off">
                                 </div>
                                 <div style="font-size: x-small">
                                     <div class="row">
@@ -167,7 +170,7 @@
                         <div class="col-5">
                             <div class="form-group">
                                 <label>Judul <span class="text-danger">*</span></label>
-                                <input required type="text" class="form-control" name="judul[0]" placeholder="Judul" autocomplete="off">
+                                <input type="text" class="form-control" name="judul[0]" placeholder="Judul" autocomplete="off">
                             </div>
                         </div>
                         <div class="col-2">
@@ -195,7 +198,7 @@
                         <div class="col-2">
                             <div class="form-group">
                                 <label>Tahun kurikulum <span class="text-danger">*</span></label>
-                                <select class="form-control" required name="kurikulum[0]">
+                                <select class="form-control" name="kurikulum[0]">
                                     <option selected="true" value="" disabled selected>Select...</option>
                                     @foreach($kurikulums as $kurikulum)
                                     <option value="{{$kurikulum->tahun}}">{{$kurikulum->tahun}}</option>
@@ -210,7 +213,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">KK</span>
                                     </div>
-                                    <input required type="text" class="form-control" name="kode[0]" placeholder="Nomor" autocomplete="off">
+                                    <input type="text" class="form-control" name="kode[0]" placeholder="Nomor" autocomplete="off">
                                 </div>
                                 <div style="font-size: x-small">
                                     <div class="row">
@@ -228,7 +231,7 @@
                         <div class="col-5">
                             <div class="form-group">
                                 <label>Judul <span class="text-danger">*</span></label>
-                                <input required type="text" class="form-control" name="judul[0]" placeholder="Judul" autocomplete="off">
+                                <input type="text" class="form-control" name="judul[0]" placeholder="Judul" autocomplete="off">
                             </div>
                         </div>
                         <div class="col-2">
@@ -248,49 +251,42 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
     var i = 0;
+
     $("#dynamic-ar-sik").click(function() {
         ++i;
-        $("#dynamicAddRemoveSik").append('<div class="form-group row clone"><div class="col-2"><div class="form-group"><label>Kurikulum <span class="text-danger">*</span></label><select class="form-control" required name="kurikulum[' + i +
-            ']"><option selected = "true" value = "" disabled selected> Select... </option> @foreach($kurikulums as $kurikulum) <option value = "{{$kurikulum->tahun}}">{{$kurikulum->tahun}}</option>@endforeach</select></div></div><div class="col-3"><div class="form-group"><label>Kode <span class="text-danger">*</span></label><div class="input-group mb-2"><div class="input-group-prepend"><span class="input-group-text">S</span></div><input type="text" class="form-control" name="kode[' + i +
+        $("#dynamicAddRemoveSik").append('<div class="form-group row clone"><div class="col-2"><div class="form-group"><label>Kurikulum <span class="text-danger">*</span></label><select class="form-control" name="kurikulum[' + i +
+            ']"><option selected = "true" value = "" disabled selected> Select... </option> @foreach($kurikulums as $kurikulum) <option value="{{$kurikulum->tahun}}" {{ old("kurikulum." + i) == $kurikulum->tahun ? "selected " : "" }}>{{$kurikulum->tahun}}</option>@endforeach</select></div></div><div class="col-3"><div class="form-group"><label>Kode <span class="text-danger">*</span></label><div class="input-group mb-2"><div class="input-group-prepend"><span class="input-group-text">S</span></div><input type="text" class="form-control" name="kode[' + i +
             ']" placeholder="Nomor" autocomplete="off"></div></div></div><div class="col-5"><div class="form-group"><label>Judul <span class="text-danger">*</span></label><input type="text" class="form-control"name="judul[' + i +
-            ']" placeholder="Judul" autocomplete="off"></div></div><input hidden type="text" name="aspek" value="Keterampilan"><div class="col-2"><label>Action</label><div class="form-group"><button type="button" class="btn btn-sm btn-danger remove-input-field-sik">Delete</button></div></div></div>'
+            ']" placeholder="Judul" autocomplete="off"></div></div><input hidden type="text" name="aspek" value="Sikap">'
         );
     });
-    $(document).on('click', '.remove-input-field-sik', function() {
-        $(this).parents('.clone').remove();
-    });
+
+
     $("#dynamic-ar-umm").click(function() {
         ++i;
-        $("#dynamicAddRemoveUmm").append('<div class="form-group row clone"><div class="col-2"><div class="form-group"><label>Kurikulum <span class="text-danger">*</span></label><select class="form-control" required name="kurikulum[' + i +
+        $("#dynamicAddRemoveUmm").append('<div class="form-group row clone"><div class="col-2"><div class="form-group"><label>Kurikulum <span class="text-danger">*</span></label><select class="form-control" name="kurikulum[' + i +
             ']"><option selected = "true" value = "" disabled selected> Select... </option> @foreach($kurikulums as $kurikulum) <option value = "{{$kurikulum->tahun}}">{{$kurikulum->tahun}}</option>@endforeach</select></div></div><div class="col-3"><div class="form-group"><label>Kode <span class="text-danger">*</span></label><div class="input-group mb-2"><div class="input-group-prepend"><span class="input-group-text">KU</span></div><input type="text" class="form-control" name="kode[' + i +
             ']" placeholder="Nomor" autocomplete="off"></div></div></div><div class="col-5"><div class="form-group"><label>Judul <span class="text-danger">*</span></label><input type="text" class="form-control"name="judul[' + i +
-            ']" placeholder="Judul" autocomplete="off"></div></div><input hidden type="text" name="aspek" value="Keterampilan"><div class="col-2"><label>Action</label><div class="form-group"><button type="button" class="btn btn-sm btn-danger remove-input-field-sik">Delete</button></div></div></div>'
+            ']" placeholder="Judul" autocomplete="off"></div></div><input hidden type="text" name="aspek" value="Umum">'
         );
     });
-    $(document).on('click', '.remove-input-field-umm', function() {
-        $(this).parents('.clone').remove();
-    });
+
     $("#dynamic-ar-peng").click(function() {
         ++i;
-        $("#dynamicAddRemovePeng").append('<div class="form-group row clone"><div class="col-2"><div class="form-group"><label>Kurikulum <span class="text-danger">*</span></label><select class="form-control" required name="kurikulum[' + i +
+        $("#dynamicAddRemovePeng").append('<div class="form-group row clone"><div class="col-2"><div class="form-group"><label>Kurikulum <span class="text-danger">*</span></label><select class="form-control" name="kurikulum[' + i +
             ']"><option selected = "true" value = "" disabled selected> Select... </option> @foreach($kurikulums as $kurikulum) <option value = "{{$kurikulum->tahun}}">{{$kurikulum->tahun}}</option>@endforeach</select></div></div><div class="col-3"><div class="form-group"><label>Kode <span class="text-danger">*</span></label><div class="input-group mb-2"><div class="input-group-prepend"><span class="input-group-text">P</span></div><input type="text" class="form-control" name="kode[' + i +
             ']" placeholder="Nomor" autocomplete="off"></div></div></div><div class="col-5"><div class="form-group"><label>Judul <span class="text-danger">*</span></label><input type="text" class="form-control"name="judul[' + i +
-            ']" placeholder="Judul" autocomplete="off"></div></div><input hidden type="text" name="aspek" value="Keterampilan"><div class="col-2"><label>Action</label><div class="form-group"><button type="button" class="btn btn-sm btn-danger remove-input-field-sik">Delete</button></div></div></div>'
+            ']" placeholder="Judul" autocomplete="off"></div></div><input hidden type="text" name="aspek" value="Pengetahuan">'
         );
     });
-    $(document).on('click', '.remove-input-field-peng', function() {
-        $(this).parents('.clone').remove();
-    });
+
     $("#dynamic-ar-ket").click(function() {
         ++i;
-        $("#dynamicAddRemoveKet").append('<div class="form-group row clone"><div class="col-2"><div class="form-group"><label>Kurikulum <span class="text-danger">*</span></label><select class="form-control" required name="kurikulum[' + i +
+        $("#dynamicAddRemoveKet").append('<div class="form-group row clone"><div class="col-2"><div class="form-group"><label>Kurikulum <span class="text-danger">*</span></label><select class="form-control" name="kurikulum[' + i +
             ']"><option selected = "true" value = "" disabled selected> Select... </option> @foreach($kurikulums as $kurikulum) <option value = "{{$kurikulum->tahun}}">{{$kurikulum->tahun}}</option>@endforeach</select></div></div><div class="col-3"><div class="form-group"><label>Kode <span class="text-danger">*</span></label><div class="input-group mb-2"><div class="input-group-prepend"><span class="input-group-text">KK</span></div><input type="text" class="form-control" name="kode[' + i +
             ']" placeholder="Nomor" autocomplete="off"></div></div></div><div class="col-5"><div class="form-group"><label>Judul <span class="text-danger">*</span></label><input type="text" class="form-control"name="judul[' + i +
-            ']" placeholder="Judul" autocomplete="off"></div></div><input hidden type="text" name="aspek" value="Keterampilan"><div class="col-2"><label>Action</label><div class="form-group"><button type="button" class="btn btn-sm btn-danger remove-input-field-sik">Delete</button></div></div></div>'
+            ']" placeholder="Judul" autocomplete="off"></div></div><input hidden type="text" name="aspek" value="Keterampilan"><div class="col-2">'
         );
-    });
-    $(document).on('click', '.remove-input-field-ket', function() {
-        $(this).parents('.clone').remove();
     });
 </script>
 @endsection
