@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\RpsController;
 use App\Http\Controllers\Admin\MkController;
 use App\Http\Controllers\Admin\CplController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\KurikulumController;
 use App\Http\Controllers\Dosen\RPScontroller as RPSdosen;
 use App\Http\Controllers\Dosen\CPMKcontroller as CPMKdosen;
 use App\Http\Controllers\Dosen\CPLMKcontroller as CPLMKdosen;
@@ -58,7 +59,7 @@ Route::middleware(['auth'])->group(
         Route::middleware('admin')->prefix('admin')->group(
             function () {
                 Route::get('dashboard', [DashboardController::class, 'index'])->name('admin');
-                Route::get('dashboard-chart', [DashboardController::class, 'chart'])->name('chart');
+                Route::get('dashboard-chart/{id}', [DashboardController::class, 'chart'])->name('chart');
                 Route::get('add-user', [UserController::class, 'create'])
                     ->name('add-user');
                 Route::post('add-user', [UserController::class, 'store']);
@@ -85,6 +86,11 @@ Route::middleware(['auth'])->group(
                 Route::get('print-soal', function () {
                     return view('admin.soal.print');
                 });
+                Route::post('add-kurikulum', [KurikulumController::class, 'store']);
+                Route::get('edit-kurikulum/{id}', [KurikulumController::class, 'edit']);
+                Route::put('edit-kurikulum/{id}', [KurikulumController::class, 'update']);
+                Route::delete('delete-kurikulum/{id}', [KurikulumController::class, 'delete']);
+                Route::get('list-kurikulum', [KurikulumController::class, 'list']);
             }
         );
         Route::middleware('penjamin-mutu')->prefix('penjamin-mutu')->group(

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -135,10 +136,14 @@ class UserController extends Controller
     }
 
     public function create_wfile(Request $request) {
-        $excel = $request->file('excel');
-        $excelPath = round(microtime(true) * 1000) . '-' . str_replace(' ', '-', $excel->getClientOriginalName());
-        $excel->move(public_path('../public/assets/excel/'), $excelPath);
-        Excel::import(new UsersImport, public_path('../public/assets/excel/'.$excelPath));
-        return redirect('/admin/list-user')->with('success', 'User successfully added!');    
+        try {
+            $excel = $request->file('excel');
+            $excelPath = round(microtime(true) * 1000) . '-' . str_replace(' ', '-', $excel->getClientOriginalName());
+            $excel->move(public_path('../public/assets/excel/'), $excelPath);
+            Excel::import(new UsersImport, public_path('../public/assets/excel/' . $excelPath));
+            return redirect('/admin/list-user')->with('success', 'User successfully added!');    
+        } catch (\Exception $e) {
+            return redirect('/admin/add-user')->with('error', "Terjadi kesalahan, silahkan periksa kembali data dalam excel anda!");
+        }
     }
 }

@@ -6,54 +6,38 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CPLMK;
 use App\Models\CPL;
-use App\Models\MK;
+use App\Models\Kurikulum;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        return view('admin.dashboard');
+        $kurikulums = Kurikulum::all();
+        return view('admin.dashboard',compact('kurikulums'));
     }
 
-    public function chart()
+    public function chart($filter)
     {
         $cplmks = CPLMK::all();
-        $cpls = CPL::all();
 
-        $i = -1;
-        foreach ($cpls as $cpl) {
-            if ($cpl->aspek == 'Sikap') {
-                $sikap[++$i] = $cpl->kode;
-            }
+        if($filter === 'all'){
+            $cpls = CPL::all();
+        }else{
+            $cpls = CPL::where('kurikulum', $filter)->get();
         }
-        $i = -1;
-        foreach ($cpls as $cpl) {
-            if ($cpl->aspek == 'Umum') {
-                $umum[++$i] = $cpl->kode;
-            }
-        }
+
         $i = -1;
         foreach ($cpls as $cpl) {
             if ($cpl->aspek == 'Pengetahuan') {
-                $pengetahuan[++$i] = $cpl->kode;
+                $kode = $cpl->kurikulum . " - " . $cpl->kode;
+                $pengetahuan[++$i] = $kode;
             }
         }
         $i = -1;
         foreach ($cpls as $cpl) {
             if ($cpl->aspek == 'Keterampilan') {
-                $keterampilan[++$i] = $cpl->kode;
-            }
-        }
-        $i = -1;
-        foreach ($cpls as $cpl) {
-            if ($cpl->aspek == 'Sikap') {
-                $cpl_sikap[++$i] = $cpl->id;
-            }
-        }
-        $i = -1;
-        foreach ($cpls as $cpl) {
-            if ($cpl->aspek == 'Umum') {
-                $cpl_umum[++$i] = $cpl->id;
+                $kode = $cpl->kurikulum . " - " . $cpl->kode;
+                $keterampilan[++$i] = $kode;
             }
         }
         $i = -1;
@@ -68,16 +52,7 @@ class DashboardController extends Controller
                 $cpl_keterampilan[++$i] = $cpl->id;
             }
         }
-        $sums = 0;
-        foreach ($cpl_sikap as $no=>$cpls) {
-            $cps[$no] = 0;
-            $sums += 1;
-        }
-        $sumu = 0;
-        foreach ($cpl_umum as $no=>$cpls) {
-            $cpu[$no] = 0;
-            $sumu += 1;
-        }
+        
         $sump = 0;
         foreach ($cpl_pengetahuan as $no=>$cpls) {
             $cpp[$no] = 0;
@@ -88,20 +63,7 @@ class DashboardController extends Controller
             $cpk[$no] = 0;
             $sumk += 1;
         }
-        foreach ($cpl_sikap as $no => $cpls) {
-            foreach ($cplmks as $cplmk) {
-                if ($cplmk->id_cpl == $cpls) {
-                    $cps[$no] += 1;
-                }
-            }
-        }
-        foreach ($cpl_umum as $no => $cpls) {
-            foreach ($cplmks as $cplmk) {
-                if ($cplmk->id_cpl == $cpls) {
-                    $cpu[$no] += 1;
-                }
-            }
-        }
+
         foreach ($cpl_pengetahuan as $no => $cpls) {
             foreach ($cplmks as $cplmk) {
                 if ($cplmk->id_cpl == $cpls) {
@@ -124,20 +86,7 @@ class DashboardController extends Controller
             'rgba(153, 102, 255, 0.2)',
             'rgba(255, 159, 64, 0.2)',
         ];
-        $tmp = -1;
-        for ($i = 0; $i < $sums; $i++) {
-            $warnas[$i] = $list_warna[++$tmp];
-            if ($tmp == 5) {
-                $tmp = 0;
-            }
-        }
-        $tmp = -1;
-        for ($i = 0; $i < $sumu; $i++) {
-            $warnau[$i] = $list_warna[++$tmp];
-            if ($tmp == 5) {
-                $tmp = 0;
-            }
-        }
+        
         $tmp = -1;
         for ($i = 0; $i < $sump; $i++) {
             $warnap[$i] = $list_warna[++$tmp];
@@ -160,20 +109,7 @@ class DashboardController extends Controller
             'rgba(153, 102, 255, 1)',
             'rgba(255, 159, 64, 1)',
         ];
-        $tmp = -1;
-        for ($i = 0; $i < $sums; $i++) {
-            $borders[$i] = $list_border[++$tmp];
-            if ($tmp == 5) {
-                $tmp = 0;
-            }
-        }
-        $tmp = -1;
-        for ($i = 0; $i < $sumu; $i++) {
-            $borderu[$i] = $list_border[++$tmp];
-            if ($tmp == 5) {
-                $tmp = 0;
-            }
-        }
+        
         $tmp = -1;
         for ($i = 0; $i < $sump; $i++) {
             $borderp[$i] = $list_border[++$tmp];
@@ -189,16 +125,8 @@ class DashboardController extends Controller
             }
         }
         $dt = ([
-            'sikap' => $sikap,
-            'umum' => $umum,
             'pengetahuan' => $pengetahuan,
             'keterampilan' => $keterampilan,
-            'jumlahs' => $cps,
-            'warnas' => $warnas,
-            'borders' => $borders,
-            'jumlahu' => $cpu,
-            'warnau' => $warnau,
-            'borderu' => $borderu,
             'jumlahp' => $cpp,
             'warnap' => $warnap,
             'borderp' => $borderp,

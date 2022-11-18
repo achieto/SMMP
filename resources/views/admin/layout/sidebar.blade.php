@@ -22,6 +22,18 @@
                 </ul>
             </div>
         </li>
+        <li class="nav-item nav-category">Kurikulum</li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#kurikulum" aria-expanded="false" aria-controls="kurikulum" onclick="document.getElementById('kur').click()">
+                <i class="menu-icon mdi mdi-account-circle-outline"></i>
+                <span class="menu-title">Kurikulum Pages</span>
+            </a>
+            <div class="collapse" id="kurikulum" hidden="hidden">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a id="kur" class="nav-link" href="/admin/list-kurikulum"> List Kurikulum </a></li>
+                </ul>
+            </div>
+        </li>
         <li class="nav-item nav-category">CPL</li>
         <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#cpl" aria-expanded="false" aria-controls="cpl">

@@ -43,8 +43,12 @@
                     <div class="col">
                         <div class="form-group">
                             <label>Tahun kurikulum <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="kurikulum" placeholder="Kurikulum" value="{{$cpl->kurikulum}}" autocomplete="off">
-                            @error('kurikulum')
+                            <select class="js-example-basic-single w-100" required name="kurikulum">
+                                <option selected="true" value="" disabled selected>Select...</option>
+                                @foreach($kurikulums as $kurikulum)
+                                <option value="{{$kurikulum->tahun}}" {{ $cpl->kurikulum == $kurikulum->tahun ? 'selected' : '' }}>{{$kurikulum->tahun}}</option>
+                                @endforeach
+                            </select> @error('kurikulum')
                             <div class="alert alert-danger">
                                 {{ $message }}
                             </div>

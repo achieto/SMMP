@@ -11,6 +11,6 @@ class Kurikulum extends Model
     protected $table = 'kurikulums';
 
     protected $fillable = [
-        'id', 'tahun'
+        'tahun'
     ];
 }

@@ -24,16 +24,16 @@
                                 <td><?= $sikap->judul ?></td>
                                 <td class="py-4">
                                     <div class="d-flex">
-                                        <a type="button" href="edit-cpl/{{$sikap->id}}" class="btn btn-inverse-dark btn-icon-text p-2" style="margin-right:7px">
+                                        <a type="button" href="edit-cpl/{{$sikap->id}}" class="btn btn-warning btn-icon-text p-2" style="margin-right:7px">
                                             Edit
-                                            <i class="ti-file btn-icon-append"></i>
+                                            <i class="ti-pencil btn-icon-append"></i>
                                         </a>
                                         <form action="delete-cpl/{{$sikap->id}}" method="post">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-danger btn-icon-text p-2" onclick="return confirm('Are you sure to delete {{$sikap->kode}}?')">
-                                                <i class=" mdi mdi-delete btn-icon-prepend"></i>
                                                 Delete
+                                                <i class="ti-trash btn-icon-append"></i>
                                             </button>
                                         </form>
                                     </div>
@@ -68,16 +68,16 @@
                                 <td><?= $umum->judul ?></td>
                                 <td class="py-4">
                                     <div class="d-flex">
-                                        <a type="button" href="edit-cpl/{{$umum->id}}" class="btn btn-inverse-dark btn-icon-text p-2" style="margin-right:7px">
+                                        <a type="button" href="edit-cpl/{{$umum->id}}" class="btn btn-warning btn-icon-text p-2" style="margin-right:7px">
                                             Edit
-                                            <i class="ti-file btn-icon-append"></i>
+                                            <i class="ti-pencil btn-icon-append"></i>
                                         </a>
                                         <form action="delete-cpl/{{$umum->id}}" method="post">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-danger btn-icon-text p-2" onclick="return confirm('Are you sure to delete {{$umum->kode}}?')">
-                                                <i class=" mdi mdi-delete btn-icon-prepend"></i>
                                                 Delete
+                                                <i class="ti-trash btn-icon-append"></i>
                                             </button>
                                         </form>
                                     </div>
@@ -114,16 +114,16 @@
                                 <td><?= $pengetahuan->judul ?></td>
                                 <td class="py-4">
                                     <div class="d-flex">
-                                        <a type="button" href="edit-cpl/{{$pengetahuan->id}}" class="btn btn-inverse-dark btn-icon-text p-2" style="margin-right:7px">
+                                        <a type="button" href="edit-cpl/{{$pengetahuan->id}}" class="btn btn-warning btn-icon-text p-2" style="margin-right:7px">
                                             Edit
-                                            <i class="ti-file btn-icon-append"></i>
+                                            <i class="ti-pencil btn-icon-append"></i>
                                         </a>
                                         <form action="delete-cpl/{{$pengetahuan->id}}" method="post">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-danger btn-icon-text p-2" onclick="return confirm('Are you sure to delete {{$pengetahuan->kode}}?')">
-                                                <i class=" mdi mdi-delete btn-icon-prepend"></i>
                                                 Delete
+                                                <i class="ti-trash btn-icon-append"></i>
                                             </button>
                                         </form>
                                     </div>
@@ -158,16 +158,16 @@
                                 <td><?= $keterampilan->judul ?></td>
                                 <td class="py-4">
                                     <div class="d-flex">
-                                        <a type="button" href="edit-cpl/{{$keterampilan->id}}" class="btn btn-inverse-dark btn-icon-text p-2" style="margin-right:7px">
+                                        <a type="button" href="edit-cpl/{{$keterampilan->id}}" class="btn btn-warning btn-icon-text p-2" style="margin-right:7px">
                                             Edit
-                                            <i class="ti-file btn-icon-append"></i>
+                                            <i class="ti-pencil btn-icon-append"></i>
                                         </a>
                                         <form action="delete-cpl/{{$keterampilan->id}}" method="post">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-danger btn-icon-text p-2" onclick="return confirm('Are you sure to delete {{$keterampilan->kurikulum}}-{{$keterampilan->kode}}?')">
-                                                <i class=" mdi mdi-delete btn-icon-prepend"></i>
                                                 Delete
+                                                <i class="ti-trash btn-icon-append"></i>
                                             </button>
                                         </form>
                                     </div>
