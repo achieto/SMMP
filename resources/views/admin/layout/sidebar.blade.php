@@ -25,7 +25,7 @@
         <li class="nav-item nav-category">Kurikulum</li>
         <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#kurikulum" aria-expanded="false" aria-controls="kurikulum" onclick="document.getElementById('kur').click()">
-                <i class="menu-icon mdi mdi-account-circle-outline"></i>
+                <i class="menu-icon mdi mdi-library-books"></i>
                 <span class="menu-title">Kurikulum Pages</span>
             </a>
             <div class="collapse" id="kurikulum" hidden="hidden">
@@ -37,7 +37,7 @@
         <li class="nav-item nav-category">CPL</li>
         <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#cpl" aria-expanded="false" aria-controls="cpl">
-                <i class="menu-icon mdi mdi-account-circle-outline"></i>
+                <i class="menu-icon mdi mdi-format-list-bulleted-type"></i>
                 <span class="menu-title">CPL Pages</span>
                 <i class="menu-arrow"></i>
             </a>
@@ -53,7 +53,7 @@
         <li class="nav-item nav-category">MK</li>
         <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#mk" aria-expanded="false" aria-controls="mk">
-                <i class="menu-icon mdi mdi-account-circle-outline"></i>
+                <i class="menu-icon mdi mdi-collage"></i>
                 <span class="menu-title">MK Pages</span>
                 <i class="menu-arrow"></i>
             </a>
@@ -69,7 +69,7 @@
         <li class="nav-item nav-category">RPS</li>
         <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#rps" aria-expanded="false" aria-controls="rps">
-                <i class="menu-icon mdi mdi-account-circle-outline"></i>
+                <i class="menu-icon mdi mdi-file-outline"></i>
                 <span class="menu-title">RPS Pages</span>
                 <i class="menu-arrow"></i>
             </a>
@@ -82,7 +82,7 @@
         <li class="nav-item nav-category">Soal</li>
         <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#soal" aria-expanded="false" aria-controls="soal">
-                <i class="menu-icon mdi mdi-account-circle-outline"></i>
+                <i class="menu-icon mdi mdi-comment-question-outline"></i>
                 <span class="menu-title">Soal Pages</span>
                 <i class="menu-arrow"></i>
             </a>

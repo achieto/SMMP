@@ -10,7 +10,7 @@
                 <img src="{{ asset('/assets/img/logo_unila.png')}}" alt="logo" /> SMMP
             </a>
             <a class="navbar-brand brand-logo-mini" href="/dashboard">
-                <img src="{{ asset('/assets/img/logo_unila.png')}}" alt="logo" />
+                <img style="max-width: 39px; max-height:39px; width:auto; height: auto" src="{{ asset('/assets/img/logo_unila.png')}}" alt="logo" />
             </a>
         </div>
     </div>
@@ -39,12 +39,6 @@
                     </span>
                     <input style="background-color:white" disabled="disabled" type="text" class="form-control">
                 </div>
-            </li>
-            <li class="nav-item">
-                <form class="search-form" action="#">
-                    <i class="icon-search"></i>
-                    <input type="search" class="form-control" placeholder="Search Here" title="Search here">
-                </form>
             </li>
             <li class="nav-item dropdown d-none d-lg-block user-dropdown">
                 <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">

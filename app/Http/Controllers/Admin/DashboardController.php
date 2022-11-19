@@ -50,24 +50,38 @@ class DashboardController extends Controller
 
         if ($filter === 'all') {
             $cpls = CPL::all();
+            $i = -1;
+            foreach ($cpls as $cpl) {
+                if ($cpl->aspek == 'Pengetahuan') {
+                    $kode = $cpl->kurikulum . ' - ' . $cpl->kode;
+                    $pengetahuan[++$i] = $kode;
+                }
+            }
+            $i = -1;
+            foreach ($cpls as $cpl) {
+                if ($cpl->aspek == 'Keterampilan') {
+                    $kode = $cpl->kurikulum . ' - ' . $cpl->kode;
+                    $keterampilan[++$i] = $kode;
+                }
+            }
         } else {
             $cpls = CPL::where('kurikulum', $filter)->get();
+            $i = -1;
+            foreach ($cpls as $cpl) {
+                if ($cpl->aspek == 'Pengetahuan') {
+                    $kode = $cpl->kode;
+                    $pengetahuan[++$i] = $kode;
+                }
+            }
+            $i = -1;
+            foreach ($cpls as $cpl) {
+                if ($cpl->aspek == 'Keterampilan') {
+                    $kode = $cpl->kode;
+                    $keterampilan[++$i] = $kode;
+                }
+            }
         }
 
-        $i = -1;
-        foreach ($cpls as $cpl) {
-            if ($cpl->aspek == 'Pengetahuan') {
-                $kode = $cpl->kode;
-                $pengetahuan[++$i] = $kode;
-            }
-        }
-        $i = -1;
-        foreach ($cpls as $cpl) {
-            if ($cpl->aspek == 'Keterampilan') {
-                $kode = $cpl->kode;
-                $keterampilan[++$i] = $kode;
-            }
-        }
         $i = -1;
         foreach ($cpls as $cpl) {
             if ($cpl->aspek == 'Pengetahuan') {
