@@ -10,7 +10,7 @@
                 <img src="{{ asset('/assets/img/logo_unila.png')}}" alt="logo" /> SMMP
             </a>
             <a class="navbar-brand brand-logo-mini" href="/dashboard">
-                <img style="max-width: 39px; max-height:39px; width:auto; height: auto" src="{{ asset('/assets/img/logo_unila.png')}}" alt="logo" />
+                <img style="max-height:39px; height: auto" src="{{ asset('/assets/img/logo_unila.png')}}" alt="logo" />
             </a>
         </div>
     </div>

@@ -76,7 +76,7 @@ class UserController extends Controller
 
     public function list()
     {
-        $users = User::where('otoritas', '!=', 'Admin')->get();
+        $users = User::where('otoritas', '!=', 'Admin')->orderBy('created_at', 'asc')->get();
         return view('admin.user.list', compact('users'));
     }
 

@@ -15,7 +15,7 @@ class RpsController extends Controller
 {
     public function list()
     {
-        $rpss = RPS::all();
+        $rpss = RPS::orderBy('created_at', 'desc')->get();
         $mks = MK::all();
         return view('admin.rps.list', compact('rpss', 'mks'));
     }

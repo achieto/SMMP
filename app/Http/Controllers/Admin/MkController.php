@@ -18,14 +18,14 @@ class MkController extends Controller
 
     public function list()
     {
-        $mks = MK::all();
+        $mks = MK::orderBy('kurikulum', 'desc')->get();
         return view('admin.mk.list', compact('mks'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'kode' => ['required', 'unique:mks', 'alpha_num', 'min:9'],
+            'kode' => ['required', 'alpha_num', 'min:9'],
             'nama' => ['required', 'string','regex:/^[a-zA-Z ]+$/', 'max:255'],
             'rumpun' => 'required',
             'prasyarat' => ['nullable', 'string','regex:/^[a-zA-Z ]+$/', 'max:255'],
@@ -45,7 +45,7 @@ class MkController extends Controller
             $bp = $request->bobot_praktikum;
         }
         MK::create([
-            'kode' => $request->kode,
+            'kode' => strtoupper($request->kode),
             'nama' => $request->nama,
             'rumpun' => $request->rumpun,
             'prasyarat' => $p,

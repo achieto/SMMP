@@ -10,7 +10,7 @@ class KurikulumController extends Controller
 {
     public function list()
     {
-        $kurikulums = Kurikulum::all();
+        $kurikulums = Kurikulum::orderBy('tahun', 'desc')->get();
         return view('admin.kurikulum.list', compact('kurikulums'));
     }
 
@@ -50,7 +50,12 @@ class KurikulumController extends Controller
 
     public function delete($id)
     {
-        Kurikulum::where('id', $id)->delete();
-        return redirect('/admin/list-kurikulum');
+        try {
+            Kurikulum::where('id', $id)->delete();
+            return redirect('/admin/list-kurikulum')->with('success', 'Kurikulum successfully deleted!');;
+        } catch (\Illuminate\Database\QueryException $e) {
+            $kur = Kurikulum::where('id', $id)->get();
+            return redirect('/admin/list-kurikulum')->with('error', 'Terjadi kesalahan, tahun kurikulum ' . $kur[0]['tahun'] . ' masih memiliki CPL/MK');
+        }
     }
 }

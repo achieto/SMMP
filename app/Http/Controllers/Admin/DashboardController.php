@@ -8,12 +8,13 @@ use App\Models\CPLMK;
 use App\Models\CPL;
 use App\Models\Kurikulum;
 use App\Models\MK;
+use App\Models\RPS;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        $kurikulums = Kurikulum::all();
+        $kurikulums = Kurikulum::orderBy('tahun', 'desc')->get();
         return view('admin.dashboard', compact('kurikulums'));
     }
 
@@ -22,23 +23,30 @@ class DashboardController extends Controller
         if ($filter === 'all') {
             $cpls = CPL::all();
             $mks = MK::all();
+            $rpss = RPS::all();
         } else {
             $cpls = CPL::where('kurikulum', $filter)->get();
             $mks = MK::where('kurikulum', $filter)->get();
+            $rpss = RPS::where('kurikulum', $filter)->get();
         }
 
         $sum_mk = 0;
         $sum_cpl = 0;
+        $sum_rps = 0;
         foreach ($mks as $mk) {
             ++$sum_mk;
         }
         foreach ($cpls as $cpl) {
             ++$sum_cpl;
         }
+        foreach ($rpss as $rps) {
+            ++$sum_rps;
+        }
 
         $data = ([
             'sum_mk' => $sum_mk,
-            'sum_cpl' => $sum_cpl
+            'sum_cpl' => $sum_cpl,
+            'sum_rps' => $sum_rps
         ]);
 
         return response()->json($data);
@@ -49,7 +57,7 @@ class DashboardController extends Controller
         $cplmks = CPLMK::all();
 
         if ($filter === 'all') {
-            $cpls = CPL::all();
+            $cpls = CPL::orderBy('kurikulum', 'desc')->orderBy('kode', 'asc')->get();
             $i = -1;
             foreach ($cpls as $cpl) {
                 if ($cpl->aspek == 'Pengetahuan') {
@@ -65,7 +73,7 @@ class DashboardController extends Controller
                 }
             }
         } else {
-            $cpls = CPL::where('kurikulum', $filter)->get();
+            $cpls = CPL::where('kurikulum', $filter)->orderBy('kode', 'asc')->get();
             $i = -1;
             foreach ($cpls as $cpl) {
                 if ($cpl->aspek == 'Pengetahuan') {

@@ -12,20 +12,20 @@ class CplController extends Controller
 {
     public function create()
     {
-        $sikaps = CPL::where('aspek', 'Sikap')->get();
-        $umums = CPL::where('aspek', 'Umum')->get();
-        $pengetahuans = CPL::where('aspek', 'Pengetahuan')->get();
-        $keterampilans = CPL::where('aspek', 'Keterampilan')->orderBy('kurikulum', 'asc')->get();
+        $sikaps = CPL::where('aspek', 'Sikap')->orderBy('kurikulum', 'desc')->orderBy('kode', 'asc')->get();
+        $umums = CPL::where('aspek', 'Umum')->orderBy('kurikulum', 'desc')->orderBy('kode', 'asc')->get();
+        $pengetahuans = CPL::where('aspek', 'Pengetahuan')->orderBy('kurikulum', 'desc')->orderBy('kode', 'asc')->get();
+        $keterampilans = CPL::where('aspek', 'Keterampilan')->orderBy('kurikulum', 'desc')->orderBy('kode', 'asc')->get();
         $kurikulums = Kurikulum::all();
         return view('admin.cpl.add', compact('sikaps', 'umums', 'pengetahuans', 'keterampilans', 'kurikulums'));
     }
 
     public function list()
     {
-        $sikaps = CPL::where('aspek', 'Sikap')->get();
-        $umums = CPL::where('aspek', 'Umum')->get();
-        $pengetahuans = CPL::where('aspek', 'Pengetahuan')->get();
-        $keterampilans = CPL::where('aspek', 'Keterampilan')->orderBy('kurikulum', 'asc')->get();
+        $sikaps = CPL::where('aspek', 'Sikap')->orderBy('kurikulum', 'desc')->orderBy('kode', 'asc')->get();
+        $umums = CPL::where('aspek', 'Umum')->orderBy('kurikulum', 'desc')->orderBy('kode', 'asc')->get();
+        $pengetahuans = CPL::where('aspek', 'Pengetahuan')->orderBy('kurikulum', 'desc')->orderBy('kode', 'asc')->get();
+        $keterampilans = CPL::where('aspek', 'Keterampilan')->orderBy('kurikulum', 'desc')->orderBy('kode', 'asc')->get();
         return view('admin.cpl.list', compact('sikaps', 'umums', 'pengetahuans', 'keterampilans'));
     }
 
@@ -35,17 +35,16 @@ class CplController extends Controller
             if ($request->aspek == 'Sikap') {
                 $data[$key] = 'S' . $value;
             }
-            else if ($request->aspek == 'Umum') {
+            elseif ($request->aspek == 'Umum') {
                 $data[$key] = 'KU' . $value;
             }
-            else if ($request->aspek == 'Pengetahuan') {
+            elseif ($request->aspek == 'Pengetahuan') {
                 $data[$key] = 'P' . $value;
             }
             else {
                 $data[$key] = 'KK' . $value;
             }
         }
-
         try {
             for ($i = 0; $i < count($request->input('kurikulum')); $i++) {
                 CPL::create([
