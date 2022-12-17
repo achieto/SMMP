@@ -1,140 +1,92 @@
 #ERD
 ```mermaid
 erDiagram
-          Kurikulum ||--|{ MataKuliah : has
-          MataKuliah ||--|{ RPS : has
-          RPS ||--|{ CPL : has
-          RPS ||--|{ CPMK : has
-          RPS ||--|{ Soal : has
-          Soal }|--|{ CPMK : implemented
-          User ||--|{ RPS : input 
+          kurikulums ||--o{ mks : has
+          kurikulums ||--o{ cpls : has
+          kurikulums ||--o{ rpss : has
+          cplmks }o--|| mks : contain
+          cplmks }o--|| cpls : contain
+          mks ||--|| rpss : has
+          mks ||--o{ cpmks : has
+          soals ||--o{ cpmk_soals : implemented
+          cpmks ||--o{ cpmk_soals : has
+          users ||--o{ rpss : input
+          rpss ||--|{ activities : has
 
-          User {
+          users {
             int id
+            string name
             string email
             string password
-            string otoritas 
+            string img
+            enum otoritas 
           }
-          Kurikulum {
-            int id
+          kurikulums {
             int tahun
           }
-          MataKuliah {
+          mks {
             int id
             string kode
             sting nama
-            string deskripsi
-            string rumpun
-            int semester
+            enum rumpun
             string prasyarat
             int kurikulum
+            string deskripsi
             int bobot_teori
             int bobot_praktikum
-            string dosen
-            string materi
-            string pustaka
           }
-          RPS {
+          rpss {
             int id
-            string judul
-            string id_MK
-            string tanggal
+            int id_mk
+            string nomor
+            string prodi
+            string dosen
             string pengembang
             string koordinator
             string kaprodi
+            int kurikulum
+            int semester
+            string materi_mk
+            string pustaka_utama
+            string pustaka_pendukung
           }
-          CPL {
+          activities {
             int id
-            int id_RPS
-            string jenis
-            string aspek
-            string keterangan
-          }
-          CPMK {
-            int id
-            int id_soal
-            int id_RPS
+            string minggu
             string sub_cpmk
-            string metode_luring
-            string metode_daring
             string indikator
             string kriteria
-            string tanggal
-            string bobot
+            string metode_luring
+            string metode_daring
             string materi
+            int bobot
+            int id_rps
           }
-          Soal {
+          cpls {
+            int id
+            enum aspek
+            string kode
+            int nomor
+            string judul
+            int kurikulum
+          }
+          cplmks {
+            int id
+            string kode_mk
+            int id_cpl
+          }
+          cpmks {
+            int id
+            int id_mk
+            string judul
+          }
+          soals {
             int id
             string pertanyaan
-            string jawaban
           }
-```
-
-#Class Diagram
-```mermaid
-classDiagram
-      RPS "1" *-- "*" CPL
-      RPS "1" *-- "*" CPMK
-      RPS "1" *-- "*" Soal
-      User <|-- Dosen
-      User <|-- LPMPS
-      User <|-- Admin
-      User -- RPS
-      CPMK "*" -- "1..*" Soal
-      Kurikulum "1" -- "*" MataKuliah
-      MataKuliah --o RPS
-      class RPS{
-          -int id
-          -String judul
-          -String id_MK
-          -String tanggal
-          -String otorisasi
-      }
-      class CPL{
-          -int id
-          -int id_kurikulum
-          -String id_MK
-          -String aspek
-      }
-      class CPMK{
-          -int id
-          -int id_Soal
-          -String indikator
-          -String tanggal
-          -String penilaian
-          -String materi
-      }
-      class User{
-          -int id
-          -String email
-          -String password
-          -String otoritas
-      }
-      class Dosen{
-          -String MK
-          +inputCPL() String
-          +inputCPMK() String
-          +inputSoal() String
-      }
-      class LPMPS{
-          +verifikasiSoal()
-      }
-      class Kurikulum{
-          -int id
-          -int tahun
-      }
-      class MataKuliah{
-          -String id
-          -String nama
-          -String rumpun
-          -int semester
-          -String prasyarat
-          -int id_Kurikulum
-      }
-      class Soal{
-          -int id
-          -String pertanyaan
-          -String jawaban
-          +ceklisCPMK()
-      }
+          cpmk_soals {
+            int id
+            int id_cpmk
+            int id_soal
+          }
 ```
