@@ -82,6 +82,7 @@ erDiagram
           }
           soals {
             int id
+            int id_mk
             string pertanyaan
           }
           cpmk_soals {
