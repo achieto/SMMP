@@ -88,7 +88,7 @@
             </a>
             <div class="collapse" id="soal">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="/admin/print-soal"> Print Soal </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/admin/list-soal"> List Soal </a></li>
                 </ul>
             </div>
         </li>

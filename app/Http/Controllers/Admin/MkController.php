@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\MK;
 use App\Models\Kurikulum;
+use Illuminate\Support\Facades\Crypt;
 
 class MkController extends Controller
 {
@@ -59,7 +60,8 @@ class MkController extends Controller
     }
 
     public function edit($id) {
-        $mk = MK::findOrFail($id);
+        $ids = Crypt::decrypt($id);
+        $mk = MK::findOrFail($ids);
         $mks = MK::all();
         $kurikulums = Kurikulum::all();
         return view('admin.mk.edit', compact('mk', 'mks', 'kurikulums'));
@@ -86,7 +88,8 @@ class MkController extends Controller
         } else {
             $bp = $request->bobot_praktikum;
         }
-        $mk = MK::findOrFail($id);
+        $ids = Crypt::decrypt($id);
+        $mk = MK::findOrFail($ids);
         $mk->update([
             'kode' => $request->kode,
             'nama' => $request->nama,
@@ -103,7 +106,8 @@ class MkController extends Controller
 
     public function delete($id)
     {
-        MK::where('id', $id)->delete();
+        $ids = Crypt::decrypt($id);
+        MK::where('id', $ids)->delete();
         return redirect('/admin/list-mk');
     }
 }

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CPL;
 use App\Models\Kurikulum;
-use \stdClass;
+use Illuminate\Support\Facades\Crypt;
 
 class CplController extends Controller
 {
@@ -63,7 +63,8 @@ class CplController extends Controller
 
     public function edit($id)
     {
-        $cpl = CPL::findOrFail($id);
+        $ids = Crypt::decrypt($id);
+        $cpl = CPL::findOrFail($ids);
         $kurikulums = Kurikulum::all();
         return view('admin.cpl.edit', compact('cpl', 'kurikulums'));
     }
@@ -77,7 +78,8 @@ class CplController extends Controller
             'judul' => 'required',
         ]);
 
-        $cpl = CPL::findOrFail($id);
+        $ids = Crypt::decrypt($id);
+        $cpl = CPL::findOrFail($ids);
         if($request->aspek == 'Sikap') 
             $kode = 'S' . $request->kode;
         else if($request->aspek == 'Umum') 
@@ -98,7 +100,8 @@ class CplController extends Controller
 
     public function delete($id)
     {
-        CPL::where('id', $id)->delete();
+        $ids = Crypt::decrypt($id);
+        CPL::where('id', $ids)->delete();
         return redirect('/admin/list-cpl');
     }
 }

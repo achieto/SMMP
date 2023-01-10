@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use PDF;
 use App\Models\RPS;
 use App\Models\MK;
 use App\Models\Activity;
 use App\Models\CPLMK;
 use App\Models\CPL;
 use App\Models\CPMK;
+use Illuminate\Support\Facades\Crypt;
 
 class RpsController extends Controller
 {
@@ -22,7 +24,8 @@ class RpsController extends Controller
 
     public function print($id)
     {
-        $rps = RPS::findOrFail($id);
+        $ids = Crypt::decrypt($id);
+        $rps = RPS::findOrFail($ids);
         $mks = MK::all();
         $activities = Activity::all();
         $cplmks = collect();
@@ -44,7 +47,8 @@ class RpsController extends Controller
         $cpmks = CPMK::all();
         $sikaps = CPL::where('aspek', 'Sikap')->where('kurikulum', $rps->kurikulum)->get();
         $umums = CPL::where('aspek', 'Umum')->where('kurikulum', $rps->kurikulum)->get();
-        return view('admin.rps.print', compact(
+
+        $data = compact(
             'rps',
             'activities',
             'mks',
@@ -55,6 +59,10 @@ class RpsController extends Controller
             'umums',
             'pengetahuans',
             'keterampilans'
-        ));
+        );
+
+        $pdf = PDF::loadView('admin.rps.print', $data)->setOrientation('landscape');
+        $pdf->setOption('enable-local-file-access', true);
+        return $pdf->stream('rps.pdf');
     }
 }

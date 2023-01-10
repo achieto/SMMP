@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\MkController;
 use App\Http\Controllers\Admin\CplController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\KurikulumController;
+use App\Http\Controllers\Admin\SoalController;
 use App\Http\Controllers\Dosen\RPScontroller as RPSdosen;
 use App\Http\Controllers\Dosen\CPMKcontroller as CPMKdosen;
 use App\Http\Controllers\Dosen\CPLMKcontroller as CPLMKdosen;
@@ -85,9 +86,8 @@ Route::middleware(['auth'])->group(
                 Route::get('edit-cpl/{id}', [CplController::class, 'edit']);
                 Route::put('edit-cpl/{id}', [CplController::class, 'update']);
                 Route::delete('delete-cpl/{id}', [CplController::class, 'delete']);
-                Route::get('print-soal', function () {
-                    return view('admin.soal.print');
-                });
+                Route::get('list-soal', [SoalController::class, 'list']);
+                Route::get('print-soal/{id}', [SoalController::class, 'print']);
                 Route::post('add-kurikulum', [KurikulumController::class, 'store']);
                 Route::get('edit-kurikulum/{id}', [KurikulumController::class, 'edit']);
                 Route::put('edit-kurikulum/{id}', [KurikulumController::class, 'update']);

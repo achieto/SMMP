@@ -1,11 +1,9 @@
-<style>
-    @media print {
-        .blue {
-            background-color: rgb(221, 235, 247) !important;
-            -webkit-print-color-adjust: exact;
-        }
+<style type="text/css" media="print">
+    @page {
+        size: portrait;
     }
-
+</style>
+<style>
     table,
     th,
     td {
@@ -46,89 +44,92 @@
         counter-increment: mycounter;
     }
 </style>
-<style type="text/css" media="print">
-    @page {
-        size: portrait;
-    }
-</style>
 
 <table style="width:100%; height:3cm">
-    <tr class="blue header" style="vertical-align: top;">
-        <th colspan="1"><img style="width:1.91cm; padding: 12px 6px 0 6px" src="{{asset('/assets/img/logo_unila.png')}}" alt=""></th>
+    <tr class="blue header" style="vertical-align: top; background-color: rgb(221, 235, 247)">
+        <th colspan="1"><img style="width:1.91cm; padding: 12px 6px 0 6px" src="{{public_path('/assets/img/logo_unila.png')}}" alt=""></th>
         <th>
             <div>UNIVERSITAS LAMPUNG</div>
             <div>FAKULTAS MATEMATIKA DAN ILMU PENGETAHUAN ALAM</div>
             <div>JURUSAN ILMU KOMPUTER</div>
-            <div>PRODI D3 MANAJEMEN INFORMATIKA</div>
+            <div>PRODI <?= strtoupper($soal->prodi) ?></div>
         </th>
     </tr>
 </table>
 <main>
-    <div style="font-weight:700; text-align:center; margin: 15px 0 45px 0">KUIS MATA KULIAH</div>
+    <div style="font-weight:700; text-align:center; margin: 15px 0 45px 0"><?= strtoupper($soal->jenis . " " . $mk->nama) ?></div>
     <table class="non-border">
         <tr>
             <td class="non-border" style="padding-left: 85px;">Kode Mata Kuliah</td>
             <td class="non-border" style="padding-left: 40px;">:</td>
-            <td class="non-border" style="padding-left: 13px;">COM010101</td>
+            <td class="non-border" style="padding-left: 13px;">{{$mk->kode}}</td>
         </tr>
         <tr>
             <td class="non-border" style="padding-left: 85px;">Nama Mata Kuliah</td>
             <td class="non-border" style="padding-left: 40px;">:</td>
-            <td class="non-border" style="padding-left: 13px;">Proyek Dadakan</td>
+            <td class="non-border" style="padding-left: 13px;">{{$mk->nama}}</td>
         </tr>
         <tr>
-            <td class="non-border" style="padding-left: 85px;">Sub-CPMK</td>
+            <td class="non-border" style="padding-left: 85px;">CPMK</td>
             <td class="non-border" style="padding-left: 40px;">:</td>
             <td class="non-border" style="padding-left: 13px;">
                 <ol>
-                    <li>......</li>
-                    <li>......</li>
+                    @foreach($cpmks as $cpmk)
+                    <li>{{$cpmk->judul}}</li>
+                    @endforeach
                 </ol>
             </td>
         </tr>
         <tr>
             <td class="non-border" style="padding-left: 85px;">Minggu ke-</td>
             <td class="non-border" style="padding-left: 40px;">:</td>
-            <td class="non-border" style="padding-left: 13px;">15</td>
+            <td class="non-border" style="padding-left: 13px;">{{$soal->minggu}}</td>
         </tr>
         <tr>
             <td class="non-border" style="padding-left: 85px;">Jenis Ujian</td>
             <td class="non-border" style="padding-left: 40px;">:</td>
-            <td class="non-border" style="padding-left: 13px;">Kuis ke-</td>
+            <td class="non-border" style="padding-left: 13px;">{{$soal->jenis}}</td>
         </tr>
         <tr>
             <td class="non-border" style="padding-left: 85px;">Dosen</td>
             <td class="non-border" style="padding-left: 40px;">:</td>
-            <td class="non-border" style="padding-left: 13px;">Sensei-san</td>
+            <td class="non-border" style="padding-left: 13px;">{{$soal->dosen}}</td>
         </tr>
     </table>
     <div style="padding-left:75px; margin-top:35px;">
         <table style="width:100%; text-align:left;">
             <tr>
-                <th>Deskripsi Kuis:</th>
+                <th>Deskripsi Kuis: </th>
             </tr>
             <tr>
                 <td style="padding-bottom:15px">
-                    <div class="desc-contain">Soal Sub-CPMK 1:</div>
+                    @foreach($cpmk_soals as $no=>$cs)
+                    @php
+                    $id_soals = DB::table('cpmk_soals')->where('id_cpmk', $cs->id_cpmk)->get();
+                    $soalforcpmks = collect();
+                    foreach($id_soals as $is) {
+                    $soalforcpmk = DB::table('soals')->where('id', $is->id_soal)->get();
+                    foreach ($soalforcpmk as $sfor) $soalforcpmks->push($sfor);
+                    }
+                    @endphp
+                    @if($no == 0)
+                    <div class="desc-contain">Soal CPMK {{$no+1}}:</div>
                     <ol class="start">
-                        <li>........</li>
-                        <li>........</li>
-                        <li>........</li>
+                        @foreach($soalforcpmks as $sfc)
+                        <li>{{$sfc->pertanyaan}}</li>
+                        @endforeach
                     </ol>
-                    <div class="desc-contain" style="margin-top: 15px">Soal Sub-CPMK 2,3:</div>
-                    <ol class="continue">
-                        <li>........</li>
-                        <li>........</li>
-                        <li>........</li>
+                    @else
+                    <div class="desc-contain" style="margin-top: 15px">Soal CPMK {{$no+1}}</div>
+                    <ol class="start">
+                        @foreach($soalforcpmks as $sfc)
+                        <li>{{$sfc->pertanyaan}}</li>
+                        @endforeach
                     </ol>
-                    <div class="desc-contain" style="margin-top:15px">Dst....</div>
+                    @endif
+                    @endforeach
                 </td>
             </tr>
         </table>
     </div>
 </main>
-
-
-<script>
-    window.print();
-</script>

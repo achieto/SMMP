@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Edit CPL Prodi</h4>
-            <form method="POST" action="{{$cpl->id}}" enctype="multipart/form-data">
+            <form method="POST" action="{{encrypt($cpl->id)}}" enctype="multipart/form-data">
                 @csrf
                 @method('put')
                 <div class="form-group row">

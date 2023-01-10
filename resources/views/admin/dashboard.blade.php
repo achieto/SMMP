@@ -106,7 +106,7 @@
     </div>
 </div>
 <div class="form-group">
-    <div class="d-grid justify-content-between w-100" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));gap: 1rem;">
+    <div class="d-grid justify-content-between w-100" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));gap: 1rem;">
         <a class="card card-sum mx-1 w-100 bg-primary text-white text-decoration-none" href="/admin/list-cpl">
             <div class="card-body pb-0">
                 <h4 class="card-title card-title-dash text-white mb-4">Jumlah CPL</h4>
