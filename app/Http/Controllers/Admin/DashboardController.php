@@ -9,6 +9,7 @@ use App\Models\CPL;
 use App\Models\Kurikulum;
 use App\Models\MK;
 use App\Models\RPS;
+use App\Models\Soal;
 
 class DashboardController extends Controller
 {
@@ -24,15 +25,18 @@ class DashboardController extends Controller
             $cpls = CPL::all();
             $mks = MK::all();
             $rpss = RPS::all();
+            $soals = Soal::all();
         } else {
             $cpls = CPL::where('kurikulum', $filter)->get();
             $mks = MK::where('kurikulum', $filter)->get();
             $rpss = RPS::where('kurikulum', $filter)->get();
+            $soals = Soal::where('kurikulum', $filter)->get();
         }
 
         $sum_mk = 0;
         $sum_cpl = 0;
         $sum_rps = 0;
+        $sum_soal = 0;
         foreach ($mks as $mk) {
             ++$sum_mk;
         }
@@ -42,11 +46,15 @@ class DashboardController extends Controller
         foreach ($rpss as $rps) {
             ++$sum_rps;
         }
+        foreach ($soals as $soal) {
+            ++$sum_rps;
+        }
 
         $data = ([
             'sum_mk' => $sum_mk,
             'sum_cpl' => $sum_cpl,
-            'sum_rps' => $sum_rps
+            'sum_rps' => $sum_rps,
+            'sum_soal' => $sum_soal
         ]);
 
         return response()->json($data);

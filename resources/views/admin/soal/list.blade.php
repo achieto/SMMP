@@ -36,8 +36,8 @@
                             <td>{{$soal->dosen}}</td>
                             <td class="py-4 d-flex">
                                 <a href="/admin/print-soal/{{encrypt($soal->id)}}" target="_blank" type="button" class="btn btn-info btn-icon-text p-2">
-                                    Print
-                                    <i class="ti-printer btn-icon-append"></i>
+                                    Download
+                                    <i class="ti-download btn-icon-append"></i>
                                 </a>
                             </td>
                         </tr>
