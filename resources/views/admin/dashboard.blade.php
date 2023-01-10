@@ -206,10 +206,12 @@
             document.getElementById('kur-mk').innerText = 'Kurikulum ' + $('#filter option:selected').val();
             document.getElementById('kur-cpl').innerText = 'Kurikulum ' + $('#filter option:selected').val();
             document.getElementById('kur-rps').innerText = 'Kurikulum ' + $('#filter option:selected').val();
+            document.getElementById('kur-soal').innerText = 'Kurikulum ' + $('#filter option:selected').val();
         } else {
             document.getElementById('kur-mk').innerText = 'Semua Kurikulum';
             document.getElementById('kur-cpl').innerText = 'Semua Kurikulum';
             document.getElementById('kur-rps').innerText = 'Semua Kurikulum';
+            document.getElementById('kur-soal').innerText = 'Semua Kurikulum';
         }
 
         showChart($('#filter option:selected').val());
@@ -228,6 +230,8 @@
                 $("#jumlah-cpl").append(data.sum_cpl);
                 $("#jumlah-rps").empty();
                 $("#jumlah-rps").append(data.sum_rps);
+                $("#jumlah-soal").empty();
+                $("#jumlah-soal").append(data.sum_rps);
             }
         });
     }
