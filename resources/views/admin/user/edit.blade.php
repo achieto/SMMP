@@ -7,7 +7,7 @@
             <p class="card-description">
                 ({{$user->name}})
             </p>
-            <form method="POST" action="{{$user->id}}" enctype="multipart/form-data">
+            <form method="POST" action="{{encrypt($user->id)}}" enctype="multipart/form-data">
                 @csrf
                 @method('put')
                 <div class="form-group">

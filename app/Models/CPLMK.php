@@ -11,6 +11,6 @@ class CPLMK extends Model
     protected $table = 'cplmks';
 
     protected $fillable = [
-        'kode_mk', 'id_cpl', 'nomor', 'judul', 'kurikulum'
+        'kode_mk', 'id_cpl'
     ];
 }

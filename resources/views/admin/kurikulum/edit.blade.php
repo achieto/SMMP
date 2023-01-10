@@ -33,7 +33,7 @@
                             <tr>
                                 <td>1</td>
                                 <td>
-                                    <form method="POST" action="/admin/edit-kurikulum/{{$kurikulum->id}}">
+                                    <form method="POST" action="/admin/edit-kurikulum/{{encrypt($kurikulum->tahun)}}">
                                         @csrf
                                         @method('put')
                                         <input id="name" type="text" class="form-control" name="tahun" style="width:50%" value="{{$kurikulum->tahun}}" autofocus autocomplete="off">
@@ -51,7 +51,7 @@
                                 </td>
                             </tr>
                             @foreach($kurikulums as $kur)
-                            @if($kur->id != $kurikulum->id)
+                            @if($kur->tahun != $kurikulum->tahun)
                             <tr>
                                 <td class="py-4">2</td>
                                 <td>{{$kur->tahun}}</td>

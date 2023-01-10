@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\UsersImport;
+use Illuminate\Support\Facades\Crypt;
 
 class UserController extends Controller
 {
@@ -82,7 +83,8 @@ class UserController extends Controller
 
     public function reset($id)
     {
-        $reset = User::findorfail($id);
+        $ids = Crypt::decrypt($id);
+        $reset = User::findOrFail($ids);
         $password = 'unilajaya';
         $reset->update(['password' => Hash::make($password)]);
         return redirect('/admin/list-user')->with('success', 'Password successfully reset!');    
@@ -90,13 +92,15 @@ class UserController extends Controller
 
     public function delete($id)
     {
-        User::where('id', $id)->delete();
+        $ids = Crypt::decrypt($id);
+        User::where('id', $ids)->delete();
         return redirect('/admin/list-user')->with('success', 'User successfully deleted!');    
     }
 
     public function edit($id)
     {
-        $user = User::findorfail($id);
+        $ids = Crypt::decrypt($id);
+        $user = User::findOrFail($ids);
         return view('admin.user.edit', compact('user'));
     }
 
@@ -109,7 +113,8 @@ class UserController extends Controller
             'otoritas' => ['required', 'string', 'max:255'],
         ]);
 
-        $user = User::findorfail($id);
+        $ids = Crypt::decrypt($id);
+        $user = User::findOrFail($ids);
         $img = $request->file('img');
         if ($img != null) {
             if ($user->img != 'User-Profile.png') {

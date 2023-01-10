@@ -22,9 +22,9 @@
                             <td class="py-4">{{$no+1}}</td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
-                            <td>{{$user->otoritas}}</td>   
+                            <td>{{$user->otoritas}}</td>
                             <td>
-                                <form action="reset-user/{{$user->id}}" method="post">
+                                <form action="reset-user/{{encrypt($user->id)}}" method="post">
                                     @csrf
                                     @method('put')
                                     <button type="submit" class="btn btn-warning btn-icon-text p-2" onclick="return confirm('Are you sure to reset password {{$user->name}}?')">
@@ -34,11 +34,11 @@
                                 </form>
                             </td>
                             <td class="d-flex py-4">
-                                <a type="button" href="edit-user/{{$user->id}}" class="btn btn-inverse-dark btn-icon-text p-2" style="margin-right:7px">
+                                <a type="button" href="edit-user/{{encrypt($user->id)}}" class="btn btn-inverse-dark btn-icon-text p-2" style="margin-right:7px">
                                     Edit
                                     <i class="ti-pencil btn-icon-append"></i>
                                 </a>
-                                <form action="delete-user/{{$user->id}}" method="post">
+                                <form action="delete-user/{{encrypt($user->id)}}" method="post">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger btn-icon-text p-2" onclick="return confirm('Are you sure to delete {{$user->name}}?')">

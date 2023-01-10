@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Edit Mata Kuliah</h4>
-            <form method="POST" action="{{$mk->id}}" enctype="multipart/form-data">
+            <form method="POST" action="{{encrypt($mk->id)}}" enctype="multipart/form-data">
                 @csrf
                 @method('put')
                 <div class="form-group">
@@ -45,7 +45,7 @@
                         @foreach($kurikulums as $kurikulum)
                         <option value="{{$kurikulum->tahun}}" {{ $mk->kurikulum == $kurikulum->tahun ? 'selected' : '' }}>{{$kurikulum->tahun}}</option>
                         @endforeach
-                    </select> 
+                    </select>
                     @error('kurikulum')
                     <div class="alert alert-danger">
                         {{ $message }}

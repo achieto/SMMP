@@ -44,11 +44,11 @@
                                 <td>{{$kurikulum->tahun}}</td>
                                 <td class="py-4">
                                     <div class="d-flex">
-                                        <a type="button" id="btn-edit" href="edit-kurikulum/{{$kurikulum->id}}" class="btn btn-warning btn-icon-text p-2" style="margin-right:7px">
+                                        <a type="button" id="btn-edit" href="edit-kurikulum/{{encrypt($kurikulum->tahun)}}" class="btn btn-warning btn-icon-text p-2" style="margin-right:7px">
                                             Edit
                                             <i class="ti-pencil btn-icon-append"></i>
                                         </a>
-                                        <form action="delete-kurikulum/{{$kurikulum->id}}" method="post">
+                                        <form action="delete-kurikulum/{{encrypt($kurikulum->tahun)}}" method="post">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-danger btn-icon-text p-2" onclick="return confirm('Are you sure to delete {{$kurikulum->tahun}}?')">
