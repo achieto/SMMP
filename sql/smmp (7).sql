@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 10 Jan 2023 pada 16.33
+-- Waktu pembuatan: 19 Jan 2023 pada 17.42
 -- Versi server: 10.4.18-MariaDB
 -- Versi PHP: 7.3.27
 
@@ -279,6 +279,8 @@ CREATE TABLE `soals` (
   `dosen` varchar(255) NOT NULL,
   `kurikulum` int(11) NOT NULL,
   `pertanyaan` text NOT NULL,
+  `status` enum('Valid','Tolak') DEFAULT NULL,
+  `komentar` text DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -287,10 +289,10 @@ CREATE TABLE `soals` (
 -- Dumping data untuk tabel `soals`
 --
 
-INSERT INTO `soals` (`id`, `id_mk`, `prodi`, `minggu`, `jenis`, `dosen`, `kurikulum`, `pertanyaan`, `created_at`, `updated_at`) VALUES
-(5, 9, 'S1 - Ilmu Komputer', 1, 'Kuis ke-1', 'Anggie Tamara', 2020, 'hehe?', '2022-12-26 11:01:48', '2022-12-26 11:01:48'),
-(6, 9, 'S1 - Ilmu Komputer', 1, 'Kuis ke-1', 'Anggie Tamara', 2020, 'haha?', '2022-12-26 11:52:04', '2022-12-26 11:52:04'),
-(7, 9, 'S1 - Ilmu Komputer', 16, 'UAS', 'Anggie Tamara', 2020, 'hihi?', '2022-12-26 12:05:49', '2022-12-26 12:05:49');
+INSERT INTO `soals` (`id`, `id_mk`, `prodi`, `minggu`, `jenis`, `dosen`, `kurikulum`, `pertanyaan`, `status`, `komentar`, `created_at`, `updated_at`) VALUES
+(5, 9, 'S1 - Ilmu Komputer', 1, 'Kuis ke-1', 'Anggie Tamara', 2020, 'hehe?', 'Valid', NULL, '2022-12-26 11:01:48', '2023-01-19 23:39:26'),
+(6, 9, 'S1 - Ilmu Komputer', 1, 'Kuis ke-1', 'Anggie Tamara', 2020, 'haha?', 'Valid', NULL, '2022-12-26 11:52:04', '2023-01-19 23:39:50'),
+(7, 9, 'S1 - Ilmu Komputer', 16, 'UAS', 'Anggie Tamara', 2020, 'hihi?', 'Tolak', 'soal terlalu sedikit', '2022-12-26 12:05:49', '2023-01-19 23:38:55');
 
 -- --------------------------------------------------------
 

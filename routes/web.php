@@ -13,6 +13,7 @@ use App\Http\Controllers\Dosen\CPMKcontroller as CPMKdosen;
 use App\Http\Controllers\Dosen\CPLMKcontroller as CPLMKdosen;
 use App\Http\Controllers\Dosen\DashboardController as DashboardDosen;
 use App\Http\Controllers\Dosen\ActivitiesController;
+use App\Http\Controllers\PenjaminMutu\SoalController as SoalPM;
 use App\Http\Controllers\ProfileController;
 /*
 |--------------------------------------------------------------------------
@@ -100,6 +101,10 @@ Route::middleware(['auth'])->group(
                 Route::get('dashboard', function () {
                     return view('penjamin-mutu.dashboard');
                 })->name('home');
+                Route::get('list-soal', [SoalPM::class, 'list']);
+                Route::post('validasi-soal/{id}', [SoalPM::class, 'validasi']);
+                Route::post('tolak-soal/{id}', [SoalPM::class, 'tolak_validasi']);
+                Route::get('print-soal/{id}', [SoalPM::class, 'print']);
             }
         );
     }
