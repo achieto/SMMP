@@ -11,6 +11,6 @@ class Soal extends Model
     protected $table = 'soals';
 
     protected $fillable = [
-        'id_mk', 'minggu', 'jenis', 'dosen', 'kurikulum', 'pertanyaan', 
+        'id_mk', 'minggu', 'jenis', 'dosen', 'kurikulum', 'pertanyaan', 'status', 'komentar'
     ];
 }
