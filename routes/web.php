@@ -40,6 +40,11 @@ Route::middleware(['auth'])->group(
                 Route::get('dashboard', [DashboardDosen::class, 'list'] )->name('dashboard');
                 Route::get('dashboard-chart', [DashboardDosen::class, 'chart'])->name('dosen-chart');
                 Route::get('activities/add-activity', [ActivitiesController::class, 'Add'])->name('activities-add');
+                Route::post('activities/add-activity', [ActivitiesController::class, 'Store'])->name('activities-store');
+                Route::get('activities/list-activity', [ActivitiesController::class, 'List'])->name('activities-list');
+                Route::get('activities/edit-activity/{id}', [ActivitiesController::class, 'Edit'])->name('activity-edit');
+                Route::put('activities/edit-activity/{id}', [ActivitiesController::class, 'Update'])->name('activity-update');
+                Route::delete('activities/delete-activity/{id}', [ActivitiesController::class, 'Delete'])->name('activity-delete');
                 Route::get('cplmk/add-cplmk', [CPLMKdosen::class, 'Add'])->name('cplmk-add');
                 Route::post('cplmk/add-cplmk', [CPLMKdosen::class, 'Store'])->name('cplmk-store');
                 Route::get('cplmk/list-cplmk', [CPLMKdosen::class, 'List'])->name('cplmk-list');

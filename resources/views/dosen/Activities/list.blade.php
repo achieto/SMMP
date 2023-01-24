@@ -10,23 +10,39 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Nama MK</th>
-                            <th>Rincian CPMK</th>
+                            <th>nama MK</th>
+                            <th>nomor RPS</th>
+                            <th>Minggu</th>
+                            <th>Sub CPMK</th>
+                            <th>Indikator</th>
+                            <th>Kriteria</th>
+                            <th>Metode Luring</th>
+                            <th>Metode Daring</th>
+                            <th>Materi</th>
+                            <th>Bobot</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($cpmks as $no=>$cpmk)
+                        @foreach($activities as $no=>$activity)
                         <tr>
                             <td class="py-4">{{$no+1}}</td>
-                            <td>{{$cpmk->mk}}</td>
-                            <td>{{$cpmk->judul}}</td>
+                            <td>{{$activity->rps->mk->nama}}</td>
+                            <td>{{$activity->rps->nomor}}</td>
+                            <td>{{$activity->minggu}}</td>
+                            <td>{{$activity->sub_cpmk}}</td>
+                            <td>{{$activity->indikator}}</td>
+                            <td>{{$activity->kriteria}}</td>
+                            <td>{{$activity->metode_luring}}</td>
+                            <td>{{$activity->metode_daring}}</td>
+                            <td>{{$activity->materi}}</td>
+                            <td>{{$activity->bobot}}</td>
                             <td class="py-4 d-flex">
-                                <a href="{{route('cpmk-edit',['id'=>$cpmk->id])}}" type="button" class="btn btn-warning me-2 btn-icon-text p-2">
+                                <a href="{{route('activity-edit',['id'=>$activity->id])}}" type="button" class="btn btn-warning me-2 btn-icon-text p-2">
                                     Edit
                                     <i class="ti-pencil btn-icon-append"></i>
                                 </a>
-                                <form action="{{route('cpmk-delete',['id'=>$cpmk->id])}}" method="post">
+                                <form action="{{route('activity-delete',['id'=>$activity->id])}}" method="post">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger btn-icon-text p-2 me-2" onclick="return confirm('Are you sure to delete this ?')">
@@ -34,7 +50,6 @@
                                         <i class="ti-trash btn-icon-append"></i>
                                     </button>
                                 </form>
-
                             </td>
                         </tr>
                         @endforeach

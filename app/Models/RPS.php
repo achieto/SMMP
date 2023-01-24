@@ -13,4 +13,9 @@ class RPS extends Model
     protected $fillable = [
         'id_mk','nomor','prodi', 'dosen','pengembang','koordinator','kaprodi','kurikulum', 'semester', 'materi_mk', 'pustaka_utama', 'pustaka_pendukung'
     ];
+
+    public function mk()
+    {
+        return $this->belongsTo(MK::class, 'id_mk');
+    }
 }

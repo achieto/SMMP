@@ -11,6 +11,8 @@ use App\Models\RPS;
 use App\Models\Activity;
 use App\Models\CPMK;
 use App\Models\CPLMK;
+use Barryvdh\DomPDF\PDF;
+use Illuminate\Support\Facades\Crypt;
 
 class RPScontroller extends Controller
 {
@@ -29,19 +31,33 @@ class RPScontroller extends Controller
     }
 
 
-    public function Print($id)
+    public function print($id)
     {
-        $rps = RPS::findOrFail($id);
+        $ids = Crypt::decrypt($id);
+        $rps = RPS::findOrFail($ids);
         $mks = MK::all();
         $activities = Activity::all();
-        $cplmks = CPLMK::all();
+        $cplmks = collect();
+        $pengetahuans = collect();
+        $keterampilans = collect();
+        foreach ($mks as $mk) {
+            if ($rps->id_mk == $mk->id) {
+                $cplmkss = CPLMK::where('kode_mk', $mk->kode)->get();
+            }
+        }
+        foreach ($cplmkss as $c) $cplmks->push($c);
+        foreach ($cplmks as $cplmk) {
+            $pengetahuan = CPL::where('aspek', 'Pengetahuan')->where('id', $cplmk->id_cpl)->get();
+            $keterampilan = CPL::where('aspek', 'Keterampilan')->where('id', $cplmk->id_cpl)->get();
+            foreach ($keterampilan as $k) $keterampilans->push($k);
+            foreach ($pengetahuan as $p) $pengetahuans->push($p);
+        }
         $cpls = CPL::all();
         $cpmks = CPMK::all();
-        $sikaps = CPL::where('aspek', 'Sikap')->get();
-        $umums = CPL::where('aspek', 'Umum')->get();
-        $pengetahuans = CPL::where('aspek', 'Pengetahuan')->get();
-        $keterampilans = CPL::where('aspek', 'Keterampilan')->get();
-        return view('dosen.rps.print', compact(
+        $sikaps = CPL::where('aspek', 'Sikap')->where('kurikulum', $rps->kurikulum)->get();
+        $umums = CPL::where('aspek', 'Umum')->where('kurikulum', $rps->kurikulum)->get();
+
+        $data = compact(
             'rps',
             'activities',
             'mks',
@@ -52,7 +68,11 @@ class RPScontroller extends Controller
             'umums',
             'pengetahuans',
             'keterampilans'
-        ));
+        );
+
+        $pdf = PDF::loadView('admin.rps.print', $data)->setOrientation('landscape');
+        $pdf->setOption('enable-local-file-access', true);
+        return $pdf->stream('rps.pdf');
     }
     public function Store(Request $request)
     {

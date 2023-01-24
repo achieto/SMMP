@@ -54,7 +54,7 @@
             <div class="collapse" id="activities">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"><a class="nav-link" href="{{route('activities-add')}}">Tambah Activities Baru</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Lihat Daftar Activities</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('activities-list')}}">Lihat Daftar Activities</a></li>
                 </ul>
             </div>
         </li>

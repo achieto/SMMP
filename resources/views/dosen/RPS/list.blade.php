@@ -46,7 +46,7 @@
                                         <i class="ti-trash btn-icon"></i>
                                     </button>
                                 </form>
-                                <a href="/dosen/rps/print-rps/{{$rps->id}}" type="button" class="btn btn-info btn-icon-text p-2">
+                                <a href="/dosen/rps/print-rps/{{encrypt($rps->id)}}" type="button" class="btn btn-info btn-icon-text p-2">
                                     <i class="ti-printer btn-icon"></i>
                                 </a>
                             </td>
