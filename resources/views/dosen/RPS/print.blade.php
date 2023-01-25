@@ -1,24 +1,7 @@
 <head>
     <meta charset="UTF-8">
     <title>RPS Print</title>
-    <style type="text/css" media="print">
-        @page {
-            size: landscape;
-        }
-    </style>
     <style>
-        @media print {
-            .blue {
-                background-color: rgb(221, 235, 247) !important;
-                -webkit-print-color-adjust: exact;
-            }
-
-            .grey {
-                background-color: rgb(234, 234, 234) !important;
-                -webkit-print-color-adjust: exact;
-            }
-        }
-
         table,
         th,
         td {
@@ -95,16 +78,15 @@
         }
 
         .d-flex {
+            display: -webkit-box;
             display: flex;
             width: 100%
         }
     </style>
 </head>
-
-
 <table>
     <tr class="title blue">
-        <th colspan="2" rowspan="1" style="width:12%" class="title-sub"><img style="width:1.91cm" src="{{asset('/assets/img/logo_unila.png')}}" alt=""></td>
+        <th colspan="2" rowspan="1" style="width:12%" class="title-sub"><img style="width:1.91cm" src="{{public_path('/assets/img/logo_unila.png')}}" alt=""></td>
         <th colspan="7" rowspan="1" class="title-sub" style="width:76%;font-size:16pt;">
             <div class="row">
                 <div class="col">UNIVERSITAS LAMPUNG</div>
@@ -253,7 +235,7 @@
         <tr style="border: none;">
             <td class="cpl-contain" style="padding: 0; border-right:none;border-left:none">
                 <div class="d-flex"">
-                            <div style=" width:10%; height:50px;border-right:1px black solid">
+                    <div style=" width:10%; height:50px;border-right:1px black solid">
                     <div class="sub-contain" style="padding-right:8px;">{{$umum->kode}}</div>
                 </div>
                 <div class="sub-contain" style="width:90%;height:50px;">
@@ -263,7 +245,7 @@
         </tr>
         @endforeach
         @if($noU < $noS) <?php for ($i = 0; $i < $noS - $noU; $i++) { ?> <tr style="border: none;">
-            <td class="cpl-contain" style="padding: 0; border-right:none; border-left:none">
+            <td class="cpl-contain" style="padding: 0; border-right:none;border-left:none">
                 <div class="d-flex"">
                             <div style=" width:10%; height:50px;border-right:1px black solid">
                     <div class="sub-contain" style="padding-right:8px;"></div>
@@ -287,7 +269,7 @@
     <td class="title-cpl" colspan="4">KETERAMPILAN KHUSUS</td>
     @endif
 </tr>
-<tr class="cpl-contain">
+<tr class="cpl-contain break">
     <td style="padding:0; border-top:none; border-left:none; border-bottom:none" colspan='4'>
         <table style="border:none; width:100%">
             @foreach($pengetahuans as $pengetahuan)
@@ -321,7 +303,7 @@
     <table style="border:none; width:100%">
         @foreach($keterampilans as $keterampilan)
         <tr style="border: none;">
-            <td class="cpl-contain" style="padding: 0; border-right: none;border-left:none">
+            <td class="cpl-contain" style="padding: 0; border-right:none; border-left:none">
                 <div class="d-flex"">
                             <div style=" width:10%; height:50px;border-right:1px black solid">
                     <div class="sub-contain" style="padding-right:8px;">{{$keterampilan->kode}}</div>
@@ -333,12 +315,12 @@
         </tr>
         @endforeach
         @if($noK < $noP) <?php for ($i = 0; $i < $noP - $noK; $i++) { ?> <tr style="border: none;">
-            <td class="cpl-contain" style="padding: 0; border-right:none;border-left:none">
+            <td class="cpl-contain" style="padding: 0; border-right:none; border-left:none">
                 <div class="d-flex"">
                             <div style=" width:10%; height:50px;border-right:1px black solid">
-                    <div class="sub-contain " style="padding-right:8px;"></div>
+                    <div class="sub-contain" style="padding-right:8px;"></div>
                 </div>
-                <div class="sub-contain " style="width:90%;height:50px;">
+                <div class="sub-contain" style="width:90%;height:50px;">
             </td>
             </tr>
         <?php } ?>
@@ -610,6 +592,3 @@
             </li>
         </ol>
     </div>
-    <script>
-        window.print();
-    </script>

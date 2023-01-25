@@ -13,4 +13,9 @@ class Activity extends Model
     protected $fillable = [
         'minggu', 'sub_cpmk', 'indikator', 'kriteria', 'metode_luring', 'metode_daring', 'materi', 'bobot', 'id_rps'
     ];
+
+    public function rps()
+    {
+        return $this->belongsTo(RPS::class, 'id_rps');
+    }
 }
