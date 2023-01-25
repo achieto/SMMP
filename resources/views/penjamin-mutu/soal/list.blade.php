@@ -1,5 +1,11 @@
 @extends('penjamin-mutu.template')
 @section('content')
+<style>
+    .btn-list {
+        width: 35px;
+        height: 35px;
+    }
+</style>
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
@@ -34,8 +40,9 @@
                             <td>{{$soal->minggu}}</td>
                             <td>{{$soal->jenis}}</td>
                             <td>{{$soal->dosen}}</td>
+                            @if($soal->status == 'Belum')
                             <td class="py-4 d-flex">
-                                <button type="button" class="btn btn-info btn-icon-text p-2 me-2" data-bs-toggle="modal" data-bs-target="#exampleModal{{$soal->id}}">
+                                <button type="button" class="btn btn-list btn-info btn-icon-text p-2 me-2" data-bs-toggle="modal" data-bs-target="#exampleModal{{$soal->id}}">
                                     <i class="ti-eye btn-icon"></i>
                                 </button>
                                 @foreach($soals as $soal)
@@ -163,11 +170,11 @@
                                 @endforeach
                                 <form action="/penjamin-mutu/validasi-soal/{{encrypt($soal->id)}}" method="post">
                                     @csrf
-                                    <button type="submit" class="btn btn-success me-2 btn-icon-text p-2">
+                                    <button type="submit" class="btn btn-list btn-success me-2 btn-icon-text p-2">
                                         <i class="ti-check btn-icon"></i>
                                     </button>
                                 </form>
-                                <button class="btn btn-danger btn-icon-text p-2" data-bs-toggle="modal" data-bs-target="#example1Modal{{$soal->id}}">
+                                <button class="btn btn-list btn-danger btn-icon-text p-2" data-bs-toggle="modal" data-bs-target="#example1Modal{{$soal->id}}">
                                     <i class="ti-close btn-icon"></i>
                                 </button>
                                 @foreach($soals as $soal)
@@ -185,7 +192,7 @@
                                                     <textarea required class="form-control" name="komentar" id="message-text" style="height: 100px;"></textarea>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                    <button type="submit" style="width:95.98px; height:44px" class="btn btn-primary">Submit</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -194,6 +201,11 @@
                                 @endforeach
                             </td>
                         </tr>
+                        @elseif($soal->status == 'Valid')
+                        <td>Telah tervalidasi</td>
+                        @else
+                        <td>Telah ditolak, menunggu perbaikan</td>
+                        @endif
                         @endforeach
                     </tbody>
                 </table>

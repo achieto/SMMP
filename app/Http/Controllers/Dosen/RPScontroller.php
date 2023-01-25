@@ -66,9 +66,9 @@ class RPScontroller extends Controller
             'kurikulum' => ['required', 'integer', 'digits:4'],
             'pengembang' => 'required',
             'koordinator' => 'required',
-            'pustaka_pendukung' => ['nullable', 'string', 'max:255'],
-            'materi_mk' => ['required', 'string', 'max:255'],
-            'pustaka_utama' => ['required', 'string', 'regex:/^[a-zA-Z0-9., ()+]+$/', 'max:255'],
+            'pustaka_pendukung' => ['nullable'],
+            'materi_mk' => ['required'],
+            'pustaka_utama' => ['required'],
         ]);
         if ($request->pustaka_pendukung == null) {
             $p = 'Tidak ada';

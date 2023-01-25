@@ -148,7 +148,7 @@ class UserController extends Controller
             Excel::import(new UsersImport, public_path('../public/assets/excel/' . $excelPath));
             return redirect('/admin/list-user')->with('success', 'User successfully added!');    
         } catch (\Exception $e) {
-            return redirect('/admin/add-user')->with('error', "Terjadi kesalahan, silahkan periksa kembali data dalam excel anda!");
+            return redirect('/admin/add-user')->with('error', "Terjadi kesalahan, silahkan periksa kembali data dalam excel anda!, ". $e);
         }
     }
 }
