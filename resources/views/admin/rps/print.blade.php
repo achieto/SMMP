@@ -383,9 +383,14 @@
     @foreach($activities as $activity)
     @if($activity->id_rps == $rps->id)
     @php
-    $minggu = substr($activity->minggu, 0, 1);
+    $minggu1 = substr($activity->minggu, 0, 1);
+    try {
+    $minggu2 = substr($actvity->minggu, 0, 2);
+    } catch(Exception $e){
+    $minggu2 = 'salah';
+    }
     @endphp
-    @if((int)$minggu < 8) <tr class="contain">
+    @if((int)$minggu1 < 8 && $minggu2!='salah') <tr class="contain">
         <td class="title-cpmk cpmk-contain" colspan="1">{{$activity->minggu}}</td>
         <td class="cpmk-contain sub-contain" colspan="2">{{$activity->sub_cpmk}}</td>
         <td class="cpmk-contain" colspan="1"><?= $activity->indikator ?></td>
@@ -404,7 +409,7 @@
         </tr>
         @foreach($activities as $activity)
         @if($activity->id_rps == $rps->id)
-        @if((int)$minggu > 8) <tr class="contain">
+        @if((int)$minggu1 > 8 || (int)$minggu2 > 8) <tr class="contain">
             <td class="title-cpmk cpmk-contain" colspan="1">{{$activity->minggu}}</td>
             <td class="cpmk-contain sub-contain" colspan="2">{{$activity->sub_cpmk}}</td>
             <td class="cpmk-contain" colspan="1"><?= $activity->indikator ?></td>
