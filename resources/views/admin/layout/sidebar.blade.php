@@ -66,21 +66,6 @@
                 </ul>
             </div>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#cplmk" aria-expanded="false" aria-controls="cplmk">
-                <i class="menu-icon mdi mdi-playlist-check"></i>
-                <span class="menu-title">CPLMK Pages</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="cplmk">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="/admin/add-cplmk"> Add CPLMK </a></li>
-                </ul>
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="/admin/list-cplmk"> List CPLMK </a></li>
-                </ul>
-            </div>
-        </li>
         <li class="nav-item nav-category">RPS</li>
         <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#rps" aria-expanded="false" aria-controls="rps">
@@ -90,25 +75,7 @@
             </a>
             <div class="collapse" id="rps">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="/admin/add-rps"> Add RPS </a></li>
-                </ul>
-                <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="/admin/list-rps"> List RPS </a></li>
-                </ul>
-            </div>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#cpmk" aria-expanded="false" aria-controls="cpmk">
-                <i class="menu-icon mdi mdi-target"></i>
-                <span class="menu-title">CPMK Pages</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="cpmk">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="/admin/add-cpmk"> Add CPMK </a></li>
-                </ul>
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="/admin/list-cpmk"> List CPMK </a></li>
                 </ul>
             </div>
         </li>

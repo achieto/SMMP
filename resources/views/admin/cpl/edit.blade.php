@@ -58,7 +58,7 @@
                             <label>Kode <span class="text-danger">*</span></label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <span id="codes" class="input-group-text">CPL-</span>
+                                    <span id="codes" class="input-group-text"></span>
                                 </div>
                                 <input type="text" class="form-control" name="kode" placeholder="Kode" value="{{$cpl->nomor}}" autocomplete="off">
                             </div>
@@ -85,7 +85,7 @@
     </div>
 </div>
 <script src="{{asset('/node_modules/jquery/dist/jquery.min.js')}}"></script>
-<!-- <script>
+<script>
     $(document).ready(function() {
         if ($("input[name='aspek']:checked").val() == 'Sikap')
             $("#codes").text("S");
@@ -106,5 +106,5 @@
                 $("#codes").text("KK");
         });
     });
-</script> -->
+</script>
 @endsection

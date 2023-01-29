@@ -31,7 +31,7 @@
                             <td>{{$activity->rps->nomor}}</td>
                             <td>{{$activity->minggu}}</td>
                             <td>{{$activity->sub_cpmk}}</td>
-                            <td>{{$activity->indikator}}</td>
+                            <td><?= $activity->indikator ?></td>
                             <td>{{$activity->kriteria}}</td>
                             <td>{{$activity->metode_luring}}</td>
                             <td>{{$activity->metode_daring}}</td>

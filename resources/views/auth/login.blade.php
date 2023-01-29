@@ -41,7 +41,7 @@
                             @csrf
                             <!-- Email Address -->
                             <div class="form-group">
-                                <input id="email" class="form-control form-control-lg" placeholder="Email" type="email" name="email" :value="old('email')" autocomplete="username" required autofocus />
+                                <input id="email" class="form-control form-control-lg" placeholder="Email" type="email" name="email" :value="old('email')" required autofocus />
                             </div>
                             <!-- Password -->
                             <div class="form-group">
@@ -69,6 +69,8 @@
     <!-- End plugin js for this page -->
     <!-- inject:js -->
     <script src="{{ asset('/assets/template/js/off-canvas.js')}}"></script>
+    <script src="{{ asset('/assets/js/hoverable-collapse.js')}}"></script>
+    <script src="{{ asset('/assets/js/template.js')}}"></script>
     <script src="{{ asset('/assets/template/js/settings.js')}}"></script>
     <script src="{{ asset('/assets/template/js/todolist.js')}}"></script>
     <!-- endinject -->

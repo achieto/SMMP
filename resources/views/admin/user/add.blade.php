@@ -13,6 +13,8 @@
                         @csrf
                         <input accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"" style=" display:none" type="file" name="excel" id="excel">
                     </form>
+                    <br>
+                    <div style="font-size:11px; margin-top:-8%; "><i class="mdi mdi-information-outline"></i> Note: import excel min. 2 user</div>
                 </div>
             </div>
             <p class="card-description">

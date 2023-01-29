@@ -17,17 +17,16 @@ class SoalController extends Controller
     public function list()
     {
         $mks = MK::all();
-        $soal = collect();
+        $soals = collect();
         foreach ($mks as $mk) {
-            $kuis1s = Soal::where('id_mk', $mk->id)->where('jenis', 'Kuis ke-1')->skip(0)->take(1)->get();
-            $kuis2s = Soal::where('id_mk', $mk->id)->where('jenis', 'Kuis ke-2')->skip(0)->take(1)->get();
-            $utss = Soal::where('id_mk', $mk->id)->where('jenis', 'UTS')->skip(0)->take(1)->get();
-            $uass = Soal::where('id_mk', $mk->id)->where('jenis', 'UAS')->skip(0)->take(1)->get();
-            foreach ($kuis1s as $k1) $soal->push($k1);
-            foreach ($kuis2s as $k2) $soal->push($k2);
-            foreach ($utss as $ut) $soal->push($ut);
-            foreach ($uass as $ua) $soal->push($ua);
-            $soals = $soal->sortBy('status');
+            $kuis1s = Soal::where('status', null)->where('id_mk', $mk->id)->where('jenis', 'Kuis ke-1')->skip(0)->take(1)->get();
+            $kuis2s = Soal::where('status', null)->where('id_mk', $mk->id)->where('jenis', 'Kuis ke-2')->skip(0)->take(1)->get();
+            $utss = Soal::where('status', null)->where('id_mk', $mk->id)->where('jenis', 'UTS')->skip(0)->take(1)->get();
+            $uass = Soal::where('status', null)->where('id_mk', $mk->id)->where('jenis', 'UAS')->skip(0)->take(1)->get();
+            foreach ($kuis1s as $k1) $soals->push($k1);
+            foreach ($kuis2s as $k2) $soals->push($k2);
+            foreach ($utss as $ut) $soals->push($ut);
+            foreach ($uass as $ua) $soals->push($ua);
         }
         return view('penjamin-mutu.soal.list', ['soals' => $soals], compact('soals', 'mks'));
     }
