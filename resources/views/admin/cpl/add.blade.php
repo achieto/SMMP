@@ -27,7 +27,7 @@
                                 <label>Kode <span class="text-danger">*</span></label>
                                 <div class="input-group mb-2">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text">S</span>
+                                        <span class="input-group-text">CPL-</span>
                                     </div>
                                     <input type="text" class="form-control" name="kode[0]" placeholder="Nomor" autocomplete="off">
                                 </div>
@@ -82,7 +82,7 @@
                                         <label>Kode <span class="text-danger">*</span></label>
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text">S</span>
+                                                <span class="input-group-text">CPL-</span>
                                             </div>
                                             <input type="text" class="form-control" name="kode[<?= $i ?>]" value="{{old('kode.'.$i)}}" placeholder="Nomor" autocomplete="off">
                                         </div>
@@ -136,7 +136,7 @@
                                         <label>Kode <span class="text-danger">*</span></label>
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text">S</span>
+                                                <span class="input-group-text">CPL-</span>
                                             </div>
                                             <input type="text" class="form-control" name="kode[<?= $i ?>]" value="{{old('kode.'.$i)}}" placeholder="Nomor" autocomplete="off">
                                         </div>
@@ -210,7 +210,7 @@
                                 <label>Kode <span class="text-danger">*</span></label>
                                 <div class="input-group mb-2">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text">KU</span>
+                                        <span class="input-group-text">CPL-</span>
                                     </div>
                                     <input type="text" class="form-control" name="kode[0]" placeholder="Nomor" autocomplete="off">
                                 </div>
@@ -265,7 +265,7 @@
                                         <label>Kode <span class="text-danger">*</span></label>
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text">KU</span>
+                                                <span class="input-group-text">CPL-</span>
                                             </div>
                                             <input type="text" class="form-control" name="kode[<?= $i ?>]" value="{{old('kode.'.$i)}}" placeholder="Nomor" autocomplete="off">
                                         </div>
@@ -319,7 +319,7 @@
                                         <label>Kode <span class="text-danger">*</span></label>
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text">KU</span>
+                                                <span class="input-group-text">CPL-</span>
                                             </div>
                                             <input type="text" class="form-control" name="kode[<?= $i ?>]" value="{{old('kode.'.$i)}}" placeholder="Nomor" autocomplete="off">
                                         </div>
@@ -393,7 +393,7 @@
                                 <label>Kode <span class="text-danger">*</span></label>
                                 <div class="input-group mb-2">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text">P</span>
+                                        <span class="input-group-text">CPL-</span>
                                     </div>
                                     <input type="text" class="form-control" name="kode[0]" placeholder="Nomor" autocomplete="off">
                                 </div>
@@ -448,7 +448,7 @@
                                         <label>Kode <span class="text-danger">*</span></label>
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text">P</span>
+                                                <span class="input-group-text">CPL-</span>
                                             </div>
                                             <input type="text" class="form-control" name="kode[<?= $i ?>]" value="{{old('kode.'.$i)}}" placeholder="Nomor" autocomplete="off">
                                         </div>
@@ -502,7 +502,7 @@
                                         <label>Kode <span class="text-danger">*</span></label>
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text">P</span>
+                                                <span class="input-group-text">CPL-</span>
                                             </div>
                                             <input type="text" class="form-control" name="kode[<?= $i ?>]" value="{{old('kode.'.$i)}}" placeholder="Nomor" autocomplete="off">
                                         </div>
@@ -558,7 +558,7 @@
             <form method="POST" action="add-cpl" enctype="multipart/form-data">
                 @csrf
                 @if(session()->getOldInput() == null)
-                <div id="dynamicAddRemoveSik">
+                <div id="dynamicAddRemoveKet">
                     <div class="form-group row">
                         <div class="col-2">
                             <div class="form-group">
@@ -576,7 +576,7 @@
                                 <label>Kode <span class="text-danger">*</span></label>
                                 <div class="input-group mb-2">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text">KK</span>
+                                        <span class="input-group-text">CPL</span>
                                     </div>
                                     <input type="text" class="form-control" name="kode[0]" placeholder="Nomor" autocomplete="off">
                                 </div>
@@ -632,7 +632,7 @@
                                         <label>Kode <span class="text-danger">*</span></label>
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text">S</span>
+                                                <span class="input-group-text">CPL-</span>
                                             </div>
                                             <input type="text" class="form-control" name="kode[<?= $i ?>]" value="{{old('kode.'.$i)}}" placeholder="Nomor" autocomplete="off">
                                         </div>
@@ -686,7 +686,7 @@
                                         <label>Kode <span class="text-danger">*</span></label>
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text">S</span>
+                                                <span class="input-group-text">CPL-</span>
                                             </div>
                                             <input type="text" class="form-control" name="kode[<?= $i ?>]" value="{{old('kode.'.$i)}}" placeholder="Nomor" autocomplete="off">
                                         </div>
@@ -761,7 +761,7 @@
     $("#dynamic-ar-sik").click(function() {
         ++i;
         $("#dynamicAddRemoveSik").append('<div class="form-group row clone"><div class="col-2"><div class="form-group"><label>Kurikulum <span class="text-danger">*</span></label><select class="form-control" name="kurikulum[' + i +
-            ']"><option selected = "true" value = "" disabled selected> Select... </option> @foreach($kurikulums as $kurikulum) <option value="{{$kurikulum->tahun}}">{{$kurikulum->tahun}}</option>@endforeach</select></div></div><div class="col-3"><div class="form-group"><label>Kode <span class="text-danger">*</span></label><div class="input-group mb-2"><div class="input-group-prepend"><span class="input-group-text">S</span></div><input type="text" class="form-control" name="kode[' + i +
+            ']"><option selected = "true" value = "" disabled selected> Select... </option> @foreach($kurikulums as $kurikulum) <option value="{{$kurikulum->tahun}}">{{$kurikulum->tahun}}</option>@endforeach</select></div></div><div class="col-3"><div class="form-group"><label>Kode <span class="text-danger">*</span></label><div class="input-group mb-2"><div class="input-group-prepend"><span class="input-group-text">CPL-</span></div><input type="text" class="form-control" name="kode[' + i +
             ']" placeholder="Nomor" autocomplete="off"></div></div></div><div class="col-5"><div class="form-group"><label>Judul <span class="text-danger">*</span></label><input type="text" class="form-control"name="judul[' + i +
             ']" placeholder="Judul" autocomplete="off"></div></div><input hidden type="text" name="aspek" value="Sikap">'
         );
@@ -771,7 +771,7 @@
     $("#dynamic-ar-umm").click(function() {
         ++i;
         $("#dynamicAddRemoveUmm").append('<div class="form-group row clone"><div class="col-2"><div class="form-group"><label>Kurikulum <span class="text-danger">*</span></label><select class="form-control" name="kurikulum[' + i +
-            ']"><option selected = "true" value = "" disabled selected> Select... </option> @foreach($kurikulums as $kurikulum) <option value = "{{$kurikulum->tahun}}">{{$kurikulum->tahun}}</option>@endforeach</select></div></div><div class="col-3"><div class="form-group"><label>Kode <span class="text-danger">*</span></label><div class="input-group mb-2"><div class="input-group-prepend"><span class="input-group-text">KU</span></div><input type="text" class="form-control" name="kode[' + i +
+            ']"><option selected = "true" value = "" disabled selected> Select... </option> @foreach($kurikulums as $kurikulum) <option value = "{{$kurikulum->tahun}}">{{$kurikulum->tahun}}</option>@endforeach</select></div></div><div class="col-3"><div class="form-group"><label>Kode <span class="text-danger">*</span></label><div class="input-group mb-2"><div class="input-group-prepend"><span class="input-group-text">CPL-</span></div><input type="text" class="form-control" name="kode[' + i +
             ']" placeholder="Nomor" autocomplete="off"></div></div></div><div class="col-5"><div class="form-group"><label>Judul <span class="text-danger">*</span></label><input type="text" class="form-control"name="judul[' + i +
             ']" placeholder="Judul" autocomplete="off"></div></div><input hidden type="text" name="aspek" value="Umum">'
         );
@@ -780,7 +780,7 @@
     $("#dynamic-ar-peng").click(function() {
         ++i;
         $("#dynamicAddRemovePeng").append('<div class="form-group row clone"><div class="col-2"><div class="form-group"><label>Kurikulum <span class="text-danger">*</span></label><select class="form-control" name="kurikulum[' + i +
-            ']"><option selected = "true" value = "" disabled selected> Select... </option> @foreach($kurikulums as $kurikulum) <option value = "{{$kurikulum->tahun}}">{{$kurikulum->tahun}}</option>@endforeach</select></div></div><div class="col-3"><div class="form-group"><label>Kode <span class="text-danger">*</span></label><div class="input-group mb-2"><div class="input-group-prepend"><span class="input-group-text">P</span></div><input type="text" class="form-control" name="kode[' + i +
+            ']"><option selected = "true" value = "" disabled selected> Select... </option> @foreach($kurikulums as $kurikulum) <option value = "{{$kurikulum->tahun}}">{{$kurikulum->tahun}}</option>@endforeach</select></div></div><div class="col-3"><div class="form-group"><label>Kode <span class="text-danger">*</span></label><div class="input-group mb-2"><div class="input-group-prepend"><span class="input-group-text">CPL-</span></div><input type="text" class="form-control" name="kode[' + i +
             ']" placeholder="Nomor" autocomplete="off"></div></div></div><div class="col-5"><div class="form-group"><label>Judul <span class="text-danger">*</span></label><input type="text" class="form-control"name="judul[' + i +
             ']" placeholder="Judul" autocomplete="off"></div></div><input hidden type="text" name="aspek" value="Pengetahuan">'
         );
@@ -789,7 +789,7 @@
     $("#dynamic-ar-ket").click(function() {
         ++i;
         $("#dynamicAddRemoveKet").append('<div class="form-group row clone"><div class="col-2"><div class="form-group"><label>Kurikulum <span class="text-danger">*</span></label><select class="form-control" name="kurikulum[' + i +
-            ']"><option selected = "true" value = "" disabled selected> Select... </option> @foreach($kurikulums as $kurikulum) <option value = "{{$kurikulum->tahun}}">{{$kurikulum->tahun}}</option>@endforeach</select></div></div><div class="col-3"><div class="form-group"><label>Kode <span class="text-danger">*</span></label><div class="input-group mb-2"><div class="input-group-prepend"><span class="input-group-text">KK</span></div><input type="text" class="form-control" name="kode[' + i +
+            ']"><option selected = "true" value = "" disabled selected> Select... </option> @foreach($kurikulums as $kurikulum) <option value = "{{$kurikulum->tahun}}">{{$kurikulum->tahun}}</option>@endforeach</select></div></div><div class="col-3"><div class="form-group"><label>Kode <span class="text-danger">*</span></label><div class="input-group mb-2"><div class="input-group-prepend"><span class="input-group-text">CPL-</span></div><input type="text" class="form-control" name="kode[' + i +
             ']" placeholder="Nomor" autocomplete="off"></div></div></div><div class="col-5"><div class="form-group"><label>Judul <span class="text-danger">*</span></label><input type="text" class="form-control"name="judul[' + i +
             ']" placeholder="Judul" autocomplete="off"></div></div><input hidden type="text" name="aspek" value="Keterampilan"><div class="col-2">'
         );

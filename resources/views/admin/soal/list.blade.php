@@ -35,7 +35,7 @@
                             <td>{{$soal->minggu}}</td>
                             <td>{{$soal->jenis}}</td>
                             <td>{{$soal->dosen}}</td>
-                            @if($soal->status == null)
+                            @if($soal->status == 'Belum')
                             <td>Menunggu validasi</td>
                             @elseif($soal->status == 'Valid')
                             <td>Soal telah tervalidasi</td>

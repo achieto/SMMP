@@ -56,7 +56,7 @@ class KurikulumController extends Controller
         $tahuns = Crypt::decrypt($tahun);
         try {
             Kurikulum::where('tahun', $tahuns)->delete();
-            return redirect('/admin/list-kurikulum')->with('success', 'Kurikulum successfully deleted!');;
+            return redirect('/admin/list-kurikulum')->with('success', 'Kurikulum successfully deleted!');
         } catch (\Illuminate\Database\QueryException $e) {
             $kur = Kurikulum::where('tahun', $tahuns)->get();
             return redirect('/admin/list-kurikulum')->with('error', 'Terjadi kesalahan, tahun kurikulum ' . $kur[0]['tahun'] . ' masih memiliki CPL/MK');

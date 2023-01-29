@@ -14,31 +14,33 @@
                             <th>Nomor</th>
                             <th>Semester</th>
                             <th>Pengembang RPS</th>
-                            <th>Koordinator RMK</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @php
-                        $kode_mk = 0;
                         foreach($rpss as $no=>$rps):
-                        foreach($mks as $mk):
-                        if($rps->id_mk == $mk->id)
-                        $kode_mk = $mk->kode;
-                        endforeach
                         @endphp
                         <tr>
                             <td class="py-4">{{$no+1}}</td>
-                            <td>{{$kode_mk}}</td>
+                            <td>{{$rps->kode_mk}}</td>
                             <td>{{date("d-m-Y",strtotime($rps->created_at))}}</td>
                             <td>{{$rps->nomor}}</td>
                             <td>{{$rps->semester}}</td>
                             <td>{{$rps->pengembang}}</td>
-                            <td>{{$rps->koordinator}}</td>
                             <td class="py-4 d-flex">
-                                <a href="/admin/print-rps/{{encrypt($rps->id)}}" target="_blank" type="button" class="btn btn-info btn-icon-text p-2">
-                                    Download
-                                    <i class="ti-download btn-icon-append"></i>
+                                <a type="button" href="edit-rps/{{$rps->kode_mk}}" class="btn btn-warning btn-icon-text p-2" style="margin-right:7px; width:35px; height:35px">
+                                    <i class="ti-pencil btn-icon"></i>
+                                </a>
+                                <form action="delete-rps/{{encrypt($rps->id)}}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-danger btn-icon-text me-2 p-2" style="width:35px; height:35px" onclick="return confirm('Are you sure to delete RPS {{$rps->kode_mk}}?')">
+                                        <i class="ti-trash btn-icon"></i>
+                                    </button>
+                                </form>
+                                <a href="/admin/print-rps/{{$rps->kode_mk}}" style="width:35px; height:35px" target="_blank" type="button" class="btn btn-info btn-icon-text p-2">
+                                    <i class="ti-download btn-icon"></i>
                                 </a>
                             </td>
                         </tr>

@@ -1,6 +1,6 @@
 @extends('admin.template')
 @section('content')
-<div class="col-12 grid-margin stretch-card">
+<div class="col-12 grild-margin stretch-card">
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Add Mata Kuliah</h4>
@@ -71,28 +71,30 @@
                     </div>
                     @enderror
                 </div>
+                <div class="row">
+                    <div class="col-6 form-group">
+                        <label>Bobot teori (sks) <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="bobot_teori" placeholder="Bobot teori" value="{{old('bobot_teori')}}" autocomplete="off">
+                        @error('bobot_teori')
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="col-6 form-group">
+                        <label>Bobot praktikum (sks)</label>
+                        <input type="text" class="form-control" name="bobot_praktikum" placeholder="Bobot praktikum" value="{{old('bobot_praktikum')}}" autocomplete="off">
+                        @error('bobot_praktikum')
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                </div>
                 <div class="form-group">
                     <label>Deskripsi <span class="text-danger">*</span></label>
                     <textarea class="form-control" name="deskripsi" placeholder="Deskripsi" style="height: 100px" autocomplete="off">{{old('deskripsi')}}</textarea>
                     @error('deskripsi')
-                    <div class="alert alert-danger">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label>Bobot teori (sks) <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="bobot_teori" placeholder="Bobot teori" value="{{old('bobot_teori')}}" autocomplete="off">
-                    @error('bobot_teori')
-                    <div class="alert alert-danger">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label>Bobot praktikum (sks)</label>
-                    <input type="text" class="form-control" name="bobot_praktikum" placeholder="Bobot praktikum" value="{{old('bobot_praktikum')}}" autocomplete="off">
-                    @error('bobot_praktikum')
                     <div class="alert alert-danger">
                         {{ $message }}
                     </div>

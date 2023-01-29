@@ -27,9 +27,9 @@ class MkController extends Controller
     {
         $request->validate([
             'kode' => ['required', 'alpha_num', 'min:9'],
-            'nama' => ['required', 'string','regex:/^[a-zA-Z ]+$/', 'max:255'],
+            'nama' => ['required', 'string', 'regex:/^[\/a-zA-Z -]+$/', 'max:255'],
             'rumpun' => 'required',
-            'prasyarat' => ['nullable', 'string','regex:/^[a-zA-Z ]+$/', 'max:255'],
+            'prasyarat' => ['nullable', 'string', 'max:255'],
             'kurikulum' => ['required', 'integer', 'digits:4'],
             'deskripsi' => 'required',
             'bobot_teori' => ['required', 'integer', 'digits:1'],
@@ -45,34 +45,38 @@ class MkController extends Controller
         } else {
             $bp = $request->bobot_praktikum;
         }
-        MK::create([
-            'kode' => strtoupper($request->kode),
-            'nama' => $request->nama,
-            'rumpun' => $request->rumpun,
-            'prasyarat' => $p,
-            'kurikulum' => $request->kurikulum,
-            'deskripsi' => $request->deskripsi,
-            'bobot_teori' => $request->bobot_teori,
-            'bobot_praktikum' => $bp,
-        ]);
-
-        return redirect('/admin/list-mk')->with('success', 'MK successfully added!');
+        try {
+            MK::create([
+                'kode' => strtoupper($request->kode),
+                'nama' => $request->nama,
+                'rumpun' => $request->rumpun,
+                'prasyarat' => $p,
+                'kurikulum' => $request->kurikulum,
+                'deskripsi' => $request->deskripsi,
+                'bobot_teori' => $request->bobot_teori,
+                'bobot_praktikum' => $bp,
+            ]);
+            return redirect('/admin/list-mk')->with('success', 'MK successfully added!');
+        } catch (\Illuminate\Database\QueryException $e) {
+            $errorCode = $e->errorInfo[1];
+            if($errorCode == 1062)
+            return redirect()->back()->withInput($request->all)->with('error', 'Kode mata kuliah '. $request->kode. ' sudah ada');
+        }
     }
 
-    public function edit($id) {
-        $ids = Crypt::decrypt($id);
-        $mk = MK::findOrFail($ids);
+    public function edit($kode) {
+        $mk = MK::where('kode', $kode)->firstOrFail();
         $mks = MK::all();
         $kurikulums = Kurikulum::all();
         return view('admin.mk.edit', compact('mk', 'mks', 'kurikulums'));
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $kode) {
         $request->validate([
             'kode' => ['required', 'alpha_num', 'min:9'],
-            'nama' => ['required', 'string', 'regex:/^[a-zA-Z ]+$/', 'max:255'],
+            'nama' => ['required', 'string', 'regex:/^[\/a-zA-Z -]+$/', 'max:255'],
             'rumpun' => 'required',
-            'prasyarat' => ['nullable', 'string','regex:/^[a-zA-Z ]+$/', 'max:255'],
+            'prasyarat' => ['nullable', 'string', 'max:255'],
             'kurikulum' => ['required', 'integer', 'digits:4'],
             'deskripsi' => 'required',
             'bobot_teori' => ['required', 'integer', 'digits:1'],
@@ -88,8 +92,7 @@ class MkController extends Controller
         } else {
             $bp = $request->bobot_praktikum;
         }
-        $ids = Crypt::decrypt($id);
-        $mk = MK::findOrFail($ids);
+        $mk = MK::where('kode', $kode)->firstOrFail();
         $mk->update([
             'kode' => $request->kode,
             'nama' => $request->nama,
@@ -104,10 +107,9 @@ class MkController extends Controller
         return redirect('/admin/list-mk')->with('success', 'MK successfully edited!');
     }
 
-    public function delete($id)
+    public function delete($kode)
     {
-        $ids = Crypt::decrypt($id);
-        MK::where('id', $ids)->delete();
+        MK::where('kode', $kode)->delete();
         return redirect('/admin/list-mk');
     }
 }

@@ -58,7 +58,9 @@
 
 <script>
     $(document).ready(function() {
-        $('.dataTable').DataTable();
+        $('.dataTable').DataTable({
+            "aaSorting": []
+        });
     });
 </script>
 <!-- End custom js for this page-->
