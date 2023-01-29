@@ -383,14 +383,9 @@
     @foreach($activities as $activity)
     @if($activity->id_rps == $rps->id)
     @php
-    $minggu1 = substr($activity->minggu, 0, 1);
-    try {
-    $minggu2 = substr($actvity->minggu, 0, 2);
-    } catch(Exception $e){
-    $minggu2 = 'salah';
-    }
+    $minggu = substr($activity->minggu, 0, 1);
     @endphp
-    @if((int)$minggu1 < 8 && $minggu2!='salah') <tr class="contain">
+    @if((int)$minggu < 8) <tr class="contain">
         <td class="title-cpmk cpmk-contain" colspan="1">{{$activity->minggu}}</td>
         <td class="cpmk-contain sub-contain" colspan="2">{{$activity->sub_cpmk}}</td>
         <td class="cpmk-contain" colspan="1"><?= $activity->indikator ?></td>
@@ -409,7 +404,7 @@
         </tr>
         @foreach($activities as $activity)
         @if($activity->id_rps == $rps->id)
-        @if((int)$minggu1 > 8 || (int)$minggu2 > 8) <tr class="contain">
+        @if((int)$minggu > 8) <tr class="contain">
             <td class="title-cpmk cpmk-contain" colspan="1">{{$activity->minggu}}</td>
             <td class="cpmk-contain sub-contain" colspan="2">{{$activity->sub_cpmk}}</td>
             <td class="cpmk-contain" colspan="1"><?= $activity->indikator ?></td>
@@ -435,6 +430,11 @@
             <td colspan="7" class="tambahan">{{$bahasa}}</td>
         </tr>
         <tr>
+            <th colspan="4" class="tambahan">Type of teaching, contact hours</td>
+            <th colspan="1" class="tambahan">:</td>
+            <td colspan="7" class="tambahan">{{$rps->tipe}}</td>
+        </tr>
+        <tr>
             <th colspan="4" class="tambahan">Requirements according to the Examination regulations:</td>
             <th colspan="1" class="tambahan">:</td>
             <td colspan="7" class="tambahan">{{$rps->syarat_ujian}}</td>
@@ -443,6 +443,11 @@
             <th colspan="4" class="tambahan">Study and examination requirements</td>
             <th colspan="1" class="tambahan">:</td>
             <td colspan="7" class="tambahan">{{$rps->syarat_studi}}</td>
+        </tr>
+        <tr>
+            <th colspan="4" class="tambahan">Media employed</td>
+            <th colspan="1" class="tambahan">:</td>
+            <td colspan="7" class="tambahan">{{$rps->media}}</td>
         </tr>
         <tr>
             <th colspan="4" class="tambahan">Assessment and evaluation</td>

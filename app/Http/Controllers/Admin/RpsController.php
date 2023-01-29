@@ -195,10 +195,10 @@ Assessment is done using benchmark assessment, with the aim of measuring the lev
             'keterampilans'
         );
 
-        $pdf = PDF::loadView('admin.rps.print', $data)->setOrientation('landscape');
-        $pdf->setOption('enable-local-file-access', true);
-        return $pdf->stream('rps.pdf');
-        // return view('admin.rps.print', $data);
+        // $pdf = PDF::loadView('admin.rps.print', $data)->setOrientation('landscape');
+        // $pdf->setOption('enable-local-file-access', true);
+        // return $pdf->stream('rps.pdf');
+        return view('admin.rps.print', $data);
     }
 
     public function create_wfile(Request $request)
