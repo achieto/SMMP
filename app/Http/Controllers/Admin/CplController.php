@@ -32,18 +32,7 @@ class CplController extends Controller
     public function store(Request $request)
     {
         foreach ($request->input('kode') as $key => $value) {
-            if ($request->aspek == 'Sikap') {
-                $data[$key] = 'S' . $value;
-            }
-            elseif ($request->aspek == 'Umum') {
-                $data[$key] = 'KU' . $value;
-            }
-            elseif ($request->aspek == 'Pengetahuan') {
-                $data[$key] = 'P' . $value;
-            }
-            else {
-                $data[$key] = 'KK' . $value;
-            }
+            $data[$key] = 'CPL-' . $value;
         }
         try {
             for ($i = 0; $i < count($request->input('kurikulum')); $i++) {
@@ -80,18 +69,18 @@ class CplController extends Controller
 
         $ids = Crypt::decrypt($id);
         $cpl = CPL::findOrFail($ids);
-        if($request->aspek == 'Sikap') 
-            $kode = 'S' . $request->kode;
-        else if($request->aspek == 'Umum') 
-            $kode = 'KU' . $request->kode;
-        else if($request->aspek == 'Pengetahuan') 
-            $kode = 'P' . $request->kode;
-        else
-            $kode = 'KK' . $request->kode;
+        // if($request->aspek == 'Sikap') 
+        //     $kode = 'S' . $request->kode;
+        // else if($request->aspek == 'Umum') 
+        //     $kode = 'KU' . $request->kode;
+        // else if($request->aspek == 'Pengetahuan') 
+        //     $kode = 'P' . $request->kode;
+        // else
+        //     $kode = 'KK' . $request->kode;
         $cpl->update([
             'aspek' => $request->aspek,
             'kurikulum' => $request->kurikulum,
-            'kode' => $kode,
+            'kode' => 'CPL-'. $request->kode,
             'judul' => $request->judul,
         ]);
 

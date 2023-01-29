@@ -28,11 +28,11 @@
                             <td><?= (int)$mk->bobot_teori + $mk->bobot_praktikum ?> SKS</td>
                             <td class="py-4">
                                 <div class="d-flex">
-                                    <a type="button" href="edit-mk/{{encrypt($mk->id)}}" class="btn btn-warning btn-icon-text p-2" style="margin-right:7px">
+                                    <a type="button" href="edit-mk/{{$mk->kode}}" class="btn btn-warning btn-icon-text p-2" style="margin-right:7px">
                                         Edit
                                         <i class="ti-pencil btn-icon-append"></i>
                                     </a>
-                                    <form action="delete-mk/{{encrypt($mk->id)}}" method="post">
+                                    <form action="delete-mk/{{$mk->kode}}" method="post">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger btn-icon-text p-2" onclick="return confirm('Are you sure to delete {{$mk->nama}}?')">

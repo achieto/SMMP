@@ -12,7 +12,7 @@ class CPMK extends Model
     public $timestamps = false;
     
     protected $fillable = [
-        'id_mk', 'judul'
+        'kode_mk', 'judul'
     ];
 
 

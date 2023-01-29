@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Edit Mata Kuliah</h4>
-            <form method="POST" action="{{encrypt($mk->id)}}" enctype="multipart/form-data">
+            <form method="POST" action="{{$mk->kode}}" enctype="multipart/form-data">
                 @csrf
                 @method('put')
                 <div class="form-group">
@@ -72,28 +72,30 @@
                     </div>
                     @enderror
                 </div>
+                <div class="row">
+                    <div class="col-6 form-group">
+                        <label>Bobot teori (sks) <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="bobot_teori" placeholder="Bobot teori" value="{{$mk->bobot_teori}}" autocomplete="off">
+                        @error('bobot_teori')
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="col-6 form-group">
+                        <label>Bobot praktikum (sks)</label>
+                        <input type="text" class="form-control" name="bobot_praktikum" placeholder="Bobot praktikum" value="{{$mk->bobot_praktikum}}" autocomplete="off">
+                        @error('bobot_praktikum')
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                </div>
                 <div class="form-group">
                     <label>Deskripsi <span class="text-danger">*</span></label>
                     <textarea class="form-control" name="deskripsi" placeholder="Deskripsi" style="height: 100px" autocomplete="off">{{$mk->deskripsi}}</textarea>
                     @error('deskripsi')
-                    <div class="alert alert-danger">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label>Bobot teori (sks) <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="bobot_teori" placeholder="Bobot teori" value="{{$mk->bobot_teori}}" autocomplete="off">
-                    @error('bobot_teori')
-                    <div class="alert alert-danger">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label>Bobot praktikum (sks)</label>
-                    <input type="text" class="form-control" name="bobot_praktikum" placeholder="Bobot praktikum" value="{{$mk->bobot_praktikum}}" autocomplete="off">
-                    @error('bobot_praktikum')
                     <div class="alert alert-danger">
                         {{ $message }}
                     </div>

@@ -155,7 +155,7 @@
                 <div class="row">
                     <div class="col">
                         <p id="kur-soal" class="status-summary-ight-white mb-1">Semua Kurikulum</p>
-                        <h2 class="text-info" id="jumlah-soal">0</h2>
+                        <h2 class="text-info" id="jumlah-soal"></h2>
                     </div>
                     <div class="col text-end p-4">
                         <i class="h1 mdi mdi-book"></i>
@@ -231,7 +231,7 @@
                 $("#jumlah-rps").empty();
                 $("#jumlah-rps").append(data.sum_rps);
                 $("#jumlah-soal").empty();
-                $("#jumlah-soal").append(data.sum_rps);
+                $("#jumlah-soal").append(data.sum_soal);
             }
         });
     }
