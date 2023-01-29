@@ -12,6 +12,7 @@ use App\Models\Activity;
 use App\Models\CPMK;
 use App\Models\CPLMK;
 use Barryvdh\DomPDF\PDF;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
 class RPScontroller extends Controller
@@ -25,9 +26,8 @@ class RPScontroller extends Controller
 
     public function List()
     {
-        $rpss = RPS::where('pengembang', auth()->user()->name)->get();
-        $mks = MK::all();
-        return view('dosen.rps.list', compact('rpss', 'mks'));
+        $rpss = RPS::where('pengembang', Auth::user()->name)->get();
+        return view('dosen.rps.list', compact('rpss'));
     }
 
 

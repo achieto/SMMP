@@ -41,6 +41,7 @@ Route::middleware(['auth'])->group(
                 Route::get('dashboard-chart', [DashboardDosen::class, 'chart'])->name('dosen-chart');
                 Route::get('activities/add-activity', [ActivitiesController::class, 'Add'])->name('activities-add');
                 Route::post('activities/add-activity', [ActivitiesController::class, 'Store'])->name('activities-store');
+                Route::post('activities/add-activity-wfile', [ActivitiesController::class, 'create_wfile'])->name('activities-wfile');
                 Route::get('activities/list-activity', [ActivitiesController::class, 'List'])->name('activities-list');
                 Route::get('activities/edit-activity/{id}', [ActivitiesController::class, 'Edit'])->name('activity-edit');
                 Route::put('activities/edit-activity/{id}', [ActivitiesController::class, 'Update'])->name('activity-update');

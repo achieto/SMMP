@@ -11,11 +11,11 @@ class RPS extends Model
     protected $table = 'rpss';
 
     protected $fillable = [
-        'id_mk','nomor','prodi', 'dosen','pengembang','koordinator','kaprodi','kurikulum', 'semester', 'materi_mk', 'pustaka_utama', 'pustaka_pendukung'
+        'kode_mk','nomor','prodi', 'dosen','pengembang','koordinator','kaprodi','kurikulum', 'semester', 'materi_mk', 'pustaka_utama', 'pustaka_pendukung', 'tipe', 'waktu', 'syarat_ujian', 'syarat_studi','media','kontrak'
     ];
 
     public function mk()
     {
-        return $this->belongsTo(MK::class, 'id_mk');
+        return $this->belongsTo(MK::class, 'kode_mk','kode');
     }
 }
