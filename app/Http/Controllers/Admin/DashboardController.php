@@ -13,6 +13,7 @@ use App\Models\Soal;
 
 class DashboardController extends Controller
 {
+    
     public function index()
     {
         $kurikulums = Kurikulum::orderBy('tahun', 'desc')->get();

@@ -6,6 +6,7 @@
             <h4 class="card-title">Add Mata Kuliah</h4>
             <form method="POST" action="add-mk" enctype="multipart/form-data">
                 @csrf
+                
                 <div class="form-group">
                     <label>Kode MK <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" name="kode" placeholder="Kode MK" value="{{old('kode')}}" autocomplete="off">

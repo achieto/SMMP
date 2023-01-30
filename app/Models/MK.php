@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class MK extends Model
 {
+    
     use HasFactory;
     protected $table = 'mks';
     protected $fillable = [

@@ -77,6 +77,7 @@ class CplController extends Controller
         //     $kode = 'P' . $request->kode;
         // else
         //     $kode = 'KK' . $request->kode;
+        
         $cpl->update([
             'aspek' => $request->aspek,
             'kurikulum' => $request->kurikulum,

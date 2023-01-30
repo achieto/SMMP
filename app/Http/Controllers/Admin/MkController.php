@@ -70,6 +70,7 @@ class MkController extends Controller
         $kurikulums = Kurikulum::all();
         return view('admin.mk.edit', compact('mk', 'mks', 'kurikulums'));
     }
+    
 
     public function update(Request $request, $kode) {
         $request->validate([

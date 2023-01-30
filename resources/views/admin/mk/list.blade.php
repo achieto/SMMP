@@ -27,6 +27,7 @@
                             <td>{{$mk->kurikulum}}</td>
                             <td><?= (int)$mk->bobot_teori + $mk->bobot_praktikum ?> SKS</td>
                             <td class="py-4">
+                                
                                 <div class="d-flex">
                                     <a type="button" href="edit-mk/{{$mk->kode}}" class="btn btn-warning btn-icon-text p-2" style="margin-right:7px">
                                         Edit

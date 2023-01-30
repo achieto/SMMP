@@ -6,6 +6,7 @@
             <h4 class="card-title">Edit Mata Kuliah</h4>
             <form method="POST" action="{{$mk->kode}}" enctype="multipart/form-data">
                 @csrf
+                
                 @method('put')
                 <div class="form-group">
                     <label>Kode MK <span class="text-danger">*</span></label>

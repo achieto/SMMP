@@ -371,6 +371,7 @@
         <th colspan="2">Daring (<em>online</em>)</th>
     </tr>
     <tr class="title-cpmk grey">
+        
         <th colspan="1">(1)</th>
         <th colspan="2">(2)</th>
         <th colspan="1">(3)</th>
@@ -383,15 +384,15 @@
     @foreach($activities as $activity)
     @if($activity->id_rps == $rps->id)
     @php
-    $minggu = substr($activity->minggu, 0, 1);
+    $minggu = explode('-', $activity->minggu);
     @endphp
-    @if((int)$minggu < 8) <tr class="contain">
+    @if((int)$minggu[0] < 8) <tr class="contain">
         <td class="title-cpmk cpmk-contain" colspan="1">{{$activity->minggu}}</td>
         <td class="cpmk-contain sub-contain" colspan="2">{{$activity->sub_cpmk}}</td>
         <td class="cpmk-contain" colspan="1"><?= $activity->indikator ?></td>
-        <td class="cpmk-contain sub-contain" colspan="1">{{$activity->kriteria}}</td>
-        <td class="cpmk-contain" colspan="1"><?= $activity->metode_luring ?></td>
-        <td class="cpmk-contain" colspan="2"><?= $activity->metode_daring ?></td>
+        <td class="cpmk-contain sub-contain" colspan="1">{{$rps->tipe}}</td>
+        <td class="cpmk-contain sub-contain" colspan="1">{{$rps->media}}</td>
+        <td class="cpmk-contain" colspan="2"></td>
         <td class="cpmk-contain sub-contain" colspan="1"><?= $activity->materi ?></td>
         <td class="cpmk-contain sub-contain" colspan="1">{{$activity->bobot}}</td>
         </tr>
@@ -404,13 +405,16 @@
         </tr>
         @foreach($activities as $activity)
         @if($activity->id_rps == $rps->id)
-        @if((int)$minggu > 8) <tr class="contain">
+        @php
+        $minggu = explode('-', $activity->minggu);
+        @endphp
+        @if((int)$minggu[0] > 8) <tr class="contain">
             <td class="title-cpmk cpmk-contain" colspan="1">{{$activity->minggu}}</td>
             <td class="cpmk-contain sub-contain" colspan="2">{{$activity->sub_cpmk}}</td>
             <td class="cpmk-contain" colspan="1"><?= $activity->indikator ?></td>
             <td class="cpmk-contain sub-contain" colspan="1">{{$rps->tipe}}</td>
-            <td class="cpmk-contain" colspan="1">{{$rps->media}}</td>
-            <td class="cpmk-contain" colspan="2"></td>
+            <td class="cpmk-contain sub-contain" colspan="1">{{$rps->media}}</td>
+            <td class="cpmk-contain sub-contain" colspan="2"></td>
             <td class="cpmk-contain sub-contain" colspan="1"><?= $activity->materi ?></td>
             <td class="cpmk-contain sub-contain" colspan="1">{{$activity->bobot}}</td>
         </tr>
@@ -430,11 +434,6 @@
             <td colspan="7" class="tambahan">{{$bahasa}}</td>
         </tr>
         <tr>
-            <th colspan="4" class="tambahan">Type of teaching, contact hours</td>
-            <th colspan="1" class="tambahan">:</td>
-            <td colspan="7" class="tambahan">{{$rps->tipe}}</td>
-        </tr>
-        <tr>
             <th colspan="4" class="tambahan">Requirements according to the Examination regulations:</td>
             <th colspan="1" class="tambahan">:</td>
             <td colspan="7" class="tambahan">{{$rps->syarat_ujian}}</td>
@@ -443,11 +442,6 @@
             <th colspan="4" class="tambahan">Study and examination requirements</td>
             <th colspan="1" class="tambahan">:</td>
             <td colspan="7" class="tambahan">{{$rps->syarat_studi}}</td>
-        </tr>
-        <tr>
-            <th colspan="4" class="tambahan">Media employed</td>
-            <th colspan="1" class="tambahan">:</td>
-            <td colspan="7" class="tambahan">{{$rps->media}}</td>
         </tr>
         <tr>
             <th colspan="4" class="tambahan">Assessment and evaluation</td>

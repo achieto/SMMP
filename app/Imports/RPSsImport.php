@@ -12,6 +12,7 @@ class RPSsImport implements ToModel
      */
     public function model(array $row)
     {
+        
         return new RPS([
             'kode_mk' => $row[0],
             'nomor'    => $row[1],

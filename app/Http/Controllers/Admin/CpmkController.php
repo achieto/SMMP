@@ -38,6 +38,7 @@ class CpmkController extends Controller
             return redirect()->back()->withInput($request->all)->with('error', "Terjadi kesalahan, silahkan periksa kembali data yang diinputkan!". $e);
         }
     }
+    
 
     public function list()
     {

@@ -16,6 +16,7 @@
                     </div>
                     @enderror
                 </div>
+                
                 <div class="form-group">
                     <label for="prodi">Program studi <span style="color:red">*</span></label>
                     <select class="js-example-basic-single w-100" name="prodi">

@@ -39,6 +39,7 @@ class KurikulumController extends Controller
 
     public function update(Request $request, $tahun)
     {
+        
         $request->validate([
             'tahun' => ['required', 'integer', 'digits:4'],
         ]);

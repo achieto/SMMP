@@ -26,6 +26,7 @@
                                     Edit
                                     <i class="ti-pencil btn-icon-append"></i>
                                 </a>
+                                
                                 <form action="/admin/delete-cpmk/{{encrypt($cpmk->id)}}" method="post">
                                     @csrf
                                     @method('delete')

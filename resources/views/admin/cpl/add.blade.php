@@ -748,6 +748,7 @@
         document.getElementById("pengetahuan").hidden = "hidden";
         document.getElementById("keterampilan").hidden = "hidden";
     } else if (s == 3) {
+        
         document.getElementById("sikap").hidden = "hidden";
         document.getElementById("umum").hidden = "hidden";
         document.getElementById("keterampilan").hidden = "hidden";

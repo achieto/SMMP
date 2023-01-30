@@ -112,6 +112,7 @@ class UserController extends Controller
             'img' => ['nullable'],
             'otoritas' => ['required', 'string', 'max:255'],
         ]);
+        
 
         $ids = Crypt::decrypt($id);
         $user = User::findOrFail($ids);

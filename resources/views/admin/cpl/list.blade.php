@@ -151,6 +151,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                        
                             @foreach($keterampilans as $keterampilan)
                             <tr>
                                 <td>{{$keterampilan->kurikulum}}</td>

@@ -46,6 +46,7 @@ class SoalController extends Controller
                 $soalss = Soal::where('id_mk', $mk->id)->where('jenis', $soal->jenis)->orderBy('id', 'asc')->get();
             }
         }
+        
         foreach ($soalss as $s) $soals->push($s);
         foreach($soals as $sl) {
             $temp = DB::table('cpmk_soals')->select(DB::raw('id_cpmk, id_soal'))->groupBy('id_cpmk')->orderBy('id_cpmk', 'asc')->get();

@@ -39,6 +39,7 @@ class CplmkController extends Controller
                 $cplmks->push($cplmk);
             }
         }
+        
         $cpls = CPL::all();
         return view('admin.cplmk.list', compact('cplmks', 'mks', 'cpls'));
     }

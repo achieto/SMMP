@@ -34,6 +34,7 @@
                                 </a>
                                 <form action="delete-rps/{{encrypt($rps->id)}}" method="post">
                                     @csrf
+                                    
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger btn-icon-text me-2 p-2" style="width:35px; height:35px" onclick="return confirm('Are you sure to delete RPS {{$rps->kode_mk}}?')">
                                         <i class="ti-trash btn-icon"></i>
