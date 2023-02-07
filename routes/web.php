@@ -27,7 +27,7 @@ use App\Http\Controllers\ProfileController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/admin/print-rps/{id}', [RpsController::class, 'print']);
 Route::middleware(['auth'])->group(
     function () {
         // profile
@@ -96,7 +96,6 @@ Route::middleware(['auth'])->group(
                 Route::put('edit-rps/{id}', [RpsController::class, 'update']);
                 Route::delete('delete-rps/{id}', [RpsController::class, 'delete']);
                 Route::get('list-rps', [RpsController::class, 'list']);
-                Route::get('print-rps/{id}', [RpsController::class, 'print']);
                 Route::post('add-rps-wfile', [RpsController::class, 'create_wfile']);
                 // mk
                 Route::get('add-mk', [MkController::class, 'create']);
