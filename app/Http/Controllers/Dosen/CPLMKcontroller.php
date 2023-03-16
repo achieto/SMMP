@@ -16,8 +16,8 @@ class CPLMKcontroller extends Controller
         $rpss = RPS::where('pengembang', auth()->user()->name)->get();
         $mks = collect();
         foreach ($rpss as $rps) {
-            $id_mk = $rps->id_mk;
-            $mk = MK::find($id_mk);
+            $id_mk = $rps->kode_mk;
+            $mk = MK::firstWhere('kode',$id_mk);
             $mks->push($mk);
         }
         $cpls = CPL::orderBy('aspek', 'desc')->get();
@@ -27,22 +27,12 @@ class CPLMKcontroller extends Controller
     public function List()
     {
         $rpss = RPS::where('pengembang', auth()->user()->name)->get();
-        $mks = collect();
+        $mks = [];
         foreach ($rpss as $rps) {
-            $id_mk = $rps->id_mk;
-            $mk = MK::find($id_mk);
-            $mks->push($mk);
+            $mks[] = $rps->kode_mk;
         }
-        $cplmks = collect();
-        foreach ($mks as $mk) {
-            $kode_mk = $mk->kode;
-            $temp = CPLMK::where('kode_mk', $kode_mk)->get();
-            foreach ($temp as $cplmk) {
-                $cplmks->push($cplmk);
-            }
-        }
-        $cpls = CPL::all();
-        return view('dosen.cplmk.list', compact('cplmks', 'mks', 'cpls'));
+        $cplmks = CPLMK::whereIn('kode_mk',$mks)->get();
+        return view('dosen.cplmk.list', compact('cplmks'));
     }
 
     public function Store(Request $request)

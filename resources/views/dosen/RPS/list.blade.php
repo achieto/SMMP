@@ -19,17 +19,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @php
-                        $kode_mk = 0;
-                        foreach($rpss as $no=>$rps):
-                        foreach($mks as $mk):
-                        if($rps->id_mk == $mk->id)
-                        $kode_mk = $mk->kode;
-                        endforeach
-                        @endphp
+                        @foreach($rpss as $no=>$rps)
                         <tr>
                             <td class="py-4">{{$no+1}}</td>
-                            <td>{{$kode_mk}}</td>
+                            <td>{{$rps->kode_mk}}</td>
                             <td>{{date("d-m-Y",strtotime($rps->created_at))}}</td>
                             <td>{{$rps->nomor}}</td>
                             <td>{{$rps->semester}}</td>

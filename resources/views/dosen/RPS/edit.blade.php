@@ -37,8 +37,8 @@
                 <div class="form-floating">
                     <select id="prodi" name="prodi" class="form-select form-control-lg" aria-label="select Prodi">
                         <option disabled>Pilih Program Studi </option>
-                        <option value="S1-Ilmu Komputer" {{$rps->prodi == 'S1-Ilmu Komputer'?'selected':''}}>S1 - Ilmu Komputer</option>
-                        <option value="D3-Manajemen Informatika" {{$rps->prodi == 'D3-Manajemen Informatika'?'selected':''}}>D3 - Manajemen Informatika</option>
+                        <option value="S1 - Ilmu Komputer" {{$rps->prodi == 'S1 - Ilmu Komputer'?'selected':''}}>S1 - Ilmu Komputer</option>
+                        <option value="D3 - Manajemen Informatika" {{$rps->prodi == 'D3 - Manajemen Informatika'?'selected':''}}>D3 - Manajemen Informatika</option>
                     </select>
                     <label for="prodi">Program Studi <span style="color:red">*</span></label>
                     @error('prodi')

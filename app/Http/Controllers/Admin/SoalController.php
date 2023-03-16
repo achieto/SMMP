@@ -19,10 +19,10 @@ class SoalController extends Controller
         $mks = MK::all();
         $soals = collect();
         foreach ($mks as $mk) {
-            $kuis1s = Soal::where('id_mk', $mk->id)->where('jenis', 'Kuis ke-1')->skip(0)->take(1)->get();
-            $kuis2s = Soal::where('id_mk', $mk->id)->where('jenis', 'Kuis ke-2')->skip(0)->take(1)->get();
-            $utss = Soal::where('id_mk', $mk->id)->where('jenis', 'UTS')->skip(0)->take(1)->get();
-            $uass = Soal::where('id_mk', $mk->id)->where('jenis', 'UAS')->skip(0)->take(1)->get();
+            $kuis1s = Soal::where('kode_mk', $mk->kode)->where('jenis', 'Kuis ke-1')->skip(0)->take(1)->get();
+            $kuis2s = Soal::where('kode_mk', $mk->kode)->where('jenis', 'Kuis ke-2')->skip(0)->take(1)->get();
+            $utss = Soal::where('kode_mk', $mk->kode)->where('jenis', 'UTS')->skip(0)->take(1)->get();
+            $uass = Soal::where('kode_mk', $mk->kode)->where('jenis', 'UAS')->skip(0)->take(1)->get();
             foreach ($kuis1s as $k1) $soals->push($k1);
             foreach ($kuis2s as $k2) $soals->push($k2);
             foreach ($utss as $ut) $soals->push($ut);

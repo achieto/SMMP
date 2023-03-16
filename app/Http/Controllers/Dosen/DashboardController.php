@@ -17,10 +17,10 @@ class DashboardController extends Controller
         $mks = collect();
         $cpmks = collect();
             foreach ($rpss as $rps) {
-                $id_mk = $rps->id_mk;
-                $mk = MK::find($id_mk);
+                $id_mk = $rps->mk->kode;
+                $mk = MK::firstWhere('kode',$id_mk);
                 $mks->push($mk);
-                $temp = CPMK::where('id_mk', $id_mk)->get();
+                $temp = CPMK::where('kode_mk', $id_mk)->get();
                 foreach ($temp as $cpmk) {
                     $cpmks->push($cpmk);
                 }
@@ -40,9 +40,17 @@ class DashboardController extends Controller
     {
         $rpss = RPS::where('pengembang', auth()->user()->name)->get();
         $mks = collect();
+        $cpp = null;
+        $warnap = null;
+        $borderp = null;
+        $cpk = null;
+        $warnak = null;
+        $borderk = null;
+        $pengetahuan = null;
+        $keterampilan = null;
         foreach ($rpss as $rps) {
-            $id_mk = $rps->id_mk;
-            $mk = MK::find($id_mk);
+            $id_mk = $rps->mk->kode;
+            $mk = MK::firstWhere('kode',$id_mk);
             $mks->push($mk);
         }
         $cplmks = collect();
@@ -66,7 +74,7 @@ class DashboardController extends Controller
                 $keterampilan[++$i] = $cpl->kode;
             }
         }
-       
+
         $i = -1;
         foreach ($cpls as $cpl) {
             if ($cpl->aspek == 'Pengetahuan') {
@@ -79,31 +87,7 @@ class DashboardController extends Controller
                 $cpl_keterampilan[++$i] = $cpl->id;
             }
         }
-        
-        $sump = 0;
-        foreach ($cpl_pengetahuan as $no => $cpls) {
-            $cpp[$no] = 0;
-            $sump += 1;
-        }
-        $sumk = 0;
-        foreach ($cpl_keterampilan as $no => $cpls) {
-            $cpk[$no] = 0;
-            $sumk += 1;
-        }
-        foreach ($cpl_pengetahuan as $no => $cpls) {
-            foreach ($cplmks as $cplmk) {
-                if ($cplmk->id_cpl == $cpls) {
-                    $cpp[$no] += 1;
-                }
-            }
-        }
-        foreach ($cpl_keterampilan as $no => $cpls) {
-            foreach ($cplmks as $cplmk) {
-                if ($cplmk->id_cpl == $cpls) {
-                    $cpk[$no] += 1;
-                }
-            }
-        }
+
         $list_warna = [
             'rgba(255, 99, 132, 0.2)',
             'rgba(54, 162, 235, 0.2)',
@@ -112,21 +96,7 @@ class DashboardController extends Controller
             'rgba(153, 102, 255, 0.2)',
             'rgba(255, 159, 64, 0.2)',
         ];
-        
-        $tmp = -1;
-        for ($i = 0; $i < $sump; $i++) {
-            $warnap[$i] = $list_warna[++$tmp];
-            if ($tmp == 5) {
-                $tmp = 0;
-            }
-        }
-        $tmp = -1;
-        for ($i = 0; $i < $sumk; $i++) {
-            $warnak[$i] = $list_warna[++$tmp];
-            if ($tmp == 5) {
-                $tmp = 0;
-            }
-        }
+
         $list_border = [
             'rgba(255,99,132,1)',
             'rgba(54, 162, 235, 1)',
@@ -135,21 +105,70 @@ class DashboardController extends Controller
             'rgba(153, 102, 255, 1)',
             'rgba(255, 159, 64, 1)',
         ];
-        
-        $tmp = -1;
-        for ($i = 0; $i < $sump; $i++) {
-            $borderp[$i] = $list_border[++$tmp];
-            if ($tmp == 5) {
-                $tmp = 0;
+
+        if(isset($cpl_pengetahuan)){
+            $sump = 0;
+            foreach ($cpl_pengetahuan as $no => $cpls) {
+                $cpp[$no] = 0;
+                $sump += 1;
+            }
+            foreach ($cpl_pengetahuan as $no => $cpls) {
+                foreach ($cplmks as $cplmk) {
+                    if ($cplmk->id_cpl == $cpls) {
+                        $cpp[$no] += 1;
+                    }
+                }
+            }
+            $tmp = -1;
+            for ($i = 0; $i < $sump; $i++) {
+                $warnap[$i] = $list_warna[++$tmp];
+                if ($tmp == 5) {
+                    $tmp = 0;
+                }
+            }
+
+            $tmp = -1;
+            for ($i = 0; $i < $sump; $i++) {
+                $borderp[$i] = $list_border[++$tmp];
+                if ($tmp == 5) {
+                    $tmp = 0;
+                }
             }
         }
-        $tmp = -1;
-        for ($i = 0; $i < $sumk; $i++) {
-            $borderk[$i] = $list_border[++$tmp];
-            if ($tmp == 5) {
-                $tmp = 0;
+        if(isset($cpl_keterampilan)){
+            $sumk = 0;
+            foreach ($cpl_keterampilan as $no => $cpls) {
+                $cpk[$no] = 0;
+                $sumk += 1;
+            }
+            foreach ($cpl_keterampilan as $no => $cpls) {
+                foreach ($cplmks as $cplmk) {
+                    if ($cplmk->id_cpl == $cpls) {
+                        $cpk[$no] += 1;
+                    }
+                }
+            }
+
+            $tmp = -1;
+            for ($i = 0; $i < $sumk; $i++) {
+                $warnak[$i] = $list_warna[++$tmp];
+                if ($tmp == 5) {
+                    $tmp = 0;
+                }
+            }
+            $tmp = -1;
+            for ($i = 0; $i < $sumk; $i++) {
+                $borderk[$i] = $list_border[++$tmp];
+                if ($tmp == 5) {
+                    $tmp = 0;
+                }
             }
         }
+
+
+
+
+
         $dt = ([
             'pengetahuan' => $pengetahuan,
             'keterampilan' => $keterampilan,

@@ -11,6 +11,16 @@ class Soal extends Model
     protected $table = 'soals';
 
     protected $fillable = [
-        'id_mk', 'minggu', 'jenis', 'dosen', 'kurikulum', 'pertanyaan', 'status', 'komentar'
+        'kode_mk', 'minggu', 'jenis', 'dosen', 'kurikulum', 'pertanyaan', 'status', 'komentar'
     ];
+
+    public function cpmk()
+    {
+        return $this->belongsToMany(CPMK::class,'cpmk_soals','id_soal','id_cpmk')->withTimestamps();
+    }
+
+    public function mk()
+    {
+        return $this->belongsTo(MK::class, 'kode_mk', 'kode');
+    }
 }

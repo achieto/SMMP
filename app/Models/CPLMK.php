@@ -13,4 +13,14 @@ class CPLMK extends Model
     protected $fillable = [
         'kode_mk', 'id_cpl'
     ];
+
+    public function mk()
+    {
+        return $this->belongsTo(MK::class, 'kode_mk', 'kode');
+    }
+
+    public function cpl()
+    {
+        return $this->belongsTo(CPL::class, 'id_cpl');
+    }
 }

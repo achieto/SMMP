@@ -15,7 +15,7 @@ class CPMKcontroller extends Controller
         $rpss = RPS::where('pengembang', auth()->user()->name)->get();
         $mks = collect();
         foreach ($rpss as $rps) {
-            $id_mk = $rps->id_mk;
+            $id_mk = $rps->kode_mk;
             $mk = MK::find($id_mk);
             $mks->push($mk);
         }
@@ -25,12 +25,12 @@ class CPMKcontroller extends Controller
     public function Store(Request $request)
     {
         $request->validate([
-            'id_mk' => 'required',
+            'kode_mk' => 'required',
             'judul' =>
             ['required', 'string', 'regex:/^[a-zA-Z0-9., \/()&*%+_:;]+$/', 'max:255'],
         ]);
         CPMK::create([
-            'id_mk' => $request->id_mk,
+            'kode_mk' => $request->kode_mk,
             'judul' => $request->judul,
         ]);
         return redirect(route('cpmk-list'))->with('success', 'New CPMK successfully added!');
@@ -41,10 +41,10 @@ class CPMKcontroller extends Controller
         $rpss = RPS::where('pengembang', auth()->user()->name)->get();
         $cpmks = collect();
         foreach ($rpss as $rps) {
-            $id_mk = $rps->id_mk;
-            $temp = cpmk::where('id_mk', $id_mk)->get();
+            $id_mk = $rps->kode_mk;
+            $temp = cpmk::where('kode_mk', $id_mk)->get();
             foreach ($temp as $cpmk) {
-                $mk = MK::find($cpmk->id_mk);
+                $mk = MK::firstWhere('kode',$cpmk->kode_mk);
                 $cpmk->mk = $mk->nama;
                 $cpmks->push($cpmk);
             }
@@ -55,7 +55,7 @@ class CPMKcontroller extends Controller
     public function Edit($id)
     {
         $cpmk = CPMK::find($id);
-        $mk = MK::find($cpmk->id_mk);
+        $mk = MK::firstWhere('kode',$cpmk->kode_mk);
         $cpmk->mk = $mk->nama;
         // dd($cpmk);
         return view('dosen.cpmk.edit', compact('cpmk'));
@@ -64,13 +64,13 @@ class CPMKcontroller extends Controller
     public function Update(Request $request, $id)
     {
         $request->validate([
-            'id_mk' => 'required',
+            'kode_mk' => 'required',
             'judul' =>
             ['required', 'string', 'regex:/^[a-zA-Z0-9., \/()&*%-=+_:;]+$/', 'max:255'],
         ]);
         $cpmk = CPMK::findOrFail($id);
         $cpmk->update([
-            'id_mk' => $request->id_mk,
+            'kode_mk' => $request->kode_mk,
             'judul' => $request->judul,
         ]);
         return redirect(route('cpmk-list'))->with('success', 'CPMK successfully updated!');
