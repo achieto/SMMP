@@ -26,9 +26,9 @@
                     <div class="form-group w-50 mb-0">
                         <div class="form-floating">
                             <select id="rps" name="id_rps" class="form-select form-control-lg" aria-label="select RPS">
-                                <option selected disabled> </option>
+                                <option disabled> </option>
                                 @foreach ($rpss as $rps)
-                                <option value="{{$rps->id}}">{{$rps->nomor}} - {{$rps->kode_mk}}</option>
+                                <option {{old('id_rps') == $rps->id ? 'selected' : ''}} value="{{$rps->id}}">{{$rps->nomor}} - {{$rps->kode_mk}}</option>
                                 @endforeach
                             </select>
                             <label for="rps">Nomor RPS <span style="color:red">*</span></label>
@@ -42,7 +42,7 @@
                     </div>
                     <div class="form-group w-50 mb-0">
                         <div class="form-floating">
-                            <input type="text" name="minggu" class="form-control" id="minggu" placeholder="minggu" aria-describedby="mingguHelp">
+                            <input type="text" name="minggu" value="{{old('minggu')}}" class="form-control" id="minggu" placeholder="minggu" aria-describedby="mingguHelp">
                             <label for="minggu" class="form-label">Minggu Ke- <span style="color:red">*</span></label>
                             @error('minggu')
                             <div class="alert alert-danger">
@@ -55,7 +55,7 @@
                 <div class="form-group row mb-0">
                     <div class="form-group w-50">
                         <div class="form-floating">
-                            <input type="number" min="0" name="bobot" class="form-control" id="bobot" placeholder="bobot" aria-describedby="bobotHelp">
+                            <input type="number" value="{{old('bobot')}}" min="0" name="bobot" class="form-control" id="bobot" placeholder="bobot" aria-describedby="bobotHelp">
                             <label for="bobot" class="form-label">Bobot</label>
                             @error('bobot')
                             <div class="alert alert-danger">
@@ -66,7 +66,7 @@
                     </div>
                     <div class="form-group w-50">
                         <div class="form-floating">
-                            <input type="text" name="kriteria" class="form-control" id="kriteria" placeholder="kriteria" aria-describedby="kriteriaHelp">
+                            <input type="text" value="{{old('kriteria')}}" name="kriteria" class="form-control" id="kriteria" placeholder="kriteria" aria-describedby="kriteriaHelp">
                             <label for="kriteria" class="form-label">Kriteria <span style="color:red">*</span></label>
                             @error('kriteria')
                             <div class="alert alert-danger">
@@ -92,7 +92,7 @@
                     <div class="form-group w-50">
                         <div id="dynamic-metode_luring" class="form-group mb-1">
                                 <div class="form-floating">
-                                    <input type="text" name="metode_luring" class="form-control" id="metode_luring" placeholder="metode_luring">
+                                    <input type="text" value="{{old('metode_luring')}}" name="metode_luring" class="form-control" id="metode_luring" placeholder="metode_luring">
                                     <label for="metode_luring" class="form-label"> Metode Luring </label>
                                 </div>
                             @error('metode_luring')
@@ -104,7 +104,7 @@
                         </div>
                         <div id="dynamic-metode_daring" class="form-group mb-1">
                                 <div class="form-floating">
-                                    <input type="text" name="metode_daring" class="form-control" id="metode_daring" placeholder="metode_daring">
+                                    <input type="text" value="{{old('metode_daring')}}" name="metode_daring" class="form-control" id="metode_daring" placeholder="metode_daring">
                                     <label for="metode_daring" class="form-label"> Metode Daring </label>
                                 </div>
                             @error('metode_daring')

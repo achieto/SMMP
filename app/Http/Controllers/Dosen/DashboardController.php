@@ -17,6 +17,7 @@ class DashboardController extends Controller
         $mks = collect();
         $cpmks = collect();
             foreach ($rpss as $rps) {
+                // dd($rps->mk->kode);
                 $id_mk = $rps->mk->kode;
                 $mk = MK::firstWhere('kode',$id_mk);
                 $mks->push($mk);

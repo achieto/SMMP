@@ -85,8 +85,6 @@ class ActivitiesController extends Controller
     public function Delete($id)
     {
         $activity = Activity::find($id);
-        $activity->rps()->dissociate();
-        $activity->save();
         $activity->delete();
         return redirect('/dosen/activities/list-activity')->with('success', 'Activity successfully deleted!');
     }

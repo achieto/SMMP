@@ -17,6 +17,7 @@ use App\Http\Controllers\Dosen\DashboardController as DashboardDosen;
 use App\Http\Controllers\Dosen\ActivitiesController;
 use App\Http\Controllers\Dosen\SoalController as soalDosen;
 use App\Http\Controllers\PenjaminMutu\SoalController as SoalPM;
+use App\Http\Controllers\PenjaminMutu\DashboardController as DashboardPM;
 use App\Http\Controllers\ProfileController;
 /*
 |--------------------------------------------------------------------------
@@ -88,6 +89,7 @@ Route::middleware(['auth'])->group(
                  Route::get('soal/edit-soal/{id}', [soalDosen::class, 'Edit'])->name('soal-edit');
                  Route::put('soal/edit-soal/{id}', [soalDosen::class, 'Update']);
                  Route::delete('soal/delete-soal/{id}', [soalDosen::class, 'Delete'])->name('soal-delete');
+                Route::get('print-soal/{id}', [soalDosen::class, 'print']);
 
             }
         );
@@ -160,9 +162,7 @@ Route::middleware(['auth'])->group(
         // penjamin mutu
         Route::middleware('penjamin-mutu')->prefix('penjamin-mutu')->group(
             function () {
-                Route::get('dashboard', function () {
-                    return view('penjamin-mutu.dashboard');
-                })->name('home');
+                Route::get('dashboard', [DashboardPM::class,'list'])->name('home');
                 Route::get('list-soal', [SoalPM::class, 'list']);
                 Route::post('validasi-soal/{id}', [SoalPM::class, 'validasi']);
                 Route::post('tolak-soal/{id}', [SoalPM::class, 'tolak_validasi']);

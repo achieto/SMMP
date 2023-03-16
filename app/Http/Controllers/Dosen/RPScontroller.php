@@ -11,10 +11,9 @@ use App\Models\RPS;
 use App\Models\Activity;
 use App\Models\CPMK;
 use App\Models\CPLMK;
-use Barryvdh\DomPDF\PDF;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
-
+use PDF;
 class RPScontroller extends Controller
 {
     public function Add()
@@ -41,7 +40,7 @@ class RPScontroller extends Controller
         $pengetahuans = collect();
         $keterampilans = collect();
         foreach ($mks as $mk) {
-            if ($rps->id_mk == $mk->id) {
+            if ($rps->kode_mk == $mk->kode) {
                 $cplmkss = CPLMK::where('kode_mk', $mk->kode)->get();
             }
         }
@@ -53,7 +52,7 @@ class RPScontroller extends Controller
             foreach ($pengetahuan as $p) $pengetahuans->push($p);
         }
         $cpls = CPL::all();
-        $cpmks = CPMK::all();
+        $cpmks = $rps->mk->cpmk;
         $sikaps = CPL::where('aspek', 'Sikap')->where('kurikulum', $rps->kurikulum)->get();
         $umums = CPL::where('aspek', 'Umum')->where('kurikulum', $rps->kurikulum)->get();
 
@@ -96,7 +95,7 @@ class RPScontroller extends Controller
             $p = $request->pustaka_pendukung;
         }
 
-        $mk = MK::findOrFail($request->matakuliah);
+        $mk = MK::firstWhere('kode', $request->matakuliah);
         if ($mk->bobot_teori + $mk->bobot_praktikum == 3) {
             $w = '"Lectures: 3 x 50 = 150 minutes per week.
 Exercises and Assignments: 3 x 60 = 180 minutes per week.
@@ -114,7 +113,7 @@ Private study: 2 x 60 = 120 minutes per week."';
             'prodi' => $request->prodi,
             'semester' => $request->semester,
             'kurikulum' => $mk->kurikulum,
-            'id_mk' => $request->matakuliah,
+            'kode_mk' => $request->matakuliah,
             'dosen' => $request->dosen,
             'pengembang' => $request->pengembang,
             'koordinator' => $request->koordinator,
@@ -146,43 +145,62 @@ Assessment is done using benchmark assessment, with the aim of measuring the lev
     public function Update(Request $request, $id)
     {
         $request->validate([
-            'nomor' => ['required', 'regex:/^[0-9\/]+$/'],
+            'nomor' => ['required',],
             'prodi' => 'required',
-            'mataKuliah' => 'required',
+            'matakuliah' => 'required',
             'semester' => ['required', 'integer', 'digits:1'],
-            'dosen' => 'nullable',
+            'dosen' => 'required',
             'kaprodi' => ['required', 'string', 'regex:/^[a-zA-Z., ]+$/', 'max:255'],
-            'kurikulum' => ['required', 'integer', 'digits:4'],
-            'pengembang' =>'required',
-            'koordinator' =>'required',
-            'pustaka_pendukung' => ['nullable', 'string', 'max:255'],
-            'materi_mk' => ['required', 'string', 'max:255'],
-            'pustaka_utama' => ['required', 'string', 'regex:/^[a-zA-Z0-9., ()+]+$/', 'max:255'],
+            'pengembang' => 'required',
+            // 'koordinator' => 'required',
+            'pustaka_pendukung' => 'nullable',
+            'materi_mk' => 'required',
+            'pustaka_utama' => 'required',
+            'kontrak' => 'required'
         ]);
         if ($request->pustaka_pendukung == null) {
             $p = 'Tidak ada';
         } else {
             $p = $request->pustaka_pendukung;
         }
-        if ($request->dosen == null) {
-            $d = 'Tidak ada';
+
+        $mk = MK::firstWhere('kode',$request->matakuliah);
+        if ($mk->bobot_teori + $mk->bobot_praktikum == 3) {
+            $w = '"Lectures: 3 x 50 = 150 minutes per week.
+Exercises and Assignments: 3 x 60 = 180 minutes per week.
+Private study: 3 x 60 = 180 minutes per week."';
+            $t = 'Lecture, group discussion, task, and practicum';
         } else {
-            $d = $request->dosen;
+            $w = '"Lectures: 2 x 50 = 100 minutes per week.
+Exercises and Assignments: 2 x 60 = 120 minutes per week.
+Private study: 2 x 60 = 120 minutes per week."';
+            $t = 'Lecture, group discussion, and task';
         }
+
         $rps = RPS::findOrFail($id);
         $rps->update([
             'nomor' => $request->nomor,
             'prodi' => $request->prodi,
             'semester' => $request->semester,
-            'kurikulum' => $request->kurikulum,
-            'id_mk' => $request->mataKuliah,
-            'dosen' => $d,
+            'kurikulum' => $mk->kurikulum,
+            'kode_mk' => $request->matakuliah,
+            'dosen' => $request->dosen,
             'pengembang' => $request->pengembang,
             'koordinator' => $request->koordinator,
             'kaprodi' => $request->kaprodi,
             'pustaka_utama' => $request->pustaka_utama,
             'materi_mk' => $request->materi_mk,
             'pustaka_pendukung' => $p,
+            'tipe' => $t,
+            'waktu' => $w,
+            'syarat_ujian' => 'A student must have attended at least 80% of the lectures to sit in the exams.',
+            'syarat_studi' => '"Trial, either midterm or semester test,
+Tasks, including individual or group assignments to be completed within a certain timeframe, and team project
+Quizzes, held on face-to-face, once before midterm exam and once after midterm exam, with a short answer form.
+Assessment is done using benchmark assessment, with the aim of measuring the level of student understanding related to the target and class rank.
+"',
+            'media' => 'e-learning (virtual class), LCD, whiteboard, and websites',
+            'kontrak' => $request->kontrak
         ]);
         return redirect('/dosen/rps/list-rps')->with('success', 'RPS successfully updated!');
     }

@@ -15,8 +15,7 @@ class CPMKcontroller extends Controller
         $rpss = RPS::where('pengembang', auth()->user()->name)->get();
         $mks = collect();
         foreach ($rpss as $rps) {
-            $id_mk = $rps->kode_mk;
-            $mk = MK::find($id_mk);
+            $mk = MK::where('kode', $rps->kode_mk)->firstOrFail();
             $mks->push($mk);
         }
         return view('dosen.cpmk.add', compact('mks'));
@@ -26,14 +25,20 @@ class CPMKcontroller extends Controller
     {
         $request->validate([
             'kode_mk' => 'required',
-            'judul' =>
-            ['required', 'string', 'regex:/^[a-zA-Z0-9., \/()&*%+_:;]+$/', 'max:255'],
         ]);
-        CPMK::create([
-            'kode_mk' => $request->kode_mk,
-            'judul' => $request->judul,
-        ]);
-        return redirect(route('cpmk-list'))->with('success', 'New CPMK successfully added!');
+        try {
+            for ($i = 0; $i < count($request->input('judul')); $i++) {
+                if (isset($request->input('judul')[$i])) {
+                    CPMK::create([
+                        'kode_mk' => $request->kode_mk,
+                        'judul' => $request->input('judul')[$i]
+                    ]);
+                }
+            }
+            return redirect(route('cpmk-list'))->with('success', 'New CPMK successfully added!');
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput($request->all)->with('error', "Terjadi kesalahan, silahkan periksa kembali data yang diinputkan!" . $e);
+        }
     }
 
     public function List()

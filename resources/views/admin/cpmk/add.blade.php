@@ -23,7 +23,7 @@
                             <label for="judul" class="form-label">Judul rincian CPMK <span style="color:red">*</span></label>
                             <input type="text" name="judul[0]" class="form-control" placeholder="Judul rincian CPMK" autocomplete="off">
                         </div>
-                        
+
                         <div class="col-2">
                             <label>Action</label>
                             <div class="form-group">

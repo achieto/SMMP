@@ -22,76 +22,57 @@
                     @enderror
                     <div id="nomorHelp" class="form-text">Silahkan masukkan nomor RPS.</div>
                 </div>
-
-                <!-- <div class="input-group mb-3">
-                    <div class="form-floating">
-                        <input type="number" name="semester" min='0' class="form-control" id="floatingInputGroup1" placeholder="Username">
-                        <label for="floatingInputGroup1">Semester</label>
-                    </div>
-                    <span class="input-group-text">/</span>
-                    <div class="form-floating">
-                        <input type="text" name="nomor" min='0' class="form-control" id="floatingInputGroup1" placeholder="Username">
-                        <label for="floatingInputGroup1">Nomor RPS</label>
-                    </div>
-                </div> -->
-                <div class="form-floating">
-                    <select id="prodi" name="prodi" class="form-select form-control-lg" aria-label="select Prodi">
-                        <option disabled>Pilih Program Studi </option>
-                        <option value="S1 - Ilmu Komputer" {{$rps->prodi == 'S1 - Ilmu Komputer'?'selected':''}}>S1 - Ilmu Komputer</option>
-                        <option value="D3 - Manajemen Informatika" {{$rps->prodi == 'D3 - Manajemen Informatika'?'selected':''}}>D3 - Manajemen Informatika</option>
+                <div class="form-floating mb-3">
+                    <select class="form-select form-control-lg" name="prodi">
+                        <option selected="true" value="" disabled selected> </option>
+                        <option value="S1-Ilmu Komputer" {{$rps->prodi == 'S1-Ilmu Komputer' ? 'selected' : ''}}>S1 - Ilmu Komputer</option>
+                        <option value="D3-Manajemen Informatika" {{$rps->prodi == 'D3-Manajemen Informatika' ? 'selected' : ''}}>D3 - Manajemen Informatika</option>
                     </select>
-                    <label for="prodi">Program Studi <span style="color:red">*</span></label>
+                    <label for="prodi">Program studi <span style="color:red">*</span></label>
                     @error('prodi')
                     <div class="alert alert-danger">
                         {{ $message }}
                     </div>
                     @enderror
-                    <div id="ProdiHelp" class="form-text mb-3">Silahkan pilih Program Studi.</div>
                 </div>
-
                 <div class="form-floating mb-3">
-                    <input type="number" name="kurikulum" class="form-control" min="1" id="kurikulum" placeholder="kurikulum" value="{{$rps->kurikulum}}" aria-describedby="kurikulumHelp">
-                    <label for="kurikulum" class="form-label">Tahun Kurikulum <span class="text-danger">*</span></label>
-                    @error('kurikulum')
-                    <div class="alert alert-danger">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                    <div id="kurikulumHelp" class="form-text">Silahkan masukkan Tahun Kurikulum saat ini.</div>
-                </div>
-
-                <div class="form-floating mb-3">
-                    <input type="number" name="semester" class="form-control" max="8" min="1" id="semester" placeholder="semester" value="{{$rps->semester}}" aria-describedby="semesterHelp">
-                    <label for="semester" class="form-label">Semester <span class="text-danger">*</span></label>
+                    <select class="form-select form-control-lg" name="semester" id="semester">
+                        <option selected="true" value="" disabled selected> </option>
+                        <option value="1" {{ $rps->semester == 1 ? 'selected' : '' }}>1</option>
+                        <option value="2" {{ $rps->semester == 2 ? 'selected' : '' }}>2</option>
+                        <option value="3" {{ $rps->semester == 3 ? 'selected' : '' }}>3</option>
+                        <option value="4" {{ $rps->semester == 4 ? 'selected' : '' }}>4</option>
+                        <option value="5" {{ $rps->semester == 5 ? 'selected' : '' }}>5</option>
+                        <option value="6" {{ $rps->semester == 6 ? 'selected' : '' }}>6</option>
+                        <option value="7" {{ $rps->semester == 7 ? 'selected' : '' }}>7</option>
+                        <option value="8" {{ $rps->semester == 8 ? 'selected' : '' }}>8</option>
+                    </select>
+                    <label>Semester <span class="text-danger">*</span></label>
                     @error('semester')
                     <div class="alert alert-danger">
                         {{ $message }}
                     </div>
                     @enderror
-                    <div id="semesterHelp" class="form-text">Silahkan masukkan Semester (1-8).</div>
                 </div>
-
-                <div class="form-floating">
-                    <select id="mataKuliah" name="mataKuliah" class="form-select form-control-lg" aria-label="select Mata Kuliah">
-                        <option selected disabled>Pilih Mata Kuliah </option>
+                <div class="form-floating mb-3">
+                    <select id="matakuliah" name="matakuliah" class="form-select form-control-lg">
+                        <option selected="true" value="" disabled selected> </option>
                         @foreach ($mks as $mk)
-                        <option value="{{$mk->id}}" {{$rps->id_mk == $mk->id?'selected':''}}>{{$mk->nama}}</option>
+                        <option value="{{$mk->kode}}" {{$rps->kode_mk == $mk->kode ? 'selected' : ''}}>{{$mk->nama}}</option>
                         @endforeach
                     </select>
-                    <label for="mataKuliah">Mata Kuliah <span style="color:red">*</span></label>
-                    @error('mataKuliah')
+                    <label for="matakuliah">Mata kuliah <span style="color:red">*</span></label>
+                    @error('matakuliah')
                     <div class="alert alert-danger">
                         {{ $message }}
                     </div>
                     @enderror
-                    <div id="MKHelp" class="form-text mb-3">Silahkan pilih mata kuliah.</div>
                 </div>
-
-                <div class="form-floating">
-                    <select id="pengembang" name="pengembang" class="form-select form-control-lg" aria-label="select pengembang">
-                        <option selected disabled>Pilih Pengembang RPS </option>
+                <div class="form-floating mb-3">
+                    <select name="pengembang" class="form-select form-control-lg">
+                        <option selected="true" value="" disabled selected> </option>
                         @foreach ($users as $user)
-                        <option value="{{$user->name}}" {{$rps->pengembang == $user->name?'selected':''}}>{{$user->name}}</option>
+                        <option value="{{$user->name}}" {{$rps->pengembang == $user->name ? 'selected' : ''}}>{{$user->name}}</option>
                         @endforeach
                     </select>
                     <label for="pengembang">Pengembang RPS <span style="color:red">*</span></label>
@@ -100,82 +81,137 @@
                         {{ $message }}
                     </div>
                     @enderror
-                    <div id="pengembangHelp" class="form-text mb-3">Silahkan masukkan nama lengkap pengembang RPS.</div>
                 </div>
-
-                <div class="form-floating">
-                    <select id="koordinator" name="koordinator" class="form-select form-control-lg" aria-label="select Koordinator">
-                        <option selected disabled>Pilih Koordinator Mata Kuliah </option>
+                <div class="form-floating mb-3">
+                    <select name="koordinator" class="form-select form-control-lg">
+                        <option selected="true" value="" disabled selected> </option>
                         @foreach ($users as $user)
-                        <option value="{{$user->name}}" {{$rps->koordinator == $user->name?'selected':''}}>{{$user->name}}</option>
+                        <option value="{{$user->name}}" {{$rps->koordinator == $user->name ? 'selected' : ''}}>{{$user->name}}</option>
                         @endforeach
                     </select>
-                    <label for="koordinator">Koordinator Mata Kuliah <span style="color:red">*</span></label>
+                    <label for="koordinator">Koordinator RMK </label>
                     @error('koordinator')
                     <div class="alert alert-danger">
                         {{ $message }}
                     </div>
                     @enderror
-                    <div id="koordinatorHelp" class="form-text mb-3">Silahkan masukkan nama lengkap Dosen Koordinator Mata Kuliah.</div>
                 </div>
-
-                <div class="form-floating">
-                    <select id="dosen" name="dosen" class="form-select form-control-lg" aria-label="select dosen">
-                        <option selected disabled>Pilih Dosen Pengampu 2 Mata Kuliah</option>
+                <div class="form-floating mb-3">
+                    <select name="dosen" class="form-select form-control-lg">
+                        <option selected="true" value="" disabled selected> </option>
                         @foreach ($users as $user)
-                        <option value="{{$user->name}}" {{$rps->dosen == $user->name?'selected':''}}>{{$user->name}}</option>
+                        <option value="{{$user->name}}" {{$rps->dosen == $user->name ? 'selected' : ''}}>{{$user->name}}</option>
                         @endforeach
                     </select>
-                    <label for="dosen">Dosen Pengampu 2 </label>
+                    <label for="dosen">Dosen pengampu <span style="color:red">*</span></label>
                     @error('dosen')
                     <div class="alert alert-danger">
                         {{ $message }}
                     </div>
                     @enderror
-                    <div id="dosenHelp" class="form-text mb-3">Silahkan masukkan nama lengkap Dosen Pengampu 2 Mata Kuliah. (Opsional)</div>
                 </div>
-
                 <div class="form-floating mb-3">
-                    <input type="text" name="kaprodi" class="form-control" id="kaprodi" placeholder="kaprodi" value="{{$rps->kaprodi}}" aria-describedby="kaprodiHelp">
-                    <label for="kaprodi" class="form-label">Kepala Program Studi <span style="color:red">*</span></label>
+                    <select name="kaprodi" class="form-select form-control-lg">
+                        <option selected="true" value="" disabled selected> </option>
+                        @foreach ($users as $user)
+                        <option value="{{$user->name}}" {{$rps->kaprodi == $user->name ? 'selected' : ''}}>{{$user->name}}</option>
+                        @endforeach
+                    </select>
+                    <label for="kaprodi">Kepala program studi <span style="color:red">*</span></label>
                     @error('kaprodi')
                     <div class="alert alert-danger">
                         {{ $message }}
                     </div>
                     @enderror
-                    <div id="kaprodiHelp" class="form-text">Silahkan masukkan nama lengkap Dosen Kepala Program Studi.</div>
                 </div>
-
                 <div class="form-floating mb-3">
-                    <input type="text" name="pustaka_utama" class="form-control" id="pustaka_utama" placeholder="pustaka utama" value="{{$rps->pustaka_utama}}" aria-describedby="pustaka_utamaHelp">
-                    <label for="pustaka_utama" class="form-label">Pustaka Utama <span class="text-danger">*</span></label>
-                    @error('pustaka_utama')
+                    <input type="text" name="tipe" value="{{$rps->tipe}}" class="form-control" placeholder="Jenis pengajaran" autocomplete="off">
+                    <label for="tipe">Jenis pengajaran <span class="text-danger">*</span></label>
+                    @error('tipe')
                     <div class="alert alert-danger">
                         {{ $message }}
                     </div>
                     @enderror
-                    <div id="utamaHelp" class="form-text">Silahkan masukkan Pustaka Referensi Bahan Ajar Utama.</div>
                 </div>
-
-                <div class="form-floating mb-3">
-                    <input type="text" name="pustaka_pendukung" class="form-control" id="pustaka_pendukung" placeholder="pustaka pendukung" value="{{$rps->pustaka_pendukung}}" aria-describedby="pustaka_pendukungHelp">
-                    <label for="pustaka_pendukung" class="form-label">Pustaka Pendukung</label>
-                    @error('pustaka_pendukung')
-                    <div class="alert alert-danger">
-                        {{ $message }}
+                <div class="row">
+                    <div class="col-6 form-floating mb-3">
+                        <textarea name="waktu" class="form-control" placeholder="Workload" style="height: 100px">{{$rps->waktu}}</textarea>
+                        <label for="waktu" class="form-label ms-3">Workload <span class="text-danger">*</span></label>
+                        @error('waktu')
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
-                    @enderror
-                    <div id="pendukungHelp" class="form-text">Silahkan masukkan Pustaka Referensi Bahan Ajar Pendukung.</div>
+                    <div class="col-6 form-floating mb-3">
+                        <textarea name="kontrak" class="form-control" placeholder="Kontrak kuliah" style="height: 100px">{{$rps->kontrak}}</textarea>
+                        <label  class="form-label ms-3" for="kontrak">Kontrak kuliah <span class="text-danger">*</span></label>
+                        @error('kontrak')
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
                 </div>
                 <div class="form-floating mb-3">
-                    <textarea name="materi_mk" id="materi_mk" class="form-control" placeholder="insert materi_mk" style="height: 100px"> {{$rps->materi_mk}} </textarea>
-                    <label for="materi_mk" class="form-label">Materi Mata Kuliah <span class="text-danger">*</span></label>
+                    <textarea name="materi_mk" class="form-control" placeholder="Materi MK" style="height: 100px">{{$rps->materi_mk}}</textarea>
+                    <label for="materi_mk">Materi MK <span class="text-danger">*</span></label>
                     @error('materi_mk')
                     <div class="alert alert-danger">
                         {{ $message }}
                     </div>
                     @enderror
-                    <div id="materiHelp" class="form-text">Silahkan masukkan informasi singkat tentang Mata Kuliah.</div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-floating mb-3">
+                            <textarea name="syarat_ujian" class="form-control" style="height: 100px" placeholder="Syarat ujian">{{$rps->syarat_ujian}}</textarea>
+                            <label for="syarat_ujian">Syarat ujian <span class="text-danger">*</span></label>
+                            @error('syarat_ujian')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-6 form-floating mb-3">
+                        <textarea name="syarat_studi" class="form-control" placeholder="Syarat studi" style="height: 100px">{{$rps->syarat_studi}}</textarea>
+                        <label class="form-label ms-3" for="syarat_studi">Syarat studi <span class="text-danger">*</span></label>
+                        @error('syarat_studi')
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" name="media" value="{{$rps->media}}" class="form-control" placeholder="Media pembelajaran" autocomplete="off">
+                    <label for="media">Media pembelajaran <span class="text-danger">*</span></label>
+                    @error('media')
+                    <div class="alert alert-danger">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+                <div class="row">
+                    <div class="col-6 form-floating mb-3">
+                        <textarea name="pustaka_utama" class="form-control" style="height:100px" placeholder="Pustaka utama">{{$rps->pustaka_utama}}</textarea>
+                        <label class="form-label ms-3" for="pustaka_utama">Pustaka utama <span class="text-danger">*</span></label>
+                        @error('pustaka_utama')
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="col-6 form-floating mb-3">
+                        <textarea name="pustaka_pendukung" class="form-control" style="height:100px" placeholder="Pustaka pendukung">{{$rps->pustaka_pendukung}}</textarea>
+                        <label class="form-label ms-3" for="pustaka_pendukung">Pustaka pendukung</label>
+                        @error('pustaka_pendukung')
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
