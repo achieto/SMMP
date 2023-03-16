@@ -17,33 +17,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @php
-                        $kode_mk = 0;
-                        $kode_cpl = 0;
-                        $nama_mk = '';
-                        foreach($cplmks as $no=>$cplmk):
-                        foreach($mks as $mk):
-                        if($cplmk->kode_mk == $mk->kode):
-                        $kode_mk = $mk->kode;
-                        $nama_mk = $mk->nama;
-                        endif;
-                        endforeach;
-                        foreach($cpls as $cpl):
-                        if($cplmk->id_cpl == $cpl->id)
-                        $kode_cpl = $cpl->kode;
-                        endforeach
-                        @endphp
+                        @foreach($cplmks as $no=>$cplmk)
                         <tr>
                             <td class="py-4">{{$no+1}}</td>
-                            <td>{{$kode_mk}}</td>
-                            <td>{{$nama_mk}}</td>
+                            <td>{{$cplmk->mk->kode}}</td>
+                            <td>{{$cplmk->mk->nama}}</td>
                             <td>{{date("d-m-Y",strtotime($cplmk->created_at))}}</td>
-                            <td>{{$kode_cpl}}</td>
+                            <td>{{$cplmk->cpl->kode}}</td>
                             <td class="py-4 d-flex">
                                 <form action="{{route('cplmk-delete',['id'=>$cplmk->id])}}" method="post">
                                     @csrf
                                     @method('delete')
-                                    <button type="submit" class="btn btn-danger btn-icon-text p-2 me-2" onclick="return confirm('Are you sure to delete CPL {{$kode_cpl}} from CPLMK {{$kode_mk}} ?')">
+                                    <button type="submit" class="btn btn-danger btn-icon-text p-2 me-2" onclick="return confirm('Are you sure to delete CPL {{$cplmk->cpl->kode}} from CPLMK {{$cplmk->mk->kode}} ?')">
                                         Delete
                                         <i class="ti-trash btn-icon-append"></i>
                                     </button>

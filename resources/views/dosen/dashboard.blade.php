@@ -2,7 +2,7 @@
 @section('content')
 
 <style>
-    .card:hover {
+    .stats:hover {
         background-color: rgba(0, 123, 255, .75) !important;
         cursor: pointer;
         transform: scale(.95);
@@ -10,7 +10,7 @@
 </style>
 
 <div class="container d-flex justify-content-between w-100">
-    <a class="card mx-1 w-100 bg-primary text-white text-decoration-none" href="rps/list-rps">
+    <a class="card stats mx-1 w-100 bg-primary text-white text-decoration-none" href="rps/list-rps">
         <div class="card-title m-0">
             <p class="p-4 pb-1 h3 m-0 text-white">JUMLAH RPS</p>
         </div>
@@ -20,7 +20,7 @@
             </p>
         </div>
     </a>
-    <a class="card mx-1 w-100 bg-primary text-white text-decoration-none" href="cplmk/list-cplmk">
+    <a class="card stats mx-1 w-100 bg-primary text-white text-decoration-none" href="cplmk/list-cplmk">
         <div class=" card-title m-0">
             <p class="p-4 pb-1 h3 m-0 text-white">JUMLAH CPLMK</p>
         </div>
@@ -28,7 +28,7 @@
             <p class="h1 text-end pe-3 jumlah">{{$cplmks->count()}}</p>
         </div>
     </a>
-    <a class="card mx-1 w-100 bg-primary text-white text-decoration-none" href="cpmk/list-cpmk">
+    <a class="card stats mx-1 w-100 bg-primary text-white text-decoration-none" href="cpmk/list-cpmk">
         <div class="card-title m-0">
             <p class="p-4 pb-1 h3 m-0 text-white">JUMLAH CPMK</p>
         </div>

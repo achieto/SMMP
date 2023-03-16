@@ -25,7 +25,6 @@ erDiagram
             int tahun
           }
           mks {
-            int id
             string kode
             sting nama
             enum rumpun
@@ -37,7 +36,7 @@ erDiagram
           }
           rpss {
             int id
-            int id_mk
+            int kode_mk
             string nomor
             string prodi
             string dosen
@@ -49,6 +48,12 @@ erDiagram
             string materi_mk
             string pustaka_utama
             string pustaka_pendukung
+            string tipe
+            string waktu
+            string syarat_ujian
+            string syaray_studi
+            string media
+            string kontrak
           }
           activities {
             int id
@@ -77,13 +82,20 @@ erDiagram
           }
           cpmks {
             int id
-            int id_mk
+            int kode_mk
             string judul
           }
           soals {
             int id
-            int id_mk
+            int kode_mk
+            enum prodi
+            int minggu
+            enum jenis
+            string dosen
+            int kurikulum
+            enum status
             string pertanyaan
+            string komentar
           }
           cpmk_soals {
             int id

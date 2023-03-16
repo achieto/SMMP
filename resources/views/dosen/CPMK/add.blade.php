@@ -12,14 +12,14 @@
             <form action="" method="post">
                 @csrf
                 <div class="form-floating">
-                    <select id="mataKuliah" name="id_mk" class="form-select form-control-lg" aria-label="select Mata Kuliah">
+                    <select id="mataKuliah" name="kode_mk" class="form-select form-control-lg" aria-label="select Mata Kuliah">
                         <option selected disabled> </option>
                         @foreach ($mks as $mk)
-                        <option value="{{$mk->id}}">{{$mk->nama}}</option>
+                        <option value="{{$mk->kode}}">{{$mk->nama}}</option>
                         @endforeach
                     </select>
                     <label for="mataKuliah">Mata Kuliah <span style="color:red">*</span></label>
-                    @error('id_mk')
+                    @error('kode_mk')
                     <div class="alert alert-danger">
                         {{ $message }}
                     </div>

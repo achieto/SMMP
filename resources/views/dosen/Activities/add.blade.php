@@ -3,10 +3,21 @@
 
 <div class="container-fluid">
     <div class="card">
-        <div class="card-header">
+        <div class="card-header d-flex justify-content-between">
             <div class="fw-bold">
                 <h3>Tambah Aktifitas Mingguan Baru</h3>
             </div>
+            <div class="btn-wrapper">
+                <a download class="btn btn-inverse-primary" href="{{asset('assets/excel/template.xlsx')}}">Template</a>
+                <button class="btn btn-primary text-white" onclick="document.getElementById('excel').click()">Import</i></button>
+                <form id="form-import" method="post" enctype="multipart/form-data" action="{{route('activities-wfile')}}">
+                    @csrf
+                    <input accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" style="display:none" type="file" name="excel" id="excel">
+                </form>
+                <br>
+                <div style="font-size:11px; margin-top:-8%; "><i class="mdi mdi-information-outline"></i> Note: import excel min. 2 activities</div>
+            </div>
+
         </div>
         <div class="card-body">
             <form action="" method="post">
@@ -17,7 +28,7 @@
                             <select id="rps" name="id_rps" class="form-select form-control-lg" aria-label="select RPS">
                                 <option selected disabled> </option>
                                 @foreach ($rpss as $rps)
-                                <option value="{{$rps->id}}">{{$rps->nomor}}</option>
+                                <option value="{{$rps->id}}">{{$rps->nomor}} - {{$rps->kode_mk}}</option>
                                 @endforeach
                             </select>
                             <label for="rps">Nomor RPS <span style="color:red">*</span></label>
@@ -140,6 +151,9 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
     var i = 0;
+    document.getElementById("excel").onchange = function() {
+        document.getElementById("form-import").submit();
+    };
     $("#dynamic-btn-indikator").click(function() {
         ++i;
         $("#dynamic-indikator").append('<div class="form-group row clone"><div class="form-floating mb-3 col-10">' +
@@ -147,9 +161,7 @@
             '<label for="indikator" class="form-label ps-4"> Indikator</label></div>' +
             '<div class="col-2"><button type="button" id="remove-indikator'+[i]+'" class="btn ms-3 mt-2 btn-danger remove-input-indikator d-none">Delete</button></div></div>');
     });
-    $(document).on('click', '.remove-input-indikator', function() {
-        $(this).parents('.clone').remove();
-    });
+
 
 </script>
 @endsection

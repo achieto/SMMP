@@ -12,6 +12,7 @@ use App\Models\Activity;
 use App\Models\CPMK;
 use App\Models\CPLMK;
 use Barryvdh\DomPDF\PDF;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
 class RPScontroller extends Controller
@@ -25,9 +26,8 @@ class RPScontroller extends Controller
 
     public function List()
     {
-        $rpss = RPS::where('pengembang', auth()->user()->name)->get();
-        $mks = MK::all();
-        return view('dosen.rps.list', compact('rpss', 'mks'));
+        $rpss = RPS::where('pengembang', Auth::user()->name)->get();
+        return view('dosen.rps.list', compact('rpss'));
     }
 
 
@@ -74,47 +74,66 @@ class RPScontroller extends Controller
         $pdf->setOption('enable-local-file-access', true);
         return $pdf->stream('rps.pdf');
     }
-    public function Store(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'nomor' => ['required', 'unique:rpss', 'regex:/^[0-9\/]+$/'],
             'prodi' => 'required',
-            'mataKuliah' => 'required',
+            'matakuliah' => 'required',
             'semester' => ['required', 'integer', 'digits:1'],
-            'dosen' => 'nullable',
+            'dosen' => 'required',
             'kaprodi' => ['required', 'string', 'regex:/^[a-zA-Z., ]+$/', 'max:255'],
-            'kurikulum' => ['required', 'integer', 'digits:4'],
             'pengembang' => 'required',
             'koordinator' => 'required',
-            'pustaka_pendukung' => ['nullable'],
-            'materi_mk' => ['required'],
-            'pustaka_utama' => ['required'],
+            'pustaka_pendukung' => 'nullable',
+            'materi_mk' => 'required',
+            'pustaka_utama' => 'required',
+            'kontrak' => 'required'
         ]);
         if ($request->pustaka_pendukung == null) {
             $p = 'Tidak ada';
         } else {
             $p = $request->pustaka_pendukung;
         }
-        if ($request->dosen == null) {
-            $d = 'Tidak ada';
+
+        $mk = MK::findOrFail($request->matakuliah);
+        if ($mk->bobot_teori + $mk->bobot_praktikum == 3) {
+            $w = '"Lectures: 3 x 50 = 150 minutes per week.
+Exercises and Assignments: 3 x 60 = 180 minutes per week.
+Private study: 3 x 60 = 180 minutes per week."';
+            $t = 'Lecture, group discussion, task, and practicum';
         } else {
-            $d = $request->dosen;
+            $w = '"Lectures: 2 x 50 = 100 minutes per week.
+Exercises and Assignments: 2 x 60 = 120 minutes per week.
+Private study: 2 x 60 = 120 minutes per week."';
+            $t = 'Lecture, group discussion, and task';
         }
+
         RPS::create([
             'nomor' => $request->nomor,
             'prodi' => $request->prodi,
             'semester' => $request->semester,
-            'kurikulum' => $request->kurikulum,
-            'id_mk' => $request->mataKuliah,
-            'dosen' => $d,
+            'kurikulum' => $mk->kurikulum,
+            'id_mk' => $request->matakuliah,
+            'dosen' => $request->dosen,
             'pengembang' => $request->pengembang,
             'koordinator' => $request->koordinator,
             'kaprodi' => $request->kaprodi,
             'pustaka_utama' => $request->pustaka_utama,
             'materi_mk' => $request->materi_mk,
             'pustaka_pendukung' => $p,
+            'tipe' => $t,
+            'waktu' => $w,
+            'syarat_ujian' => 'A student must have attended at least 80% of the lectures to sit in the exams.',
+            'syarat_studi' => '"Trial, either midterm or semester test,
+Tasks, including individual or group assignments to be completed within a certain timeframe, and team project
+Quizzes, held on face-to-face, once before midterm exam and once after midterm exam, with a short answer form.
+Assessment is done using benchmark assessment, with the aim of measuring the level of student understanding related to the target and class rank.
+"',
+            'media' => 'e-learning (virtual class), LCD, whiteboard, and websites',
+            'kontrak' => $request->kontrak
         ]);
-        return redirect('/dosen/rps/list-rps')->with('success', 'New RPS successfully added!');
+        return redirect('/admin/list-rps')->with('success', 'New RPS successfully added!');
     }
 
     public function Edit($id)

@@ -15,6 +15,7 @@ use App\Http\Controllers\Dosen\CPMKcontroller as CPMKdosen;
 use App\Http\Controllers\Dosen\CPLMKcontroller as CPLMKdosen;
 use App\Http\Controllers\Dosen\DashboardController as DashboardDosen;
 use App\Http\Controllers\Dosen\ActivitiesController;
+use App\Http\Controllers\Dosen\SoalController as soalDosen;
 use App\Http\Controllers\PenjaminMutu\SoalController as SoalPM;
 use App\Http\Controllers\ProfileController;
 /*
@@ -44,18 +45,26 @@ Route::middleware(['auth'])->group(
         // dosen
         Route::middleware('dosen')->prefix('dosen')->group(
             function () {
+                //dashboard
                 Route::get('dashboard', [DashboardDosen::class, 'list'] )->name('dashboard');
                 Route::get('dashboard-chart', [DashboardDosen::class, 'chart'])->name('dosen-chart');
+
+                //activities
                 Route::get('activities/add-activity', [ActivitiesController::class, 'Add'])->name('activities-add');
                 Route::post('activities/add-activity', [ActivitiesController::class, 'Store'])->name('activities-store');
+                Route::post('activities/add-activity-wfile', [ActivitiesController::class, 'create_wfile'])->name('activities-wfile');
                 Route::get('activities/list-activity', [ActivitiesController::class, 'List'])->name('activities-list');
                 Route::get('activities/edit-activity/{id}', [ActivitiesController::class, 'Edit'])->name('activity-edit');
                 Route::put('activities/edit-activity/{id}', [ActivitiesController::class, 'Update'])->name('activity-update');
                 Route::delete('activities/delete-activity/{id}', [ActivitiesController::class, 'Delete'])->name('activity-delete');
+
+                //cplmk
                 Route::get('cplmk/add-cplmk', [CPLMKdosen::class, 'Add'])->name('cplmk-add');
                 Route::post('cplmk/add-cplmk', [CPLMKdosen::class, 'Store'])->name('cplmk-store');
                 Route::get('cplmk/list-cplmk', [CPLMKdosen::class, 'List'])->name('cplmk-list');
                 Route::delete('cplmk/delete-cplmk/{id}', [CPLMKdosen::class, 'Delete'])->name('cplmk-delete');
+
+                //rps
                 Route::get('rps/add-rps', [RPSdosen::class, 'Add'])->name('rps-add');
                 Route::post('rps/add-rps', [RPSdosen::class, 'Store']);
                 Route::get('rps/list-rps', [RPSdosen::class, 'List'])->name('rps-list');
@@ -63,12 +72,23 @@ Route::middleware(['auth'])->group(
                 Route::get('rps/edit-rps/{id}', [RPSdosen::class, 'Edit']);
                 Route::put('rps/edit-rps/{id}', [RPSdosen::class, 'Update']);
                 Route::delete('rps/delete-rps/{id}', [RPSdosen::class, 'Delete']);
+
+                //cpmk
                 Route::get('cpmk/add-cpmk', [CPMKdosen::class, 'Add'])->name('cpmk-add');
                 Route::post('cpmk/add-cpmk', [CPMKdosen::class, 'Store'])->name('cpmk-store');
                 Route::get('cpmk/edit-cpmk/{id}', [CPMKdosen::class, 'Edit'])->name('cpmk-edit');
                 Route::put('cpmk/edit-cpmk/{id}', [CPMKdosen::class, 'Update']);
                 Route::get('cpmk/list-cpmk', [CPMKdosen::class, 'List'])->name('cpmk-list');
                 Route::delete('cpmk/delete-cpmk/{id}', [CPMKdosen::class, 'Delete'])->name('cpmk-delete');
+
+                //soal
+                 Route::get('soal/add-soal', [soalDosen::class, 'Add'])->name('soal-add');
+                 Route::post('soal/add-soal', [soalDosen::class, 'Store'])->name('soal-store');
+                 Route::get('soal/list-soal', [soalDosen::class, 'list'])->name('soal-list');
+                 Route::get('soal/edit-soal/{id}', [soalDosen::class, 'Edit'])->name('soal-edit');
+                 Route::put('soal/edit-soal/{id}', [soalDosen::class, 'Update']);
+                 Route::delete('soal/delete-soal/{id}', [soalDosen::class, 'Delete'])->name('soal-delete');
+
             }
         );
 
