@@ -15,8 +15,8 @@ class CPMKcontroller extends Controller
         $rpss = RPS::where('pengembang', auth()->user()->name)->get();
         $mks = collect();
         foreach ($rpss as $rps) {
-            $id_mk = $rps->id_mk;
-            $mk = MK::find($id_mk);
+            $kode_mk = $rps->kode_mk;
+            $mk = MK::where('kode', $kode_mk)->firstorfail();
             $mks->push($mk);
         }
         return view('dosen.cpmk.add', compact('mks'));
@@ -41,10 +41,10 @@ class CPMKcontroller extends Controller
         $rpss = RPS::where('pengembang', auth()->user()->name)->get();
         $cpmks = collect();
         foreach ($rpss as $rps) {
-            $id_mk = $rps->id_mk;
-            $temp = cpmk::where('id_mk', $id_mk)->get();
+            $kode_mk = $rps->kode_mk;
+            $temp = cpmk::where('kode_mk', $kode_mk)->get();
             foreach ($temp as $cpmk) {
-                $mk = MK::find($cpmk->id_mk);
+                $mk = MK::where('kode', $cpmk->kode_mk)->firstorfail();
                 $cpmk->mk = $mk->nama;
                 $cpmks->push($cpmk);
             }

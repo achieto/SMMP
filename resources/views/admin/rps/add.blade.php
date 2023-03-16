@@ -3,15 +3,17 @@
 <div class="col-12 grild-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Add RPS</h4>
-            <div class="btn-wrapper">
-                <button class="btn btn-primary text-white" onclick="document.getElementById('excel').click()">Import</i></button>
-                <form id="form-import" method="post" enctype="multipart/form-data" action="add-rps-wfile">
-                    @csrf
-                    <input accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"" style=" display:none" type="file" name="excel" id="excel">
-                </form>
+            <div class="d-flex" style="justify-content:space-between">
+                <h4 class="card-title">Add RPS</h4>
+                <div class="btn-wrapper">
+                    <a download class="btn btn-inverse-primary" href="{{asset('assets/xlsx_template/template_rps.xlsx')}}">Template</a>
+                    <button class="btn btn-primary text-white" onclick="document.getElementById('excel').click()">Import</i></button>
+                    <form id="form-import" method="post" enctype="multipart/form-data" action="add-rps-wfile">
+                        @csrf
+                        <input accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"" style=" display:none" type="file" name="excel" id="excel">
+                    </form>
+                </div>
             </div>
-            
             <form method="POST" action="add-rps" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
@@ -27,8 +29,8 @@
                     <label for="prodi">Program studi <span style="color:red">*</span></label>
                     <select class="js-example-basic-single w-100" name="prodi">
                         <option selected="true" value="" disabled selected>Select...</option>
-                        <option value="S1 - Ilmu Komputer" {{old('prodi') == 'S1 - Ilmu Komputer' ? 'selected' : ''}}>S1 - Ilmu Komputer</option>
-                        <option value="D3 - Manajemen Informatika" {{old('prodi') == 'D3 - Manajemen Informatika' ? 'selected' : ''}}>D3 - Manajemen Informatika</option>
+                        <option value="S1-Ilmu Komputer" {{old('prodi') == 'S1-Ilmu Komputer' ? 'selected' : ''}}>S1 - Ilmu Komputer</option>
+                        <option value="D3-Manajemen Informatika" {{old('prodi') == 'D3-Manajemen Informatika' ? 'selected' : ''}}>D3 - Manajemen Informatika</option>
                     </select>
                     @error('prodi')
                     <div class="alert alert-danger">
@@ -41,7 +43,7 @@
                     <select id="matakuliah" name="matakuliah" class="js-example-basic-single w-100">
                         <option selected="true" value="" disabled selected>Select...</option>
                         @foreach ($mks as $mk)
-                        <option value="{{$mk->id}}" {{old('matakuliah') == $mk->id ? 'selected' : ''}}>{{$mk->nama}}</option>
+                        <option value="{{$mk->kode}}" {{old('matakuliah') == $mk->kode ? 'selected' : ''}}>{{$mk->nama}}</option>
                         @endforeach
                     </select>
                     @error('matakuliah')

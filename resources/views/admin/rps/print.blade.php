@@ -107,7 +107,7 @@
 </head>
 <table>
     <tr class="title blue">
-        <th colspan="2" rowspan="1" style="width:12%" class="title-sub"><img style="width:1.91cm" src="{{public_path('/assets/img/logo_unila.png')}}" alt=""></td>
+        <th colspan="2" rowspan="1" style="width:12%" class="title-sub"><img style="width:1.91cm" src="{{asset('/assets/img/logo_unila.png')}}" alt=""></td>
         <th colspan="7" rowspan="1" class="title-sub" style="width:76%;font-size:16pt;">
             <div class="row">
                 <div class="col">UNIVERSITAS LAMPUNG</div>

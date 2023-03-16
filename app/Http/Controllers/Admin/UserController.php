@@ -13,6 +13,7 @@ use Illuminate\Validation\Rules;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\UsersImport;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Filesystem\Filesystem;
 
 class UserController extends Controller
 {
@@ -147,6 +148,8 @@ class UserController extends Controller
             $excelPath = round(microtime(true) * 1000) . '-' . str_replace(' ', '-', $excel->getClientOriginalName());
             $excel->move(public_path('../public/assets/excel/'), $excelPath);
             Excel::import(new UsersImport, public_path('../public/assets/excel/' . $excelPath));
+            $file = new Filesystem;
+            $file->cleanDirectory('../public/assets/excel/');
             return redirect('/admin/list-user')->with('success', 'User successfully added!');    
         } catch (\Exception $e) {
             return redirect('/admin/add-user')->with('error', "Terjadi kesalahan, silahkan periksa kembali data dalam excel anda!, ". $e);

@@ -28,14 +28,13 @@
                         $kode_mk = 0;
                         foreach($soals as $no=>$soal):
                         foreach($mks as $mk):
-                        if($soal->id_mk == $mk->id)
-                        $kode_mk = $mk->kode;
+                        if($soal->kode_mk == $mk->kode)
                         $nama_mk = $mk->nama;
                         endforeach
                         @endphp
                         <tr>
                             <td class="py-4">{{$no+1}}</td>
-                            <td>{{$kode_mk}}</td>
+                            <td>{{$soal->kode_mk}}</td>
                             <td>{{$nama_mk}}</td>
                             <td>{{$soal->minggu}}</td>
                             <td>{{$soal->jenis}}</td>
@@ -70,7 +69,7 @@
                                                         <tr>
                                                             <td class="non-border" style="padding-left: 85px; border-collapse: collapse;">Kode Mata Kuliah</td>
                                                             <td class="non-border" style="padding-left: 40px; border-collapse: collapse;">:</td>
-                                                            <td class="non-border" style="padding-left: 13px; border-collapse: collapse;">{{$kode_mk}}</td>
+                                                            <td class="non-border" style="padding-left: 13px; border-collapse: collapse;">{{$soal->kode_mk}}</td>
                                                         </tr>
                                                         <tr>
                                                             <td class="non-border" style="padding-left: 85px; border-collapse: collapse;">Nama Mata Kuliah</td>
@@ -88,8 +87,8 @@
                                                                 $soals = collect();
                                                                 $cpmk_soals = collect();
                                                                 foreach ($mks as $mk) {
-                                                                if ($sl->id_mk == $mk->id) {
-                                                                $soalss = App\Models\Soal::where('id_mk', $mk->id)->where('jenis', $sl->jenis)->orderBy('id', 'asc')->get();
+                                                                if ($sl->kode_mk == $mk->kode) {
+                                                                $soalss = App\Models\Soal::where('kode_mk', $mk->kode)->where('jenis', $sl->jenis)->orderBy('id', 'asc')->get();
                                                                 }
                                                                 }
                                                                 foreach ($soalss as $s) $soals->push($s);

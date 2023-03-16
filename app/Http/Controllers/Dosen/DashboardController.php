@@ -17,10 +17,10 @@ class DashboardController extends Controller
         $mks = collect();
         $cpmks = collect();
             foreach ($rpss as $rps) {
-                $id_mk = $rps->id_mk;
-                $mk = MK::find($id_mk);
+                $kode_mk = $rps->kode_mk;
+                $mk = MK::where('kode', $kode_mk)->firstorfail();
                 $mks->push($mk);
-                $temp = CPMK::where('id_mk', $id_mk)->get();
+                $temp = CPMK::where('kode_mk', $kode_mk)->get();
                 foreach ($temp as $cpmk) {
                     $cpmks->push($cpmk);
                 }
@@ -41,8 +41,8 @@ class DashboardController extends Controller
         $rpss = RPS::where('pengembang', auth()->user()->name)->get();
         $mks = collect();
         foreach ($rpss as $rps) {
-            $id_mk = $rps->id_mk;
-            $mk = MK::find($id_mk);
+            $kode_mk = $rps->kode_mk;
+            $mk = MK::where('kode', $kode_mk)->firstorfail();
             $mks->push($mk);
         }
         $cplmks = collect();

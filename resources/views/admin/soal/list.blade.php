@@ -23,14 +23,13 @@
                         $kode_mk = 0;
                         foreach($soals as $no=>$soal):
                         foreach($mks as $mk):
-                        if($soal->id_mk == $mk->id)
-                        $kode_mk = $mk->kode;
+                        if($soal->kode_mk == $mk->kode)
                         $nama_mk = $mk->nama;
                         endforeach
                         @endphp
                         <tr>
                             <td class="py-4">{{$no+1}}</td>
-                            <td>{{$kode_mk}}</td>
+                            <td>{{$soal->kode_mk}}</td>
                             <td>{{$nama_mk}}</td>
                             <td>{{$soal->minggu}}</td>
                             <td>{{$soal->jenis}}</td>

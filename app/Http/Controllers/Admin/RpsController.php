@@ -48,17 +48,18 @@ class RpsController extends Controller
         }
 
         $mk = MK::findOrFail($request->matakuliah);
-        if ($mk->bobot_teori + $mk->bobot_praktikum == 3) {
-            $w = '"Lectures: 3 x 50 = 150 minutes per week. 
-Exercises and Assignments: 3 x 60 = 180 minutes per week. 
-Private study: 3 x 60 = 180 minutes per week."';
+        $bobot = $mk->bobot_teori + $mk->bobot_praktikum;
+        if($bobot == 1 && $mk->bobot_teori < $mk->bobot_praktikum) {
+            $t = 'Lecture, group discussion, task, and practicum';
+        }
+        elseif ($bobot == 3) {
             $t = 'Lecture, group discussion, task, and practicum';
         } else {
-            $w = '"Lectures: 2 x 50 = 100 minutes per week. 
-Exercises and Assignments: 2 x 60 = 120 minutes per week. 
-Private study: 2 x 60 = 120 minutes per week."';
             $t = 'Lecture, group discussion, and task';
         }
+        $w = '"Lectures: ' . $bobot . 'x 50 = 150 minutes per week. 
+Exercises and Assignments: ' . $bobot . 'x 60 = 180 minutes per week. 
+Private study: ' . $bobot . 'x 60 = 180 minutes per week."';
 
         RPS::create([
             'nomor' => $request->nomor,
@@ -200,7 +201,7 @@ Assessment is done using benchmark assessment, with the aim of measuring the lev
         return $pdf->stream('rps.pdf');
         // return view('admin.rps.print', $data);
     }
-    
+
 
     public function create_wfile(Request $request)
     {
@@ -209,6 +210,8 @@ Assessment is done using benchmark assessment, with the aim of measuring the lev
             $excelPath = round(microtime(true) * 1000) . '-' . str_replace(' ', '-', $excel->getClientOriginalName());
             $excel->move(public_path('../public/assets/excel/'), $excelPath);
             Excel::import(new RPSsImport, public_path('../public/assets/excel/' . $excelPath));
+            $file = new Filesystem;
+            $file->cleanDirectory('../public/assets/excel/');
             return redirect('/admin/list-rps')->with('success', 'RPS successfully added!');
         } catch (\Exception $e) {
             return redirect('/admin/add-rps')->with('error', "Terjadi kesalahan, silahkan periksa kembali data dalam excel anda!, " . $e);

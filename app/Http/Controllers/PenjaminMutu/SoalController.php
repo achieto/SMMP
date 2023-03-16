@@ -19,10 +19,10 @@ class SoalController extends Controller
         $mks = MK::all();
         $soal = collect();
         foreach ($mks as $mk) {
-            $kuis1s = Soal::where('id_mk', $mk->id)->where('jenis', 'Kuis ke-1')->skip(0)->take(1)->get();
-            $kuis2s = Soal::where('id_mk', $mk->id)->where('jenis', 'Kuis ke-2')->skip(0)->take(1)->get();
-            $utss = Soal::where('id_mk', $mk->id)->where('jenis', 'UTS')->skip(0)->take(1)->get();
-            $uass = Soal::where('id_mk', $mk->id)->where('jenis', 'UAS')->skip(0)->take(1)->get();
+            $kuis1s = Soal::where('kode_mk', $mk->kode)->where('jenis', 'Kuis ke-1')->skip(0)->take(1)->get();
+            $kuis2s = Soal::where('kode_mk', $mk->kode)->where('jenis', 'Kuis ke-2')->skip(0)->take(1)->get();
+            $utss = Soal::where('kode_mk', $mk->kode)->where('jenis', 'UTS')->skip(0)->take(1)->get();
+            $uass = Soal::where('kode_mk', $mk->kode)->where('jenis', 'UAS')->skip(0)->take(1)->get();
             foreach ($kuis1s as $k1) $soal->push($k1);
             foreach ($kuis2s as $k2) $soal->push($k2);
             foreach ($utss as $ut) $soal->push($ut);
@@ -42,8 +42,8 @@ class SoalController extends Controller
         $cpmk_soals = collect();
         // $countsoals = collect();
         foreach ($mks as $mk) {
-            if ($soal->id_mk == $mk->id) {
-                $soalss = Soal::where('id_mk', $mk->id)->where('jenis', $soal->jenis)->orderBy('id', 'asc')->get();
+            if ($soal->kode_mk == $mk->kode) {
+                $soalss = Soal::where('kode_mk', $mk->kode)->where('jenis', $soal->jenis)->orderBy('id', 'asc')->get();
             }
         }
         foreach ($soalss as $s) $soals->push($s);
@@ -58,7 +58,7 @@ class SoalController extends Controller
             $cpmkss = CPMK::where('id', $c_s->id_cpmk)->get();
             foreach ($cpmkss as $cp) $cpmks->push($cp);
         }
-        $mk = MK::findorFail($soal->id_mk);
+        $mk = MK::where('kode', $soal->kode_mk)->firstOrFail();
         $data = compact(
             'mk',
             'soal',
