@@ -48,7 +48,7 @@ class DashboardController extends Controller
             ++$sum_rps;
         }
         foreach ($soals as $soal) {
-            ++$sum_rps;
+            ++$sum_soal;
         }
 
         $data = ([

@@ -52,7 +52,7 @@
 </div> -->
 <div class="form-group">
     <div class="d-grid justify-content-between w-100" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));gap: 1rem;">
-        <a class="card card-two mx-1 w-100 text-decoration-none" style="color:black;" href="/admin/list-cpl">
+        <a class="card card-two mx-1 w-100 text-decoration-none" style="color:black;" href="/admin/list-user">
             <div class="card-body pb-0 row">
                 <div class="col">
                     <h4 class="card-title card-title-dash mb-4">Jumlah User</h4>
