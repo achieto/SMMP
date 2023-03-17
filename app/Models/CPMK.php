@@ -12,11 +12,11 @@ class CPMK extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'id_mk', 'judul'
+        'kode_mk', 'judul'
     ];
 
     public function mk()
     {
-        return $this->belongsTo(MK::class, 'id_mk');
+        return $this->belongsTo(MK::class, 'kode_mk');
     }
 }
