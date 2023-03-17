@@ -46,19 +46,19 @@
                             @endif
                             @if($soal->status == 'Valid')
                             <td class="py-4 d-flex">
-                                <a href="/admin/print-soal/{{encrypt($soal->id)}}" target="_blank" type="button" class="btn btn-info btn-icon-text p-2">
+                                <a href="/dosen/print-soal/{{encrypt($soal->id)}}" target="_blank" type="button" class="btn btn-info btn-icon-text p-2">
                                     <i class="ti-download btn-icon"></i>
                                 </a>
                             </td>
                             @elseif($soal->status == 'Tolak')
                             <td class="py-4 d-flex">
-                                 <a href="/dosen/rps/edit-rps/{{$soal->id}}" type="button" class="btn btn-warning me-2 btn-icon-text p-2">
+                                 <a href="/dosen/soal/edit-soal/{{$soal->id}}" type="button" class="btn btn-warning me-2 btn-icon-text p-2">
                                     <i class="ti-pencil btn-icon"></i>
                                 </a>
                                 <form action="delete-rps/{{$soal->id}}" method="post">
                                     @csrf
                                     @method('delete')
-                                    <button type="submit" class="btn btn-danger btn-icon-text p-2 me-2" onclick="return confirm('Are you sure to delete RPS no.?')">
+                                    <button type="submit" class="btn btn-danger btn-icon-text p-2 me-2" onclick="return confirm('Are you sure to delete soal ?')">
                                         <i class="ti-trash btn-icon"></i>
                                     </button>
                                 </form>

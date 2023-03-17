@@ -7,42 +7,8 @@
         font-weight: bolder;
     }
 </style>
-<div class="col-lg-12 grid-margin stretch-card mb-4">
-    <div class="card">
-        <div class="card-body">
-            <h4 class="card-title">List CPL Prodi</h4>
-            <div class="table-responsive">
-                <table class="table table-hover dataTable">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Aspek</th>
-                            <th>Nomor</th>
-                            <th>Kurikulum</th>
-                            <th>Kode</th>
-                            <th>Judul</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($cpls as $no=>$cpl)
-                        @if($cpl->aspek == "Pengetahuan" || $cpl->aspek == "Keterampilan")
-                        <tr>
-                            <td class="py-4">{{$no+1}}</td>
-                            <td>{{$cpl->aspek}}</td>
-                            <td>{{$cpl->nomor}}</td>
-                            <td>{{$cpl->kurikulum}}</td>
-                            <td>{{$cpl->kode}}</td>
-                            <td>{{$cpl->judul}}</td>
-                        </tr>
-                        @endif
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container-fluid">
+
+<div class="container-fluid  mb-4">
     <div class="card">
         <div class="card-header">
             <div class="fw-bold">
@@ -64,7 +30,7 @@
                     <label for="id_cpl"> Pilih CPL Prodi <span class="text-danger"> *</span></label>
                     <select name="id_cpl[]" class="js-example-basic-multiple form-select form-control-lg" multiple="multiple">
                         @foreach ($cpls as $cpl)
-                        @if($cpl->aspek == "Pengetahuan" || $cpl->aspek == "Keterampilan")
+                        @if($cpl->aspek == "Pengetahuan" || $cpl->aspek == "Keterampilan" || $cpl->aspek == "Umum")
                         <option value="{{$cpl->id}}">{{$cpl->kurikulum}} - {{$cpl->kode}}</option>
                         @endif
                         @endforeach
@@ -76,7 +42,41 @@
         </div>
     </div>
 </div>
-
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">List CPL Prodi</h4>
+            <div class="table-responsive">
+                <table class="table table-hover dataTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Aspek</th>
+                            <th>Nomor</th>
+                            <th>Kurikulum</th>
+                            <th>Kode</th>
+                            <th>Judul</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($cpls as $no=>$cpl)
+                        @if($cpl->aspek == "Pengetahuan" || $cpl->aspek == "Keterampilan" || $cpl->aspek == "Umum")
+                        <tr>
+                            <td class="py-4">{{$no+1}}</td>
+                            <td>{{$cpl->aspek}}</td>
+                            <td>{{$cpl->nomor}}</td>
+                            <td>{{$cpl->kurikulum}}</td>
+                            <td>{{$cpl->kode}}</td>
+                            <td>{{$cpl->judul}}</td>
+                        </tr>
+                        @endif
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="{{ asset('/assets/template/vendors/select2/select2.min.js')}}"></script>
 <script src="{{ asset('/assets/template/js/select2.js')}}"></script>

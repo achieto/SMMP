@@ -13,8 +13,8 @@
                 @csrf
                 @method('put')
                 <div class="form-floating mb-3">
-                    <select id="mataKuliah" name="id_mk" class="form-select form-control-lg" aria-label="select Mata Kuliah">
-                        <option selected value="{{$cpmk->id_mk}}">{{$cpmk->mk}}</option>
+                    <select id="mataKuliah" name="kode_mk" class="form-select form-control-lg" aria-label="select Mata Kuliah">
+                        <option selected value="{{$cpmk->kode_mk}}">{{$cpmk->mk}}</option>
                     </select>
                     <label for="mataKuliah">Mata Kuliah</label>
                 </div>

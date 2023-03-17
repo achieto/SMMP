@@ -25,17 +25,18 @@
                     </thead>
                     <tbody>
                         @php
-                        $kode_mk = 0;
+                        // $kode_mk = 0;
                         foreach($soals as $no=>$soal):
-                        foreach($mks as $mk):
-                        if($soal->kode_mk == $mk->kode)
-                        $nama_mk = $mk->nama;
-                        endforeach
+                        // foreach($mks as $mk):
+                        // if($soal->kode_mk == $mk->kode)
+                        // $kode_mk = $mk->kode;
+                        // $nama_mk = $mk->nama;
+                        // endforeach
                         @endphp
                         <tr>
                             <td class="py-4">{{$no+1}}</td>
-                            <td>{{$soal->kode_mk}}</td>
-                            <td>{{$nama_mk}}</td>
+                            <td>{{$soal->mk->kode}}</td>
+                            <td>{{$soal->mk->nama}}</td>
                             <td>{{$soal->minggu}}</td>
                             <td>{{$soal->jenis}}</td>
                             <td>{{$soal->dosen}}</td>
@@ -44,7 +45,7 @@
                                 <button type="button" class="btn btn-list btn-info btn-icon-text p-2 me-2" data-bs-toggle="modal" data-bs-target="#exampleModal{{$soal->id}}">
                                     <i class="ti-eye btn-icon"></i>
                                 </button>
-                                @foreach($soals as $soal)
+                                {{-- @foreach($soals as $soal) --}}
                                 <div class="modal fade" id="exampleModal{{$soal->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg modal-dialog-scrollable">
                                         <div class="modal-content">
@@ -64,17 +65,17 @@
                                             </div>
                                             <div class="modal-body">
                                                 <div class="main">
-                                                    <div style="font-weight:700; text-align:center; margin: 15px 0 45px 0"><?= strtoupper($soal->jenis . " " . $mk->nama) ?></div>
+                                                    <div style="font-weight:700; text-align:center; margin: 15px 0 45px 0"><?= strtoupper($soal->jenis . " " . $soal->mk->nama) ?></div>
                                                     <table class="non-border" style="border-collapse: collapse;">
                                                         <tr>
                                                             <td class="non-border" style="padding-left: 85px; border-collapse: collapse;">Kode Mata Kuliah</td>
                                                             <td class="non-border" style="padding-left: 40px; border-collapse: collapse;">:</td>
-                                                            <td class="non-border" style="padding-left: 13px; border-collapse: collapse;">{{$soal->kode_mk}}</td>
+                                                            <td class="non-border" style="padding-left: 13px; border-collapse: collapse;">{{$soal->mk->kode}}</td>
                                                         </tr>
                                                         <tr>
                                                             <td class="non-border" style="padding-left: 85px; border-collapse: collapse;">Nama Mata Kuliah</td>
                                                             <td class="non-border" style="padding-left: 40px; border-collapse: collapse;">:</td>
-                                                            <td class="non-border" style="padding-left: 13px; border-collapse: collapse;">{{$nama_mk}}</td>
+                                                            <td class="non-border" style="padding-left: 13px; border-collapse: collapse;">{{$soal->mk->nama}}</td>
                                                         </tr>
                                                         <tr>
                                                             <td class="non-border" style="padding-left: 85px; border-collapse: collapse; vertical-align:top">CPMK</td>
@@ -88,8 +89,8 @@
                                                                 $cpmk_soals = collect();
                                                                 foreach ($mks as $mk) {
                                                                 if ($sl->kode_mk == $mk->kode) {
-                                                                $soalss = App\Models\Soal::where('kode_mk', $mk->kode)->where('jenis', $sl->jenis)->orderBy('id', 'asc')->get();
-                                                                }
+                                                                    $soalss = App\Models\Soal::where('kode_mk', $mk->kode)->where('jenis', $sl->jenis)->orderBy('id', 'asc')->get();
+                                                                    }
                                                                 }
                                                                 foreach ($soalss as $s) $soals->push($s);
                                                                 foreach ($soals as $sl) {
@@ -166,8 +167,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                @endforeach
-                                <form action="/penjamin-mutu/validasi-soal/{{encrypt($soal->id)}}" method="post">
+                                {{-- @endforeach --}}
+                                <form action="/penjamin-mutu/validasi-soal/{{$soal->id}}" method="post">
                                     @csrf
                                     <button type="submit" class="btn btn-list btn-success me-2 btn-icon-text p-2">
                                         <i class="ti-check btn-icon"></i>
@@ -176,7 +177,7 @@
                                 <button class="btn btn-list btn-danger btn-icon-text p-2" data-bs-toggle="modal" data-bs-target="#example1Modal{{$soal->id}}">
                                     <i class="ti-close btn-icon"></i>
                                 </button>
-                                @foreach($soals as $soal)
+                                {{-- @foreach($soals as $soal) --}}
                                 <div class="modal fade" id="example1Modal{{$soal->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -197,9 +198,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                @endforeach
+                                {{-- @endforeach --}}
                             </td>
                         </tr>
+                        {{-- @dd($soal->status) --}}
                         @elseif($soal->status == 'Valid')
                         <td>Telah tervalidasi</td>
                         @else
