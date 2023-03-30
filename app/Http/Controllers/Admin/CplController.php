@@ -31,6 +31,10 @@ class CplController extends Controller
 
     public function store(Request $request)
     {
+        if($request->input('kurikulum') == null) {
+            return redirect()->back()->with('error', "Terjadi kesalahan, silahkan periksa kembali data yang diinputkan!");
+        }
+        $success[] = '';
         foreach ($request->input('kode') as $key => $value) {
             $data[$key] = 'CPL-' . $value;
         }
@@ -43,6 +47,7 @@ class CplController extends Controller
                     'nomor' => $request->input('kode')[$i],
                     'judul' => $request->input('judul')[$i]
                 ]);
+                $success[] = $data[$i];
             }
             return redirect('/admin/list-cpl')->with('success', 'CPL successfully added!');
         } catch (\Exception $e) {

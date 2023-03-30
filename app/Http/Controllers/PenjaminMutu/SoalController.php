@@ -43,8 +43,8 @@ class SoalController extends Controller
         $cpmk_soals = collect();
         // $countsoals = collect();
         foreach ($mks as $mk) {
-            if ($soal->id_mk == $mk->id) {
-                $soalss = Soal::where('id_mk', $mk->id)->where('jenis', $soal->jenis)->orderBy('id', 'asc')->get();
+            if ($soal->kode_mk == $mk->kode) {
+                $soalss = Soal::where('kode_mk', $mk->kode)->where('jenis', $soal->jenis)->orderBy('id', 'asc')->get();
             }
         }
         foreach ($soalss as $s) $soals->push($s);
@@ -59,7 +59,7 @@ class SoalController extends Controller
             $cpmkss = CPMK::where('id', $c_s->id_cpmk)->get();
             foreach ($cpmkss as $cp) $cpmks->push($cp);
         }
-        $mk = MK::findorFail($soal->id_mk);
+        $mk = MK::where('kode', $soal->kode_mk)->firstOrFail();
         $data = compact(
             'mk',
             'soal',

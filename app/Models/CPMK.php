@@ -19,4 +19,9 @@ class CPMK extends Model
     {
         return $this->belongsTo(MK::class, 'kode_mk');
     }
+
+    public function soal()
+    {
+        return $this->belongsToMany(Soal::class, 'cpmk_soals', 'id_cpmk', 'id_soal')->withTimestamps();
+    }
 }

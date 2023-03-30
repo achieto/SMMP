@@ -21,12 +21,19 @@ class KurikulumController extends Controller
             'tahun' => ['required', 'integer', 'digits:4'],
         ]);
 
-        Kurikulum::create([
-            'tahun' => $request->tahun,
+        try {
+            Kurikulum::create([
+                'tahun' => $request->tahun,
 
-        ]);
+            ]);
+            return redirect('/admin/list-kurikulum')->with('success', 'Kurikulum successfully added!');
+        } catch (\Illuminate\Database\QueryException $e) {
+            $errorCode = $e->errorInfo[1];
+            if ($errorCode == 1062) {
 
-        return redirect('/admin/list-kurikulum')->with('success', 'Kurikulum successfully added!');
+            }
+            return redirect('/admin/list-kurikulum')->with('error', 'Terjadi kesalahan, tahun kurikulum ' . $request->tahun . ' sudah ada');
+        }
     }
 
     public function edit($tahun)

@@ -52,7 +52,7 @@
 </div> -->
 <div class="form-group">
     <div class="d-grid justify-content-between w-100" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));gap: 1rem;">
-        <a class="card card-two mx-1 w-100 text-decoration-none" style="color:black;" href="/admin/list-cpl">
+        <a class="card card-two mx-1 w-100 text-decoration-none" style="color:black;" href="/admin/list-user">
             <div class="card-body pb-0 row">
                 <div class="col">
                     <h4 class="card-title card-title-dash mb-4">Jumlah User</h4>
@@ -170,6 +170,14 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
+                    <h4 class="card-title">CPL Umum</h4>
+                    <canvas id="barChartU"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
                     <h4 class="card-title">CPL Pengetahuan</h4>
                     <canvas id="barChartP"></canvas>
                 </div>
@@ -189,8 +197,10 @@
 <script>
     var canvas = document.getElementsByTagName('canvas')[0];
     var canvass = document.getElementsByTagName('canvas')[1];
+    var canvasss = document.getElementsByTagName('canvas')[2];
     canvas.height = 80;
     canvass.height = 80;
+    canvasss.height = 80;
 
     $(document).ready(function() {
         showChart('all')
@@ -262,11 +272,28 @@
                         fill: false
                     }]
                 };
+                var dataU = {
+                    labels: dt.umum,
+                    datasets: [{
+                        data: dt.jumlahu,
+                        backgroundColor: dt.warnau,
+                        borderColor: dt.borderu,
+                        borderWidth: 1,
+                        fill: false
+                    }]
+                };
                 var options = {
                     scales: {
                         yAxes: [{
                             ticks: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                userCallback: function(label, index, labels) {
+                                    // when the floored value is the same as the value we have a whole number
+                                    if (Math.floor(label) === label) {
+                                        return label;
+                                    }
+
+                                },
                             }
                         }]
                     },
@@ -295,6 +322,15 @@
                     var barChart = new Chart(barChartCanvas, {
                         type: 'bar',
                         data: dataK,
+                        options: options
+                    });
+                }
+                if ($("#barChartU").length) {
+                    var barChartCanvas = $("#barChartU").get(0).getContext("2d");
+                    // This will get the first returned node in the jQuery collection.
+                    var barChart = new Chart(barChartCanvas, {
+                        type: 'bar',
+                        data: dataU,
                         options: options
                     });
                 }

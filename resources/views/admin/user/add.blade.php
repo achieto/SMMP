@@ -7,7 +7,7 @@
             <div class="d-flex" style="justify-content:space-between">
                 <h4 class="card-title">Add User</h4>
                 <div class="btn-wrapper">
-                    <a download class="btn btn-inverse-primary" href="{{asset('assets/excel/template.xlsx')}}">Template</a>
+                    <a download class="btn btn-inverse-primary" href="{{asset('assets/xlsx_template/template.xlsx')}}">Template</a>
                     <button class="btn btn-primary text-white" onclick="document.getElementById('excel').click()">Import</i></button>
                     <form id="form-import" method="post" enctype="multipart/form-data" action="add-user-wfile">
                         @csrf

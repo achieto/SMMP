@@ -46,10 +46,10 @@ class CPMKcontroller extends Controller
         $rpss = RPS::where('pengembang', auth()->user()->name)->get();
         $cpmks = collect();
         foreach ($rpss as $rps) {
-            $id_mk = $rps->kode_mk;
-            $temp = cpmk::where('kode_mk', $id_mk)->get();
+            $kode_mk = $rps->kode_mk;
+            $temp = cpmk::where('kode_mk', $kode_mk)->get();
             foreach ($temp as $cpmk) {
-                $mk = MK::firstWhere('kode',$cpmk->kode_mk);
+                $mk = MK::where('kode', $cpmk->kode_mk)->firstorfail();
                 $cpmk->mk = $mk->nama;
                 $cpmks->push($cpmk);
             }

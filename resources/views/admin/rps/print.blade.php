@@ -2,6 +2,17 @@
     <meta charset="UTF-8">
     <title>RPS Print</title>
     <style>
+        @media print {
+            .blue {
+                background-color: rgb(221, 235, 247) !important;
+                -webkit-print-color-adjust: exact;
+            }
+
+            .grey {
+                background-color: rgb(234, 234, 234) !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
         table,
         th,
         td {
@@ -371,7 +382,7 @@
         <th colspan="2">Daring (<em>online</em>)</th>
     </tr>
     <tr class="title-cpmk grey">
-        
+
         <th colspan="1">(1)</th>
         <th colspan="2">(2)</th>
         <th colspan="1">(3)</th>
@@ -524,6 +535,6 @@
         </li>
     </ol>
 </div>
-<!-- <script>
-        window.print();
-    </script> -->
+<script>
+    window.print();
+</script>

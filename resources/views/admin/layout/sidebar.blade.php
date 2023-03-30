@@ -124,6 +124,9 @@
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="/admin/list-soal"> List Soal </a></li>
                 </ul>
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="/admin/summary-soal"> Summary Soal </a></li>
+                </ul>
             </div>
         </li>
     </ul>

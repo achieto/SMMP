@@ -17,11 +17,10 @@ class DashboardController extends Controller
         $mks = collect();
         $cpmks = collect();
             foreach ($rpss as $rps) {
-                // dd($rps->mk->kode);
-                $id_mk = $rps->mk->kode;
-                $mk = MK::firstWhere('kode',$id_mk);
+                $kode_mk = $rps->kode_mk;
+                $mk = MK::where('kode', $kode_mk)->firstorfail();
                 $mks->push($mk);
-                $temp = CPMK::where('kode_mk', $id_mk)->get();
+                $temp = CPMK::where('kode_mk', $kode_mk)->get();
                 foreach ($temp as $cpmk) {
                     $cpmks->push($cpmk);
                 }
@@ -50,8 +49,8 @@ class DashboardController extends Controller
         $pengetahuan = null;
         $keterampilan = null;
         foreach ($rpss as $rps) {
-            $id_mk = $rps->mk->kode;
-            $mk = MK::firstWhere('kode',$id_mk);
+            $kode_mk = $rps->kode_mk;
+            $mk = MK::where('kode', $kode_mk)->firstorfail();
             $mks->push($mk);
         }
         $cplmks = collect();

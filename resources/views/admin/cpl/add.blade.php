@@ -31,17 +31,6 @@
                                     </div>
                                     <input type="text" class="form-control" name="kode[0]" placeholder="Nomor" autocomplete="off">
                                 </div>
-                                <div style="font-size: x-small">
-                                    <div class="row">
-                                        <div class="col-4" style="padding: 0 0 0 15px;">
-                                            Already exist:
-                                        </div>
-                                        <div class="col" style="padding: 0 15px 0 0;">@foreach($sikaps as $sik)
-                                            {{$sik->kurikulum}}-{{$sik->kode}};
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div class="col-5">
@@ -58,7 +47,7 @@
                         </div>
                     </div>
                 </div>
-                <?php $a = 0; ?>
+                <?php $a = 0;?>
                 @else
                 <div id="dynamicAddRemoveSik">
                     <?php $x = 0;
@@ -86,19 +75,6 @@
                                             </div>
                                             <input type="text" class="form-control" name="kode[<?= $i ?>]" value="{{old('kode.'.$i)}}" placeholder="Nomor" autocomplete="off">
                                         </div>
-                                        @if($i == 0)
-                                        <div style="font-size: x-small">
-                                            <div class="row">
-                                                <div class="col-4" style="padding: 0 0 0 15px;">
-                                                    Already exist:
-                                                </div>
-                                                <div class="col" style="padding: 0 15px 0 0;">@foreach($sikaps as $sik)
-                                                    {{$sik->kurikulum}}-{{$sik->kode}};
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-5">
@@ -140,19 +116,6 @@
                                             </div>
                                             <input type="text" class="form-control" name="kode[<?= $i ?>]" value="{{old('kode.'.$i)}}" placeholder="Nomor" autocomplete="off">
                                         </div>
-                                        @if($i == 0)
-                                        <div style="font-size: x-small">
-                                            <div class="row">
-                                                <div class="col-4" style="padding: 0 0 0 15px;">
-                                                    Already exist:
-                                                </div>
-                                                <div class="col" style="padding: 0 15px 0 0;">@foreach($sikaps as $sik)
-                                                    {{$sik->kurikulum}}-{{$sik->kode}};
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-5">
@@ -214,17 +177,6 @@
                                     </div>
                                     <input type="text" class="form-control" name="kode[0]" placeholder="Nomor" autocomplete="off">
                                 </div>
-                                <div style="font-size: x-small">
-                                    <div class="row">
-                                        <div class="col-4" style="padding: 0 0 0 15px;">
-                                            Already exist:
-                                        </div>
-                                        <div class="col" style="padding: 0 15px 0 0;">@foreach($umums as $umm)
-                                            {{$umm->kurikulum}}-{{$umm->kode}};
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div class="col-5">
@@ -269,19 +221,6 @@
                                             </div>
                                             <input type="text" class="form-control" name="kode[<?= $i ?>]" value="{{old('kode.'.$i)}}" placeholder="Nomor" autocomplete="off">
                                         </div>
-                                        @if($i == 0)
-                                        <div style="font-size: x-small">
-                                            <div class="row">
-                                                <div class="col-4" style="padding: 0 0 0 15px;">
-                                                    Already exist:
-                                                </div>
-                                                <div class="col" style="padding: 0 15px 0 0;">@foreach($umums as $umm)
-                                                    {{$umm->kurikulum}}-{{$umm->kode}};
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-5">
@@ -323,19 +262,6 @@
                                             </div>
                                             <input type="text" class="form-control" name="kode[<?= $i ?>]" value="{{old('kode.'.$i)}}" placeholder="Nomor" autocomplete="off">
                                         </div>
-                                        @if($i == 0)
-                                        <div style="font-size: x-small">
-                                            <div class="row">
-                                                <div class="col-4" style="padding: 0 0 0 15px;">
-                                                    Already exist:
-                                                </div>
-                                                <div class="col" style="padding: 0 15px 0 0;">@foreach($umums as $umm)
-                                                    {{$umm->kurikulum}}-{{$umm->kode}};
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-5">
@@ -397,17 +323,6 @@
                                     </div>
                                     <input type="text" class="form-control" name="kode[0]" placeholder="Nomor" autocomplete="off">
                                 </div>
-                                <div style="font-size: x-small">
-                                    <div class="row">
-                                        <div class="col-4" style="padding: 0 0 0 15px;">
-                                            Already exist:
-                                        </div>
-                                        <div class="col" style="padding: 0 15px 0 0;">@foreach($pengetahuans as $peng)
-                                            {{$peng->kurikulum}}-{{$peng->kode}};
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div class="col-5">
@@ -452,19 +367,6 @@
                                             </div>
                                             <input type="text" class="form-control" name="kode[<?= $i ?>]" value="{{old('kode.'.$i)}}" placeholder="Nomor" autocomplete="off">
                                         </div>
-                                        @if($i == 0)
-                                        <div style="font-size: x-small">
-                                            <div class="row">
-                                                <div class="col-4" style="padding: 0 0 0 15px;">
-                                                    Already exist:
-                                                </div>
-                                                <div class="col" style="padding: 0 15px 0 0;">@foreach($pengetahuans as $peng)
-                                                    {{$peng->kurikulum}}-{{$peng->kode}};
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-5">
@@ -506,19 +408,6 @@
                                             </div>
                                             <input type="text" class="form-control" name="kode[<?= $i ?>]" value="{{old('kode.'.$i)}}" placeholder="Nomor" autocomplete="off">
                                         </div>
-                                        @if($i == 0)
-                                        <div style="font-size: x-small">
-                                            <div class="row">
-                                                <div class="col-4" style="padding: 0 0 0 15px;">
-                                                    Already exist:
-                                                </div>
-                                                <div class="col" style="padding: 0 15px 0 0;">@foreach($pengetahuans as $peng)
-                                                    {{$peng->kurikulum}}-{{$peng->kode}};
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-5">
@@ -580,17 +469,6 @@
                                     </div>
                                     <input type="text" class="form-control" name="kode[0]" placeholder="Nomor" autocomplete="off">
                                 </div>
-                                <div style="font-size: x-small">
-                                    <div class="row">
-                                        <div class="col-4" style="padding: 0 0 0 15px;">
-                                            Already exist:
-                                        </div>
-                                        <div class="col" style="padding: 0 15px 0 0;">@foreach($keterampilans as $ket)
-                                            {{$ket->kurikulum}}-{{$ket->kode}};
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div class="col-5">
@@ -636,19 +514,6 @@
                                             </div>
                                             <input type="text" class="form-control" name="kode[<?= $i ?>]" value="{{old('kode.'.$i)}}" placeholder="Nomor" autocomplete="off">
                                         </div>
-                                        @if($i == 0)
-                                        <div style="font-size: x-small">
-                                            <div class="row">
-                                                <div class="col-4" style="padding: 0 0 0 15px;">
-                                                    Already exist:
-                                                </div>
-                                                <div class="col" style="padding: 0 15px 0 0;">@foreach($keterampilans as $ket)
-                                                    {{$ket->kurikulum}}-{{$ket->kode}};
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-5">
@@ -690,19 +555,6 @@
                                             </div>
                                             <input type="text" class="form-control" name="kode[<?= $i ?>]" value="{{old('kode.'.$i)}}" placeholder="Nomor" autocomplete="off">
                                         </div>
-                                        @if($i == 0)
-                                        <div style="font-size: x-small">
-                                            <div class="row">
-                                                <div class="col-4" style="padding: 0 0 0 15px;">
-                                                    Already exist:
-                                                </div>
-                                                <div class="col" style="padding: 0 15px 0 0;">@foreach($keterampilans as $ket)
-                                                    {{$ket->kurikulum}}-{{$ket->kode}};
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-5">
@@ -757,6 +609,8 @@
         document.getElementById("sikap").hidden = "hidden";
         document.getElementById("umum").hidden = "hidden";
         document.getElementById("pengetahuan").hidden = "hidden";
+    } else {
+        
     }
 
     $("#dynamic-ar-sik").click(function() {
