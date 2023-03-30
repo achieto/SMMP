@@ -101,6 +101,7 @@ Route::middleware(['auth'])->group(
                 Route::get('dashboard', [DashboardController::class, 'index'])->name('admin');
                 Route::get('dashboard-chart/{id}', [DashboardController::class, 'chart'])->name('chart');
                 Route::get('dashboard-card/{id}', [DashboardController::class, 'card'])->name('card');
+
                 // user
                 Route::get('add-user', [UserController::class, 'create'])
                     ->name('add-user');
@@ -111,6 +112,7 @@ Route::middleware(['auth'])->group(
                 Route::get('edit-user/{id}', [UserController::class, 'edit']);
                 Route::put('edit-user/{id}', [UserController::class, 'update']);
                 Route::post('add-user-wfile', [UserController::class, 'create_wfile']);
+
                 // rps
                 Route::get('add-rps', [RpsController::class, 'create']);
                 Route::post('add-rps', [RpsController::class, 'store']);
@@ -119,6 +121,7 @@ Route::middleware(['auth'])->group(
                 Route::delete('delete-rps/{id}', [RpsController::class, 'delete']);
                 Route::get('list-rps', [RpsController::class, 'list']);
                 Route::post('add-rps-wfile', [RpsController::class, 'create_wfile']);
+
                 // mk
                 Route::get('add-mk', [MkController::class, 'create']);
                 Route::post('add-mk', [MkController::class, 'store']);
@@ -126,6 +129,7 @@ Route::middleware(['auth'])->group(
                 Route::get('edit-mk/{id}', [MkController::class, 'edit']);
                 Route::put('edit-mk/{id}', [MkController::class, 'update']);
                 Route::delete('delete-mk/{id}', [MkController::class, 'delete']);
+
                 // cpmk
                 Route::get('add-cpmk', [CpmkController::class, 'create']);
                 Route::post('add-cpmk', [CpmkController::class, 'store']);
@@ -133,6 +137,7 @@ Route::middleware(['auth'])->group(
                 Route::get('edit-cpmk/{id}', [CpmkController::class, 'edit']);
                 Route::put('edit-cpmk/{id}', [CpmkController::class, 'update']);
                 Route::delete('delete-cpmk/{id}', [CpmkController::class, 'delete']);
+
                 // cpl
                 Route::get('add-cpl', [CplController::class, 'create']);
                 Route::post('add-cpl', [CplController::class, 'store']);
@@ -140,6 +145,7 @@ Route::middleware(['auth'])->group(
                 Route::get('edit-cpl/{id}', [CplController::class, 'edit']);
                 Route::put('edit-cpl/{id}', [CplController::class, 'update']);
                 Route::delete('delete-cpl/{id}', [CplController::class, 'delete']);
+
                 // cplmk
                 Route::get('add-cplmk', [CplmkController::class, 'create']);
                 Route::post('add-cplmk', [CplmkController::class, 'store']);
@@ -147,9 +153,13 @@ Route::middleware(['auth'])->group(
                 Route::get('edit-cplmk/{id}', [CplmkController::class, 'edit']);
                 Route::put('edit-cplmk/{id}', [CplmkController::class, 'update']);
                 Route::delete('delete-cplmk/{id}', [CplmkController::class, 'delete']);
+
                 // soal
                 Route::get('list-soal', [SoalController::class, 'list']);
                 Route::get('print-soal/{id}', [SoalController::class, 'print']);
+                Route::get('soal-chart/{id}', [SoalController::class, 'chart_soal'])->name('chart_soal');
+                Route::get('summary-soal', [SoalController::class, 'summary']);
+                
                 // kurikulum
                 Route::post('add-kurikulum', [KurikulumController::class, 'store']);
                 Route::get('edit-kurikulum/{id}', [KurikulumController::class, 'edit']);

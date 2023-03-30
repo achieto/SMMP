@@ -9,6 +9,8 @@ use App\Models\CPL;
 use App\Models\Kurikulum;
 use App\Models\MK;
 use App\Models\RPS;
+use App\Models\CPMK;
+use App\Models\CPMKSoal;
 use App\Models\Soal;
 
 class DashboardController extends Controller

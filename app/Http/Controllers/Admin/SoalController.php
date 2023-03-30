@@ -29,7 +29,72 @@ class SoalController extends Controller
             foreach ($uass as $ua) $soals->push($ua);
         }
 
-        return view('admin.soal.list', compact('soals', 'mks'));
+        //table mapping cpmk soal
+        $cpmks = CPMK::orderBy('id', 'asc')->get()->groupBy('kode_mk');
+        // foreach($cpmks as $mk=>$cpmk){
+        //     foreach($cpmk as $cp){
+        //         dd($cp,$cp->soal->count());
+        //     }
+        // }
+        return view('admin.soal.list', compact('soals', 'mks', 'cpmks'));
+    }
+
+    public function summary()
+    {
+        $cpmks = CPMK::orderBy('id', 'asc')->get()->groupBy('kode_mk');
+        return view('admin.soal.summary', compact('cpmks'));
+
+    }
+
+    public function chart_soal($kode_mk)
+    {
+        $cpmks = CPMK::orderBy('id', 'asc')->get()->groupBy('kode_mk');
+        $i = 0;
+        $sum = 0;
+        foreach ($cpmks as $mk => $cpmk) {
+            if ($mk == $kode_mk) {
+                foreach ($cpmk as $cp) {
+                    $sum += 1;
+                    $cpp[$i] = $cp->soal->count();
+                    $kodecpmks[$i] = 'CPMK - ' . $sum;
+                    $i++;
+                }
+            }
+        }
+
+        $list_warna = [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)',
+        ];
+        $tmp = -1;
+        for ($i = 0; $i < $sum; $i++) {
+            $warna[$i] = $list_warna[++$tmp];
+            if ($tmp == 5) {
+                $tmp = 0;
+            }
+        }
+
+        $list_border = ['rgba(255,99,132,1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)',];
+        $tmp = -1;
+        for ($i = 0; $i < $sum; $i++) {
+            $border[$i] = $list_border[++$tmp];
+            if ($tmp == 5) {
+                $tmp = 0;
+            }
+        }
+
+        $dt = ([
+            'kode_cpmk' => $kodecpmks,
+            'jumlah' => $cpp,
+            'warna' => $warna,
+            'border' => $border,
+        ]);
+
+        return response()->json($dt);
     }
 
     public function print($id)
@@ -48,7 +113,7 @@ class SoalController extends Controller
         }
 
         foreach ($soalss as $s) $soals->push($s);
-        foreach($soals as $sl) {
+        foreach ($soals as $sl) {
             $temp = DB::table('cpmk_soals')->select(DB::raw('id_cpmk, id_soal'))->groupBy('id_cpmk')->orderBy('id_cpmk', 'asc')->get();
             $cpmk_s = $temp->where('id_soal', $sl->id);
             // $count = DB::table('cpmk_soals')->select(DB::raw('id_soal,COUNT(*) as soal_count'))->where('id_soal', $sl->id)->groupBy('id_soal')->orderBy('id_cpmk', 'asc')->get();
