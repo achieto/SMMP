@@ -34,7 +34,7 @@
                         endforeach
                         @endphp
                         <tr>
-                            
+
                             <td class="py-4">{{$no+1}}</td>
                             <td>{{$kode_mk}}</td>
                             <td>{{$nama_mk}}</td>

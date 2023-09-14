@@ -27,7 +27,7 @@ class CPLMKcontroller extends Controller
     public function List()
     {
         $rpss = RPS::where('pengembang', auth()->user()->name)->get();
-        $mks = [];
+        $mks = collect();
         foreach ($rpss as $rps) {
             $kode_mk = $rps->kode_mk;
             $mk = MK::where('kode', $kode_mk)->firstorfail();
@@ -41,7 +41,8 @@ class CPLMKcontroller extends Controller
                 $cplmks->push($cplmk);
             }
         }
-        $cplmks = CPLMK::whereIn('kode_mk',$mks)->get();
+        // dd($mks);
+        // $cplmks = CPLMK::whereIn('kode_mk',$mks)->get();
         return view('dosen.cplmk.list', compact('cplmks'));
     }
 
