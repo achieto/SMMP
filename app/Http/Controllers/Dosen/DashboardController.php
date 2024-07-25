@@ -165,10 +165,6 @@ class DashboardController extends Controller
             }
         }
 
-
-
-
-
         $dt = ([
             'pengetahuan' => $pengetahuan,
             'keterampilan' => $keterampilan,

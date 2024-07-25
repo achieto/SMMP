@@ -26,4 +26,5 @@
 </head>
 
 <body>
+    <script src="{{ asset('/assets/template/vendors/chart.js/Chart.min.js')}}"></script>
     <div class="container-scroller">

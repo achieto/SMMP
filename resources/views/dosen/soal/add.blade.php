@@ -15,15 +15,20 @@
             </div>
         </div>
         <div class="card-body">
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-floating">
-                    <select id="prodi" name="prodi"  class="form-select form-control-lg" aria-label="select Prodi" required>
+                    <select id="prodi" name="prodi" class="form-select form-control-lg" aria-label="select Prodi" required>
                         <option selected disabled> - </option>
-                        <option value="1">S1 - Ilmu Komputer</option>
-                        <option value="2">D3 - Manajemen Informatika</option>
+                        <option value="1" {{ old('prodi') == '1' ? 'selected' : '' }}>S1 - Ilmu Komputer</option>
+                        <option value="2" {{ old('prodi') == '2' ? 'selected' : '' }}>D3 - Manajemen Informatika</option>
                     </select>
                     <label for="prodi"> Pilih Prodi <span class="text-danger"> *</span></label>
+                    @error('prodi')
+                    <div class="alert alert-danger">
+                        {{ $message }}
+                    </div>
+                    @enderror
                     <div id="prodiHelp" class="form-text mb-3">Silahkan pilih Prodi.</div>
                 </div>
 
@@ -31,10 +36,15 @@
                     <select id="kurikulum" name="kurikulum"  class="form-select form-control-lg" aria-label="select kurikulum" required>
                         <option selected disabled> - </option>
                         @foreach ($kurikulum as $kur )
-                        <option value="{{$kur->tahun}}">{{$kur->tahun}}</option>
+                        <option value="{{$kur->tahun}}" {{ old('kurikulum') == $kur->tahun ? 'selected' : '' }}>{{$kur->tahun}}</option>
                         @endforeach
                     </select>
                     <label for="kurikulum"> Pilih Kurikulum <span class="text-danger"> *</span></label>
+                    @error('kurikulum')
+                    <div class="alert alert-danger">
+                        {{ $message }}
+                    </div>
+                    @enderror
                     <div id="kurikulumHelp" class="form-text mb-3">Silahkan pilih Kurikulum.</div>
                 </div>
 
@@ -42,10 +52,15 @@
                     <select id="mataKuliah" name="kode_mk"  class="form-select form-control-lg" aria-label="select Mata Kuliah" required>
                         <option selected disabled> - </option>
                         @foreach ($rpss as $rps)
-                        <option value="{{$rps->kode_mk}}">{{$rps->mk->nama}}</option>
+                            <option value="{{$rps->kode_mk}}" {{ old('kode_mk') == $rps->kode_mk ? 'selected' : '' }}>{{$rps->mk->nama}}</option>
                         @endforeach
                     </select>
                     <label for="mataKuliah"> Pilih Mata Kuliah <span class="text-danger"> *</span></label>
+                    @error('kode_mk')
+                    <div class="alert alert-danger">
+                        {{ $message }}
+                    </div>
+                    @enderror
                     <div id="MKHelp" class="form-text mb-3">Silahkan pilih mata kuliah RPS.</div>
                 </div>
 
@@ -63,17 +78,22 @@
                 <div class="form-floating">
                     <select id="jenis" name="jenis"  class="form-select form-control-lg" aria-label="select jenis" required>
                         <option selected disabled> - </option>
-                        <option value="1">Kuis ke-1</option>
-                        <option value="4">Kuis ke-2</option>
-                        <option value="2">UTS</option>
-                        <option value="3">UAS</option>
+                        <option value="1" {{ old('jenis') == '1' ? 'selected' : '' }}>Kuis ke-1</option>
+                        <option value="4" {{ old('jenis') == '4' ? 'selected' : '' }}>Kuis ke-2</option>
+                        <option value="2" {{ old('jenis') == '2' ? 'selected' : '' }}>UTS</option>
+                        <option value="3" {{ old('jenis') == '3' ? 'selected' : '' }}>UAS</option>
                     </select>
                     <label for="jenis"> Pilih Jenis <span class="text-danger"> *</span></label>
+                    @error('jenis')
+                    <div class="alert alert-danger">
+                        {{ $message }}
+                    </div>
+                    @enderror
                     <div id="jenisHelp" class="form-text mb-3">Silahkan pilih jenis soal.</div>
                 </div>
 
                 <div class="form-floating">
-                    <textarea name="pertanyaan" id="pertanyaan" class="form-control" placeholder="insert pertanyaan" style="height: 100px">{{old('pertanyaan')}}</textarea>
+                    <textarea name="pertanyaan" id="pertanyaan" class="form-control" placeholder="insert pertanyaan" style="height: 100px" required>{{old('pertanyaan')}}</textarea>
                     <label for="pertanyaan">Pertanyaan <span class="text-danger">*</span></label>
                     @error('pertanyaan')
                     <div class="alert alert-danger">
@@ -83,15 +103,31 @@
                     <div id="pertanyaanHelp" class="form-text mb-3">Silahkan masukkan Pertanyaan.</div>
                 </div>
 
+                <button type="button" class="list-group-item btn p-0" id="btn-lampiran">
+                    <ul class="list-group list-group-horizontal">
+                        <li class="list-group-item list-group-item-primary"><i class="ti-export"></i></li>
+                        <li id="file-placeholder" class="list-group-item list-group-item-light">No File Selected</li>
+                    </ul>
+                </button>
+
+                <input type="file" name="lampiran" id="lampiran" class="form-control d-none" placeholder="insert lampiran" accept=".jpeg,.jpg,.png,.pdf,.doc,.docx,.xls,.xlsx">
+                <div id="lampiranHelp" class="form-text mb-3">Silahkan upload Lampiran (opsional) max:10MB.</div>
+                @error('lampiran')
+                <div class="alert alert-danger">
+                    {{ $message }}
+                </div>
+                @enderror
+
                 <div class="form-floating">
-                    <select name="id_cpmk[]" class="js-example-basic-multiple form-select form-control-lg" multiple="multiple">
-                        @foreach ($rpss as $rps)
-                        @foreach ($rps->mk->cpmk as $cpmk)
-                        <option value="{{$cpmk->id}}">{{$cpmk->judul}}</option>
-                        @endforeach
-                        @endforeach
+                    <select id="cpmks" name="id_cpmk[]" class="js-example-basic-multiple form-select form-control-lg" multiple="multiple">
+                        <option disabled > pilih mata kuliah terlebih dahulu </option>
                     </select>
                     <label for="id_cpl"> Pilih CPMK <span class="text-danger"> *</span></label>
+                    @error('id_cpmk')
+                    <div class="alert alert-danger">
+                        {{ $message }}
+                    </div>
+                    @enderror
                     <div id="cpmkHelp" class="form-text mb-3">Silahkan pilih cpmk yang akan di implementasikan.</div>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -103,5 +139,60 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="{{ asset('/assets/template/vendors/select2/select2.min.js')}}"></script>
 <script src="{{ asset('/assets/template/js/select2.js')}}"></script>
+<script>
+$(document).ready(function() {
+    var MK = $('select#mataKuliah').val();
+    $('select#cpmks').empty();
+
+    if(MK) {
+        $.ajax({
+            url: '/dosen/get-cpmk/' + MK,
+            type: "GET",
+            dataType: "json",
+            success:function(data) {
+                var oldCpmk = {!! json_encode(old('id_cpmk', [])) !!};
+                $.each(data, function(key, value) {
+                    var selected = oldCpmk.includes(value.id.toString()) ? 'selected' : '';
+                    $('select#cpmks').append('<option value="'+ value.id +'" '+ selected +'>'+ value.judul +'</option>');
+                });
+                $('select#cpmks').trigger('change');
+            }
+        });
+    }
+
+    $('select#mataKuliah').change(function() {
+        var selectedMK = $(this).val();
+        $('select#cpmks').empty();
+
+        if(selectedMK) {
+            $.ajax({
+                url: '/dosen/get-cpmk/' + selectedMK,
+                type: "GET",
+                dataType: "json",
+                success:function(data) {
+                    $.each(data, function(key, value) {
+                        $('select#cpmks').append('<option value="'+ value.id +'">'+ value.judul +'</option>');
+                    });
+                    $('select#cpmks').trigger('change');
+                }
+            });
+        }
+    });
+
+    // Fungsi untuk trigger file input dan ganti placeholder
+    $('#btn-lampiran').click(function() {
+        $('#lampiran').click();
+    });
+
+    $('#lampiran').change(function() {
+        var fileName = $(this).val().split('\\').pop();
+        if (fileName) {
+            $('#file-placeholder').text(fileName);
+        } else {
+            $('#file-placeholder').text('No File Selected');
+        }
+    });
+});
+</script>
 
 @endsection

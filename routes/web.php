@@ -48,7 +48,6 @@ Route::middleware(['auth'])->group(
             function () {
                 //dashboard
                 Route::get('dashboard', [DashboardDosen::class, 'list'] )->name('dashboard');
-                Route::get('dashboard-chart', [DashboardDosen::class, 'chart'])->name('dosen-chart');
 
                 //activities
                 Route::get('activities/add-activity', [ActivitiesController::class, 'Add'])->name('activities-add');
@@ -83,13 +82,18 @@ Route::middleware(['auth'])->group(
                 Route::delete('cpmk/delete-cpmk/{id}', [CPMKdosen::class, 'Delete'])->name('cpmk-delete');
 
                 //soal
-                 Route::get('soal/add-soal', [soalDosen::class, 'Add'])->name('soal-add');
-                 Route::post('soal/add-soal', [soalDosen::class, 'Store'])->name('soal-store');
-                 Route::get('soal/list-soal', [soalDosen::class, 'list'])->name('soal-list');
-                 Route::get('soal/edit-soal/{id}', [soalDosen::class, 'Edit'])->name('soal-edit');
-                 Route::put('soal/edit-soal/{id}', [soalDosen::class, 'Update']);
-                 Route::delete('soal/delete-soal/{id}', [soalDosen::class, 'Delete'])->name('soal-delete');
+                Route::get('soal/add-soal', [soalDosen::class, 'Add'])->name('soal-add');
+                Route::post('soal/add-soal', [soalDosen::class, 'Store'])->name('soal-store');
+                Route::get('soal/list-soal', [soalDosen::class, 'list'])->name('soal-list');
+                Route::get('soal/edit-soal/{id}', [soalDosen::class, 'Edit'])->name('soal-edit');
+                Route::put('soal/edit-soal/{id}', [soalDosen::class, 'Update']);
+                Route::delete('soal/delete-soal/{id}', [soalDosen::class, 'Delete'])->name('soal-delete');
                 Route::get('print-soal/{id}', [soalDosen::class, 'print']);
+                Route::get('soal/detail-soal/{kodeMk}/{jenis}', [soalDosen::class, 'detail'])->name('soal-detail');
+
+                //ajax
+                Route::get('dashboard-chart', [DashboardDosen::class, 'chart'])->name('dosen-chart');
+                Route::get('get-cpmk/{kodeMk}', [soalDosen::class, 'getCpmk']);
 
             }
         );
@@ -159,7 +163,7 @@ Route::middleware(['auth'])->group(
                 Route::get('print-soal/{id}', [SoalController::class, 'print']);
                 Route::get('soal-chart/{id}', [SoalController::class, 'chart_soal'])->name('chart_soal');
                 Route::get('summary-soal', [SoalController::class, 'summary']);
-                
+
                 // kurikulum
                 Route::post('add-kurikulum', [KurikulumController::class, 'store']);
                 Route::get('edit-kurikulum/{id}', [KurikulumController::class, 'edit']);

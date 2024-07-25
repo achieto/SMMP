@@ -57,25 +57,25 @@
     </tr>
 </table>
 <main>
-    <div style="font-weight:700; text-align:center; margin: 15px 0 45px 0"><?= strtoupper($soal->jenis . " " . $mk->nama) ?></div>
+    <div style="font-weight:700; text-align:center; margin: 15px 0 45px 0"><?= strtoupper($soal->jenis . " " . $soal->mk->nama) ?></div>
     <table class="non-border">
         <tr>
             <td class="non-border" style="padding-left: 85px;">Kode Mata Kuliah</td>
             <td class="non-border" style="padding-left: 40px;">:</td>
-            <td class="non-border" style="padding-left: 13px;">{{$mk->kode}}</td>
+            <td class="non-border" style="padding-left: 13px;">{{$soal->mk->kode}}</td>
         </tr>
         <tr>
             <td class="non-border" style="padding-left: 85px;">Nama Mata Kuliah</td>
             <td class="non-border" style="padding-left: 40px;">:</td>
-            <td class="non-border" style="padding-left: 13px;">{{$mk->nama}}</td>
+            <td class="non-border" style="padding-left: 13px;">{{$soal->mk->nama}}</td>
         </tr>
         <tr>
             <td class="non-border" style="padding-left: 85px;">CPMK</td>
             <td class="non-border" style="padding-left: 40px;">:</td>
             <td class="non-border" style="padding-left: 13px;">
                 <ol>
-                    @foreach($cpmks as $cpmk)
-                    <li>{{$cpmk->judul}}</li>
+                    @foreach($soal->mk->cpmk as $cpmk)
+                        <li>{{$cpmk->judul}}</li>
                     @endforeach
                 </ol>
             </td>
@@ -103,30 +103,17 @@
             </tr>
             <tr>
                 <td style="padding-bottom:15px">
-                    @foreach($cpmk_soals as $no=>$cs)
-                    @php
-                    $id_soals = DB::table('cpmk_soals')->where('id_cpmk', $cs->id_cpmk)->get();
-                    $soalforcpmks = collect();
-                    foreach($id_soals as $is) {
-                    $soalforcpmk = DB::table('soals')->where('id', $is->id_soal)->get();
-                    foreach ($soalforcpmk as $sfor) $soalforcpmks->push($sfor);
-                    }
-                    @endphp
-                    @if($no == 0)
-                    <div class="desc-contain">Soal CPMK {{$no+1}}:</div>
-                    <ol class="start">
-                        @foreach($soalforcpmks as $sfc)
-                        <li>{{$sfc->pertanyaan}}</li>
-                        @endforeach
-                    </ol>
-                    @else
-                    <div class="desc-contain" style="margin-top: 15px">Soal CPMK {{$no+1}}</div>
-                    <ol class="start">
-                        @foreach($soalforcpmks as $sfc)
-                        <li>{{$sfc->pertanyaan}}</li>
-                        @endforeach
-                    </ol>
-                    @endif
+                    @foreach($soal->mk->cpmk as $no=>$cpmk)
+                        @if($cpmk->soal->where('jenis',$soal->jenis)->count() > 0)
+                            <div class="desc-contain" @if($no > 0) style="margin-top: 15px" @endif>Soal CPMK {{$no+1}}:</div>
+                            <ol class="start">
+                                    @foreach($cpmk->soal->where('jenis',$soal->jenis) as $sfc)
+                                    <li>{{$sfc->pertanyaan}}</li>
+                                    @endforeach
+                            </ol>
+                        @else
+                            <div class="desc-contain" @if($no > 0) style="margin-top: 15px" @endif>Soal CPMK {{$no+1}}: -</div>
+                        @endif
                     @endforeach
                 </td>
             </tr>

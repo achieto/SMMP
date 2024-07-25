@@ -26,15 +26,40 @@ class SoalController extends Controller
 
     public function list()
     {
-        $soals = Soal::where('dosen', auth()->user()->name)->get();
-        return view('dosen.soal.list', compact('soals'));
+        $groupedSoals = Soal::where('dosen', auth()->user()->name)
+            ->get()
+            ->groupBy(['kode_mk', 'jenis']);
+        return view('dosen.soal.list', compact('groupedSoals'));
+    }
+
+    public function detail($kodeMk, $jenis)
+    {
+        $soals = Soal::where('dosen', auth()->user()->name)->where('kode_mk', $kodeMk)->where('jenis', $jenis)->get();
+        return view('dosen.soal.detail', compact('soals'));
     }
 
     public function Store(Request $request)
     {
+        $request->validate([
+            'kode_mk' => 'required',
+            'prodi' => 'required',
+            'kurikulum' => 'required',
+            'jenis' => 'required',
+            'minggu' => 'required|numeric|min:1|max:16',
+            'pertanyaan' => 'required',
+            'id_cpmk' => 'required|array',
+            'lampiran' => 'nullable|file|mimes:jpeg,png,jpg,gif,pdf,doc,docx,xls,xlsx|max:10240',
+        ]);
         $data = $request->all();
+        if ($request->hasFile('lampiran')) {
+            $file = $request->file('lampiran');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('assets/lampiran_soal'), $fileName);
+            $data['lampiran'] = $fileName;
+        }
+
         $data['dosen'] = auth()->user()->name;
-        // dd($data);
+        $data['status'] = 'Belum';
         $soal = Soal::create($data);
         $soal->cpmk()->attach($data['id_cpmk']);
         return redirect(route('soal-list'))->with('success', 'Soal successfully added!');
@@ -46,7 +71,6 @@ class SoalController extends Controller
         $rpss = RPS::where('pengembang', auth()->user()->name)->get();
         $rps_id = $rpss->pluck('id');
         $kurikulum = Kurikulum::all();
-        // dd($soal->cpmk()->wherePivot('id_cpmk', 450)->first());
         return view('dosen.soal.edit', compact('rpss', 'soal', 'kurikulum'));
     }
 
@@ -73,40 +97,17 @@ class SoalController extends Controller
     {
         $ids = Crypt::decrypt($id);
         $soal = soal::findOrFail($ids);
-        $mks = MK::all();
-        $cpmks = collect();
-        $soals = collect();
-        $cpmk_soals = collect();
-        // $countsoals = collect();
-        foreach ($mks as $mk) {
-            if ($soal->kode_mk == $mk->kode) {
-                $soalss = Soal::where('kode_mk', $mk->kode)->where('jenis', $soal->jenis)->orderBy('id', 'asc')->get();
-            }
-        }
-
-        foreach ($soalss as $s) $soals->push($s);
-        foreach ($soals as $sl) {
-            $temp = DB::table('cpmk_soals')->select(DB::raw('id_cpmk, id_soal'))->groupBy('id_cpmk')->orderBy('id_cpmk', 'asc')->get();
-            $cpmk_s = $temp->where('id_soal', $sl->id);
-            // $count = DB::table('cpmk_soals')->select(DB::raw('id_soal,COUNT(*) as soal_count'))->where('id_soal', $sl->id)->groupBy('id_soal')->orderBy('id_cpmk', 'asc')->get();
-            foreach ($cpmk_s as $cpmk) $cpmk_soals->push($cpmk);
-            // foreach ($count as $cnt) $countsoals->push($cnt);
-        }
-        foreach ($cpmk_soals as $c_s) {
-            $cpmkss = CPMK::where('id', $c_s->id_cpmk)->get();
-            foreach ($cpmkss as $cp) $cpmks->push($cp);
-        }
-        $mk = MK::where('kode',$soal->kode_mk)->first();
         $data = compact(
-            'mk',
             'soal',
-            'mks',
-            'cpmks',
-            'cpmk_soals'
         );
-        // dd($data);
         $pdf = PDF::loadView('dosen.soal.print', $data);
         $pdf->setOption('enable-local-file-access', true);
         return $pdf->stream('soal.pdf');
+    }
+
+    public function getCpmk($kodeMk)
+    {
+        $cpmks = CPMK::where('kode_mk', $kodeMk)->get();
+        return response()->json($cpmks);
     }
 }

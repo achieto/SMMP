@@ -11,7 +11,7 @@ class Soal extends Model
     protected $table = 'soals';
 
     protected $fillable = [
-        'kode_mk', 'minggu', 'jenis', 'dosen', 'kurikulum', 'pertanyaan', 'status', 'komentar'
+        'kode_mk', 'minggu', 'jenis', 'dosen', 'kurikulum', 'pertanyaan','lampiran', 'status', 'komentar'
     ];
 
     public function cpmk()

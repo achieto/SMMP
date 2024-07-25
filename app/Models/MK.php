@@ -17,4 +17,9 @@ class MK extends Model
     {
         return $this->hasMany(CPMK::class, 'kode_mk', 'kode');
     }
+
+    public function soals()
+    {
+        return $this->hasMany(Soal::class, 'kode_mk', 'kode');
+    }
 }

@@ -18,7 +18,6 @@
 <script src="{{ asset('/assets/template/vendors/js/vendor.bundle.base.js')}}"></script>
 <!-- endinject -->
 <!-- Plugin js for this page -->
-<script src="{{ asset('/assets/template/vendors/chart.js/Chart.min.js')}}"></script>
 <script src="{{ asset('/assets/template/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js')}}"></script>
 <script src="{{ asset('/assets/template/vendors/progressbar.js/progressbar.min.js')}}"></script>
 

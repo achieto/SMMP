@@ -69,7 +69,7 @@ class RPScontroller extends Controller
             'keterampilans'
         );
 
-        $pdf = PDF::loadView('admin.rps.print', $data)->setOrientation('landscape');
+        $pdf = PDF::loadView('dosen.rps.print', $data)->setOrientation('landscape');
         $pdf->setOption('enable-local-file-access', true);
         return $pdf->stream('rps.pdf');
     }
