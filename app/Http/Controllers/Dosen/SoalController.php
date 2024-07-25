@@ -71,12 +71,25 @@ class SoalController extends Controller
         $rpss = RPS::where('pengembang', auth()->user()->name)->get();
         $rps_id = $rpss->pluck('id');
         $kurikulum = Kurikulum::all();
-        return view('dosen.soal.edit', compact('rpss', 'soal', 'kurikulum'));
+        $cpmks_id = $soal->cpmk->pluck('id');
+        return view('dosen.soal.edit', compact('rpss','cpmks_id', 'soal', 'kurikulum'));
     }
 
     public function Update(Request $request, $id)
     {
         $soal = Soal::findOrFail($id);
+        if ($request->hasFile('lampiran')) {
+            if (!empty($soal->lampiran)) {
+                $oldFilePath = public_path('assets/lampiran_soal/' . $soal->lampiran);
+                if (file_exists($oldFilePath)) {
+                    unlink($oldFilePath);
+                }
+            }
+            $file = $request->file('lampiran');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('assets/lampiran_soal'), $fileName);
+            $data['lampiran'] = $fileName;
+        }
         $data = $request->all();
         $data['dosen'] = auth()->user()->name;
         $data['status'] = 1;
@@ -88,6 +101,12 @@ class SoalController extends Controller
     public function Delete($id)
     {
         $soal = Soal::findOrFail($id);
+        if (!empty($soal->lampiran)) {
+            $oldFilePath = public_path('assets/lampiran_soal/' . $soal->lampiran);
+            if (file_exists($oldFilePath)) {
+                unlink($oldFilePath);
+            }
+        }
         $soal->cpmk()->sync([]);
         $soal->delete();
         return redirect(route('soal-list'))->with('success', 'Soal successfully removed!');

@@ -53,7 +53,7 @@
                                 <a href="/dosen/soal/edit-soal/{{$soal->id}}" type="button" class="btn btn-warning me-2 btn-icon-text p-2">
                                     <i class="ti-pencil btn-icon"></i>
                                 </a>
-                                <form action="delete-rps/{{$soal->id}}" method="post">
+                                <form action="/dosen/soal/delete-soal/{{$soal->id}}" method="post">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger btn-icon-text p-2 me-2" onclick="return confirm('Are you sure to delete soal ?')">

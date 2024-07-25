@@ -84,13 +84,24 @@
                     <div id="pertanyaanHelp" class="form-text mb-3">Silahkan masukkan Pertanyaan.</div>
                 </div>
 
+                <button type="button" class="list-group-item btn p-0" id="btn-lampiran">
+                    <ul class="list-group list-group-horizontal">
+                        <li class="list-group-item list-group-item-primary"><i class="ti-export"></i></li>
+                        <li id="file-placeholder" class="list-group-item list-group-item-light">No File Selected</li>
+                    </ul>
+                </button>
+
+                <input type="file" name="lampiran" id="lampiran" class="form-control d-none" placeholder="insert lampiran" accept=".jpeg,.jpg,.png,.pdf,.doc,.docx,.xls,.xlsx">
+                <div id="lampiranHelp" class="form-text mb-3">Silahkan upload Lampiran (opsional) max:10MB.</div>
+                @error('lampiran')
+                <div class="alert alert-danger">
+                    {{ $message }}
+                </div>
+                @enderror
+
                 <div class="form-floating">
-                    <select name="id_cpmk[]" class="js-example-basic-multiple form-select form-control-lg" multiple="multiple">
-                        @foreach ($rpss as $rps)
-                        @foreach ($rps->mk->cpmk as $cpmk)
-                        <option {{$soal->cpmk()->wherePivot('id_cpmk', $cpmk->id)->first()? 'selected':''}} value="{{$cpmk->id}}">{{$cpmk->judul}}</option>
-                        @endforeach
-                        @endforeach
+                    <select id="cpmks" name="id_cpmk[]" class="js-example-basic-multiple form-select form-control-lg" multiple="multiple">
+                        <option disabled > pilih mata kuliah terlebih dahulu </option>
                     </select>
                     <label for="id_cpl"> Pilih CPMK <span class="text-danger"> *</span></label>
                     <div id="cpmkHelp" class="form-text mb-3">Silahkan pilih cpmk yang akan di implementasikan.</div>
@@ -104,5 +115,60 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="{{ asset('/assets/template/vendors/select2/select2.min.js')}}"></script>
 <script src="{{ asset('/assets/template/js/select2.js')}}"></script>
+<script>
+$(document).ready(function() {
+    var MK = $('select#mataKuliah').val();
+    $('select#cpmks').empty();
+
+    if(MK) {
+        $.ajax({
+            url: '/dosen/get-cpmk/' + MK,
+            type: "GET",
+            dataType: "json",
+            success:function(data) {
+                var cpmkValue = {!! json_encode($cpmks_id) !!};
+                $.each(data, function(key, value) {
+                    var selected = cpmkValue.includes(value.id) ? 'selected' : '';
+                    $('select#cpmks').append('<option value="'+ value.id +'" '+ selected +'>'+ value.judul +'</option>');
+                });
+                $('select#cpmks').trigger('change');
+            }
+        });
+    }
+
+    $('select#mataKuliah').change(function() {
+        var selectedMK = $(this).val();
+        $('select#cpmks').empty();
+
+        if(selectedMK) {
+            $.ajax({
+                url: '/dosen/get-cpmk/' + selectedMK,
+                type: "GET",
+                dataType: "json",
+                success:function(data) {
+                    $.each(data, function(key, value) {
+                        $('select#cpmks').append('<option value="'+ value.id +'">'+ value.judul +'</option>');
+                    });
+                    $('select#cpmks').trigger('change');
+                }
+            });
+        }
+    });
+
+    // Fungsi untuk trigger file input dan ganti placeholder
+    $('#btn-lampiran').click(function() {
+        $('#lampiran').click();
+    });
+
+    $('#lampiran').change(function() {
+        var fileName = $(this).val().split('\\').pop();
+        if (fileName) {
+            $('#file-placeholder').text(fileName);
+        } else {
+            $('#file-placeholder').text('No File Selected');
+        }
+    });
+});
+</script>
 
 @endsection
